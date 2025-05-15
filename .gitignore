@@ -24,3 +24,11 @@ SUB_CONFIGURE
 vst_config
 
 _CoqProject
+
+.vscode/
+assignments/
+compcert_lib/
+homework/
+pv/
+qcp/
+sets/
