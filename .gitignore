@@ -22,3 +22,5 @@ SUB_CONFIGURE
 
 *.sh
 vst_config
+
+_CoqProject
