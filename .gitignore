@@ -19,3 +19,6 @@ SUB_CONFIGURE
 .nia.cache
 .nra.cache
 .csdp.cache
+
+*.sh
+vst_config

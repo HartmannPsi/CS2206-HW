@@ -1,5 +1,5 @@
-CURRENT_DIR=.
-SLL_DIR=$(CURRENT_DIR)/sll
+CURRENT_DIR=/home/hartmann_itx/ProgramVerification-2025/CS2206-spring2025/qcp/
+SLL_DIR=$(CURRENT_DIR)/sll/
 
 -include CONFIGURE
 
