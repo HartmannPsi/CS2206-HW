@@ -30,12 +30,21 @@ Inductive PreData : Type :=
 
 (* Print store_int_array. *)
 
+Definition store_cnf_list_cell (x: addr) (c: cnf_list_cell): Assertion :=
+  match c with
+    | CNFCell size clause => [| x <> NULL |] && [| Zlength clause = size |] &&
+                             EX y: addr,
+                              &(x # "cnf_list" ->ₛ "size") # Int |-> size **
+                              &(x # "cnf_list" ->ₛ "clause") # Ptr |-> y **
+                              store_int_array y size clause
+  end.
+
 Module cnf_list_store_lists1.
 
 Fixpoint sll_cnf_list (x: addr) (l: cnf_list): Assertion :=
   match l with
     | nil => [| x = NULL |] && emp
-    | (CNFCell size clause) :: l0 => [| x <> NULL |] &&
+    | (CNFCell size clause) :: l0 => [| x <> NULL |] && [| Zlength clause = size |] &&
                                    EX y z: addr,
                                     &(x # "cnf_list" ->ₛ "size") # Int |-> size **
                                     &(x # "cnf_list" ->ₛ "clause") # Ptr |-> y **

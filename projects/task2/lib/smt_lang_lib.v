@@ -94,6 +94,12 @@ Fixpoint store_SmtProp (x: addr) (s: SmtProp) : Assertion :=
                        &(x # "SmtProp" ->ₛ "prop" .ₛ "Propvar") # Int |-> var
   end.
 
+Definition store_SmtProp_cell (x: addr) (s: SmtProp): Assertion :=
+  [| x <> NULL |] &&
+  EX y: addr,
+   &(x # "SmtProplist" ->ₛ "prop") # Ptr |-> y **
+   store_SmtProp y s.
+
 Module smt_lang_store_lists1.
 
 Fixpoint sll_SmtProplist (x: addr) (l: SmtProplist): Assertion :=

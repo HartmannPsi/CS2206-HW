@@ -245,6 +245,12 @@ Fixpoint store_term (x: addr) (t: term): Assertion :=
                                           store_string y qvar ** store_term z body
   end.
 
+Definition store_term_cell (x: addr) (t: term): Assertion :=
+  [| x <> NULL |] &&
+  EX y: addr,
+    &(x # "term_list" ->ₛ "element") # Ptr |-> y **
+    store_term y t.
+
 Definition store_var_sub (x: addr) (v: var_sub): Assertion :=
   match v with
     | VarSub name term => [| x <> NULL |] &&
@@ -253,6 +259,12 @@ Definition store_var_sub (x: addr) (v: var_sub): Assertion :=
                            &(x # "var_sub" ->ₛ "sub_term") # Ptr |-> z **
                            store_string y name ** store_term z term
   end.
+
+Definition store_var_sub_cell (x: addr) (v: var_sub): Assertion :=
+  [| x <> NULL |] &&
+  EX y: addr,
+    &(x # "var_sub_list" ->ₛ "cur") # Ptr |-> y **
+    store_var_sub y v.
 
 Module ast_store_lists1.
 
@@ -306,10 +318,22 @@ Definition store_solve_res (x: addr) (s: solve_res): Assertion :=
   match s with
     | SRBool rtype ans => [| x <> NULL |] && [| rtype = BoolRes |] && [| 0 <= ans <= 1 |] &&
                           &(x # "solve_res" ->ₛ "type") # Int |-> rtID BoolRes **
-                          &(x # "solve_res" ->ₛ "ans") # Char |-> ans
+                          &(x # "solve_res" ->ₛ "d" .ₛ "ans") # Char |-> ans
     | SRTList rtype l => [| x <> NULL |] && [| rtype = TermList |] &&
                          EX y: addr,
                           &(x # "solve_res" ->ₛ "type") # Int |-> rtID TermList **
-                          &(x # "solve_res" ->ₛ "list") # Ptr |-> y **
+                          &(x # "solve_res" ->ₛ "d" .ₛ "list") # Ptr |-> y **
                           sll_term_list y l
+  end.
+
+Inductive ImplyProp : Type :=
+  | ImplP (assum: term) (concl: term): ImplyProp.
+
+Definition store_ImplyProp (x: addr) (p: ImplyProp): Assertion :=
+  match p with
+    | ImplP assum concl => [| x <> NULL |] &&
+                           EX y z: addr,
+                            &(x # "ImplyProp" ->ₛ "assum") # Ptr |-> y **
+                            &(x # "ImplyProp" ->ₛ "concl") # Ptr |-> z **
+                            store_term y assum ** store_term z concl
   end.
