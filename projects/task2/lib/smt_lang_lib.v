@@ -51,48 +51,92 @@ Definition SmtPUID (t: SmtPropUop) : Z :=
     | SMTPROP_NOT => 4%Z
   end.
 
-Definition SmtPTID (t: SmtPropType) : Z :=
-  match t with
-    | SMTB_PROP => 5%Z
-    | SMTU_PROP => 6%Z
-    | SMT_PROPVAR => 7%Z
-  end.
-
-Definition valid_SmtPB (t: SmtPropBop) := True.
-Definition valid_SmtPU (t: SmtPropUop) := True.
-Definition valid_SmtPT (t: SmtPropType) := True.
-
 End smt_lang_enums1.
 
 Import smt_lang_enums1.
 
 Inductive SmtProp : Type :=
-  | SmtB (type: SmtPropType) (op: SmtPropBop) (lt: SmtProp) (rt: SmtProp): SmtProp
-  | SmtU (type: SmtPropType) (op: SmtPropUop) (prop: SmtProp): SmtProp
-  | SmtV (type: SmtPropType) (var: Z): SmtProp.
+  | SmtB (op: SmtPropBop) (lt: SmtProp) (rt: SmtProp): SmtProp
+  | SmtU (op: SmtPropUop) (prop: SmtProp): SmtProp
+  | SmtV (var: Z): SmtProp.
 
 Definition SmtProplist : Type := list SmtProp.
 
-Fixpoint store_SmtProp (x: addr) (s: SmtProp) : Assertion :=
-  match s with
-    | SmtB type op lt rt => [| x <> NULL |] && [| type = SMTB_PROP |] && [| valid_SmtPB op |] &&
-                            EX y z: addr,
-                             &(x # "SmtProp" ->ₛ "type") # Int |-> SmtPTID SMTB_PROP **
-                             &(x # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op") # Int |-> SmtPBID op **
-                             &(x # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1") # Ptr |-> y **
-                             &(x # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2") # Ptr |-> z **
-                             store_SmtProp y lt **
-                             store_SmtProp z rt
-    | SmtU type op prop => [| x <> NULL |] && [| type = SMTU_PROP |] && [| valid_SmtPU op |] &&
-                           EX y: addr,
-                            &(x # "SmtProp" ->ₛ "type") # Int |-> SmtPTID SMTU_PROP **
-                            &(x # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op") # Int |-> SmtPUID op **
-                            &(x # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1") # Ptr |-> y **
-                            store_SmtProp y prop
-    | SmtV type var => [| x <> NULL |] && [| type = SMT_PROPVAR |] &&
-                       &(x # "SmtProp" ->ₛ "type") # Int |-> SmtPTID SMT_PROPVAR **
-                       &(x # "SmtProp" ->ₛ "prop" .ₛ "Propvar") # Int |-> var
+Definition SmtPTID (t: SmtProp) : Z :=
+  match t with
+    | SmtB _ _ _ => 5%Z
+    | SmtU _ _ => 6%Z
+    | SmtV _ => 7%Z
   end.
+
+Fixpoint store_SmtProp (x: addr) (s: SmtProp) : Assertion :=
+  &(x # "SmtProp" ->ₛ "type") # Int |-> SmtPTID s **
+  match s with
+    | SmtB op lt rt => [| x <> NULL |] &&
+                       EX y z: addr,
+                        &(x # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op") # Int |-> SmtPBID op **
+                        &(x # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1") # Ptr |-> y **
+                        &(x # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2") # Ptr |-> z **
+                        store_SmtProp y lt **
+                        store_SmtProp z rt
+    | SmtU op prop => [| x <> NULL |] &&
+                      EX y: addr,
+                        &(x # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op") # Int |-> SmtPUID op **
+                        &(x # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1") # Ptr |-> y **
+                        store_SmtProp y prop
+    | SmtV var => [| x <> NULL |] &&
+                  &(x # "SmtProp" ->ₛ "prop" .ₛ "Propvar") # Int |-> var
+  end.
+
+
+Definition store_SmtProp' (x: addr) (s: SmtProp) : Assertion :=
+  match s with
+    | SmtB op lt rt => [| x <> NULL |] &&
+                       EX y z: addr,
+                        &(x # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op") # Int |-> SmtPBID op **
+                        &(x # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1") # Ptr |-> y **
+                        &(x # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2") # Ptr |-> z **
+                        store_SmtProp y lt **
+                        store_SmtProp z rt
+    | SmtU op prop => [| x <> NULL |] &&
+                      EX y: addr,
+                        &(x # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op") # Int |-> SmtPUID op **
+                        &(x # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1") # Ptr |-> y **
+                        store_SmtProp y prop
+    | SmtV var => [| x <> NULL |] &&
+                  &(x # "SmtProp" ->ₛ "prop" .ₛ "Propvar") # Int |-> var
+  end.
+
+Lemma store_SmtProp_unfold: forall x s,
+  store_SmtProp x s |--
+  &(x # "SmtProp" ->ₛ "type") # Int |-> SmtPTID s **
+  store_SmtProp' x s.
+
+Proof.
+  intros.
+  unfold store_SmtProp, store_SmtProp'.
+  destruct s; fold store_SmtProp; entailer!.
+Qed.
+
+Lemma store_SmtProp'_B: forall x s,
+  SmtPTID s = 5%Z ->
+  store_SmtProp' x s |--
+  EX op lt rt, [| s = SmtB op lt rt |] && [| x <> NULL |] &&
+  EX y z: addr,
+    &(x # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op") # Int |-> SmtPBID op **
+    &(x # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1") # Ptr |-> y **
+    &(x # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2") # Ptr |-> z **
+    store_SmtProp y lt **
+    store_SmtProp z rt.
+Proof.
+  intros.
+  destruct s; try discriminate H.
+  Exists op s1 s2.
+  simpl.
+  Intros y z.
+  Exists y z.
+  entailer!.
+Qed.
 
 Definition store_SmtProp_cell (x: addr) (s: SmtProp): Assertion :=
   [| x <> NULL |] &&
@@ -103,21 +147,6 @@ Definition store_SmtProp_cell (x: addr) (s: SmtProp): Assertion :=
 (* Definition link_SmtProp_cell (x y: addr): Assertion :=
   [| x <> NULL |] &&
   &(x # "SmtProplist" ->ₛ "next") # Ptr |-> y. *)
-
-Module smt_lang_store_lists1.
-
-Fixpoint sll_SmtProplist (x: addr) (l: SmtProplist): Assertion :=
-  match l with
-    | nil => [| x = NULL |] && emp
-    | s :: l0 => [| x <> NULL |] &&
-                EX y z: addr,
-                 &(x # "SmtProplist" ->ₛ "prop") # Ptr |-> y **
-                 &(x # "SmtProplist" ->ₛ "next") # Ptr |-> z **
-                 store_SmtProp z s **
-                 sll_SmtProplist y l0
-  end.
-
-End smt_lang_store_lists1.
 
 Module smt_lang_store_lists2.
 
