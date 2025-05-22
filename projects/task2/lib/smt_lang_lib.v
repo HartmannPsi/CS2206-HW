@@ -70,22 +70,19 @@ Definition SmtPTID (t: SmtProp) : Z :=
   end.
 
 Fixpoint store_SmtProp (x: addr) (s: SmtProp) : Assertion :=
-  &(x # "SmtProp" ->ₛ "type") # Int |-> SmtPTID s **
+  [| x <> NULL |] && &(x # "SmtProp" ->ₛ "type") # Int |-> SmtPTID s **
   match s with
-    | SmtB op lt rt => [| x <> NULL |] &&
-                       EX y z: addr,
+    | SmtB op lt rt => EX y z: addr,
                         &(x # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op") # Int |-> SmtPBID op **
                         &(x # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1") # Ptr |-> y **
                         &(x # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2") # Ptr |-> z **
                         store_SmtProp y lt **
                         store_SmtProp z rt
-    | SmtU op prop => [| x <> NULL |] &&
-                      EX y: addr,
+    | SmtU op prop => EX y: addr,
                         &(x # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op") # Int |-> SmtPUID op **
                         &(x # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1") # Ptr |-> y **
                         store_SmtProp y prop
-    | SmtV var => [| x <> NULL |] &&
-                  &(x # "SmtProp" ->ₛ "prop" .ₛ "Propvar") # Int |-> var
+    | SmtV var => &(x # "SmtProp" ->ₛ "prop" .ₛ "Propvar") # Int |-> var
   end.
 
 
@@ -111,14 +108,13 @@ Lemma store_SmtProp_unfold: forall x s,
   store_SmtProp x s |--
   &(x # "SmtProp" ->ₛ "type") # Int |-> SmtPTID s **
   store_SmtProp' x s.
-
 Proof.
   intros.
   unfold store_SmtProp, store_SmtProp'.
   destruct s; fold store_SmtProp; entailer!.
 Qed.
 
-Lemma store_SmtProp'_B: forall x s,
+Lemma store_SmtProp'_Binary: forall x s,
   SmtPTID s = 5%Z ->
   store_SmtProp' x s |--
   EX op lt rt, [| s = SmtB op lt rt |] && [| x <> NULL |] &&
@@ -135,6 +131,37 @@ Proof.
   simpl.
   Intros y z.
   Exists y z.
+  entailer!.
+Qed.
+
+Lemma store_SmtProp'_Unary: forall x s,
+  SmtPTID s = 6%Z ->
+  store_SmtProp' x s |--
+  EX op prop, [| s = SmtU op prop |] && [| x <> NULL |] &&
+  EX y: addr,
+    &(x # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op") # Int |-> SmtPUID op **
+    &(x # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1") # Ptr |-> y **
+    store_SmtProp y prop.
+Proof.
+  intros.
+  destruct s; try discriminate H.
+  Exists op s.
+  simpl.
+  Intros y.
+  Exists y.
+  entailer!.
+Qed.
+
+Lemma store_SmtProp'_Var: forall x s,
+  SmtPTID s = 7%Z ->
+  store_SmtProp' x s |--
+  EX v, [| s = SmtV v |] && [| x <> NULL |] &&
+    &(x # "SmtProp" ->ₛ "prop" .ₛ "Propvar") # Int |-> v.
+Proof.
+  intros.
+  destruct s; try discriminate H.
+  Exists var.
+  simpl.
   entailer!.
 Qed.
 

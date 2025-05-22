@@ -23,7 +23,8 @@ Local Open Scope sac.
 
 Definition var_name : Type := list Z.
 
-Module ast_enums1.
+(* all about ast basic structure *)
+Module ast_def.
 
 Inductive const_type : Type :=
   | CNum: const_type
@@ -44,12 +45,6 @@ Inductive term_type : Type :=
   | TConst: term_type
   | TApply: term_type
   | TQuant: term_type.
-
-Inductive res_type : Type :=
-  | BoolRes: res_type
-  | TermList: res_type.
-
-Definition valid_ct (t: const_type) := True.
   
 Definition ctID (t: const_type) :=
   match t with
@@ -63,15 +58,11 @@ Definition ctID (t: const_type) :=
     | CImpl => 7%Z
   end.
   
-Definition valid_qt (t: quant_type) := True.
-  
 Definition qtID (t: quant_type) :=
   match t with
     | QForall => 0%Z
     | QExists => 1%Z
   end.
-
-Definition valid_tt (t: term_type) := True.
 
 Definition ttID (t: term_type) :=
   match t with
@@ -81,126 +72,25 @@ Definition ttID (t: term_type) :=
     | TQuant => 3%Z
   end.
 
-Definition valid_rt (t: res_type) := True.
-
-Definition rtID (t: res_type) :=
-  match t with
-    | BoolRes => 0%Z
-    | TermList => 1%Z
-  end.
-
-End ast_enums1.
-
-Module ast_enums2.
-
-Definition const_type : Type := Z.
-Definition quant_type : Type := Z.
-Definition term_type : Type := Z.
-Definition res_type : Type := Z.
-
-Definition CNum : Z := 0%Z.
-Definition CAdd : Z := 1%Z.
-Definition CMul : Z := 2%Z.
-Definition CEq : Z := 3%Z.
-Definition CLe : Z := 4%Z.
-Definition CAnd : Z := 5%Z.
-Definition COr : Z := 6%Z.
-Definition CImpl : Z := 7%Z.
-
-Definition QForall : Z := 0%Z.
-Definition QExists : Z := 1%Z.
-
-Definition TVar : Z := 0%Z.
-Definition TConst : Z := 1%Z.
-Definition TApply : Z := 2%Z.
-Definition TQuant : Z := 3%Z.
-
-Definition BoolRes : Z := 0%Z.
-Definition TermList : Z := 1%Z.
-
-Definition valid_ct (t: const_type) :=
-  0 <= t <= 7.
-
-Definition ctID (t: const_type) := t.
-
-Definition valid_qt (t: quant_type) :=
-  0 <= t <= 1.
-
-Definition qtID (t: quant_type) := t.
-
-Definition valid_tt (t: quant_type) :=
-  0 <= t <= 3.
-
-Definition ttID (t: term_type) := t.
-
-Definition valid_rt (t: res_type) :=
-  0 <= t <= 1.
-
-Definition rtID (t: res_type) := t.
-
-End ast_enums2.
-
-Import ast_enums1.
-
-Module ast_term1.
-
 Inductive term : Type :=
-  | TermVar (ttype: term_type) (var: var_name): term
-  | TermConst (ttype: term_type) (ctype: const_type) (content: Z): term
-  | TermApply (ttype: term_type) (lt: term) (rt: term): term
-  | TermQuant (ttype: term_type) (qtype: quant_type) (qvar: var_name) (body: term): term.
-
-End ast_term1.
-
-Module ast_term2.
-
-Inductive sub_term : Type :=
-  | TermVar (var: var_name): sub_term
-  | TermConst (ctype: const_type) (content: Z): sub_term
-  | TermApply (lt: term) (rt: term): sub_term
-  | TermQuant (qtype: quant_type) (qvar: var_name) (body: term): sub_term
-
-with term : Type :=
-  Term (ttype: term_type) (body: sub_term): term.
-
-End ast_term2.
-
-Import ast_term1.
+  | TermVar (var: var_name): term
+  | TermConst (ctype: const_type) (content: Z): term
+  | TermApply (lt: term) (rt: term): term
+  | TermQuant (qtype: quant_type) (qvar: var_name) (body: term): term.
 
 Definition term_list : Type := list term.
 
-(* Definition var_sub : Type := var_name * term. *)
+End ast_def.
 
-Inductive var_sub : Type :=
-  | VarSub (name: var_name) (t: term): var_sub.
+Import ast_def.
 
-Definition var_sub_list : Type := list var_sub.
-
-Module ast_solve_res1.
-
-Inductive solve_res : Type :=
-  | SRBool (rtype: res_type) (ans: Z): solve_res
-  | SRTList (rtype: res_type) (l: term_list): solve_res.
-
-End ast_solve_res1.
-
-Module ast_solve_res2.
-
-Inductive sub_solve_res : Type :=
-  | SRBool (ans: bool): sub_solve_res
-  | SRTList (l: term_list): sub_solve_res.
-
-Definition solve_res : Type := res_type * sub_solve_res.
-
-End ast_solve_res2.
-
-Import ast_solve_res1.
-
-(* 
-Print store_array.
-Print store_char. *)
-(* Print store_char_array.
-Print length. *)
+Definition termtypeID (t: term) : Z :=
+  match t with
+    | TermVar _ => 0%Z
+    | TermConst _ _ => 1%Z
+    | TermApply _ _ => 2%Z
+    | TermQuant _ _ _ => 3%Z
+  end.
 
 (* Definition zlength {A: Type} (l: list A) : Z :=
   Z.of_nat (List.length l). *)
@@ -220,29 +110,21 @@ Definition store_string (x: addr) (str: var_name): Assertion :=
   store_char_array x (Zlength (str ++ (all_zero_list n))) (str ++ (all_zero_list n)).
 
 Fixpoint store_term (x: addr) (t: term): Assertion :=
+  [| x <> NULL |] && &(x # "term" ->ₛ "type") # Int |-> termtypeID t **
   match t with
-    | TermVar ttype var => [| ttype = TVar |] && [| x <> NULL |] &&
-                           EX y: addr,
-                            &(x # "term" ->ₛ "type") # Int |-> ttID TVar **
-                            &(x # "term" ->ₛ "content" .ₛ "Var") # Ptr |-> y **
-                            store_string y var
-    | TermConst ttype ctype content => [| ttype = TConst |] && [| x <> NULL |] && [| valid_ct ctype |] &&
-                                       &(x # "term" ->ₛ "type") # Int |-> ttID TConst **
-                                       &(x # "term" ->ₛ "content" .ₛ "Const" .ₛ "type") # Int |-> ctID ctype **
-                                       &(x # "term" ->ₛ "content" .ₛ "Const" .ₛ "content") # Int |-> content
-    | TermApply ttype lt rt => [| ttype = TApply |] && [| x <> NULL |] &&
-                               EX y z: addr,
-                                &(x # "term" ->ₛ "type") # Int |-> ttID TApply **
-                                &(x # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left") # Ptr |-> y **
-                                &(x # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right") # Ptr |-> z **
-                                store_term y lt ** store_term z rt
-    | TermQuant ttype qtype qvar body => [| ttype = TQuant |] && [| x <> NULL |] && [| valid_qt qtype |] &&
-                                         EX y z: addr,
-                                          &(x # "term" ->ₛ "type") # Int |-> ttID TQuant **
-                                          &(x # "term" ->ₛ "content" .ₛ "Quant" .ₛ "type") # Int |-> qtID qtype **
-                                          &(x # "term" ->ₛ "content" .ₛ "Quant" .ₛ "var") # Ptr |-> y **
-                                          &(x # "term" ->ₛ "content" .ₛ "Quant" .ₛ "body") # Ptr |-> z **
-                                          store_string y qvar ** store_term z body
+    | TermVar var => EX y: addr,
+                    &(x # "term" ->ₛ "content" .ₛ "Var") # Ptr |-> y **
+                    store_string y var
+    | TermConst ctype content => &(x # "term" ->ₛ "content" .ₛ "Const" .ₛ "type") # Int |-> ctID ctype **
+                                &(x # "term" ->ₛ "content" .ₛ "Const" .ₛ "content") # Int |-> content
+    | TermApply lt rt => EX y z: addr,
+                        &(x # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left") # Ptr |-> y **
+                        &(x # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right") # Ptr |-> z **
+                        store_term y lt ** store_term z rt
+    | TermQuant qtype qvar body => EX y z: addr,
+                                  &(x # "term" ->ₛ "content" .ₛ "Quant" .ₛ "var") # Ptr |-> y **
+                                  &(x # "term" ->ₛ "content" .ₛ "Quant" .ₛ "body") # Ptr |-> z **
+                                  store_string y qvar ** store_term z body
   end.
 
 Definition store_term_cell (x: addr) (t: term): Assertion :=
@@ -250,55 +132,6 @@ Definition store_term_cell (x: addr) (t: term): Assertion :=
   EX y: addr,
     &(x # "term_list" ->ₛ "element") # Ptr |-> y **
     store_term y t.
-
-(* Definition link_term_cell (x y: addr): Assertion :=
-  [| x <> NULL |] &&
-  &(x # "term_list" ->ₛ "next") # Ptr |-> y. *)
-
-Definition store_var_sub (x: addr) (v: var_sub): Assertion :=
-  match v with
-    | VarSub name term => [| x <> NULL |] &&
-                          EX y z: addr,
-                           &(x # "var_sub" ->ₛ "var") # Ptr |-> y **
-                           &(x # "var_sub" ->ₛ "sub_term") # Ptr |-> z **
-                           store_string y name ** store_term z term
-  end.
-
-Definition store_var_sub_cell (x: addr) (v: var_sub): Assertion :=
-  [| x <> NULL |] &&
-  EX y: addr,
-    &(x # "var_sub_list" ->ₛ "cur") # Ptr |-> y **
-    store_var_sub y v.
-
-(* Definition link_var_sub_cell (x y: addr): Assertion :=
-  [| x <> NULL |] &&
-  &(x # "var_sub_list" ->ₛ "next") # Ptr |-> y. *)
-
-Module ast_store_lists1.
-
-Fixpoint sll_term_list (x: addr) (l: term_list): Assertion :=
-  match l with
-    | nil => [| x = NULL |] && emp
-    | a :: l0 => [| x <> NULL |] &&
-                 EX y z: addr,
-                  &(x # "term_list" ->ₛ "element") # Ptr |-> y **
-                  &(x # "term_list" ->ₛ "next") # Ptr |-> z **
-                  store_term y a ** sll_term_list z l0
-  end.
-
-Fixpoint sll_var_sub_list (x: addr) (l: var_sub_list): Assertion :=
-  match l with
-    | nil => [| x = NULL |] && emp
-    | a :: l0 => [| x <> NULL |] &&
-                 EX y z: addr,
-                  &(x # "var_sub_list" ->ₛ "cur") # Ptr |-> y **
-                  &(x # "var_sub_list" ->ₛ "next") # Ptr |-> z **
-                  store_var_sub y a ** sll_var_sub_list z l0
-  end.
-
-End ast_store_lists1.
-
-Module ast_store_lists2.
 
 Definition sll_term_list (x: addr) (l: term_list): Assertion :=
   sll store_term_cell "term_list" "next" x l.
@@ -308,6 +141,38 @@ Definition sllseg_term_list (x: addr) (y: addr) (l: term_list): Assertion :=
 
 Definition sllbseg_term_list (x: addr) (y: addr) (l: term_list): Assertion :=
   sllbseg store_term_cell "term_list" "next" x y l.
+    
+
+(* all about ast var_sub *)
+
+Module ast_var_sub.
+
+Inductive var_sub : Type :=
+  | VarSub (name: var_name) (t: term): var_sub.
+
+Definition var_sub_list : Type := list var_sub.
+
+End ast_var_sub.
+
+Import ast_var_sub.
+
+(* Definition var_sub_list : Type := list var_sub. *)
+(* v is stored on addr x *)
+Definition store_var_sub (x: addr) (v: var_sub): Assertion :=
+  match v with
+    | VarSub name term => [| x <> NULL |] &&
+                          EX y z: addr,
+                           &(x # "var_sub" ->ₛ "var") # Ptr |-> y **
+                           &(x # "var_sub" ->ₛ "sub_term") # Ptr |-> z **
+                           store_string y name ** store_term z term
+  end.
+
+(* the linked list node stores the var_sub type addr *)
+Definition store_var_sub_cell (x: addr) (v: var_sub): Assertion :=
+  [| x <> NULL |] &&
+  EX y: addr, 
+    &(x # "var_sub_list" ->ₛ "cur") # Ptr |-> y **
+    store_var_sub y v.
 
 Definition sll_var_sub_list (x: addr) (l: var_sub_list): Assertion :=
   sll store_var_sub_cell "var_sub_list" "next" x l.
@@ -318,21 +183,41 @@ Definition sllseg_var_sub_list (x: addr) (y: addr) (l: var_sub_list): Assertion 
 Definition sllbseg_var_sub_list (x: addr) (y: addr) (l: var_sub_list): Assertion :=
   sllbseg store_var_sub_cell "var_sub_list" "next" x y l.
 
-End ast_store_lists2.
 
-Import ast_store_lists2.
+(* all about ast solve result *)
 
-Definition store_solve_res (x: addr) (s: solve_res): Assertion :=
-  match s with
-    | SRBool rtype ans => [| x <> NULL |] && [| rtype = BoolRes |] && [| 0 <= ans <= 1 |] &&
-                          &(x # "solve_res" ->ₛ "type") # Int |-> rtID BoolRes **
-                          &(x # "solve_res" ->ₛ "d" .ₛ "ans") # Char |-> ans
-    | SRTList rtype l => [| x <> NULL |] && [| rtype = TermList |] &&
-                         EX y: addr,
-                          &(x # "solve_res" ->ₛ "type") # Int |-> rtID TermList **
-                          &(x # "solve_res" ->ₛ "d" .ₛ "list") # Ptr |-> y **
-                          sll_term_list y l
+Module ast_solve_res.
+
+Inductive res_type : Type :=
+  | BoolRes: res_type
+  | TermList: res_type.
+
+Inductive solve_res : Type :=
+  | SRBool (ans: Z): solve_res
+  | SRTList (l: term_list): solve_res.
+
+End ast_solve_res.
+
+Import ast_solve_res.
+
+Definition restypeID (sr : solve_res) : Z :=
+  match sr with
+    | SRBool _ => 0%Z
+    | SRTList _ => 1%Z
   end.
+
+Definition store_solve_res (x: addr) (sr: solve_res): Assertion :=
+  [| x <> NULL |] && &(x # "solve_res" ->ₛ "type") # Int |-> restypeID sr **
+  match sr with
+    | SRBool ans => &(x # "solve_res" ->ₛ "content" .ₛ "Bool") # Int |-> ans
+    | SRTList l => EX y: addr,
+                   &(x # "solve_res" ->ₛ "content" .ₛ "TermList") # Ptr |-> y **
+                   sll_term_list y l
+  end.
+
+(* all about ImplyProp *)
+
+Module ast_imply_prop.
 
 Inductive ImplyProp : Type :=
   | ImplP (assum: term) (concl: term): ImplyProp.
@@ -345,3 +230,7 @@ Definition store_ImplyProp (x: addr) (p: ImplyProp): Assertion :=
                             &(x # "ImplyProp" ->ₛ "concl") # Ptr |-> z **
                             store_term y assum ** store_term z concl
   end.
+
+End ast_imply_prop.
+
+Import ast_imply_prop.
