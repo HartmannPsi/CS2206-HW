@@ -114,6 +114,16 @@ Proof.
   destruct s; fold store_SmtProp; entailer!.
 Qed.
 
+Lemma store_SmtProp_fold: forall x s,
+  &(x # "SmtProp" ->ₛ "type") # Int |-> SmtPTID s **
+  store_SmtProp' x s |--
+  store_SmtProp x s.
+Proof.
+  intros.
+  unfold store_SmtProp, store_SmtProp'.
+  destruct s; fold store_SmtProp; entailer!.
+Qed.
+
 Lemma store_SmtProp'_Binary: forall x s,
   SmtPTID s = 5%Z ->
   store_SmtProp' x s |--

@@ -127,6 +127,112 @@ Fixpoint store_term (x: addr) (t: term): Assertion :=
                                   store_string y qvar ** store_term z body
   end.
 
+Definition store_term' (x: addr) (t: term): Assertion :=
+  match t with
+    | TermVar var => [| x <> NULL |] &&
+                     EX y: addr,
+                      &(x # "term" ->ₛ "content" .ₛ "Var") # Ptr |-> y **
+                      store_string y var
+    | TermConst ctype content => [| x <> NULL |] &&
+                                 &(x # "term" ->ₛ "content" .ₛ "Const" .ₛ "type") # Int |-> ctID ctype **
+                                 &(x # "term" ->ₛ "content" .ₛ "Const" .ₛ "content") # Int |-> content
+    | TermApply lt rt => [| x <> NULL |] && 
+                         EX y z: addr,
+                          &(x # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left") # Ptr |-> y **
+                          &(x # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right") # Ptr |-> z **
+                          store_term y lt ** store_term z rt
+    | TermQuant qtype qvar body => [| x <> NULL |] && 
+                                   EX y z: addr,
+                                    &(x # "term" ->ₛ "content" .ₛ "Quant" .ₛ "var") # Ptr |-> y **
+                                    &(x # "term" ->ₛ "content" .ₛ "Quant" .ₛ "body") # Ptr |-> z **
+                                    store_string y qvar ** store_term z body
+  end.
+
+Lemma store_term_unfold: forall x t,
+  store_term x t |--
+  &(x # "term" ->ₛ "type") # Int |-> termtypeID t **
+  store_term' x t.
+Proof.
+  intros.
+  unfold store_term, store_term'.
+  destruct t; fold store_term; entailer!.
+Qed.
+
+Lemma store_term_fold: forall x t,
+  &(x # "term" ->ₛ "type") # Int |-> termtypeID t **
+  store_term' x t |--
+  store_term x t.
+Proof.
+  intros.
+  unfold store_term, store_term'.
+  destruct t; fold store_term; entailer!.
+Qed.
+
+Lemma store_term'_Var: forall x t,
+  termtypeID t = 0%Z ->
+  store_term' x t |--
+  EX var, [| t = TermVar var |] && [| x <> NULL |] &&
+  EX y: addr,
+    &(x # "term" ->ₛ "content" .ₛ "Var") # Ptr |-> y **
+    store_string y var.
+Proof.
+  intros.
+  unfold store_term'.
+  induction t; try discriminate.
+  Intros y.
+  Exists var y.
+  entailer!.
+Qed.
+
+Lemma store_term'_Const: forall x t,
+  termtypeID t = 1%Z ->
+  store_term' x t |--
+  EX ctype content, [| t = TermConst ctype content |] && [| x <> NULL |] &&
+  &(x # "term" ->ₛ "content" .ₛ "Const" .ₛ "type") # Int |-> ctID ctype **
+  &(x # "term" ->ₛ "content" .ₛ "Const" .ₛ "content") # Int |-> content.
+Proof.
+  intros.
+  unfold store_term'.
+  induction t; try discriminate.
+  Intros.
+  Exists ctype content.
+  entailer!.
+Qed.
+
+Lemma store_term'_Apply: forall x t,
+  termtypeID t = 2%Z ->
+  store_term' x t |--
+  EX lt rt, [| t = TermApply lt rt |] && [| x <> NULL |] &&
+  EX y z: addr,
+    &(x # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left") # Ptr |-> y **
+    &(x # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right") # Ptr |-> z **
+    store_term y lt ** store_term z rt.
+Proof.
+  intros.
+  unfold store_term'.
+  induction t; try discriminate.
+  Intros y z.
+  Exists t1 t2 y z.
+  entailer!.
+Qed.
+
+Lemma store_term'_Quant: forall x t,
+  termtypeID t = 3%Z ->
+  store_term' x t |--
+  EX qtype qvar body, [| t = TermQuant qtype qvar body |] && [| x <> NULL |] &&
+  EX y z: addr,
+    &(x # "term" ->ₛ "content" .ₛ "Quant" .ₛ "var") # Ptr |-> y **
+    &(x # "term" ->ₛ "content" .ₛ "Quant" .ₛ "body") # Ptr |-> z **
+    store_string y qvar ** store_term z body.
+Proof.
+  intros.
+  unfold store_term'.
+  induction t; try discriminate.
+  Intros y z.
+  Exists qtype qvar t y z.
+  entailer!.
+Qed.
+
 Definition store_term_cell (x: addr) (t: term): Assertion :=
   [| x <> NULL |] &&
   EX y: addr,
@@ -214,6 +320,64 @@ Definition store_solve_res (x: addr) (sr: solve_res): Assertion :=
                    &(x # "solve_res" ->ₛ "content" .ₛ "TermList") # Ptr |-> y **
                    sll_term_list y l
   end.
+
+Definition store_solve_res' (x: addr) (sr: solve_res): Assertion :=
+  match sr with
+    | SRBool ans => [| x <> NULL |] && &(x # "solve_res" ->ₛ "content" .ₛ "Bool") # Int |-> ans
+    | SRTList l => [| x <> NULL |] && EX y: addr,
+                   &(x # "solve_res" ->ₛ "content" .ₛ "TermList") # Ptr |-> y **
+                   sll_term_list y l
+  end.
+
+Lemma store_solve_res_unfold: forall x sr,
+  store_solve_res x sr |--
+  &(x # "solve_res" ->ₛ "type") # Int |-> restypeID sr **
+  store_solve_res' x sr.
+Proof.
+  intros.
+  unfold store_solve_res, store_solve_res'.
+  destruct sr; fold store_solve_res; entailer!.
+Qed.
+
+Lemma store_solve_res_fold: forall x sr,
+  &(x # "solve_res" ->ₛ "type") # Int |-> restypeID sr **
+  store_solve_res' x sr |--
+  store_solve_res x sr.
+Proof.
+  intros.
+  unfold store_solve_res, store_solve_res'.
+  destruct sr; fold store_solve_res; entailer!.
+Qed.
+
+Lemma store_solve_res'_Bool: forall x sr,
+  restypeID sr = 0%Z ->
+  store_solve_res' x sr |--
+  EX ans, [| sr = SRBool ans |] && [| x <> NULL |] &&
+  &(x # "solve_res" ->ₛ "content" .ₛ "Bool") # Int |-> ans.
+Proof.
+  intros.
+  unfold store_solve_res'.
+  induction sr; try discriminate.
+  Intros.
+  Exists ans.
+  entailer!.
+Qed.
+
+Lemma store_solve_res'_List: forall x sr,
+  restypeID sr = 1%Z ->
+  store_solve_res' x sr |--
+  EX l, [| sr = SRTList l |] && [| x <> NULL |] &&
+  EX y: addr,
+    &(x # "solve_res" ->ₛ "content" .ₛ "TermList") # Ptr |-> y **
+    sll_term_list y l.
+Proof.
+  intros.
+  unfold store_solve_res'.
+  induction sr; try discriminate.
+  Intros y.
+  Exists l y.
+  entailer!.
+Qed.
 
 (* all about ImplyProp *)
 
