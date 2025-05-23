@@ -1,10 +1,31 @@
 #include "cnf_trans.h"
 
+/*@ Import Coq Require Import smt_lang_lib */
+/*@ Import Coq Require Import cnf_trans_lib */
+
+/*@ Extern Coq (SmtProp :: *) */
+/*@ Extern Coq (cnf_list_cell :: *) */
+/*@ Extern Coq (PreData :: *) */
+/*@ Extern Coq (store_SmtProp : Z -> SmtProp -> Assertion)
+               (store_SmtProp' : Z -> SmtProp -> Assertion)
+               (store_SmtProp_cell : Z -> SmtProp -> Assertion)
+               (sll_SmtProplist : Z -> list SmtProp -> Assertion)
+               (sllseg_SmtProplist : Z -> list SmtProp -> Assertion)
+               (sllbseg_SmtProplist : Z -> list SmtProp -> Assertion)
+               (init_int_array : Z -> Z -> Assertion)
+               (store_int_array : Z -> Z -> list Z -> Assertion)
+               (store_cnf_list_cell : Z -> cnf_list_cell -> Assertion)
+               (sll_cnf_list : Z -> list cnf_list_cell -> Assertion)
+               (sllseg_cnf_list : Z -> list cnf_list_cell -> Assertion)
+               (sllbseg_cnf_list : Z -> list cnf_list_cell -> Assertion)
+               (store_predata : Z -> PreData -> Assertion)
+               */
+
 /* BEGIN Given Functions */
 
 // 分配一个大小为size的全零的int数组
 int *malloc_int_array(int size)
-    /*@ Require emp
+    /*@ Require size > 0
         Ensure __return != 0 &&
                init_int_array(__return, size)
      */
@@ -12,8 +33,8 @@ int *malloc_int_array(int size)
 
 // 释放int数组
 void free_int_array(int *array)
-    /*@ Require array != 0 && exists size,
-                store_undef_int_array(array, size)
+    /*@ Require exists n l, array != 0 && n > 0 &&
+                  store_int_array(array, n, l)
       Ensure emp
     */
     ;
@@ -31,9 +52,9 @@ cnf_list *malloc_cnf_list()
 // 释放 cnf_list 结构体
 void free_cnf_list(cnf_list *list)
     /*@ Require list != 0 && exists s c n,
-                data_at(&(__return -> size), s) *
-                data_at(&(__return -> clause), c) *
-                data_at(&(__return -> next), n)
+                data_at(&(list -> size), s) *
+                data_at(&(list -> clause), c) *
+                data_at(&(list -> next), n)
         Ensure emp
       */
     ;
