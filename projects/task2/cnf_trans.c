@@ -3,16 +3,40 @@
 /* BEGIN Given Functions */
 
 // 分配一个大小为size的全零的int数组
-int *malloc_int_array(int size);
+int *malloc_int_array(int size)
+    /*@ Require emp
+        Ensure __return != 0 &&
+               init_int_array(__return, size)
+     */
+    ;
 
 // 释放int数组
-void free_int_array(int *array);
+void free_int_array(int *array)
+    /*@ Require array != 0 && exists size,
+                store_undef_int_array(array, size)
+      Ensure emp
+    */
+    ;
 
 // 分配一个初始全零 cnf_list 结构体
-cnf_list *malloc_cnf_list();
+cnf_list *malloc_cnf_list()
+    /*@ Require emp
+        Ensure __return != 0 &&
+               data_at(&(__return -> size), 0) *
+               data_at(&(__return -> clause), 0) *
+               data_at(&(__return -> next), 0)
+      */
+    ;
 
 // 释放 cnf_list 结构体
-void free_cnf_list(cnf_list *list);
+void free_cnf_list(cnf_list *list)
+    /*@ Require list != 0 && exists s c n,
+                data_at(&(__return -> size), s) *
+                data_at(&(__return -> clause), c) *
+                data_at(&(__return -> next), n)
+        Ensure emp
+      */
+    ;
 
 /* END Given Functions */
 
