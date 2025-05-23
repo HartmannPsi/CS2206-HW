@@ -33,8 +33,8 @@ int *malloc_int_array(int size)
 
 // 释放int数组
 void free_int_array(int *array)
-    /*@ Require exists n l, array != 0 && n > 0 &&
-                  store_int_array(array, n, l)
+    /*@ Require exists n, array != 0 && n > 0 &&
+                  store_undef_int_array(array, n)
       Ensure emp
     */
     ;
@@ -51,10 +51,7 @@ cnf_list *malloc_cnf_list()
 
 // 释放 cnf_list 结构体
 void free_cnf_list(cnf_list *list)
-    /*@ Require list != 0 && exists s c n,
-                data_at(&(list -> size), s) *
-                data_at(&(list -> clause), c) *
-                data_at(&(list -> next), n)
+    /*@ Require exists l, sll_cnf_list(list, l)
         Ensure emp
       */
     ;
