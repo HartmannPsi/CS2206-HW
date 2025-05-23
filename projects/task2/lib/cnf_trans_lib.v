@@ -21,6 +21,7 @@ Import naive_C_Rules.
 Local Open Scope sac.
 
 From SimpleC.EE Require Import super_poly_sll2.
+From SimpleC.EE Require Import malloc.
 
 Inductive cnf_list_cell : Type :=
   | CNFCell (size: Z) (clause: list Z): cnf_list_cell.
@@ -31,6 +32,8 @@ Inductive PreData : Type :=
   | PD (cnf_res: cnf_list) (prop_cnt: Z) (clause_cnt: Z): PreData.
 
 (* Print store_int_array. *)
+Definition init_int_array (x: addr) (size: Z): Assertion :=
+  store_int_array x size (all_zero_list size).
 
 Definition store_cnf_list_cell (x: addr) (c: cnf_list_cell): Assertion :=
   match c with

@@ -17,6 +17,7 @@ Local Open Scope list.
 Require Import String.
 Local Open Scope string.
 From SimpleC.EE Require Import super_poly_sll2.
+From SimpleC.EE Require Import malloc.
 
 Import naive_C_Rules.
 Local Open Scope sac.
@@ -94,15 +95,6 @@ Definition termtypeID (t: term) : Z :=
 
 (* Definition zlength {A: Type} (l: list A) : Z :=
   Z.of_nat (List.length l). *)
-
-Fixpoint all_zero_list_nat (n: nat) : list Z :=
-  match n with
-    | O => nil
-    | S n0 => 0 :: (all_zero_list_nat n0)
-  end.
-
-Definition all_zero_list (n: Z): list Z :=
-  all_zero_list_nat (Z.to_nat n).
 
 Definition store_string (x: addr) (str: var_name): Assertion :=
   EX n: Z,
