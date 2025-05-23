@@ -390,3 +390,14 @@ Definition store_ImplyProp (x: addr) (p: ImplyProp): Assertion :=
 End ast_imply_prop.
 
 Import ast_imply_prop.
+
+Fixpoint list_Z_eqb (l1 l2 : list Z) : bool :=
+  match l1, l2 with
+  | [], [] => true
+  | x1 :: t1, x2 :: t2 => Z.eqb x1 x2 && list_Z_eqb t1 t2
+  | _, _ => false
+  end.
+
+Definition list_Z_cmp (l1 l2 : list Z) : Z :=
+  if list_Z_eqb l1 l2 then 0 else 1.
+  
