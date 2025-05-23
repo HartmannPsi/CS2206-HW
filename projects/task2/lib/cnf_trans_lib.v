@@ -45,23 +45,7 @@ Definition store_cnf_list_cell (x: addr) (c: cnf_list_cell): Assertion :=
   [| x <> NULL |] &&
   &(x # "cnf_list" ->ₛ "next") # Ptr |-> y. *)
 
-Module cnf_list_store_lists1.
-
-Fixpoint sll_cnf_list (x: addr) (l: cnf_list): Assertion :=
-  match l with
-    | nil => [| x = NULL |] && emp
-    | (CNFCell size clause) :: l0 => [| x <> NULL |] && [| Zlength clause = size |] &&
-                                   EX y z: addr,
-                                    &(x # "cnf_list" ->ₛ "size") # Int |-> size **
-                                    &(x # "cnf_list" ->ₛ "clause") # Ptr |-> y **
-                                    &(x # "cnf_list" ->ₛ "next") # Ptr |-> z **
-                                    store_int_array y size clause **
-                                    sll_cnf_list z l0
-  end.
-
-End cnf_list_store_lists1.
-
-Module cnf_list_store_lists2.
+Module cnf_list_store_lists.
 
 Definition sll_cnf_list (x: addr) (l: cnf_list): Assertion :=
   sll store_cnf_list_cell "cnf_list" "next" x l.
@@ -72,9 +56,9 @@ Definition sllseg_cnf_list (x: addr) (y: addr) (l: cnf_list): Assertion :=
 Definition sllbseg_cnf_list (x: addr) (y: addr) (l: cnf_list): Assertion :=
   sllbseg store_cnf_list_cell "cnf_list" "next" x y l.
 
-End cnf_list_store_lists2.
+End cnf_list_store_lists.
 
-Import cnf_list_store_lists2.
+Import cnf_list_store_lists.
 
 (* Definition zlength {A: Type} (l: list A) : Z :=
   Z.of_nat (List.length l). *)
