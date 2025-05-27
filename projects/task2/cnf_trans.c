@@ -18,7 +18,9 @@
                (sll_cnf_list : Z -> list cnf_list_cell -> Assertion)
                (sllseg_cnf_list : Z -> list cnf_list_cell -> Assertion)
                (sllbseg_cnf_list : Z -> list cnf_list_cell -> Assertion)
-               (store_predata : Z -> PreData -> Assertion)
+               (store_predata : Z -> list cnf_list_cell -> Z -> Z -> Assertion)
+               (iff2cnf : Z -> Z -> Z -> Z -> list cnf_list_cell)
+               (iff2cnf_length : Z -> Z -> Z -> Z -> Z)
                */
 
 /* BEGIN Given Functions */
@@ -60,7 +62,14 @@ void free_cnf_list(cnf_list *list)
 
 // 生成p3<->(p1 op p2)对应的cnf中的clause
 // p3<->not p2 (op为 not时， 此时p1缺省为0)
-void clause_gen(int p1, int p2, int p3, int op, PreData *data) {
+void clause_gen(int p1, int p2, int p3, int op, PreData *data)
+/*@ With clist pcnt ccnt
+      Require p1 != 0 && p2 != 0 && p3 != 0 &&
+              store_predata(data, clist, pcnt, ccnt)
+      Ensure store_predata(data, app(iff2cnf(p1, p2, p3, op), clist), pcnt,
+   ccnt + iff2cnf_length(p1, p2, p3, op))
+*/
+{
   int size = 3;
   int *clause1 = malloc_int_array(size);
   int *clause2 = malloc_int_array(size);
@@ -227,7 +236,7 @@ int prop2cnf(SmtProp *p, PreData *data) {
     case SMTU_PROP: {
       int p1 = prop2cnf(p->prop.Unary_prop.prop1, data);
       res = ++(data->prop_cnt);
-      clause_gen(0, p1, res, p->prop.Binary_prop.op, data);
+      clause_gen(0, p1, res, p->prop.Unary_prop.op, data);
       break;
     }
     case SMT_PROPVAR:

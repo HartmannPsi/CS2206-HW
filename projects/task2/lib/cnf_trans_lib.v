@@ -28,12 +28,16 @@ Inductive cnf_list_cell : Type :=
 
 Definition cnf_list : Type := list cnf_list_cell.
 
-Inductive PreData : Type :=
-  | PD (cnf_res: cnf_list) (prop_cnt: Z) (clause_cnt: Z): PreData.
+(* Inductive PreData : Type :=
+  | PD (cnf_res: cnf_list) (prop_cnt: Z) (clause_cnt: Z): PreData. *)
 
 (* Print store_int_array. *)
 Definition init_int_array (x: addr) (size: Z): Assertion :=
   store_int_array x size (all_zero_list size).
+
+Definition store_clause (x: addr) (clause: list Z): Assertion :=
+  [| Zlength clause <= 3 |] && [| Forall (fun z => z <> 0) clause |] &&
+  store_int_array x 3%Z (clause ++ all_zero_list (3 - Zlength clause)).
 
 Definition store_cnf_list_cell (x: addr) (c: cnf_list_cell): Assertion :=
   match c with
@@ -41,7 +45,7 @@ Definition store_cnf_list_cell (x: addr) (c: cnf_list_cell): Assertion :=
                              EX y: addr,
                               &(x # "cnf_list" ->ₛ "size") # Int |-> size **
                               &(x # "cnf_list" ->ₛ "clause") # Ptr |-> y **
-                              store_int_array y size clause
+                              store_clause y clause
   end.
 
 (* Definition link_cnf_list_cell (x y: addr): Assertion :=
@@ -82,12 +86,63 @@ Definition all_vars_cnt (l: cnf_list): Z :=
 (* Compute Z_union [1; 2; 3] [2; 4; 5; 1]. *)
   (* = [1; 2; 3; 4; 5] : list Z *)
 
-Definition store_predata (x: addr) (p: PreData): Assertion :=
-  match p with
-    | PD cnf_res prop_cnt clause_cnt => [| x <> NULL |] && [| Zlength cnf_res = clause_cnt |] && [| all_vars_cnt cnf_res = prop_cnt |] &&
-                                        EX y: addr,
-                                         &(x # "PreData" ->ₛ "cnf_res") # Ptr |-> y **
-                                         &(x # "PreData" ->ₛ "prop_cnt") # Int |-> prop_cnt **
-                                         &(x # "PreData" ->ₛ "clause_cnt") # Int |-> clause_cnt **
-                                         sll_cnf_list y cnf_res
+Definition store_predata (x: addr) (cnf_res: cnf_list) (prop_cnt clause_cnt: Z): Assertion :=
+  [| x <> NULL |] && [| Zlength cnf_res = clause_cnt |] &&
+  [| all_vars_cnt cnf_res = prop_cnt |] &&
+  EX y: addr,
+    &(x # "PreData" ->ₛ "cnf_res") # Ptr |-> y **
+    &(x # "PreData" ->ₛ "prop_cnt") # Int |-> prop_cnt **
+    &(x # "PreData" ->ₛ "clause_cnt") # Int |-> clause_cnt **
+    sll_cnf_list y cnf_res.
+
+Definition cons_cnf_cell (l: list Z): cnf_list_cell :=
+  CNFCell 3 l.
+
+Notation "x <>? y" := (negb (Z.eqb x y)) (at level 70).
+
+(* p3 <-> (p1 op p2) to cnf *)
+Definition iff2cnf (p1 p2 p3: Z) (op: Z): cnf_list :=
+  match op with
+    | 0 => let c1 := cons_cnf_cell [p1; -p3] in
+            let c2 := cons_cnf_cell [p2; -p3] in
+              let c3 := if (p1 <>? p2) then cons_cnf_cell [-p1; -p2; p3] else cons_cnf_cell [-p1; p3] in
+                c1 :: c2 :: c3 :: nil
+    | 1 => let c1 := cons_cnf_cell [-p1; p3] in
+            let c2 := cons_cnf_cell [-p2; p3] in
+              let c3 := if (p1 <>? p2) then cons_cnf_cell [p1; p2; -p3] else cons_cnf_cell [p1; -p3] in
+                c1 :: c2 :: c3 :: nil
+    | 2 => if (p1 <>? p2) then
+            let c1 := cons_cnf_cell [p1; p3] in
+              let c2 := cons_cnf_cell [-p2; p3] in
+                let c3 := cons_cnf_cell [-p1; p2; -p3] in
+                  c1 :: c2 :: c3 :: nil
+           else
+            (cons_cnf_cell (p3 :: nil)) :: nil
+    | 3 => if (p1 <>? p2) then
+            let c1 := cons_cnf_cell [p1; p2; p3] in
+              let c2 := cons_cnf_cell [-p1; -p2; p3] in
+                let c3 := cons_cnf_cell [p1; -p2; -p3] in
+                  let c4 := cons_cnf_cell [-p1; p2; -p3] in
+                    c1 :: c2 :: c3 :: c4 :: nil
+           else
+            (cons_cnf_cell (p3 :: nil)) :: nil
+    | 4 => let c1 := cons_cnf_cell [p2; p3] in
+            let c2 := cons_cnf_cell [-p2; -p3] in
+              c1 :: c2 :: nil
+    | _ => nil
   end.
+
+Definition iff2cnf_length (p1 p2 p3: Z) (op: Z): Z :=
+  match op with
+    | 0 => 3%Z
+    | 1 => 3%Z
+    | 2 => if (p1 <>? p2) then 3%Z else 1%Z
+    | 3 => if (p1 <>? p2) then 4%Z else 1%Z
+    | 4 => 2%Z
+    | _ => 0%Z
+  end.
+  (* 0 => AND
+     1 => OR
+     2 => IMPLY
+     3 => IFF
+     4 => NOT *)
