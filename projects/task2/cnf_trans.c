@@ -1,5 +1,8 @@
 #include "cnf_trans.h"
 
+#include "verification_list.h"
+#include "verification_stdlib.h"
+
 /*@ Import Coq Require Import smt_lang_lib */
 /*@ Import Coq Require Import cnf_trans_lib */
 
