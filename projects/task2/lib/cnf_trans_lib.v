@@ -99,33 +99,36 @@ Definition cons_cnf_cell (l: list Z): cnf_list_cell :=
   CNFCell 3 l.
 
 Notation "x <>? y" := (negb (Z.eqb x y)) (at level 70).
+Notation "x ==? y" := (Z.eq_dec x y) (at level 70).
 
 (* p3 <-> (p1 op p2) to cnf *)
 Definition iff2cnf (p1 p2 p3: Z) (op: Z): cnf_list :=
   match op with
     | 0 => let c1 := cons_cnf_cell [p1; -p3] in
             let c2 := cons_cnf_cell [p2; -p3] in
-              let c3 := if (p1 <>? p2) then cons_cnf_cell [-p1; -p2; p3] else cons_cnf_cell [-p1; p3] in
+              let c3 := if (p1 ==? p2) then cons_cnf_cell [-p1; p3] else cons_cnf_cell [-p1; -p2; p3] in
                 c1 :: c2 :: c3 :: nil
     | 1 => let c1 := cons_cnf_cell [-p1; p3] in
             let c2 := cons_cnf_cell [-p2; p3] in
-              let c3 := if (p1 <>? p2) then cons_cnf_cell [p1; p2; -p3] else cons_cnf_cell [p1; -p3] in
+              let c3 := if (p1 ==? p2) then cons_cnf_cell [p1; -p3] else cons_cnf_cell [p1; p2; -p3] in
                 c1 :: c2 :: c3 :: nil
-    | 2 => if (p1 <>? p2) then
+    | 2 => if (p1 ==? p2) then
+              (cons_cnf_cell (p3 :: nil)) :: nil
+           else
             let c1 := cons_cnf_cell [p1; p3] in
               let c2 := cons_cnf_cell [-p2; p3] in
                 let c3 := cons_cnf_cell [-p1; p2; -p3] in
                   c1 :: c2 :: c3 :: nil
-           else
+
+    | 3 => if (p1 ==? p2) then
             (cons_cnf_cell (p3 :: nil)) :: nil
-    | 3 => if (p1 <>? p2) then
+           else
             let c1 := cons_cnf_cell [p1; p2; p3] in
               let c2 := cons_cnf_cell [-p1; -p2; p3] in
                 let c3 := cons_cnf_cell [p1; -p2; -p3] in
                   let c4 := cons_cnf_cell [-p1; p2; -p3] in
                     c1 :: c2 :: c3 :: c4 :: nil
-           else
-            (cons_cnf_cell (p3 :: nil)) :: nil
+
     | 4 => let c1 := cons_cnf_cell [p2; p3] in
             let c2 := cons_cnf_cell [-p2; -p3] in
               c1 :: c2 :: nil
@@ -136,8 +139,8 @@ Definition iff2cnf_length (p1 p2 p3: Z) (op: Z): Z :=
   match op with
     | 0 => 3%Z
     | 1 => 3%Z
-    | 2 => if (p1 <>? p2) then 3%Z else 1%Z
-    | 3 => if (p1 <>? p2) then 4%Z else 1%Z
+    | 2 => if (p1 ==? p2) then 1%Z else 3%Z
+    | 3 => if (p1 ==? p2) then 1%Z else 4%Z
     | 4 => 2%Z
     | _ => 0%Z
   end.
