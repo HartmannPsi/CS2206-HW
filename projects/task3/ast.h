@@ -18,7 +18,7 @@
                (sllbseg_var_sub_list : Z -> list var_sub -> Assertion)
                (store_solve_res : Z -> solve_res -> Assertion)
                (store_solve_res' : Z -> solve_res -> Assertion)
-               (store_ImplyProp : Z -> term -> term -> Assertion)
+               (store_ImplyProp : Z -> Z -> Z -> term -> term -> Assertion)
                (list_Z_cmp : list Z -> list Z -> Z)
                (term_eqn : term -> term -> Z)
                (term_subst_v : list Z -> list Z -> term -> term)
@@ -123,11 +123,8 @@ ImplyProp *createImplyProp(term *t1, term *t2)
     /*@ With term1 term2
           Require store_term(t1, term1) *
                   store_term(t2, term2)
-          Ensure __return != 0 && t1 == t1@pre && t2 == t2@pre &&
-                 data_at(&(__return -> assum), t1) *
-                 data_at(&(__return -> concl), t2) *
-                 store_term(t1, term1) *
-                 store_term(t2, term2)
+          Ensure t1 == t1@pre && t2 == t2@pre &&
+                 store_ImplyProp(__return, t1, t2, term1, term2)
     */
     ;
 
@@ -159,11 +156,7 @@ void free_str(char *s)
 
 void free_imply_prop(ImplyProp *p)
     /*@ With term1 term2 t1 t2
-          Require p != 0 &&
-                  data_at(&(p -> assum), t1) *
-                  data_at(&(p -> concl), t2) *
-                  store_term(t1, term1) *
-                  store_term(t2, term2)
+          Require store_ImplyProp(p, t1, t2, term1, term2)
           Ensure store_term(t1, term1) *
                  store_term(t2, term2) *
                  emp

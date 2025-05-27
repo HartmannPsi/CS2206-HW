@@ -378,8 +378,8 @@ Module ast_imply_prop.
 Inductive ImplyProp : Type :=
   | ImplP (assum: term) (concl: term): ImplyProp.
 
-Definition store_ImplyProp (x: addr) (assum concl: term): Assertion :=
-  [| x <> NULL |] && EX y z: addr,
+Definition store_ImplyProp (x y z: addr) (assum concl: term): Assertion :=
+  [| x <> NULL |] &&
   &(x # "ImplyProp" ->ₛ "assum") # Ptr |-> y **
   &(x # "ImplyProp" ->ₛ "concl") # Ptr |-> z **
   store_term y assum ** store_term z concl.
