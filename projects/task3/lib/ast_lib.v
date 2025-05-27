@@ -378,14 +378,11 @@ Module ast_imply_prop.
 Inductive ImplyProp : Type :=
   | ImplP (assum: term) (concl: term): ImplyProp.
 
-Definition store_ImplyProp (x: addr) (p: ImplyProp): Assertion :=
-  match p with
-    | ImplP assum concl => [| x <> NULL |] &&
-                           EX y z: addr,
-                            &(x # "ImplyProp" ->ₛ "assum") # Ptr |-> y **
-                            &(x # "ImplyProp" ->ₛ "concl") # Ptr |-> z **
-                            store_term y assum ** store_term z concl
-  end.
+Definition store_ImplyProp (x: addr) (assum concl: term): Assertion :=
+  [| x <> NULL |] && EX y z: addr,
+  &(x # "ImplyProp" ->ₛ "assum") # Ptr |-> y **
+  &(x # "ImplyProp" ->ₛ "concl") # Ptr |-> z **
+  store_term y assum ** store_term z concl.
 
 End ast_imply_prop.
 
@@ -400,4 +397,44 @@ Fixpoint list_Z_eqb (l1 l2 : list Z) : bool :=
 
 Definition list_Z_cmp (l1 l2 : list Z) : Z :=
   if list_Z_eqb l1 l2 then 0 else 1.
-  
+
+Fixpoint term_eqb (t1 t2: term): bool :=
+  match t1, t2 with
+    | TermVar v1, TermVar v2 => list_Z_eqb v1 v2
+    | TermConst ctype1 content1, TermConst ctype2 content2 =>
+      (Z.eqb (ctID ctype1) (ctID ctype2)) && (Z.eqb content1 content2)
+    | TermApply lt1 rt1, TermApply lt2 rt2 =>
+      term_eqb lt1 lt2 && term_eqb rt1 rt2
+    | TermQuant qtype1 qvar1 body1, TermQuant qtype2 qvar2 body2 =>
+      (Z.eqb (qtID qtype1) (qtID qtype2)) &&
+      list_Z_eqb qvar1 qvar2 &&
+      term_eqb body1 body2
+    | _, _ => false
+  end.
+
+Definition term_eqn (t1 t2: term): Z :=
+  if term_eqb t1 t2 then 1 else 0.
+
+Fixpoint term_subst_v (den src: var_name) (t: term): term :=
+  match t with
+    | TermVar v => if list_Z_eqb v src then TermVar den else TermVar v
+    | TermConst ctype content => TermConst ctype content
+    | TermApply lt rt => TermApply (term_subst_v den src lt) (term_subst_v den src rt)
+    | TermQuant qtype qvar body =>
+      if list_Z_eqb qvar src then
+        TermQuant qtype qvar body
+      else
+        TermQuant qtype qvar (term_subst_v den src body)
+  end.
+
+Fixpoint term_subst_t (den: term) (src: var_name) (t: term): term :=
+  match t with
+    | TermVar v => if list_Z_eqb v src then den else TermVar v
+    | TermConst ctype content => TermConst ctype content
+    | TermApply lt rt => TermApply (term_subst_t den src lt) (term_subst_t den src rt)
+    | TermQuant qtype qvar body =>
+      if list_Z_eqb qvar src then
+        TermQuant qtype qvar body
+      else
+        TermQuant qtype qvar (term_subst_t den src body)
+  end.

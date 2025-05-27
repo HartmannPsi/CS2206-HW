@@ -18,8 +18,11 @@
                (sllbseg_var_sub_list : Z -> list var_sub -> Assertion)
                (store_solve_res : Z -> solve_res -> Assertion)
                (store_solve_res' : Z -> solve_res -> Assertion)
-               (store_ImplyProp : Z -> ImplyProp -> Assertion)
+               (store_ImplyProp : Z -> term -> term -> Assertion)
                (list_Z_cmp : list Z -> list Z -> Z)
+               (term_eqn : term -> term -> Z)
+               (term_subst_v : list Z -> list Z -> term -> term)
+               (term_subst_t : term -> list Z -> term -> term)
                */
 
 typedef enum { false, true } bool;
@@ -117,10 +120,14 @@ solve_res *malloc_solve_res()
 
 // 构造函数
 ImplyProp *createImplyProp(term *t1, term *t2)
-    /*@ Require emp
-        Ensure __return != 0 &&
-               data_at(&(__return -> assum), t1) *
-               data_at(&(__return -> concl), t2)
+    /*@ With term1 term2
+          Require store_term(t1, term1) *
+                  store_term(t2, term2)
+          Ensure __return != 0 && t1 == t1@pre && t2 == t2@pre &&
+                 data_at(&(__return -> assum), t1) *
+                 data_at(&(__return -> concl), t2) *
+                 store_term(t1, term1) *
+                 store_term(t2, term2)
     */
     ;
 
@@ -151,8 +158,15 @@ void free_str(char *s)
     ;
 
 void free_imply_prop(ImplyProp *p)
-    /*@ Require exists prop, store_ImplyProp(p, prop)
-        Ensure emp
+    /*@ With term1 term2 t1 t2
+          Require p != 0 &&
+                  data_at(&(p -> assum), t1) *
+                  data_at(&(p -> concl), t2) *
+                  store_term(t1, term1) *
+                  store_term(t2, term2)
+          Ensure store_term(t1, term1) *
+                 store_term(t2, term2) *
+                 emp
     */
     ;
 

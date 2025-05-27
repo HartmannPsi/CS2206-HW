@@ -1,6 +1,14 @@
 #include "ast.h"
 
-bool alpha_equiv(term *t1, term *t2) {
+bool alpha_equiv(term *t1, term *t2)
+/*@ With term1 term2
+      Require store_term(t1, term1) *
+              store_term(t2, term2)
+      Ensure __return == term_eqn(term1, term2) && t1 == t1@pre && t2 == t2@pre &&
+             store_term(t1, term1) *
+             store_term(t2, term2)
+*/
+{
   if (t1 == (void *)0 || t2 == (void *)0) return false;
   if (t1->type != t2->type) return false;
   switch (t1->type) {
