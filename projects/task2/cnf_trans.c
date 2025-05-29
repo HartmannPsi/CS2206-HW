@@ -1,5 +1,6 @@
 #include "cnf_trans.h"
 
+#include "int_array_def.h"
 #include "verification_list.h"
 #include "verification_stdlib.h"
 
@@ -24,10 +25,12 @@
                (sllbseg_cnf_list : Z -> list (list Z) -> Assertion)
                (store_predata : Z -> list (list Z) -> Z -> Z -> Assertion)
                (iff2cnf_binary : Z -> Z -> Z -> Z -> list (list Z))
-               (iff2cnfunary : Z -> Z -> list (list Z))
+               (iff2cnf_unary : Z -> Z -> list (list Z))
                (iff2cnf_length_binary : Z -> Z -> Z -> Z -> Z)
                (SmtPBID : SmtPropBop -> Z)
                (SmtPUID : SmtPropUop -> Z)
+               (all_zero_list : Z -> list Z)
+               (prop_cnt_inf : list (list Z) -> Z)
                */
 
 /* BEGIN Given Functions */
@@ -36,7 +39,7 @@
 int *malloc_int_array(int size)
     /*@ Require size > 0
         Ensure __return != 0 &&
-               init_int_array(__return, size)
+               store_int_array(__return, size, all_zero_list(size))
      */
     ;
 
@@ -66,6 +69,50 @@ void free_cnf_list(cnf_list *list)
     ;
 
 /* END Given Functions */
+
+void clause_gen_unary(int p2, int p3, PreData *data)
+/*@ With clist pcnt ccnt
+      Require p2 != 0 && p3 != 0 &&
+              store_predata(data, clist, pcnt, ccnt)
+      Ensure store_predata(data, app(iff2cnf_unary(p2, p3),
+   clist), pcnt, ccnt + 2)
+*/
+{
+  int size = 3;
+  int *clause1 = malloc_int_array(size);
+  int *clause2 = malloc_int_array(size);
+  // 完成 SET_PROP: p3<->(p1 op p2) / p3<->not p2
+
+  // p3\/p2
+  clause1[0] = p2;
+  clause1[1] = p3;
+  // 非p3\/非p2
+  clause2[0] = -p2;
+  clause2[1] = -p3;
+
+  cnf_list *list1 = malloc_cnf_list();
+  cnf_list *list2 = malloc_cnf_list();
+  list1->size = size;
+  list2->size = size;
+  list1->clause = clause1;
+  list2->clause = clause2;
+
+  list1->next = list2;
+
+  /*@ store_predata(data@pre, clist, pcnt, ccnt)
+      which implies
+      data@pre != 0 && Zlength(clist) == ccnt && prop_cnt_inf(clist) == pcnt &&
+      exists y,
+        data_at(&(data@pre -> cnf_res), y) *
+        data_at(&(data@pre -> prop_cnt), pcnt) *
+        data_at(&(data@pre -> clause_cnt), ccnt) *
+        sll_cnf_list(y, clist)
+   */
+
+  list2->next = data->cnf_res;
+  data->cnf_res = list1;
+  data->clause_cnt += 2;
+}
 
 // 生成p3<->(p1 op p2)对应的cnf中的clause
 // p3<->not p2 (op为 not时， 此时p1缺省为0)
@@ -183,6 +230,17 @@ void clause_gen_binary(int p1, int p2, int p3, int op, PreData *data)
   list2->clause = clause2;
   list3->clause = clause3;
   list4->clause = clause4;
+
+  /*@ store_predata(data@pre, clist, pcnt, ccnt)
+    which implies
+    data@pre != 0 && Zlength(clist) == ccnt && prop_cnt_inf(clist) == pcnt &&
+    exists y,
+      data_at(&(data@pre -> cnf_res), y) *
+      data_at(&(data@pre -> prop_cnt), pcnt) *
+      data_at(&(data@pre -> clause_cnt), ccnt) *
+      sll_cnf_list(y, clist)
+ */
+
   if (cnt == 1) {
     list1->next = data->cnf_res;
     data->cnf_res = list1;
@@ -218,39 +276,6 @@ void clause_gen_binary(int p1, int p2, int p3, int op, PreData *data)
     data->cnf_res = list1;
     data->clause_cnt += 4;
   }
-}
-
-void clause_gen_unary(int p2, int p3, PreData *data)
-/*@ With clist pcnt ccnt
-      Require p2 != 0 && p3 != 0 &&
-              store_predata(data, clist, pcnt, ccnt)
-      Ensure store_predata(data, app(iff2cnf_unary(p2, p3),
-   clist), pcnt, ccnt + 2)
-*/
-{
-  int size = 3;
-  int *clause1 = malloc_int_array(size);
-  int *clause2 = malloc_int_array(size);
-  // 完成 SET_PROP: p3<->(p1 op p2) / p3<->not p2
-
-  // p3\/p2
-  clause1[0] = p2;
-  clause1[1] = p3;
-  // 非p3\/非p2
-  clause2[0] = -p2;
-  clause2[1] = -p3;
-
-  cnf_list *list1 = malloc_cnf_list();
-  cnf_list *list2 = malloc_cnf_list();
-  list1->size = size;
-  list2->size = size;
-  list1->clause = clause1;
-  list2->clause = clause2;
-
-  list1->next = list2;
-  list2->next = data->cnf_res;
-  data->cnf_res = list1;
-  data->clause_cnt += 2;
 }
 
 int prop2cnf(SmtProp *p, PreData *data) {
