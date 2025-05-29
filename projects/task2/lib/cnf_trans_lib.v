@@ -72,21 +72,36 @@ Fixpoint all_vars (l: cnf_list): list Z :=
 Definition all_vars_cnt (l: cnf_list): Z :=
   Zlength (all_vars l). *)
 
-Fixpoint max_element_alt (l: list Z): Z :=
+Fixpoint max_element (l: list Z): Z :=
   match l with
     | nil => 0%Z
-    | h :: t => Z.max h (max_element_alt t)
+    | h :: t => Z.max h (max_element t)
   end.
 
-Fixpoint max_element (l: cnf_list): Z :=
+Fixpoint min_element (l: list Z): Z :=
   match l with
     | nil => 0%Z
-    | clause :: t => Z.max (max_element_alt clause) (max_element t)
+    | h :: t => Z.min h (min_element t)
   end.
+  
+Fixpoint max_cnf (l: cnf_list): Z :=
+  match l with
+    | nil => 0%Z
+    | clause :: t => Z.max (max_element clause) (max_cnf t)
+  end.
+
+Fixpoint min_cnf (l: cnf_list): Z :=
+  match l with
+    | nil => 0%Z
+    | clause :: t => Z.min (min_element clause) (min_cnf t)
+  end.
+
+Definition prop_cnt_inf (l: cnf_list): Z :=
+  Z.max (max_cnf l) (Z.abs (min_cnf l)).
 
 Definition store_predata (x: addr) (cnf_res: cnf_list) (prop_cnt clause_cnt: Z): Assertion :=
  [| x <> NULL |] && [| Zlength cnf_res = clause_cnt |] &&
- [| max_element cnf_res <= prop_cnt |] &&
+ [| prop_cnt_inf cnf_res <= prop_cnt |] &&
   EX y: addr,
     &(x # "PreData" ->ₛ "cnf_res") # Ptr |-> y **
     &(x # "PreData" ->ₛ "prop_cnt") # Int |-> prop_cnt **
@@ -102,7 +117,7 @@ Notation "x ==? y" := (Z.eq_dec x y) (at level 70).
 Import smt_lang_enums1.
 
 (* p3 <-> (p1 op p2) to cnf *)
-Definition iff2cnf_binary (p1 p2 p3: Z) (op: SmtPropBop): cnf_list :=
+(* Definition iff2cnf_binary (p1 p2 p3: Z) (op: SmtPropBop): cnf_list :=
   match op with
     | SMTPROP_AND => let c1 := [p1; -p3] in
             let c2 := [p2; -p3] in
@@ -136,9 +151,47 @@ Definition iff2cnf_length_binary (p1 p2 p3: Z) (op: SmtPropBop): Z :=
     | SMTPROP_OR => 3%Z
     | SMTPROP_IMPLY => if (p1 ==? p2) then 1%Z else 3%Z
     | SMTPROP_IFF => if (p1 ==? p2) then 1%Z else 4%Z
+  end. *)
+
+Definition iff2cnf_binary (p1 p2 p3: Z) (op: Z): cnf_list :=
+  match op with
+    | 0 => let c1 := [p1; -p3] in
+            let c2 := [p2; -p3] in
+              let c3 := if (p1 ==? p2) then [-p1; p3] else [-p1; -p2; p3] in
+                c1 :: c2 :: c3 :: nil
+    | 1 => let c1 := [-p1; p3] in
+            let c2 := [-p2; p3] in
+              let c3 := if (p1 ==? p2) then [p1; -p3] else [p1; p2; -p3] in
+                c1 :: c2 :: c3 :: nil
+    | 2 => if (p1 ==? p2) then
+              ( (p3 :: nil)) :: nil
+            else
+            let c1 := [p1; p3] in
+              let c2 := [-p2; p3] in
+                let c3 := [-p1; p2; -p3] in
+                  c1 :: c2 :: c3 :: nil
+
+    | 3 => if (p1 ==? p2) then
+            ( (p3 :: nil)) :: nil
+            else
+            let c1 := [p1; p2; p3] in
+              let c2 := [-p1; -p2; p3] in
+                let c3 := [p1; -p2; -p3] in
+                  let c4 := [-p1; p2; -p3] in
+                    c1 :: c2 :: c3 :: c4 :: nil
+    | _ => nil
   end.
 
-Definition iff2cnf_unary (p2 p3: Z) (op: SmtPropUop): cnf_list :=
+Definition iff2cnf_length_binary (p1 p2 p3: Z) (op: Z): Z :=
+  match op with
+    | 0 => 3%Z
+    | 1 => 3%Z
+    | 2 => if (p1 ==? p2) then 1%Z else 3%Z
+    | 3 => if (p1 ==? p2) then 1%Z else 4%Z
+    | _ => 0%Z
+  end.
+
+Definition iff2cnf_unary (p2 p3: Z): cnf_list :=
   let c1 := [p2; p3] in
     let c2 := [-p2; -p3] in
       c1 :: c2 :: nil.

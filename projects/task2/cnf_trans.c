@@ -7,8 +7,9 @@
 /*@ Import Coq Require Import cnf_trans_lib */
 
 /*@ Extern Coq (SmtProp :: *) */
-/*@ Extern Coq (cnf_list_cell :: *) */
 /*@ Extern Coq (PreData :: *) */
+/*@ Extern Coq (SmtPropBop :: *) */
+/*@ Extern Coq (SmtPropUop :: *) */
 /*@ Extern Coq (store_SmtProp : Z -> SmtProp -> Assertion)
                (store_SmtProp' : Z -> SmtProp -> Assertion)
                (store_SmtProp_cell : Z -> SmtProp -> Assertion)
@@ -17,13 +18,16 @@
                (sllbseg_SmtProplist : Z -> list SmtProp -> Assertion)
                (init_int_array : Z -> Z -> Assertion)
                (store_int_array : Z -> Z -> list Z -> Assertion)
-               (store_cnf_list_cell : Z -> cnf_list_cell -> Assertion)
-               (sll_cnf_list : Z -> list cnf_list_cell -> Assertion)
-               (sllseg_cnf_list : Z -> list cnf_list_cell -> Assertion)
-               (sllbseg_cnf_list : Z -> list cnf_list_cell -> Assertion)
-               (store_predata : Z -> list cnf_list_cell -> Z -> Z -> Assertion)
-               (iff2cnf : Z -> Z -> Z -> Z -> list cnf_list_cell)
-               (iff2cnf_length : Z -> Z -> Z -> Z -> Z)
+               (store_cnf_list_cell : Z -> list Z -> Assertion)
+               (sll_cnf_list : Z -> list (list Z) -> Assertion)
+               (sllseg_cnf_list : Z -> list (list Z) -> Assertion)
+               (sllbseg_cnf_list : Z -> list (list Z) -> Assertion)
+               (store_predata : Z -> list (list Z) -> Z -> Z -> Assertion)
+               (iff2cnf_binary : Z -> Z -> Z -> Z -> list (list Z))
+               (iff2cnfunary : Z -> Z -> list (list Z))
+               (iff2cnf_length_binary : Z -> Z -> Z -> Z -> Z)
+               (SmtPBID : SmtPropBop -> Z)
+               (SmtPUID : SmtPropUop -> Z)
                */
 
 /* BEGIN Given Functions */
@@ -65,12 +69,12 @@ void free_cnf_list(cnf_list *list)
 
 // 生成p3<->(p1 op p2)对应的cnf中的clause
 // p3<->not p2 (op为 not时， 此时p1缺省为0)
-void clause_gen(int p1, int p2, int p3, int op, PreData *data)
+void clause_gen_binary(int p1, int p2, int p3, int op, PreData *data)
 /*@ With clist pcnt ccnt
       Require p1 != 0 && p2 != 0 && p3 != 0 &&
               store_predata(data, clist, pcnt, ccnt)
-      Ensure store_predata(data, app(iff2cnf(p1, p2, p3, op), clist), pcnt,
-   ccnt + iff2cnf_length(p1, p2, p3, op))
+      Ensure store_predata(data, app(iff2cnf_binary(p1, p2, p3, op),
+   clist), pcnt, ccnt + iff2cnf_length_binary(p1, p2, p3, op))
 */
 {
   int size = 3;
@@ -163,16 +167,6 @@ void clause_gen(int p1, int p2, int p3, int op, PreData *data)
       }
       break;
     }
-    case SMTPROP_NOT: {
-      // p3\/p2
-      clause1[0] = p2;
-      clause1[1] = p3;
-      // 非p3\/非p2
-      clause2[0] = -p2;
-      clause2[1] = -p3;
-      cnt += 2;
-      break;
-    }
     default: {
       // unreachable
     }
@@ -226,6 +220,39 @@ void clause_gen(int p1, int p2, int p3, int op, PreData *data)
   }
 }
 
+void clause_gen_unary(int p2, int p3, PreData *data)
+/*@ With clist pcnt ccnt
+      Require p2 != 0 && p3 != 0 &&
+              store_predata(data, clist, pcnt, ccnt)
+      Ensure store_predata(data, app(iff2cnf_unary(p2, p3),
+   clist), pcnt, ccnt + 2)
+*/
+{
+  int size = 3;
+  int *clause1 = malloc_int_array(size);
+  int *clause2 = malloc_int_array(size);
+  // 完成 SET_PROP: p3<->(p1 op p2) / p3<->not p2
+
+  // p3\/p2
+  clause1[0] = p2;
+  clause1[1] = p3;
+  // 非p3\/非p2
+  clause2[0] = -p2;
+  clause2[1] = -p3;
+
+  cnf_list *list1 = malloc_cnf_list();
+  cnf_list *list2 = malloc_cnf_list();
+  list1->size = size;
+  list2->size = size;
+  list1->clause = clause1;
+  list2->clause = clause2;
+
+  list1->next = list2;
+  list2->next = data->cnf_res;
+  data->cnf_res = list1;
+  data->clause_cnt += 2;
+}
+
 int prop2cnf(SmtProp *p, PreData *data) {
   int res = 0;
   switch (p->type) {
@@ -233,13 +260,13 @@ int prop2cnf(SmtProp *p, PreData *data) {
       int p1 = prop2cnf(p->prop.Binary_prop.prop1, data);
       int p2 = prop2cnf(p->prop.Binary_prop.prop2, data);
       res = ++(data->prop_cnt);
-      clause_gen(p1, p2, res, p->prop.Binary_prop.op, data);
+      clause_gen_binary(p1, p2, res, p->prop.Binary_prop.op, data);
       break;
     }
     case SMTU_PROP: {
       int p1 = prop2cnf(p->prop.Unary_prop.prop1, data);
       res = ++(data->prop_cnt);
-      clause_gen(0, p1, res, p->prop.Unary_prop.op, data);
+      clause_gen_unary(p1, res, data);
       break;
     }
     case SMT_PROPVAR:
