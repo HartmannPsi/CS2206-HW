@@ -9,6 +9,7 @@
 
 /*@ Extern Coq (SmtProp :: *) */
 /*@ Extern Coq (PreData :: *) */
+/*@ Extern Coq (prop2cnf_ret :: *) */
 /*@ Extern Coq (SmtPropBop :: *) */
 /*@ Extern Coq (SmtPropUop :: *) */
 /*@ Extern Coq (store_SmtProp : Z -> SmtProp -> Assertion)
@@ -24,13 +25,18 @@
                (sllseg_cnf_list : Z -> list (list Z) -> Assertion)
                (sllbseg_cnf_list : Z -> list (list Z) -> Assertion)
                (store_predata : Z -> list (list Z) -> Z -> Z -> Assertion)
-               (iff2cnf_binary : Z -> Z -> Z -> Z -> list (list Z))
+               (iff2cnf_binary : Z -> Z -> Z -> SmtPropBop -> list (list Z))
                (iff2cnf_unary : Z -> Z -> list (list Z))
-               (iff2cnf_length_binary : Z -> Z -> Z -> Z -> Z)
+               (iff2cnf_length_binary : Z -> Z -> Z -> SmtPropBop -> Z)
                (SmtPBID : SmtPropBop -> Z)
                (SmtPUID : SmtPropUop -> Z)
+               (SmtPTID : SmtProp -> Z)
                (all_zero_list : Z -> list Z)
                (prop_cnt_inf : list (list Z) -> Z)
+               (prop_cnt_inf_SmtProp : SmtProp -> Z)
+               (prop2cnf_logic: SmtProp -> PreData -> prop2cnf_ret)
+               (make_predata : list (list Z) -> Z -> Z -> PreData)
+               (make_prop2cnf_ret: PreData -> Z ->prop2cnf_ret)
                */
 
 /* BEGIN Given Functions */
@@ -45,8 +51,8 @@ int *malloc_int_array(int size)
 
 // 释放int数组
 void free_int_array(int *array)
-    /*@ Require exists n, array != 0 && n > 0 &&
-                  store_undef_int_array(array, n)
+    /*@ Require exists n l, array != 0 && n > 0 &&
+                  store_int_array(array, n, l)
       Ensure emp
     */
     ;
@@ -63,7 +69,10 @@ cnf_list *malloc_cnf_list()
 
 // 释放 cnf_list 结构体
 void free_cnf_list(cnf_list *list)
-    /*@ Require exists l, sll_cnf_list(list, l)
+    /*@ Require list != 0 && exists s c n,
+               data_at(&(list -> size), s) *
+               data_at(&(list -> clause), c) *
+               data_at(&(list -> next), n)
         Ensure emp
       */
     ;
@@ -72,10 +81,10 @@ void free_cnf_list(cnf_list *list)
 
 void clause_gen_unary(int p2, int p3, PreData *data)
 /*@ With clist pcnt ccnt
-      Require p2 != 0 && p3 != 0 &&
+      Require p2 != 0 && p3 != 0 && prop_cnt_inf(clist) + 1 <= pcnt &&
               store_predata(data, clist, pcnt, ccnt)
       Ensure store_predata(data, app(iff2cnf_unary(p2, p3),
-   clist), pcnt, ccnt + 2)
+                           clist), pcnt, ccnt + 2)
 */
 {
   int size = 3;
@@ -101,7 +110,7 @@ void clause_gen_unary(int p2, int p3, PreData *data)
 
   /*@ store_predata(data@pre, clist, pcnt, ccnt)
       which implies
-      data@pre != 0 && Zlength(clist) == ccnt && prop_cnt_inf(clist) == pcnt &&
+      data@pre != 0 && Zlength(clist) == ccnt &&
       exists y,
         data_at(&(data@pre -> cnf_res), y) *
         data_at(&(data@pre -> prop_cnt), pcnt) *
@@ -117,11 +126,13 @@ void clause_gen_unary(int p2, int p3, PreData *data)
 // 生成p3<->(p1 op p2)对应的cnf中的clause
 // p3<->not p2 (op为 not时， 此时p1缺省为0)
 void clause_gen_binary(int p1, int p2, int p3, int op, PreData *data)
-/*@ With clist pcnt ccnt
+/*@ With clist pcnt ccnt bop
       Require p1 != 0 && p2 != 0 && p3 != 0 &&
+              prop_cnt_inf(clist) + 1 <= pcnt && op == SmtPBID(bop) &&
               store_predata(data, clist, pcnt, ccnt)
-      Ensure store_predata(data, app(iff2cnf_binary(p1, p2, p3, op),
-   clist), pcnt, ccnt + iff2cnf_length_binary(p1, p2, p3, op))
+      Ensure store_predata(data, app(iff2cnf_binary(p1, p2, p3, bop),
+                           clist), pcnt, ccnt + iff2cnf_length_binary(p1, p2,
+                                                                      p3, bop))
 */
 {
   int size = 3;
@@ -233,7 +244,7 @@ void clause_gen_binary(int p1, int p2, int p3, int op, PreData *data)
 
   /*@ store_predata(data@pre, clist, pcnt, ccnt)
     which implies
-    data@pre != 0 && Zlength(clist) == ccnt && prop_cnt_inf(clist) == pcnt &&
+    data@pre != 0 && Zlength(clist) == ccnt &&
     exists y,
       data_at(&(data@pre -> cnf_res), y) *
       data_at(&(data@pre -> prop_cnt), pcnt) *
@@ -278,8 +289,27 @@ void clause_gen_binary(int p1, int p2, int p3, int op, PreData *data)
   }
 }
 
-int prop2cnf(SmtProp *p, PreData *data) {
+int prop2cnf(SmtProp *p, PreData *data)
+/*@ With prop clist pcnt ccnt
+      Require prop_cnt_inf_SmtProp(prop) <= pcnt &&
+              store_SmtProp(p, prop) *
+              store_predata(data, clist, pcnt, ccnt)
+      Ensure exists clist' pcnt' ccnt' res,
+             make_prop2cnf_ret(make_predata(clist', pcnt', ccnt'), res) ==
+             prop2cnf_logic(prop, make_predata(clist, pcnt, ccnt)) &&
+             __return == res &&
+             store_SmtProp(p, prop) *
+             store_predata(data, clist', pcnt', ccnt')
+*/
+{
   int res = 0;
+  /*@ store_SmtProp(p, prop)
+      which implies
+      exists t,
+      t == SmtPTID(prop) &&
+      data_at(&(p -> type), t) *
+      store_SmtProp'(p, prop)
+   */
   switch (p->type) {
     case SMTB_PROP: {
       int p1 = prop2cnf(p->prop.Binary_prop.prop1, data);

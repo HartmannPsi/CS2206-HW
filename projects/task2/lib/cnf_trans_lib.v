@@ -117,7 +117,7 @@ Notation "x ==? y" := (Z.eq_dec x y) (at level 70).
 Import smt_lang_enums1.
 
 (* p3 <-> (p1 op p2) to cnf *)
-(* Definition iff2cnf_binary (p1 p2 p3: Z) (op: SmtPropBop): cnf_list :=
+Definition iff2cnf_binary (p1 p2 p3: Z) (op: SmtPropBop): cnf_list :=
   match op with
     | SMTPROP_AND => let c1 := [p1; -p3] in
             let c2 := [p2; -p3] in
@@ -151,9 +151,134 @@ Definition iff2cnf_length_binary (p1 p2 p3: Z) (op: SmtPropBop): Z :=
     | SMTPROP_OR => 3%Z
     | SMTPROP_IMPLY => if (p1 ==? p2) then 1%Z else 3%Z
     | SMTPROP_IFF => if (p1 ==? p2) then 1%Z else 4%Z
-  end. *)
+  end.
 
-Definition iff2cnf_binary (p1 p2 p3: Z) (op: Z): cnf_list :=
+Lemma iff2cnf_binary_and:
+  forall p1 p2 p3,
+    iff2cnf_binary p1 p2 p3 SMTPROP_AND =
+    [p1; -p3] :: [p2; -p3] :: (if (p1 ==? p2) then [-p1; p3] else [-p1; -p2; p3]) :: nil /\
+    iff2cnf_length_binary p1 p2 p3 SMTPROP_AND = 3%Z.
+Proof.
+  intros.
+  split; reflexivity.
+Qed.
+
+Lemma iff2cnf_binary_and_eq:
+  forall p1 p2 p3,
+    p1 = p2 ->
+    iff2cnf_binary p1 p2 p3 SMTPROP_AND =
+    [p1; -p3] :: [p2; -p3] :: [-p1; p3] :: nil /\
+    iff2cnf_length_binary p1 p2 p3 SMTPROP_AND = 3%Z.
+Proof.
+  intros.
+  unfold iff2cnf_binary, iff2cnf_length_binary.
+  split; destruct (p1 ==? p2); try reflexivity; try lia.
+Qed.
+
+Lemma iff2cnf_binary_and_neq:
+  forall p1 p2 p3,
+    p1 <> p2 ->
+    iff2cnf_binary p1 p2 p3 SMTPROP_AND =
+    [p1; -p3] :: [p2; -p3] :: [-p1; -p2; p3] :: nil /\
+    iff2cnf_length_binary p1 p2 p3 SMTPROP_AND = 3%Z.
+Proof.
+  intros.
+  unfold iff2cnf_binary, iff2cnf_length_binary.
+  split; destruct (p1 ==? p2); try reflexivity; try lia.
+Qed.
+
+Lemma iff2cnf_binary_or:
+  forall p1 p2 p3,
+    iff2cnf_binary p1 p2 p3 SMTPROP_OR =
+    [-p1; p3] :: [-p2; p3] :: (if (p1 ==? p2) then [p1; -p3] else [p1; p2; -p3]) :: nil /\
+    iff2cnf_length_binary p1 p2 p3 SMTPROP_OR = 3%Z.
+Proof.
+  intros.
+  split; reflexivity.
+Qed.
+
+Lemma iff2cnf_binary_or_eq:
+  forall p1 p2 p3,
+    p1 = p2 ->
+    iff2cnf_binary p1 p2 p3 SMTPROP_OR =
+    [-p1; p3] :: [-p2; p3] :: [p1; -p3] :: nil /\
+    iff2cnf_length_binary p1 p2 p3 SMTPROP_OR = 3%Z.
+Proof.
+  intros.
+  unfold iff2cnf_binary, iff2cnf_length_binary.
+  split; destruct (p1 ==? p2); try reflexivity; try lia.
+Qed.
+
+Lemma iff2cnf_binary_or_neq:
+  forall p1 p2 p3,
+    p1 <> p2 ->
+    iff2cnf_binary p1 p2 p3 SMTPROP_OR =
+    [-p1; p3] :: [-p2; p3] :: [p1; p2; -p3] :: nil /\
+    iff2cnf_length_binary p1 p2 p3 SMTPROP_OR = 3%Z.
+Proof.
+  intros.
+  unfold iff2cnf_binary, iff2cnf_length_binary.
+  split; destruct (p1 ==? p2); try reflexivity; try lia.
+Qed.
+
+Lemma iff2cnf_binary_imply_eq:
+  forall p1 p2 p3,
+    p1 = p2 ->
+    iff2cnf_binary p1 p2 p3 SMTPROP_IMPLY = [p3] :: nil /\
+    iff2cnf_length_binary p1 p2 p3 SMTPROP_IMPLY = 1%Z.
+Proof.
+  intros.
+  unfold iff2cnf_binary, iff2cnf_length_binary.
+  split; destruct (p1 ==? p2); try reflexivity; try lia.
+Qed.
+
+Lemma iff2cnf_binary_imply_neq:
+  forall p1 p2 p3,
+    p1 <> p2 ->
+    iff2cnf_binary p1 p2 p3 SMTPROP_IMPLY =
+    [p1; p3] :: [-p2; p3] :: [-p1; p2; -p3] :: nil /\
+    iff2cnf_length_binary p1 p2 p3 SMTPROP_IMPLY = 3%Z.
+Proof.
+  intros.
+  unfold iff2cnf_binary, iff2cnf_length_binary.
+  split; destruct (p1 ==? p2); try reflexivity; try lia.
+Qed.
+
+Lemma iff2cnf_binary_iff_eq:
+  forall p1 p2 p3,
+    p1 = p2 ->
+    iff2cnf_binary p1 p2 p3 SMTPROP_IFF = [p3] :: nil /\
+    iff2cnf_length_binary p1 p2 p3 SMTPROP_IFF = 1%Z.
+Proof.
+  intros.
+  unfold iff2cnf_binary, iff2cnf_length_binary.
+  split; destruct (p1 ==? p2); try reflexivity; try lia.
+Qed.
+
+Lemma iff2cnf_binary_iff_neq:
+  forall p1 p2 p3,
+    p1 <> p2 ->
+    iff2cnf_binary p1 p2 p3 SMTPROP_IFF =
+    [p1; p2; p3] :: [-p1; -p2; p3] :: [p1; -p2; -p3] :: [-p1; p2; -p3] :: nil /\
+    iff2cnf_length_binary p1 p2 p3 SMTPROP_IFF = 4%Z. 
+Proof.
+  intros.
+  unfold iff2cnf_binary, iff2cnf_length_binary.
+  split; destruct (p1 ==? p2); try reflexivity; try lia.
+Qed.
+
+Lemma iff2cnf_length_eq:
+  forall p1 p2 p3 op,
+    Zlength (iff2cnf_binary p1 p2 p3 op) = iff2cnf_length_binary p1 p2 p3 op.
+Proof.
+  intros.
+  unfold iff2cnf_binary, iff2cnf_length_binary, Zlength.
+  destruct op; simpl; try reflexivity.
+  + destruct (p1 ==? p2); simpl; try reflexivity; try lia.
+  + destruct (p1 ==? p2); simpl; try reflexivity; try lia.
+Qed.
+
+(* Definition iff2cnf_binary (p1 p2 p3: Z) (op: Z): cnf_list :=
   match op with
     | 0 => let c1 := [p1; -p3] in
             let c2 := [p2; -p3] in
@@ -189,7 +314,7 @@ Definition iff2cnf_length_binary (p1 p2 p3: Z) (op: Z): Z :=
     | 2 => if (p1 ==? p2) then 1%Z else 3%Z
     | 3 => if (p1 ==? p2) then 1%Z else 4%Z
     | _ => 0%Z
-  end.
+  end. *)
 
 Definition iff2cnf_unary (p2 p3: Z): cnf_list :=
   let c1 := [p2; p3] in
@@ -201,3 +326,52 @@ Definition iff2cnf_unary (p2 p3: Z): cnf_list :=
      2 => IMPLY
      3 => IFF
      4 => NOT *)
+
+Fixpoint max_var_SmtProp (s: SmtProp): Z :=
+  match s with
+    | SmtB op lt rt => Z.max (max_var_SmtProp lt) (max_var_SmtProp rt)
+    | SmtU op prop => max_var_SmtProp prop
+    | SmtV var => var
+  end.
+
+Fixpoint min_var_SmtProp (s: SmtProp): Z :=
+  match s with
+    | SmtB op lt rt => Z.min (min_var_SmtProp lt) (min_var_SmtProp rt)
+    | SmtU op prop => min_var_SmtProp prop
+    | SmtV var => var
+  end.
+
+Definition prop_cnt_inf_SmtProp (s: SmtProp): Z :=
+  Z.max (max_var_SmtProp s) (Z.abs (min_var_SmtProp s)).
+
+Definition PreData : Type := cnf_list * Z * Z.
+Definition prop2cnf_ret : Type := PreData * Z.
+
+Definition make_predata (cnf_res: cnf_list) (prop_cnt clause_cnt: Z): PreData :=
+  (cnf_res, prop_cnt, clause_cnt).
+
+Definition make_prop2cnf_ret (data: PreData) (ret: Z): prop2cnf_ret :=
+  (data, ret).
+
+Fixpoint prop2cnf_logic (s: SmtProp) (data: PreData): prop2cnf_ret :=
+  match s with
+    | SmtB op lt rt =>
+      let (data1, p1) := prop2cnf_logic lt data in
+      let (data2, p2) := prop2cnf_logic rt data1 in
+      let (tmp, clause_cnt) := data2 in
+      let (cnf_res, prop_cnt) := tmp in
+      let cnf_gen := (iff2cnf_binary p1 p2 (prop_cnt + 1) op) in
+      let len_gen := (iff2cnf_length_binary p1 p2 (prop_cnt + 1) op) in
+      let data_ret := ((app cnf_gen cnf_res), (prop_cnt + 1), (clause_cnt + len_gen)) in
+      (data_ret, prop_cnt + 1)
+
+    | SmtU op prop =>
+      let (data1, p1) := prop2cnf_logic prop data in
+      let (tmp, clause_cnt) := data1 in
+      let (cnf_res, prop_cnt) := tmp in
+      let cnf_gen := (iff2cnf_unary p1 (prop_cnt + 1)) in
+      let data_ret := ((app cnf_gen cnf_res), (prop_cnt + 1), (clause_cnt + 2)) in
+      (data_ret, prop_cnt + 1)
+
+    | SmtV var => (data, var)
+  end.
