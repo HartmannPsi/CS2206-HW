@@ -7,17 +7,17 @@
 /*@ Import Coq Require Import smt_lang_lib */
 /*@ Import Coq Require Import cnf_trans_lib */
 
-/*@ Extern Coq (SmtProp :: *) */
+/*@ Extern Coq ( smt_prop :: *) */
 /*@ Extern Coq (PreData :: *) */
 /*@ Extern Coq (prop2cnf_ret :: *) */
 /*@ Extern Coq (SmtPropBop :: *) */
 /*@ Extern Coq (SmtPropUop :: *) */
-/*@ Extern Coq (store_SmtProp : Z -> SmtProp -> Assertion)
-               (store_SmtProp' : Z -> SmtProp -> Assertion)
-               (store_SmtProp_cell : Z -> SmtProp -> Assertion)
-               (sll_SmtProplist : Z -> list SmtProp -> Assertion)
-               (sllseg_SmtProplist : Z -> list SmtProp -> Assertion)
-               (sllbseg_SmtProplist : Z -> list SmtProp -> Assertion)
+/*@ Extern Coq (store_SmtProp : Z ->  smt_prop -> Assertion)
+               (store_SmtProp' : Z ->  smt_prop -> Assertion)
+               (store_SmtProp_cell : Z ->  smt_prop -> Assertion)
+               (sll_SmtProplist : Z -> list  smt_prop -> Assertion)
+               (sllseg_SmtProplist : Z -> list  smt_prop -> Assertion)
+               (sllbseg_SmtProplist : Z -> list  smt_prop -> Assertion)
                (init_int_array : Z -> Z -> Assertion)
                (store_int_array : Z -> Z -> list Z -> Assertion)
                (store_cnf_list_cell : Z -> list Z -> Assertion)
@@ -30,11 +30,11 @@
                (iff2cnf_length_binary : Z -> Z -> Z -> SmtPropBop -> Z)
                (SmtPBID : SmtPropBop -> Z)
                (SmtPUID : SmtPropUop -> Z)
-               (SmtPTID : SmtProp -> Z)
+               (SmtPTID :  smt_prop -> Z)
                (all_zero_list : Z -> list Z)
                (prop_cnt_inf : list (list Z) -> Z)
-               (prop_cnt_inf_SmtProp : SmtProp -> Z)
-               (prop2cnf_logic: SmtProp -> PreData -> prop2cnf_ret)
+               (prop_cnt_inf_SmtProp :  smt_prop -> Z)
+               (prop2cnf_logic:  smt_prop -> PreData -> prop2cnf_ret)
                (make_predata : list (list Z) -> Z -> Z -> PreData)
                (make_prop2cnf_ret: PreData -> Z ->prop2cnf_ret)
                */

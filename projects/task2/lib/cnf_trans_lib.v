@@ -327,21 +327,21 @@ Definition iff2cnf_unary (p2 p3: Z): cnf_list :=
      3 => IFF
      4 => NOT *)
 
-Fixpoint max_var_SmtProp (s: SmtProp): Z :=
+Fixpoint max_var_SmtProp (s: smt_prop): Z :=
   match s with
     | SmtB op lt rt => Z.max (max_var_SmtProp lt) (max_var_SmtProp rt)
     | SmtU op prop => max_var_SmtProp prop
     | SmtV var => var
   end.
 
-Fixpoint min_var_SmtProp (s: SmtProp): Z :=
+Fixpoint min_var_SmtProp (s: smt_prop): Z :=
   match s with
     | SmtB op lt rt => Z.min (min_var_SmtProp lt) (min_var_SmtProp rt)
     | SmtU op prop => min_var_SmtProp prop
     | SmtV var => var
   end.
 
-Definition prop_cnt_inf_SmtProp (s: SmtProp): Z :=
+Definition prop_cnt_inf_SmtProp (s: smt_prop): Z :=
   Z.max (max_var_SmtProp s) (Z.abs (min_var_SmtProp s)).
 
 Definition PreData : Type := cnf_list * Z * Z.
@@ -353,7 +353,7 @@ Definition make_predata (cnf_res: cnf_list) (prop_cnt clause_cnt: Z): PreData :=
 Definition make_prop2cnf_ret (data: PreData) (ret: Z): prop2cnf_ret :=
   (data, ret).
 
-Fixpoint prop2cnf_logic (s: SmtProp) (data: PreData): prop2cnf_ret :=
+Fixpoint prop2cnf_logic (s: smt_prop) (data: PreData): prop2cnf_ret :=
   match s with
     | SmtB op lt rt =>
       let (data1, p1) := prop2cnf_logic lt data in

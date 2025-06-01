@@ -55,21 +55,21 @@ End smt_lang_enums1.
 
 Import smt_lang_enums1.
 
-Inductive SmtProp : Type :=
-  | SmtB (op: SmtPropBop) (lt: SmtProp) (rt: SmtProp): SmtProp
-  | SmtU (op: SmtPropUop) (prop: SmtProp): SmtProp
-  | SmtV (var: Z): SmtProp.
+Inductive smt_prop : Type :=
+  | SmtB (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop): smt_prop
+  | SmtU (op: SmtPropUop) (prop: smt_prop): smt_prop
+  | SmtV (var: Z): smt_prop.
 
-Definition SmtProplist : Type := list SmtProp.
+Definition SmtProplist : Type := list smt_prop.
 
-Definition SmtPTID (t: SmtProp) : Z :=
+Definition SmtPTID (t: smt_prop) : Z :=
   match t with
     | SmtB _ _ _ => 5%Z
     | SmtU _ _ => 6%Z
     | SmtV _ => 7%Z
   end.
 
-Fixpoint store_SmtProp (x: addr) (s: SmtProp) : Assertion :=
+Fixpoint store_SmtProp (x: addr) (s: smt_prop) : Assertion :=
   [| x <> NULL |] && &(x # "SmtProp" ->ₛ "type") # Int |-> SmtPTID s **
   match s with
     | SmtB op lt rt => EX y z: addr,
@@ -86,7 +86,7 @@ Fixpoint store_SmtProp (x: addr) (s: SmtProp) : Assertion :=
   end.
 
 
-Definition store_SmtProp' (x: addr) (s: SmtProp) : Assertion :=
+Definition store_SmtProp' (x: addr) (s: smt_prop) : Assertion :=
   match s with
     | SmtB op lt rt => [| x <> NULL |] &&
                        EX y z: addr,
@@ -175,7 +175,7 @@ Proof.
   entailer!.
 Qed.
 
-Definition store_SmtProp_cell (x: addr) (s: SmtProp): Assertion :=
+Definition store_SmtProp_cell (x: addr) (s: smt_prop): Assertion :=
   [| x <> NULL |] &&
   EX y: addr,
    &(x # "SmtProplist" ->ₛ "prop") # Ptr |-> y **
