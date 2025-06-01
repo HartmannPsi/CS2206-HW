@@ -23,6 +23,7 @@
                (term_eqn : term -> term -> Z)
                (term_subst_v : list Z -> list Z -> term -> term)
                (term_subst_t : term -> list Z -> term -> term)
+               (termtypeID : term -> Z)
                */
 
 typedef enum { false, true } bool;
