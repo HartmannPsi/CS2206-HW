@@ -447,8 +447,11 @@ int prop2cnf(SmtProp *p, PreData *data)
       res = p->prop.Propvar;
       break;
     }
-    default:
+    default: {
       // unreachable
+      /*@ Branch clear all
+       */
+    }
   }
   return res;
 }
