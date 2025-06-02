@@ -320,6 +320,7 @@ int prop2cnf(SmtProp *p, PreData *data)
           which implies
           exists op lt rt y z,
           prop == SmtB(op, lt, rt) &&
+          data_at(&(p -> prop.Binary_prop.op), SmtPBID(op)) *
           data_at(&(p -> prop.Binary_prop.prop1), y) *
           data_at(&(p -> prop.Binary_prop.prop2), z) *
           store_SmtProp(y, lt) *
@@ -330,36 +331,122 @@ int prop2cnf(SmtProp *p, PreData *data)
       /*@ prop_cnt_inf_SmtProp(prop) <= pcnt
           which implies
           prop_cnt_inf_SmtProp(lt) <= pcnt &&
-          prop_cnt_inf_SmtProp(rt) <= pcnt &&
-          pcnt >= 0
+          prop_cnt_inf_SmtProp(rt) <= pcnt
        */
       int p1 = prop2cnf(p->prop.Binary_prop.prop1, data);
       int p2 = prop2cnf(p->prop.Binary_prop.prop2, data);
-      /*@ Given clist'_559 pcnt'_560 ccnt'_561
+      /*@ exists clist'' pcnt'' ccnt'',
+          pcnt'' >= 0 &&
+          store_predata(data@pre, clist'', pcnt'', ccnt'')
        */
-      /*@ store_predata(data@pre, clist', pcnt', ccnt')
+      /*@ Given clist'' pcnt'' ccnt''
+       */
+      /*@ store_predata(data@pre, clist'', pcnt'', ccnt'')
           which implies
-          data@pre != 0 && Zlength(clist') == ccnt' &&
-          prop_cnt_inf(clist') <= pcnt' &&
-          exists y',
-            data_at(&(data@pre -> cnf_res), y') *
-            data_at(&(data@pre -> prop_cnt), pcnt') *
-            data_at(&(data@pre -> clause_cnt), ccnt') *
-            sll_cnf_list(y', clist')
+          data@pre != 0 && Zlength(clist'') == ccnt'' &&
+          prop_cnt_inf(clist'') <= pcnt'' &&
+          exists y'',
+            data_at(&(data@pre -> cnf_res), y'') *
+            data_at(&(data@pre -> prop_cnt), pcnt'') *
+            data_at(&(data@pre -> clause_cnt), ccnt'') *
+            sll_cnf_list(y'', clist'')
        */
-      res = ++(data->prop_cnt);
-      clause_gen_binary(p1, p2, res, p->prop.Binary_prop.op, data);
+      data->prop_cnt = data->prop_cnt + 1;
+      res = data->prop_cnt;
+      /*@ pcnt'' >= 0 && res == pcnt'' + 1
+          which implies
+          res != 0
+      */
+      /*@ data@pre != 0 && Zlength(clist'') == ccnt'' &&
+          prop_cnt_inf(clist'') <= pcnt'' &&
+          exists y'',
+            data_at(&(data@pre -> cnf_res), y'') *
+            data_at(&(data@pre -> prop_cnt), pcnt'' + 1) *
+            data_at(&(data@pre -> clause_cnt), ccnt'') *
+            sll_cnf_list(y'', clist'')
+          which implies
+          store_predata(data@pre, clist'', pcnt'' + 1, ccnt'')
+      */
+      /*@ prop_cnt_inf(clist'') <= pcnt''
+          which implies
+          prop_cnt_inf(clist'') + 1 <= pcnt'' + 1
+       */
+      clause_gen_binary(p1, p2, res, p->prop.Binary_prop.op,
+                        data) /*@ where clist = clist'', pcnt = (pcnt'' + 1),
+                                 ccnt = ccnt'', bop = op */
+          ;
       break;
     }
     case SMTU_PROP: {
-      int p1 = prop2cnf(p->prop.Unary_prop.prop1, data);
-      res = ++(data->prop_cnt);
+      /*@ p@pre->type == SmtPTID(prop) && p@pre->type == 6 &&
+          store_SmtProp'(p, prop)
+          which implies
+          exists op sub_prop y,
+          prop == SmtU(op, sub_prop) &&
+          data_at(&(p -> prop.Unary_prop.op), SmtPUID(op)) *
+          data_at(&(p -> prop.Unary_prop.prop1), y) *
+          store_SmtProp(y, sub_prop)
+      */
+      /*@ Given op sub_prop y
+       */
+      /*@ prop_cnt_inf_SmtProp(prop) <= pcnt
+          which implies
+          prop_cnt_inf_SmtProp(sub_prop) <= pcnt
+        */
+      int p1 = prop2cnf(p->prop.Unary_prop.prop1,
+                        data) /* where prop = sub_prop, clist = clist, pcnt =
+                                 pcnt, ccnt = ccnt */
+          ;
+      /*@ exists clist'' pcnt'' ccnt'',
+          pcnt'' >= 0 &&
+          store_predata(data@pre, clist'', pcnt'', ccnt'')
+      */
+      /*@ Given clist'' pcnt'' ccnt''
+       */
+      /*@ store_predata(data@pre, clist'', pcnt'', ccnt'')
+          which implies
+          data@pre != 0 && Zlength(clist'') == ccnt'' &&
+          prop_cnt_inf(clist'') <= pcnt'' &&
+          exists y'',
+            data_at(&(data@pre -> cnf_res), y'') *
+            data_at(&(data@pre -> prop_cnt), pcnt'') *
+            data_at(&(data@pre -> clause_cnt), ccnt'') *
+            sll_cnf_list(y'', clist'')
+       */
+      data->prop_cnt = data->prop_cnt + 1;
+      res = data->prop_cnt;
+      /*@ pcnt'' >= 0 && res == pcnt'' + 1
+          which implies
+          res != 0
+      */
+      /*@ data@pre != 0 && Zlength(clist'') == ccnt'' &&
+           prop_cnt_inf(clist'') <= pcnt'' &&
+           exists y'',
+             data_at(&(data@pre -> cnf_res), y'') *
+             data_at(&(data@pre -> prop_cnt), pcnt'' + 1) *
+             data_at(&(data@pre -> clause_cnt), ccnt'') *
+             sll_cnf_list(y'', clist'')
+           which implies
+           store_predata(data@pre, clist'', pcnt'' + 1, ccnt'')
+       */
+      /*@ prop_cnt_inf(clist'') <= pcnt''
+          which implies
+          prop_cnt_inf(clist'') + 1 <= pcnt'' + 1
+       */
       clause_gen_unary(p1, res, data);
       break;
     }
-    case SMT_PROPVAR:
+    case SMT_PROPVAR: {
+      /*@ p@pre->type == SmtPTID(prop) && p@pre->type == 7 &&
+          store_SmtProp'(p, prop)
+          which implies
+          exists var,
+          prop == SmtV(var) &&
+          data_at(&(p -> prop.Propvar), var)
+       */
       res = p->prop.Propvar;
       break;
+    }
     default:
       // unreachable
   }
