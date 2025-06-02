@@ -37,6 +37,9 @@
                (prop2cnf_logic:  smt_prop -> PreData -> prop2cnf_ret)
                (make_predata : list (list Z) -> Z -> Z -> PreData)
                (make_prop2cnf_ret: PreData -> Z ->prop2cnf_ret)
+               (SmtB : SmtPropBop -> smt_prop -> smt_prop -> smt_prop)
+               (SmtU : SmtPropUop -> smt_prop -> smt_prop)
+               (SmtV : Z -> smt_prop)
                */
 
 /* BEGIN Given Functions */
@@ -297,7 +300,7 @@ int prop2cnf(SmtProp *p, PreData *data)
       Ensure exists clist' pcnt' ccnt' res,
              make_prop2cnf_ret(make_predata(clist', pcnt', ccnt'), res) ==
              prop2cnf_logic(prop, make_predata(clist, pcnt, ccnt)) &&
-             __return == res &&
+             __return == res && res != 0 &&
              store_SmtProp(p, prop) *
              store_predata(data, clist', pcnt', ccnt')
 */
@@ -312,8 +315,38 @@ int prop2cnf(SmtProp *p, PreData *data)
    */
   switch (p->type) {
     case SMTB_PROP: {
+      /*@ p@pre->type == SmtPTID(prop) && p@pre->type == 5 &&
+          store_SmtProp'(p, prop)
+          which implies
+          exists op lt rt y z,
+          prop == SmtB(op, lt, rt) &&
+          data_at(&(p -> prop.Binary_prop.prop1), y) *
+          data_at(&(p -> prop.Binary_prop.prop2), z) *
+          store_SmtProp(y, lt) *
+          store_SmtProp(z, rt)
+       */
+      /*@ Given op lt rt y z
+       */
+      /*@ prop_cnt_inf_SmtProp(prop) <= pcnt
+          which implies
+          prop_cnt_inf_SmtProp(lt) <= pcnt &&
+          prop_cnt_inf_SmtProp(rt) <= pcnt &&
+          pcnt >= 0
+       */
       int p1 = prop2cnf(p->prop.Binary_prop.prop1, data);
       int p2 = prop2cnf(p->prop.Binary_prop.prop2, data);
+      /*@ Given clist'_559 pcnt'_560 ccnt'_561
+       */
+      /*@ store_predata(data@pre, clist', pcnt', ccnt')
+          which implies
+          data@pre != 0 && Zlength(clist') == ccnt' &&
+          prop_cnt_inf(clist') <= pcnt' &&
+          exists y',
+            data_at(&(data@pre -> cnf_res), y') *
+            data_at(&(data@pre -> prop_cnt), pcnt') *
+            data_at(&(data@pre -> clause_cnt), ccnt') *
+            sll_cnf_list(y', clist')
+       */
       res = ++(data->prop_cnt);
       clause_gen_binary(p1, p2, res, p->prop.Binary_prop.op, data);
       break;
