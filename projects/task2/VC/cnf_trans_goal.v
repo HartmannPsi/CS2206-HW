@@ -206,9 +206,9 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list 
   &&  [| (p3_pre <= pcnt) |] 
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_3)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_3)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_4)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_4)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
@@ -246,9 +246,9 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list 
   &&  [| (p3_pre <= pcnt) |] 
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_3)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_3)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_4)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_4)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
@@ -286,9 +286,9 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list 
   &&  [| (p3_pre <= pcnt) |] 
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_3)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 2 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_3)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 2 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_4)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_4)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
@@ -633,9 +633,9 @@ forall (data_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) ,
   EX (y: Z) ,
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
 .
 
@@ -3894,9 +3894,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -3960,9 +3960,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -4024,9 +4024,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -4090,9 +4090,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -4155,9 +4155,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -4222,9 +4222,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -4287,9 +4287,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -4354,9 +4354,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -4420,9 +4420,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -4488,9 +4488,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -4554,9 +4554,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -4622,9 +4622,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -4689,9 +4689,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -4758,9 +4758,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -4825,9 +4825,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -4894,9 +4894,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -4960,9 +4960,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre <> 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -5028,9 +5028,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre <> 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -5095,9 +5095,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -5163,9 +5163,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -5232,9 +5232,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -5301,9 +5301,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -5367,9 +5367,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -5434,9 +5434,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -5499,9 +5499,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -5566,9 +5566,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -5632,9 +5632,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -5700,9 +5700,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -5766,9 +5766,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -5834,9 +5834,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -5901,9 +5901,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -5970,9 +5970,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -6038,9 +6038,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -6108,9 +6108,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -6175,9 +6175,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre <> 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -6244,9 +6244,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre <> 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -6310,9 +6310,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -6378,9 +6378,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -6444,9 +6444,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -6512,9 +6512,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -6579,9 +6579,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -6648,9 +6648,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -6715,9 +6715,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -6784,9 +6784,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -6852,9 +6852,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -6922,9 +6922,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -6991,9 +6991,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -7062,9 +7062,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -7130,9 +7130,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre <> 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -7200,9 +7200,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre <> 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -7267,9 +7267,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -7335,9 +7335,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -7403,9 +7403,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -7471,9 +7471,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -7540,9 +7540,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -7609,9 +7609,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -7678,9 +7678,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -7747,9 +7747,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -7817,9 +7817,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -7887,9 +7887,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -7957,9 +7957,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre <> 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -8027,9 +8027,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre <> 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -8098,9 +8098,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -8169,9 +8169,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -8239,9 +8239,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre <> 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 4 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 4 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -8294,9 +8294,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 4 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 4 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -8346,9 +8346,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
@@ -8394,9 +8394,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
@@ -8443,9 +8443,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
@@ -8492,9 +8492,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
@@ -8542,9 +8542,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
@@ -8590,9 +8590,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
@@ -8631,9 +8631,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
@@ -14069,9 +14069,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -14138,9 +14138,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -14189,9 +14189,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
   &&  (store_int_array retval_2 3 (all_zero_list (3)) )
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -14240,9 +14240,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -14308,9 +14308,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -14358,9 +14358,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
   &&  (store_int_array retval_2 3 (all_zero_list (3)) )
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -14409,9 +14409,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -14476,9 +14476,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -14525,9 +14525,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
   &&  (store_int_array retval_3 3 (all_zero_list (3)) )
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -14576,9 +14576,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -14644,9 +14644,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -14694,9 +14694,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
   &&  (store_int_array retval_3 3 (all_zero_list (3)) )
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -14745,9 +14745,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
@@ -14812,9 +14812,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -14861,9 +14861,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
   &&  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -14910,9 +14910,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
@@ -14976,9 +14976,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -15024,9 +15024,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
   &&  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -15073,9 +15073,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_5)
@@ -15137,9 +15137,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -15185,9 +15185,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -15232,9 +15232,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_5)
@@ -15297,9 +15297,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -15346,9 +15346,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -15393,9 +15393,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_5)
@@ -15455,9 +15455,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -15501,9 +15501,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -15544,9 +15544,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_5)
@@ -15605,9 +15605,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -15650,9 +15650,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -15693,9 +15693,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_5)
@@ -15751,9 +15751,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -15793,9 +15793,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
@@ -15834,9 +15834,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_5)
@@ -15893,9 +15893,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -15936,9 +15936,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
@@ -15978,9 +15978,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
@@ -16048,9 +16048,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -16100,9 +16100,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
   &&  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -16152,9 +16152,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
@@ -16221,9 +16221,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -16272,9 +16272,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -16324,9 +16324,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
@@ -16393,9 +16393,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -16444,9 +16444,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -16495,9 +16495,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
@@ -16563,9 +16563,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -16613,9 +16613,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -16664,9 +16664,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
@@ -16732,9 +16732,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -16782,9 +16782,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -16833,9 +16833,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_5)
@@ -16899,9 +16899,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -16949,9 +16949,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
@@ -16997,9 +16997,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_5)
@@ -17063,9 +17063,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -17113,9 +17113,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
@@ -17162,9 +17162,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_5)
@@ -17229,9 +17229,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -17280,9 +17280,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
@@ -17329,9 +17329,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_5)
@@ -17396,9 +17396,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -17447,9 +17447,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
@@ -17497,9 +17497,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_5)
@@ -17565,9 +17565,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -17617,9 +17617,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
@@ -17644,9 +17644,9 @@ forall (data_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) ,
   EX (y: Z) ,
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
 .
 
@@ -17702,9 +17702,9 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt'')
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
   **  (sll_cnf_list y'' clist'' )
   **  (store_SmtProp z rt )
   **  ((( &( "p2" ) )) # Int  |-> retval_2)
@@ -17743,9 +17743,9 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt'')
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
   **  (sll_cnf_list y'' clist'' )
   **  (store_SmtProp z rt )
   **  ((( &( "p2" ) )) # Int  |-> retval_2)
@@ -17795,9 +17795,9 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t = 6) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt'')
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
   **  (sll_cnf_list y'' clist'' )
   **  (store_SmtProp y sub_prop )
   **  ((( &( "p1" ) )) # Int  |-> retval)
@@ -17828,9 +17828,9 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t = 6) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt'')
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
   **  (sll_cnf_list y'' clist'' )
   **  (store_SmtProp y sub_prop )
   **  ((( &( "p1" ) )) # Int  |-> retval)
@@ -18354,9 +18354,9 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
   **  (sll_cnf_list y'' clist'' )
   **  (store_SmtProp z rt )
   **  ((( &( "p2" ) )) # Int  |-> retval_2)
@@ -18395,9 +18395,9 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
   **  (sll_cnf_list y'' clist'' )
   **  (store_SmtProp z rt )
   **  (store_SmtProp y lt )
@@ -18427,9 +18427,9 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
   **  (sll_cnf_list y'' clist'' )
   **  (store_SmtProp z rt )
   **  (store_SmtProp y lt )
@@ -18464,9 +18464,9 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
   &&  ((( &( "res" ) )) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
   **  (sll_cnf_list y'' clist'' )
   **  (store_SmtProp z rt )
   **  ((( &( "p2" ) )) # Int  |-> retval_2)
@@ -18506,9 +18506,9 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
   **  (sll_cnf_list y'' clist'' )
   **  (store_SmtProp z rt )
   **  (store_SmtProp y lt )
@@ -18540,9 +18540,9 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
   **  (sll_cnf_list y'' clist'' )
   **  (store_SmtProp z rt )
   **  (store_SmtProp y lt )
@@ -18970,9 +18970,9 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t = 6) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
   **  (sll_cnf_list y'' clist'' )
   **  (store_SmtProp y sub_prop )
   **  ((( &( "p1" ) )) # Int  |-> retval)
@@ -19003,9 +19003,9 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t = 6) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
   **  (sll_cnf_list y'' clist'' )
   **  (store_SmtProp y sub_prop )
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
@@ -19028,9 +19028,9 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t = 6) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
   **  (sll_cnf_list y'' clist'' )
   **  (store_SmtProp y sub_prop )
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
@@ -19058,9 +19058,9 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (t <> 5) |] 
   &&  [| (t = 6) |]
   &&  ((( &( "res" ) )) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
   **  (sll_cnf_list y'' clist'' )
   **  (store_SmtProp y sub_prop )
   **  ((( &( "p1" ) )) # Int  |-> retval)
@@ -19092,9 +19092,9 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t = 6) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
   **  (sll_cnf_list y'' clist'' )
   **  (store_SmtProp y sub_prop )
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
@@ -19119,9 +19119,9 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t = 6) |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
   **  (sll_cnf_list y'' clist'' )
   **  (store_SmtProp y sub_prop )
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
@@ -19392,9 +19392,9 @@ forall (data_pre: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) ,
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'')) = ccnt'') |] 
   &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt'')
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
   **  (sll_cnf_list y'' clist'' )
 .
 
@@ -19413,9 +19413,9 @@ forall (data_pre: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) (y'': 
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'')) = ccnt'') |] 
   &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
   **  (sll_cnf_list y'' clist'' )
 |--
   (store_predata data_pre clist'' (pcnt'' + 1 ) ccnt'' )
@@ -19461,9 +19461,9 @@ forall (data_pre: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) ,
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'')) = ccnt'') |] 
   &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> pcnt'')
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
   **  (sll_cnf_list y'' clist'' )
 .
 
@@ -19482,9 +19482,9 @@ forall (data_pre: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) (y'': 
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'')) = ccnt'') |] 
   &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |]
-  &&  ((&((data_pre)  # "<anonymous struct>" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "<anonymous struct>" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
   **  (sll_cnf_list y'' clist'' )
 |--
   (store_predata data_pre clist'' (pcnt'' + 1 ) ccnt'' )

@@ -76,16 +76,6 @@ Proof.
   pose proof derivable1_sepcon_comm.
   pose proof derivable1_sepcon_assoc1.
   entailer!.
-  rewrite H14.
-  rewrite H14.
-  rewrite H14.
-  rewrite H14.
-  rewrite H13.
-  rewrite H14.
-  rewrite H14.
-  rewrite H14.
-  rewrite H14.
-  rewrite (H13 (sll store_cnf_list_cell "cnf_list" "next" y clist) (sllseg store_cnf_list_cell "cnf_list" "next" retval_4 y ((- p2_pre :: - p3_pre :: 0 :: nil) :: nil))).
   sep_apply H12.
   clear H12.
   pose proof @sllseg_sll cnf_list_cell store_cnf_list_cell "cnf_list" "next".
@@ -104,7 +94,11 @@ Proof.
   }
   rewrite <- H12.
   repeat rewrite H14.
-  3: {
+  3: easy.
+  3: easy.
+  3: easy.
+  3: easy.
+  2: {
     pose proof app_comm_cons.
     rewrite <- H12.
     pose proof Zlength_cons.
@@ -113,17 +107,13 @@ Proof.
     rewrite H15.
     lia.
   }
-  3: easy.
-  3: easy.
-  3: easy.
-  3: easy.
-  2: {
+  1: {
     pose proof prop_cnt_nneg clist.
     assert (pcnt >= 1) by lia.
     assert (prop_cnt_inf clist <= pcnt - 1) by lia.
-    unfold prop_cnt_inf in H16.
-    pose proof Z.max_lub_l _ _ _ H16.
-    pose proof Z.max_lub_r _ _ _ H16.
+    unfold prop_cnt_inf in H17.
+    pose proof Z.max_lub_l _ _ _ H17.
+    pose proof Z.max_lub_r _ _ _ H17.
     (* Search (Z.max _ _ <= _). *)
     unfold prop_cnt_inf.
     apply Z.max_lub.
@@ -144,7 +134,7 @@ Proof.
         clear H1000 H2000.
         lia.
   }
-Admitted. 
+Qed.
 
 Lemma proof_of_clause_gen_unary_which_implies_wit_1 : clause_gen_unary_which_implies_wit_1.
 Proof. Admitted. 
