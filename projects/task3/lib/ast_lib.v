@@ -25,7 +25,7 @@ Local Open Scope sac.
 Definition var_name : Type := list Z.
 
 (* all about ast basic structure *)
-Module ast_def.
+(* Module ast_def. *)
 
 Inductive const_type : Type :=
   | CNum: const_type
@@ -81,9 +81,9 @@ Inductive term : Type :=
 
 Definition term_list : Type := list term.
 
-End ast_def.
+(* End ast_def. *)
 
-Import ast_def.
+(* Import ast_def. *)
 
 Definition termtypeID (t: term) : Z :=
   match t with
@@ -243,16 +243,16 @@ Definition sllbseg_term_list (x: addr) (y: addr) (l: term_list): Assertion :=
 
 (* all about ast var_sub *)
 
-Module ast_var_sub.
+(* Module ast_var_sub. *)
 
 Inductive var_sub : Type :=
   | VarSub (name: var_name) (t: term): var_sub.
 
 Definition var_sub_list : Type := list var_sub.
 
-End ast_var_sub.
+(* End ast_var_sub. *)
 
-Import ast_var_sub.
+(* Import ast_var_sub. *)
 
 (* Definition var_sub_list : Type := list var_sub. *)
 (* v is stored on addr x *)
@@ -284,7 +284,7 @@ Definition sllbseg_var_sub_list (x: addr) (y: addr) (l: var_sub_list): Assertion
 
 (* all about ast solve result *)
 
-Module ast_solve_res.
+(* Module ast_solve_res. *)
 
 Inductive res_type : Type :=
   | BoolRes: res_type
@@ -294,9 +294,9 @@ Inductive solve_res : Type :=
   | SRBool (ans: Z): solve_res
   | SRTList (l: term_list): solve_res.
 
-End ast_solve_res.
+(* End ast_solve_res. *)
 
-Import ast_solve_res.
+(* Import ast_solve_res. *)
 
 Definition restypeID (sr : solve_res) : Z :=
   match sr with
@@ -373,7 +373,7 @@ Qed.
 
 (* all about ImplyProp *)
 
-Module ast_imply_prop.
+(* Module ast_imply_prop. *)
 
 Inductive ImplyProp : Type :=
   | ImplP (assum: term) (concl: term): ImplyProp.
@@ -384,9 +384,9 @@ Definition store_ImplyProp (x y z: addr) (assum concl: term): Assertion :=
   &(x # "ImplyProp" ->ₛ "concl") # Ptr |-> z **
   store_term y assum ** store_term z concl.
 
-End ast_imply_prop.
+(* End ast_imply_prop. *)
 
-Import ast_imply_prop.
+(* Import ast_imply_prop. *)
 
 Fixpoint list_Z_eqb (l1 l2 : list Z) : bool :=
   match l1, l2 with
