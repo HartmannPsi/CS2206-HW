@@ -6,6 +6,8 @@
 
 /*@ Import Coq Require Import smt_lang_lib */
 /*@ Import Coq Require Import cnf_trans_lib */
+/*@ Import Coq From SimpleC.EE Require Import malloc */
+/*@ Import Coq From SimpleC.EE Require Import super_poly_sll2 */
 
 /*@ Extern Coq ( smt_prop :: *) */
 /*@ Extern Coq (PreData :: *) */

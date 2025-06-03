@@ -33,11 +33,15 @@ lib_FILES = \
 # 	 sll \
 # 	 sll_queue 
 
-# VC_code_proof_FILES = \
-#   $(VC_code_FILE_NAME:%=VC/%_goal.v) \
-#   $(VC_code_FILE_NAME:%=VC/%_proof_auto.v) \
-#   $(VC_code_FILE_NAME:%=VC/%_proof_manual.v) \
-#   $(VC_code_FILE_NAME:%=VC/%_goal_check.v) \
+VC_code_proof_FILES = \
+	cnf_trans_goal_check.v \
+	cnf_trans_goal.v \
+	cnf_trans_proof_auto.v \
+	cnf_trans_proof_manual.v \
+  # $(VC_code_FILE_NAME:%=VC/%_goal.v) \
+  # $(VC_code_FILE_NAME:%=VC/%_proof_auto.v) \
+  # $(VC_code_FILE_NAME:%=VC/%_proof_manual.v) \
+  # $(VC_code_FILE_NAME:%=VC/%_goal_check.v) \
 
 # strategy_proof_FILES = \
 # 	$(strategy_FILE_NAME:%=VC/%_strategy_goal.v) \
@@ -46,8 +50,8 @@ lib_FILES = \
 
 FILES = \
   $(lib_FILES:%.v=lib/%.v) \
+  $(VC_code_proof_FILES:%.v=VC/%.v) \
   # $(strategy_proof_FILES:%.v=%.v) \
-  # $(VC_code_proof_FILES:%.v=%.v) \
 
 
 
@@ -88,6 +92,8 @@ clean:
 	@rm -f */.*.aux	
 	@rm -f .depend
 
+VC_clean:
+	@rm -f VC/*
 
 .PHONY: clean depend
 .DEFAULT_GOAL := all

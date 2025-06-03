@@ -45,7 +45,7 @@ Definition store_cnf_list_cell (x: addr) (clause: list Z): Assertion :=
   &(x # "cnf_list" ->ₛ "clause") # Ptr |-> y **
   store_clause y clause.
 
-Module cnf_list_store_lists.
+(* Module cnf_list_store_lists. *)
 
 Definition sll_cnf_list (x: addr) (l: cnf_list): Assertion :=
   sll store_cnf_list_cell "cnf_list" "next" x l.
@@ -56,9 +56,9 @@ Definition sllseg_cnf_list (x: addr) (y: addr) (l: cnf_list): Assertion :=
 Definition sllbseg_cnf_list (x: addr) (y: addr) (l: cnf_list): Assertion :=
   sllbseg store_cnf_list_cell "cnf_list" "next" x y l.
 
-End cnf_list_store_lists.
+(* End cnf_list_store_lists. *)
 
-Import cnf_list_store_lists.
+(* Import cnf_list_store_lists. *)
 
 (* Definition Z_union (l1 l2 : list Z) : list Z :=
   nodup Z.eq_dec (l1 ++ l2).
@@ -114,7 +114,7 @@ Definition store_predata (x: addr) (cnf_res: cnf_list) (prop_cnt clause_cnt: Z):
 Notation "x <>? y" := (negb (Z.eqb x y)) (at level 70).
 Notation "x ==? y" := (Z.eq_dec x y) (at level 70).
 
-Import smt_lang_enums1.
+(* Import smt_lang_enums1. *)
 
 (* p3 <-> (p1 op p2) to cnf *)
 Definition iff2cnf_binary (p1 p2 p3: Z) (op: SmtPropBop): cnf_list :=

@@ -22,7 +22,7 @@ Local Open Scope sac.
 
 From SimpleC.EE Require Import super_poly_sll2.
 
-Module smt_lang_enums1.
+(* Module smt_lang_enums1. *)
 
 Inductive SmtPropBop : Type :=
   | SMTPROP_AND: SmtPropBop
@@ -51,9 +51,9 @@ Definition SmtPUID (t: SmtPropUop) : Z :=
     | SMTPROP_NOT => 4%Z
   end.
 
-End smt_lang_enums1.
+(* End smt_lang_enums1. *)
 
-Import smt_lang_enums1.
+(* Import smt_lang_enums1. *)
 
 Inductive smt_prop : Type :=
   | SmtB (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop): smt_prop
@@ -185,7 +185,7 @@ Definition store_SmtProp_cell (x: addr) (s: smt_prop): Assertion :=
   [| x <> NULL |] &&
   &(x # "SmtProplist" ->ₛ "next") # Ptr |-> y. *)
 
-Module smt_lang_store_lists2.
+(* Module smt_lang_store_lists2. *)
 
 Definition sll_SmtProplist (x: addr) (l: SmtProplist): Assertion :=
   sll store_SmtProp_cell "SmtProplist" "next" x l.
@@ -196,6 +196,6 @@ Definition sllseg_SmtProplist (x: addr) (y: addr) (l: SmtProplist): Assertion :=
 Definition sllbseg_SmtProplist (x: addr) (y: addr) (l: SmtProplist): Assertion :=
   sllbseg store_SmtProp_cell "SmtProplist" "next" x y l.
   
-End smt_lang_store_lists2.
+(* End smt_lang_store_lists2. *)
 
-Import smt_lang_store_lists2.
+(* Import smt_lang_store_lists2. *)
