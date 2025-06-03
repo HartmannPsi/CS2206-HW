@@ -43,9 +43,21 @@ Definition store_cnf_list_cell (x: addr) (clause: list Z): Assertion :=
  [| x <> NULL |] && EX y: addr,
   &(x # "cnf_list" ->ₛ "size") # Int |-> 3%Z **
   &(x # "cnf_list" ->ₛ "clause") # Ptr |-> y **
-  store_clause y clause.
+  store_int_array y 3%Z clause.
 
 (* Module cnf_list_store_lists. *)
+Lemma store_cnf_list_fold: forall x clause y,
+  x <> NULL ->
+  &(x # "cnf_list" ->ₛ "size") # Int |-> 3%Z **
+  &(x # "cnf_list" ->ₛ "clause") # Ptr |-> y **
+  store_int_array y 3%Z clause |--
+  store_cnf_list_cell x clause.
+Proof.
+  pre_process.
+  unfold store_cnf_list_cell.
+  Exists y.
+  entailer!.
+Qed.
 
 Definition sll_cnf_list (x: addr) (l: cnf_list): Assertion :=
   sll store_cnf_list_cell "cnf_list" "next" x l.
@@ -99,6 +111,23 @@ Fixpoint min_cnf (l: cnf_list): Z :=
 Definition prop_cnt_inf (l: cnf_list): Z :=
   Z.max (max_cnf l) (Z.abs (min_cnf l)).
 
+Definition prop_cnt_nneg: forall l, prop_cnt_inf l >= 0%Z.
+Proof.
+  intros.
+  unfold prop_cnt_inf.
+  assert (forall a b, b >= 0 -> Z.max a b >= 0). {
+    intros.
+    Search "Z" "dec".
+    destruct (Z_ge_dec a b).
+    + assert (Z.max a b = a) by lia.
+      lia.
+    + assert (Z.max a b = b) by lia.
+      lia.
+  }
+  apply H.
+  lia.
+Qed.
+
 Definition store_predata (x: addr) (cnf_res: cnf_list) (prop_cnt clause_cnt: Z): Assertion :=
  [| x <> NULL |] && [| Zlength cnf_res = clause_cnt |] &&
  [| prop_cnt_inf cnf_res <= prop_cnt |] &&
@@ -119,24 +148,24 @@ Notation "x ==? y" := (Z.eq_dec x y) (at level 70).
 (* p3 <-> (p1 op p2) to cnf *)
 Definition iff2cnf_binary (p1 p2 p3: Z) (op: SmtPropBop): cnf_list :=
   match op with
-    | SMTPROP_AND => let c1 := [p1; -p3] in
-            let c2 := [p2; -p3] in
-              let c3 := if (p1 ==? p2) then [-p1; p3] else [-p1; -p2; p3] in
+    | SMTPROP_AND => let c1 := [p1; -p3; 0] in
+            let c2 := [p2; -p3; 0] in
+              let c3 := if (p1 ==? p2) then [-p1; p3; 0] else [-p1; -p2; p3] in
                 c1 :: c2 :: c3 :: nil
-    | SMTPROP_OR => let c1 := [-p1; p3] in
-            let c2 := [-p2; p3] in
-              let c3 := if (p1 ==? p2) then [p1; -p3] else [p1; p2; -p3] in
+    | SMTPROP_OR => let c1 := [-p1; p3; 0] in
+            let c2 := [-p2; p3; 0] in
+              let c3 := if (p1 ==? p2) then [p1; -p3; 0] else [p1; p2; -p3] in
                 c1 :: c2 :: c3 :: nil
     | SMTPROP_IMPLY => if (p1 ==? p2) then
-              ( (p3 :: nil)) :: nil
+              ( (p3 :: 0 :: 0 :: nil)) :: nil
            else
-            let c1 := [p1; p3] in
-              let c2 := [-p2; p3] in
+            let c1 := [p1; p3; 0] in
+              let c2 := [-p2; p3; 0] in
                 let c3 := [-p1; p2; -p3] in
                   c1 :: c2 :: c3 :: nil
 
     | SMTPROP_IFF => if (p1 ==? p2) then
-            ( (p3 :: nil)) :: nil
+            ( (p3 :: 0 :: 0 :: nil)) :: nil
            else
             let c1 := [p1; p2; p3] in
               let c2 := [-p1; -p2; p3] in
@@ -156,7 +185,7 @@ Definition iff2cnf_length_binary (p1 p2 p3: Z) (op: SmtPropBop): Z :=
 Lemma iff2cnf_binary_and:
   forall p1 p2 p3,
     iff2cnf_binary p1 p2 p3 SMTPROP_AND =
-    [p1; -p3] :: [p2; -p3] :: (if (p1 ==? p2) then [-p1; p3] else [-p1; -p2; p3]) :: nil /\
+    [p1; -p3; 0] :: [p2; -p3; 0] :: (if (p1 ==? p2) then [-p1; p3; 0] else [-p1; -p2; p3]) :: nil /\
     iff2cnf_length_binary p1 p2 p3 SMTPROP_AND = 3%Z.
 Proof.
   intros.
@@ -167,7 +196,7 @@ Lemma iff2cnf_binary_and_eq:
   forall p1 p2 p3,
     p1 = p2 ->
     iff2cnf_binary p1 p2 p3 SMTPROP_AND =
-    [p1; -p3] :: [p2; -p3] :: [-p1; p3] :: nil /\
+    [p1; -p3; 0] :: [p2; -p3; 0] :: [-p1; p3; 0] :: nil /\
     iff2cnf_length_binary p1 p2 p3 SMTPROP_AND = 3%Z.
 Proof.
   intros.
@@ -179,7 +208,7 @@ Lemma iff2cnf_binary_and_neq:
   forall p1 p2 p3,
     p1 <> p2 ->
     iff2cnf_binary p1 p2 p3 SMTPROP_AND =
-    [p1; -p3] :: [p2; -p3] :: [-p1; -p2; p3] :: nil /\
+    [p1; -p3; 0] :: [p2; -p3; 0] :: [-p1; -p2; p3] :: nil /\
     iff2cnf_length_binary p1 p2 p3 SMTPROP_AND = 3%Z.
 Proof.
   intros.
@@ -190,7 +219,7 @@ Qed.
 Lemma iff2cnf_binary_or:
   forall p1 p2 p3,
     iff2cnf_binary p1 p2 p3 SMTPROP_OR =
-    [-p1; p3] :: [-p2; p3] :: (if (p1 ==? p2) then [p1; -p3] else [p1; p2; -p3]) :: nil /\
+    [-p1; p3; 0] :: [-p2; p3; 0] :: (if (p1 ==? p2) then [p1; -p3; 0] else [p1; p2; -p3]) :: nil /\
     iff2cnf_length_binary p1 p2 p3 SMTPROP_OR = 3%Z.
 Proof.
   intros.
@@ -201,7 +230,7 @@ Lemma iff2cnf_binary_or_eq:
   forall p1 p2 p3,
     p1 = p2 ->
     iff2cnf_binary p1 p2 p3 SMTPROP_OR =
-    [-p1; p3] :: [-p2; p3] :: [p1; -p3] :: nil /\
+    [-p1; p3; 0] :: [-p2; p3; 0] :: [p1; -p3; 0] :: nil /\
     iff2cnf_length_binary p1 p2 p3 SMTPROP_OR = 3%Z.
 Proof.
   intros.
@@ -213,7 +242,7 @@ Lemma iff2cnf_binary_or_neq:
   forall p1 p2 p3,
     p1 <> p2 ->
     iff2cnf_binary p1 p2 p3 SMTPROP_OR =
-    [-p1; p3] :: [-p2; p3] :: [p1; p2; -p3] :: nil /\
+    [-p1; p3; 0] :: [-p2; p3; 0] :: [p1; p2; -p3] :: nil /\
     iff2cnf_length_binary p1 p2 p3 SMTPROP_OR = 3%Z.
 Proof.
   intros.
@@ -224,7 +253,7 @@ Qed.
 Lemma iff2cnf_binary_imply_eq:
   forall p1 p2 p3,
     p1 = p2 ->
-    iff2cnf_binary p1 p2 p3 SMTPROP_IMPLY = [p3] :: nil /\
+    iff2cnf_binary p1 p2 p3 SMTPROP_IMPLY = [p3; 0; 0] :: nil /\
     iff2cnf_length_binary p1 p2 p3 SMTPROP_IMPLY = 1%Z.
 Proof.
   intros.
@@ -236,7 +265,7 @@ Lemma iff2cnf_binary_imply_neq:
   forall p1 p2 p3,
     p1 <> p2 ->
     iff2cnf_binary p1 p2 p3 SMTPROP_IMPLY =
-    [p1; p3] :: [-p2; p3] :: [-p1; p2; -p3] :: nil /\
+    [p1; p3; 0] :: [-p2; p3; 0] :: [-p1; p2; -p3] :: nil /\
     iff2cnf_length_binary p1 p2 p3 SMTPROP_IMPLY = 3%Z.
 Proof.
   intros.
@@ -247,7 +276,7 @@ Qed.
 Lemma iff2cnf_binary_iff_eq:
   forall p1 p2 p3,
     p1 = p2 ->
-    iff2cnf_binary p1 p2 p3 SMTPROP_IFF = [p3] :: nil /\
+    iff2cnf_binary p1 p2 p3 SMTPROP_IFF = [p3; 0; 0] :: nil /\
     iff2cnf_length_binary p1 p2 p3 SMTPROP_IFF = 1%Z.
 Proof.
   intros.
@@ -317,8 +346,8 @@ Definition iff2cnf_length_binary (p1 p2 p3: Z) (op: Z): Z :=
   end. *)
 
 Definition iff2cnf_unary (p2 p3: Z): cnf_list :=
-  let c1 := [p2; p3] in
-    let c2 := [-p2; -p3] in
+  let c1 := [p2; p3; 0] in
+    let c2 := [-p2; -p3; 0] in
       c1 :: c2 :: nil.
 
   (* 0 => AND

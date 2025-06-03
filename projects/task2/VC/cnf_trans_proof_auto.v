@@ -17,8 +17,8 @@ Local Open Scope string.
 Local Open Scope list.
 Import naive_C_Rules.
 Import naive_C_Rules.
-Require Import smt_lang_lib.
-Require Import cnf_trans_lib.
+From SimpleC.EE Require Import smt_lang_lib.
+From SimpleC.EE Require Import cnf_trans_lib.
 From SimpleC.EE Require Import malloc.
 From SimpleC.EE Require Import super_poly_sll2.
 Local Open Scope sac.
@@ -848,6 +848,12 @@ Proof. Admitted.
 Lemma proof_of_prop2cnf_safety_wit_8 : prop2cnf_safety_wit_8.
 Proof. Admitted. 
 
+Lemma proof_of_prop2cnf_entail_wit_1 : prop2cnf_entail_wit_1.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_entail_wit_2 : prop2cnf_entail_wit_2.
+Proof. Admitted. 
+
 Lemma proof_of_prop2cnf_partial_solve_wit_1 : prop2cnf_partial_solve_wit_1.
 Proof. Admitted. 
 
@@ -893,9 +899,6 @@ Proof. Admitted.
 Lemma proof_of_prop2cnf_partial_solve_wit_9 : prop2cnf_partial_solve_wit_9.
 Proof. Admitted. 
 
-Lemma proof_of_prop2cnf_partial_solve_wit_10_pure : prop2cnf_partial_solve_wit_10_pure.
-Proof. Admitted. 
-
 Lemma proof_of_prop2cnf_partial_solve_wit_10 : prop2cnf_partial_solve_wit_10.
 Proof. Admitted. 
 
@@ -936,9 +939,6 @@ Lemma proof_of_prop2cnf_partial_solve_wit_17_pure : prop2cnf_partial_solve_wit_1
 Proof. Admitted. 
 
 Lemma proof_of_prop2cnf_partial_solve_wit_17 : prop2cnf_partial_solve_wit_17.
-Proof. Admitted. 
-
-Lemma proof_of_prop2cnf_partial_solve_wit_18_pure : prop2cnf_partial_solve_wit_18_pure.
 Proof. Admitted. 
 
 Lemma proof_of_prop2cnf_partial_solve_wit_18 : prop2cnf_partial_solve_wit_18.

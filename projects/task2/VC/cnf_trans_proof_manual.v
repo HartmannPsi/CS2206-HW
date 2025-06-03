@@ -17,8 +17,8 @@ Local Open Scope string.
 Local Open Scope list.
 Import naive_C_Rules.
 Import naive_C_Rules.
-Require Import smt_lang_lib.
-Require Import cnf_trans_lib.
+From SimpleC.EE Require Import smt_lang_lib.
+From SimpleC.EE Require Import cnf_trans_lib.
 From SimpleC.EE Require Import malloc.
 From SimpleC.EE Require Import super_poly_sll2.
 Local Open Scope sac.
@@ -33,7 +33,113 @@ Lemma proof_of_clause_gen_unary_safety_wit_8 : clause_gen_unary_safety_wit_8.
 Proof. Admitted. 
 
 Lemma proof_of_clause_gen_unary_return_wit_1 : clause_gen_unary_return_wit_1.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  rename H8 into H100.
+  rename H9 into H200.
+  rename H10 into H300.
+  rename H11 into H400.
+  assert ( all_zero_list 3 = 0 :: 0 :: 0 :: nil). {
+    unfold all_zero_list.
+    unfold all_zero_list_nat.
+    unfold Z.to_nat.
+    simpl; easy.
+  }
+  rewrite H8.
+  assert ((-p2_pre) :: (-p3_pre) :: 0 :: nil = (replace_Znth 1 (- p3_pre) (replace_Znth 0 (- p2_pre) (0::0::0::nil)))). {
+    unfold replace_Znth.
+    unfold replace_nth.
+    unfold Z.to_nat.
+    simpl; easy.
+  }
+  rewrite <- H9.
+  clear H9.
+  assert ( p2_pre :: p3_pre :: 0 :: nil = (replace_Znth 1 p3_pre (replace_Znth 0 p2_pre (0 :: 0 :: 0 :: nil)))). {
+    unfold replace_Znth.
+    unfold replace_nth.
+    unfold Z.to_nat.
+    simpl; easy.
+  }
+  rewrite <- H9.
+  clear H9 H8.
+  assert (retval_3 <> NULL) by easy.
+  sep_apply (store_cnf_list_fold retval_3 (p2_pre :: p3_pre :: 0 :: nil) retval).
+  assert (retval_4 <> NULL) by easy.
+  sep_apply (store_cnf_list_fold retval_4 (- p2_pre :: - p3_pre :: 0 :: nil) retval_2).
+  pose proof @sllseg_len1 cnf_list_cell store_cnf_list_cell "cnf_list" "next".
+  sep_apply (H12 retval_3 (p2_pre :: p3_pre :: 0 :: nil) retval_4).
+  sep_apply (H12 retval_4 (- p2_pre :: - p3_pre :: 0 :: nil) y).
+  clear H12 H13 H14.
+  pose proof @sllseg_sll cnf_list_cell store_cnf_list_cell "cnf_list" "next".
+  unfold sll_cnf_list.
+  specialize (H12 retval_4 y ((- p2_pre :: - p3_pre :: 0 :: nil) :: nil) clist).
+  pose proof derivable1_sepcon_comm.
+  pose proof derivable1_sepcon_assoc1.
+  entailer!.
+  rewrite H14.
+  rewrite H14.
+  rewrite H14.
+  rewrite H14.
+  rewrite H13.
+  rewrite H14.
+  rewrite H14.
+  rewrite H14.
+  rewrite H14.
+  rewrite (H13 (sll store_cnf_list_cell "cnf_list" "next" y clist) (sllseg store_cnf_list_cell "cnf_list" "next" retval_4 y ((- p2_pre :: - p3_pre :: 0 :: nil) :: nil))).
+  sep_apply H12.
+  clear H12.
+  pose proof @sllseg_sll cnf_list_cell store_cnf_list_cell "cnf_list" "next".
+  specialize (H12 retval_3 retval_4 ((p2_pre :: p3_pre :: 0 :: nil) :: nil)(((- p2_pre :: - p3_pre :: 0 :: nil) :: nil) ++ clist)).
+  repeat rewrite H14.
+  rewrite (H13 (sll store_cnf_list_cell "cnf_list" "next" retval_4 (((- p2_pre :: - p3_pre :: 0 :: nil) :: nil) ++ clist)) _).
+  sep_apply H12.
+  clear H12.
+  unfold iff2cnf_unary.
+  unfold store_predata.
+  Exists retval_3.
+  entailer!.
+  unfold sll_cnf_list.
+  assert ((((p2_pre :: p3_pre :: 0 :: nil) :: nil) ++ ((- p2_pre :: - p3_pre :: 0 :: nil) :: nil) ++ clist) = (((p2_pre :: p3_pre :: 0 :: nil) :: (- p2_pre :: - p3_pre :: 0 :: nil) :: nil) ++ clist)). {
+    easy.
+  }
+  rewrite <- H12.
+  repeat rewrite H14.
+  3: {
+    pose proof app_comm_cons.
+    rewrite <- H12.
+    pose proof Zlength_cons.
+    rewrite H15.
+    unfold app.
+    rewrite H15.
+    lia.
+  }
+  3: easy.
+  3: easy.
+  3: easy.
+  3: easy.
+  2: {
+    pose proof prop_cnt_nneg clist.
+    assert (pcnt >= 1) by lia.
+    assert (prop_cnt_inf clist <= pcnt - 1) by lia.
+    unfold prop_cnt_inf in H16.
+    pose proof Z.max_lub_l _ _ _ H16.
+    pose proof Z.max_lub_r _ _ _ H16.
+    (* Search (Z.max _ _ <= _). *)
+    unfold prop_cnt_inf.
+    apply Z.max_lub.
+    + simpl.
+      repeat apply Z.max_lub; try lia.
+    + simpl.
+      (* Search (Z.abs _ <= _). *)
+      apply Z.abs_le.
+      split.
+      - Search (_ <= Z.min _ _).
+        repeat apply Z.min_glb; try lia.
+      - Search (Z.min _ _ <= _).
+        simpl.
+    
+  }
+Admitted. 
 
 Lemma proof_of_clause_gen_unary_which_implies_wit_1 : clause_gen_unary_which_implies_wit_1.
 Proof. Admitted. 
@@ -158,12 +264,6 @@ Proof. Admitted.
 Lemma proof_of_prop2cnf_safety_wit_9 : prop2cnf_safety_wit_9.
 Proof. Admitted. 
 
-Lemma proof_of_prop2cnf_entail_wit_1 : prop2cnf_entail_wit_1.
-Proof. Admitted. 
-
-Lemma proof_of_prop2cnf_entail_wit_2 : prop2cnf_entail_wit_2.
-Proof. Admitted. 
-
 Lemma proof_of_prop2cnf_return_wit_1_1 : prop2cnf_return_wit_1_1.
 Proof. Admitted. 
 
@@ -174,6 +274,12 @@ Lemma proof_of_prop2cnf_return_wit_1_3 : prop2cnf_return_wit_1_3.
 Proof. Admitted. 
 
 Lemma proof_of_prop2cnf_partial_solve_wit_5_pure : prop2cnf_partial_solve_wit_5_pure.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_partial_solve_wit_10_pure : prop2cnf_partial_solve_wit_10_pure.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_partial_solve_wit_18_pure : prop2cnf_partial_solve_wit_18_pure.
 Proof. Admitted. 
 
 Lemma proof_of_prop2cnf_which_implies_wit_1 : prop2cnf_which_implies_wit_1.

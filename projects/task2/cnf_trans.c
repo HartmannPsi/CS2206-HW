@@ -4,8 +4,8 @@
 #include "verification_list.h"
 #include "verification_stdlib.h"
 
-/*@ Import Coq Require Import smt_lang_lib */
-/*@ Import Coq Require Import cnf_trans_lib */
+/*@ Import Coq From SimpleC.EE Require Import smt_lang_lib */
+/*@ Import Coq From SimpleC.EE Require Import cnf_trans_lib */
 /*@ Import Coq From SimpleC.EE Require Import malloc */
 /*@ Import Coq From SimpleC.EE Require Import super_poly_sll2 */
 
@@ -86,10 +86,11 @@ void free_cnf_list(cnf_list *list)
 
 void clause_gen_unary(int p2, int p3, PreData *data)
 /*@ With clist pcnt ccnt
-      Require p2 != 0 && p3 != 0 && prop_cnt_inf(clist) + 1 <= pcnt &&
+      Require p2 != 0 && p3 != 0 && prop_cnt_inf(clist) + 1 <= pcnt && p2 <=
+              pcnt && p3 <= pcnt && -p2 <= pcnt && -p3 <= pcnt &&
               store_predata(data, clist, pcnt, ccnt)
-      Ensure store_predata(data, app(iff2cnf_unary(p2, p3),
-                           clist), pcnt, ccnt + 2)
+      Ensure store_predata(data, app(iff2cnf_unary(p2, p3), clist), pcnt, ccnt +
+                           2)
 */
 {
   int size = 3;
@@ -132,7 +133,9 @@ void clause_gen_unary(int p2, int p3, PreData *data)
 // p3<->not p2 (op为 not时， 此时p1缺省为0)
 void clause_gen_binary(int p1, int p2, int p3, int op, PreData *data)
 /*@ With clist pcnt ccnt bop
-      Require p1 != 0 && p2 != 0 && p3 != 0 &&
+      Require p1 != 0 && p2 != 0 && p3 != 0 && p1 <= pcnt && p2 <=
+              pcnt && p3 <= pcnt && -p1 <= pcnt && -p2 <= pcnt &&
+              -p3 <= pcnt &&
               prop_cnt_inf(clist) + 1 <= pcnt && op == SmtPBID(bop) &&
               store_predata(data, clist, pcnt, ccnt)
       Ensure store_predata(data, app(iff2cnf_binary(p1, p2, p3, bop),
@@ -302,7 +305,7 @@ int prop2cnf(SmtProp *p, PreData *data)
       Ensure exists clist' pcnt' ccnt' res,
              make_prop2cnf_ret(make_predata(clist', pcnt', ccnt'), res) ==
              prop2cnf_logic(prop, make_predata(clist, pcnt, ccnt)) &&
-             __return == res && res != 0 &&
+             __return == res && res != 0 && res <= pcnt' && -res <= pcnt' &&
              store_SmtProp(p, prop) *
              store_predata(data, clist', pcnt', ccnt')
 */
