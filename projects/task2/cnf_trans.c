@@ -9,7 +9,7 @@
 /*@ Import Coq From SimpleC.EE Require Import malloc */
 /*@ Import Coq From SimpleC.EE Require Import super_poly_sll2 */
 
-/*@ Extern Coq ( smt_prop :: *) */
+/*@ Extern Coq (smt_prop :: *) */
 /*@ Extern Coq (PreData :: *) */
 /*@ Extern Coq (prop2cnf_ret :: *) */
 /*@ Extern Coq (SmtPropBop :: *) */

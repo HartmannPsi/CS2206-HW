@@ -24,9 +24,9 @@ From SimpleC.EE Require Import super_poly_sll2.
 From SimpleC.EE Require Import malloc.
 From SimpleC.EE Require Import smt_lang_lib.
 
-Definition cnf_list_cell := list Z.
+Notation "'cnf_list_cell'" := (list Z) (at level 0, only parsing).
 
-Definition cnf_list : Type := list (list Z).
+Notation "'cnf_list'" := (list (list Z)) (at level 0, only parsing).
 
 (* Inductive PreData : Type :=
   | PD (cnf_res: cnf_list) (prop_cnt: Z) (clause_cnt: Z): PreData. *)

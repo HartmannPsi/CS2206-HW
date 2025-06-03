@@ -26,7 +26,8 @@
                (termtypeID : term -> Z)
                */
 
-typedef enum { false, true } bool;
+enum bool { false, true };
+typedef enum bool bool;
 
 enum const_type {
   Num = 0,
@@ -86,19 +87,23 @@ typedef struct var_sub_list {
   struct var_sub_list *next;
 } var_sub_list;
 
-typedef enum { bool_res, termlist } res_type;
-typedef struct {
+enum res_type { bool_res, termlist };
+typedef enum res_type res_type;
+
+struct solve_res {
   res_type type;
   union {
     bool ans;
     term_list *list;
   } d;
-} solve_res;
+};
+typedef struct solve_res solve_res;
 
-typedef struct {
+struct ImplyProp {
   term *assum;
   term *concl;
-} ImplyProp;
+};
+typedef struct ImplyProp ImplyProp;
 
 /* BEGIN Given Functions */
 

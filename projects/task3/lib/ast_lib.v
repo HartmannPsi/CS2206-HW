@@ -22,7 +22,7 @@ From SimpleC.EE Require Import malloc.
 Import naive_C_Rules.
 Local Open Scope sac.
 
-Definition var_name : Type := list Z.
+Notation "'var_name'" := (list Z) (at level 0, only parsing).
 
 (* all about ast basic structure *)
 (* Module ast_def. *)
@@ -79,7 +79,7 @@ Inductive term : Type :=
   | TermApply (lt: term) (rt: term): term
   | TermQuant (qtype: quant_type) (qvar: var_name) (body: term): term.
 
-Definition term_list : Type := list term.
+Notation "'term_list'" := (list term) (at level 0, only parsing).
 
 (* End ast_def. *)
 
@@ -248,7 +248,7 @@ Definition sllbseg_term_list (x: addr) (y: addr) (l: term_list): Assertion :=
 Inductive var_sub : Type :=
   | VarSub (name: var_name) (t: term): var_sub.
 
-Definition var_sub_list : Type := list var_sub.
+Notation "'var_sub_list'" := (list var_sub) (at level 0, only parsing).
 
 (* End ast_var_sub. *)
 

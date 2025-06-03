@@ -60,7 +60,7 @@ Inductive smt_prop : Type :=
   | SmtU (op: SmtPropUop) (prop: smt_prop): smt_prop
   | SmtV (var: Z): smt_prop.
 
-Definition SmtProplist : Type := list smt_prop.
+Notation "'SmtProplist'" := (list smt_prop) (at level 0, only parsing).
 
 Definition SmtPTID (t: smt_prop) : Z :=
   match t with
