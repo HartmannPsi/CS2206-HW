@@ -136,8 +136,13 @@ Proof.
       - Search (_ <= Z.min _ _).
         repeat apply Z.min_glb; try lia.
       - Search (Z.min _ _ <= _).
-        simpl.
-    
+        pose proof Z.le_min_l (Z.min p2_pre (Z.min p3_pre (Z.min 0 0))) (Z.min (Z.min (- p2_pre) (Z.min (- p3_pre) (Z.min 0 0))) (min_cnf clist)).
+        pose proof Z.le_min_l p2_pre (Z.min p3_pre (Z.min 0 0)).
+        remember (Z.min (Z.min p2_pre (Z.min p3_pre (Z.min 0 0)))
+        (Z.min (Z.min (- p2_pre) (Z.min (- p3_pre) (Z.min 0 0))) (min_cnf clist))) as tmp2 eqn:H2000.
+        remember (Z.min p2_pre (Z.min p3_pre (Z.min 0 0))) as tmp1 eqn:H1000.
+        clear H1000 H2000.
+        lia.
   }
 Admitted. 
 
