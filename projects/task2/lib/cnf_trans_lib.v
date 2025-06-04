@@ -404,3 +404,41 @@ Fixpoint prop2cnf_logic (s: smt_prop) (data: PreData): prop2cnf_ret :=
 
     | SmtV var => (data, var)
   end.
+
+Lemma all_zero_list_3:
+  all_zero_list 3 = [0; 0; 0].
+Proof.
+  unfold all_zero_list.
+  simpl.
+  reflexivity.
+Qed.
+
+Lemma replace_0th:
+  forall (a b c v: Z),
+    replace_Znth 0 v [a; b; c] = [v; b; c].
+Proof.
+  intros.
+  unfold replace_Znth.
+  simpl.
+  reflexivity.
+Qed.
+
+Lemma replace_1st:
+  forall (a b c v: Z),
+    replace_Znth 1 v [a; b; c] = [a; v; c].
+Proof.
+  intros.
+  unfold replace_Znth.
+  simpl.
+  reflexivity.
+Qed.
+
+Lemma replace_2nd:
+  forall (a b c v: Z),
+    replace_Znth 2 v [a; b; c] = [a; b; v].
+Proof.
+  intros.
+  unfold replace_Znth.
+  simpl.
+  reflexivity.
+Qed.

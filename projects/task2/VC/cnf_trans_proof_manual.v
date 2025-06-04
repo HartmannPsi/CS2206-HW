@@ -137,7 +137,13 @@ Proof.
 Qed.
 
 Lemma proof_of_clause_gen_unary_which_implies_wit_1 : clause_gen_unary_which_implies_wit_1.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  unfold store_predata.
+  Intros y.
+  Exists y.
+  entailer!.
+Qed.
 
 Lemma proof_of_clause_gen_binary_safety_wit_5 : clause_gen_binary_safety_wit_5.
 Proof. Admitted. 
@@ -221,31 +227,651 @@ Lemma proof_of_clause_gen_binary_safety_wit_142 : clause_gen_binary_safety_wit_1
 Proof. Admitted. 
 
 Lemma proof_of_clause_gen_binary_return_wit_1_1 : clause_gen_binary_return_wit_1_1.
-Proof. Admitted. 
+Proof.
+  pre_process.
+Admitted. 
 
 Lemma proof_of_clause_gen_binary_return_wit_1_2 : clause_gen_binary_return_wit_1_2.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  rewrite all_zero_list_3.
+  repeat rewrite replace_0th.
+  repeat rewrite replace_1st.
+  repeat rewrite replace_2nd.
+  pose proof store_cnf_list_fold.
+  sep_apply (H28 retval_8 (- p1_pre :: p2_pre :: - p3_pre :: nil) retval_4); try easy.
+  sep_apply (H28 retval_7 (p1_pre :: - p2_pre :: - p3_pre :: nil) retval_3); try easy.
+  sep_apply (H28 retval_6 (- p1_pre :: - p2_pre :: p3_pre :: nil) retval_2); try easy.
+  sep_apply (H28 retval_5 (p1_pre :: p2_pre :: p3_pre :: nil) retval); try easy.
+  clear H28.
+  pose proof @sllseg_len1 cnf_list_cell store_cnf_list_cell "cnf_list" "next".
+  sep_apply (H28 retval_6 (- p1_pre :: - p2_pre :: p3_pre :: nil) retval_7); try easy.
+  sep_apply (H28 retval_7 (p1_pre :: - p2_pre :: - p3_pre :: nil) retval_8); try easy.
+  sep_apply (H28 retval_8 (- p1_pre :: p2_pre :: - p3_pre :: nil) y); try easy.
+  sep_apply (H28 retval_5 (p1_pre :: p2_pre :: p3_pre :: nil) retval_6); try easy.
+  clear H28.
+  pose proof @sllseg_sll cnf_list_cell store_cnf_list_cell "cnf_list" "next".
+  unfold sll_cnf_list.
+  sep_apply (H28 retval_8 y ((- p1_pre :: p2_pre :: - p3_pre :: nil) :: nil) clist); try easy.
+  sep_apply (H28 retval_7 retval_8 ((p1_pre :: - p2_pre :: - p3_pre :: nil) :: nil) (((- p1_pre :: p2_pre :: - p3_pre :: nil) :: nil) ++ clist)); try easy.
+  sep_apply (H28 retval_6 retval_7 ((- p1_pre :: - p2_pre :: p3_pre :: nil) :: nil) (((p1_pre :: - p2_pre :: - p3_pre :: nil) :: nil) ++
+  ((- p1_pre :: p2_pre :: - p3_pre :: nil) :: nil) ++ clist)); try easy.
+  sep_apply (H28 retval_5 retval_6 ((p1_pre :: p2_pre :: p3_pre :: nil) :: nil) (((- p1_pre :: - p2_pre :: p3_pre :: nil) :: nil) ++
+  ((p1_pre :: - p2_pre :: - p3_pre :: nil) :: nil) ++ ((- p1_pre :: p2_pre :: - p3_pre :: nil) :: nil) ++ clist)); try easy.
+  unfold store_predata.
+  Exists retval_5.
+  assert (bop = SMTPROP_IFF). {
+    destruct bop; unfold SmtPBID in *; try contradiction.
+    reflexivity.
+  }
+  rewrite H37.
+  unfold iff2cnf_length_binary, iff2cnf_binary.
+  destruct (p1_pre ==? p2_pre); try contradiction.
+  assert (Zlength
+  (((p1_pre :: p2_pre :: p3_pre :: nil)
+    :: (- p1_pre :: - p2_pre :: p3_pre :: nil)
+       :: (p1_pre :: - p2_pre :: - p3_pre :: nil)
+          :: (- p1_pre :: p2_pre :: - p3_pre :: nil) :: nil) ++ clist) = 
+              ccnt + 4). {
+    pose proof app_comm_cons.
+    repeat rewrite <- H38.
+    pose proof Zlength_cons.
+    repeat rewrite H39.
+    unfold app.
+    rewrite H3.
+    lia.
+  }
+  rewrite H38.
+  clear H38 H28 H H0 H1 H24 H25 H26.
+  assert (prop_cnt_inf
+  (((p1_pre :: p2_pre :: p3_pre :: nil)
+    :: (- p1_pre :: - p2_pre :: p3_pre :: nil)
+       :: (p1_pre :: - p2_pre :: - p3_pre :: nil)
+          :: (- p1_pre :: p2_pre :: - p3_pre :: nil) :: nil) ++ clist) <= pcnt). {
+    pose proof prop_cnt_nneg clist.
+    clear H29 H30 H31 H32 H33 H34 H35 H36.
+    assert (pcnt >= 1) by lia.
+    assert (prop_cnt_inf clist <= pcnt - 1) by lia.
+    unfold prop_cnt_inf in H1.
+    pose proof Z.max_lub_l _ _ _ H1.
+    pose proof Z.max_lub_r _ _ _ H1.
+    (* Search (Z.max _ _ <= _). *)
+    unfold prop_cnt_inf.
+    apply Z.max_lub.
+    + simpl.
+      repeat apply Z.max_lub; try lia.
+    + simpl.
+      (* Search (Z.abs _ <= _). *)
+      apply Z.abs_le.
+      split.
+      - (*Search (_ <= Z.min _ _). *)
+        repeat apply Z.min_glb; try lia.
+      - (*Search (Z.min _ _ <= _). *)
+        pose proof Z.le_min_l (Z.min p1_pre (Z.min p2_pre (Z.min p3_pre 0))) (Z.min (Z.min (- p1_pre) (Z.min (- p2_pre) (Z.min p3_pre 0)))
+        (Z.min (Z.min p1_pre (Z.min (- p2_pre) (Z.min (- p3_pre) 0)))
+           (Z.min (Z.min (- p1_pre) (Z.min p2_pre (Z.min (- p3_pre) 0))) (min_cnf clist)))).
+        pose proof Z.le_min_l p1_pre (Z.min p2_pre (Z.min p3_pre 0)).
+        remember (Z.min (Z.min p1_pre (Z.min p2_pre (Z.min p3_pre 0)))
+        (Z.min (Z.min (- p1_pre) (Z.min (- p2_pre) (Z.min p3_pre 0)))
+           (Z.min (Z.min p1_pre (Z.min (- p2_pre) (Z.min (- p3_pre) 0)))
+              (Z.min (Z.min (- p1_pre) (Z.min p2_pre (Z.min (- p3_pre) 0))) (min_cnf clist))))) as tmp2 eqn:H2000.
+        remember (Z.min p1_pre (Z.min p2_pre (Z.min p3_pre 0))) as tmp1 eqn:H1000.
+        clear H1000 H2000.
+        lia.
+  }
+  repeat rewrite <- app_comm_cons.
+  unfold app.
+  clear - H H2.
+  entailer!.
+Qed.
 
 Lemma proof_of_clause_gen_binary_return_wit_1_3 : clause_gen_binary_return_wit_1_3.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  rewrite all_zero_list_3.
+  repeat rewrite replace_0th.
+  repeat rewrite replace_1st.
+  repeat rewrite replace_2nd.
+  assert (bop = SMTPROP_OR). {
+    destruct bop; unfold SmtPBID in *; try contradiction; try lia.
+    reflexivity.
+  }
+  clear H23 H24.
+  remember ((p1_pre :: - p3_pre :: 0 :: nil)) as c1 eqn:H_c1.
+  remember ((- p2_pre :: p3_pre :: 0 :: nil)) as c2 eqn:H_c2.
+  remember ((- p1_pre :: p3_pre :: 0 :: nil)) as c3 eqn:H_c3.
+  pose proof store_cnf_list_fold.
+  sep_apply (H23 retval_7 c1 retval_3); try easy.
+  sep_apply (H23 retval_6 c2 retval_2); try easy.
+  sep_apply (H23 retval_5 c3 retval); try easy.
+  clear H23.
+  pose proof @sllseg_len1 cnf_list_cell store_cnf_list_cell "cnf_list" "next".
+  sep_apply (H23 retval_5 c3 retval_6); try easy.
+  sep_apply (H23 retval_6 c2 retval_7); try easy.
+  sep_apply (H23 retval_7 c1 y); try easy.
+  clear H23.
+  pose proof @sllseg_sll cnf_list_cell store_cnf_list_cell "cnf_list" "next".
+  unfold sll_cnf_list.
+  sep_apply (H23 retval_7 y (c1 :: nil) clist); try easy.
+  sep_apply (H23 retval_6 retval_7 (c2 :: nil) ((c1 :: nil) ++ clist)); try easy.
+  sep_apply (H23 retval_5 retval_6 (c3 :: nil) ((c2 :: nil) ++ (c1 :: nil) ++ clist)); try easy.
+  clear H23.
+  unfold store_predata.
+  Exists retval_5.
+  rewrite H25.
+  unfold iff2cnf_length_binary, iff2cnf_binary.
+  destruct (p1_pre ==? p2_pre); try contradiction.
+  repeat rewrite <- app_comm_cons.
+  unfold app.
+  rewrite <- H_c1, <- H_c2, <- H_c3.
+  assert (Zlength (c3 :: c2 :: c1 :: clist) = ccnt + 3). {
+    repeat rewrite Zlength_cons.
+    rewrite H3.
+    lia.
+  }
+  rewrite H23.
+  assert (prop_cnt_inf (c3 :: c2 :: c1 :: clist) <= pcnt). {
+    pose proof prop_cnt_nneg clist.
+    clear H24 H26 H27 H28 H29 H30.
+    assert (pcnt >= 1) by lia.
+    assert (prop_cnt_inf clist <= pcnt - 1) by lia.
+    unfold prop_cnt_inf in H26.
+    pose proof Z.max_lub_l _ _ _ H26.
+    pose proof Z.max_lub_r _ _ _ H26.
+    (* Search (Z.max _ _ <= _). *)
+    rewrite H_c1, H_c2, H_c3.
+    unfold prop_cnt_inf.
+    apply Z.max_lub.
+    + simpl.
+      repeat apply Z.max_lub; try lia.
+    + simpl.
+      (* Search (Z.abs _ <= _). *)
+      apply Z.abs_le.
+      split.
+      - (*Search (_ <= Z.min _ _). *)
+        repeat apply Z.min_glb; try lia.
+      - (*Search (Z.min _ _ <= _). *)
+        pose proof Z.le_min_l (Z.min (- p1_pre) (Z.min p3_pre (Z.min 0 0))) (Z.min (Z.min (- p2_pre) (Z.min p3_pre (Z.min 0 0)))
+        (Z.min (Z.min p1_pre (Z.min (- p3_pre) (Z.min 0 0))) (min_cnf clist))).
+        pose proof Z.le_min_l (- p1_pre) (Z.min p3_pre (Z.min 0 0)).
+        remember (Z.min (Z.min (- p1_pre) (Z.min p3_pre (Z.min 0 0)))
+        (Z.min (Z.min (- p2_pre) (Z.min p3_pre (Z.min 0 0)))
+           (Z.min (Z.min p1_pre (Z.min (- p3_pre) (Z.min 0 0))) (min_cnf clist)))) as tmp2 eqn:H2000.
+        remember (Z.min (- p1_pre) (Z.min p3_pre (Z.min 0 0))) as tmp1 eqn:H1000.
+        clear H1000 H2000.
+        lia.
+  }
+  clear - H2 H31.
+  entailer!.
+Qed.
 
 Lemma proof_of_clause_gen_binary_return_wit_1_4 : clause_gen_binary_return_wit_1_4.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  rewrite all_zero_list_3.
+  repeat rewrite replace_0th.
+  repeat rewrite replace_1st.
+  repeat rewrite replace_2nd.
+  assert (bop = SMTPROP_OR). {
+    destruct bop; unfold SmtPBID in *; try contradiction; try lia.
+    reflexivity.
+  }
+  clear H23 H24.
+  remember (p1_pre :: p2_pre :: - p3_pre :: nil) as c1 eqn:H_c1.
+  remember (- p2_pre :: p3_pre :: 0 :: nil) as c2 eqn:H_c2.
+  remember (- p1_pre :: p3_pre :: 0 :: nil) as c3 eqn:H_c3.
+  pose proof store_cnf_list_fold.
+  sep_apply (H23 retval_7 c1 retval_3); try easy.
+  sep_apply (H23 retval_6 c2 retval_2); try easy.
+  sep_apply (H23 retval_5 c3 retval); try easy.
+  clear H23.
+  pose proof @sllseg_len1 cnf_list_cell store_cnf_list_cell "cnf_list" "next".
+  sep_apply (H23 retval_5 c3 retval_6); try easy.
+  sep_apply (H23 retval_6 c2 retval_7); try easy.
+  sep_apply (H23 retval_7 c1 y); try easy.
+  clear H23.
+  pose proof @sllseg_sll cnf_list_cell store_cnf_list_cell "cnf_list" "next".
+  unfold sll_cnf_list.
+  sep_apply (H23 retval_7 y (c1 :: nil) clist); try easy.
+  sep_apply (H23 retval_6 retval_7 (c2 :: nil) ((c1 :: nil) ++ clist)); try easy.
+  sep_apply (H23 retval_5 retval_6 (c3 :: nil) ((c2 :: nil) ++ (c1 :: nil) ++ clist)); try easy.
+  clear H23.
+  unfold store_predata.
+  Exists retval_5.
+  rewrite H25.
+  unfold iff2cnf_length_binary, iff2cnf_binary.
+  destruct (p1_pre ==? p2_pre); try contradiction.
+  repeat rewrite <- app_comm_cons.
+  unfold app.
+  rewrite <- H_c1, <- H_c2, <- H_c3.
+  assert (Zlength (c3 :: c2 :: c1 :: clist) = ccnt + 3). {
+    repeat rewrite Zlength_cons.
+    rewrite H3.
+    lia.
+  }
+  rewrite H23.
+  assert (prop_cnt_inf (c3 :: c2 :: c1 :: clist) <= pcnt). {
+    pose proof prop_cnt_nneg clist.
+    clear H24 H26 H27 H28 H29 H30.
+    assert (pcnt >= 1) by lia.
+    assert (prop_cnt_inf clist <= pcnt - 1) by lia.
+    unfold prop_cnt_inf in H26.
+    pose proof Z.max_lub_l _ _ _ H26.
+    pose proof Z.max_lub_r _ _ _ H26.
+    (* Search (Z.max _ _ <= _). *)
+    rewrite H_c1, H_c2, H_c3.
+    unfold prop_cnt_inf.
+    apply Z.max_lub.
+    + simpl.
+      repeat apply Z.max_lub; try lia.
+    + simpl.
+      (* Search (Z.abs _ <= _). *)
+      apply Z.abs_le.
+      split.
+      - (*Search (_ <= Z.min _ _). *)
+        repeat apply Z.min_glb; try lia.
+      - (*Search (Z.min _ _ <= _). *)
+        pose proof Z.le_min_l (Z.min (- p1_pre) (Z.min p3_pre (Z.min 0 0)))
+        (Z.min (Z.min (- p2_pre) (Z.min p3_pre (Z.min 0 0)))
+           (Z.min (Z.min p1_pre (Z.min p2_pre (Z.min (- p3_pre) 0))) (min_cnf clist))).
+        pose proof Z.le_min_l (- p1_pre) (Z.min p3_pre (Z.min 0 0)).
+        remember (Z.min (Z.min (- p1_pre) (Z.min p3_pre (Z.min 0 0)))
+        (Z.min (Z.min (- p2_pre) (Z.min p3_pre (Z.min 0 0)))
+           (Z.min (Z.min p1_pre (Z.min p2_pre (Z.min (- p3_pre) 0))) (min_cnf clist)))) as tmp2 eqn:H2000.
+        remember (Z.min (- p1_pre) (Z.min p3_pre (Z.min 0 0))) as tmp1 eqn:H1000.
+        clear H1000 H2000.
+        lia.
+  }
+  clear - H2 H31.
+  entailer!.
+Qed.
 
 Lemma proof_of_clause_gen_binary_return_wit_1_5 : clause_gen_binary_return_wit_1_5.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  clear H24.
+  rename H25 into H24.
+  rewrite all_zero_list_3.
+  repeat rewrite replace_0th.
+  repeat rewrite replace_1st.
+  repeat rewrite replace_2nd.
+  assert (bop = SMTPROP_AND). {
+    destruct bop; unfold SmtPBID in *; try contradiction; try lia.
+    reflexivity.
+  }
+  clear H23 H24.
+  remember (- p1_pre :: p3_pre :: 0 :: nil) as c1 eqn:H_c1.
+  remember (p2_pre :: - p3_pre :: 0 :: nil) as c2 eqn:H_c2.
+  remember (p1_pre :: - p3_pre :: 0 :: nil) as c3 eqn:H_c3.
+  pose proof store_cnf_list_fold.
+  sep_apply (H23 retval_7 c1 retval_3); try easy.
+  sep_apply (H23 retval_6 c2 retval_2); try easy.
+  sep_apply (H23 retval_5 c3 retval); try easy.
+  clear H23.
+  pose proof @sllseg_len1 cnf_list_cell store_cnf_list_cell "cnf_list" "next".
+  sep_apply (H23 retval_5 c3 retval_6); try easy.
+  sep_apply (H23 retval_6 c2 retval_7); try easy.
+  sep_apply (H23 retval_7 c1 y); try easy.
+  clear H23.
+  pose proof @sllseg_sll cnf_list_cell store_cnf_list_cell "cnf_list" "next".
+  unfold sll_cnf_list.
+  sep_apply (H23 retval_7 y (c1 :: nil) clist); try easy.
+  sep_apply (H23 retval_6 retval_7 (c2 :: nil) ((c1 :: nil) ++ clist)); try easy.
+  sep_apply (H23 retval_5 retval_6 (c3 :: nil) ((c2 :: nil) ++ (c1 :: nil) ++ clist)); try easy.
+  clear H23.
+  unfold store_predata.
+  Exists retval_5.
+  rewrite H25.
+  unfold iff2cnf_length_binary, iff2cnf_binary.
+  destruct (p1_pre ==? p2_pre); try contradiction.
+  repeat rewrite <- app_comm_cons.
+  unfold app.
+  rewrite <- H_c1, <- H_c2, <- H_c3.
+  assert (Zlength (c3 :: c2 :: c1 :: clist) = ccnt + 3). {
+    repeat rewrite Zlength_cons.
+    rewrite H3.
+    lia.
+  }
+  rewrite H23.
+  assert (prop_cnt_inf (c3 :: c2 :: c1 :: clist) <= pcnt). {
+    pose proof prop_cnt_nneg clist.
+    clear H24 H26 H27 H28 H29 H30.
+    assert (pcnt >= 1) by lia.
+    assert (prop_cnt_inf clist <= pcnt - 1) by lia.
+    unfold prop_cnt_inf in H26.
+    pose proof Z.max_lub_l _ _ _ H26.
+    pose proof Z.max_lub_r _ _ _ H26.
+    (* Search (Z.max _ _ <= _). *)
+    rewrite H_c1, H_c2, H_c3.
+    unfold prop_cnt_inf.
+    apply Z.max_lub.
+    + simpl.
+      repeat apply Z.max_lub; try lia.
+    + simpl.
+      (* Search (Z.abs _ <= _). *)
+      apply Z.abs_le.
+      split.
+      - (*Search (_ <= Z.min _ _). *)
+        repeat apply Z.min_glb; try lia.
+      - (*Search (Z.min _ _ <= _). *)
+        pose proof Z.le_min_l (Z.min p1_pre (Z.min (- p3_pre) (Z.min 0 0)))
+        (Z.min (Z.min p2_pre (Z.min (- p3_pre) (Z.min 0 0)))
+           (Z.min (Z.min (- p1_pre) (Z.min p3_pre (Z.min 0 0))) (min_cnf clist))).
+        pose proof Z.le_min_l p1_pre (Z.min (- p3_pre) (Z.min 0 0)).
+        remember (Z.min (Z.min p1_pre (Z.min (- p3_pre) (Z.min 0 0)))
+        (Z.min (Z.min p2_pre (Z.min (- p3_pre) (Z.min 0 0)))
+           (Z.min (Z.min (- p1_pre) (Z.min p3_pre (Z.min 0 0))) (min_cnf clist)))) as tmp2 eqn:H2000.
+        remember (Z.min p1_pre (Z.min (- p3_pre) (Z.min 0 0))) as tmp1 eqn:H1000.
+        clear H1000 H2000.
+        lia.
+  }
+  clear - H2 H31.
+  entailer!.
+Qed.
 
 Lemma proof_of_clause_gen_binary_return_wit_1_6 : clause_gen_binary_return_wit_1_6.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  clear H24.
+  rename H25 into H24.
+  rewrite all_zero_list_3.
+  repeat rewrite replace_0th.
+  repeat rewrite replace_1st.
+  repeat rewrite replace_2nd.
+  assert (bop = SMTPROP_AND). {
+    destruct bop; unfold SmtPBID in *; try contradiction; try lia.
+    reflexivity.
+  }
+  clear H23 H24.
+  remember (- p1_pre :: - p2_pre :: p3_pre :: nil) as c1 eqn:H_c1.
+  remember (p2_pre :: - p3_pre :: 0 :: nil) as c2 eqn:H_c2.
+  remember (p1_pre :: - p3_pre :: 0 :: nil) as c3 eqn:H_c3.
+  pose proof store_cnf_list_fold.
+  sep_apply (H23 retval_7 c1 retval_3); try easy.
+  sep_apply (H23 retval_6 c2 retval_2); try easy.
+  sep_apply (H23 retval_5 c3 retval); try easy.
+  clear H23.
+  pose proof @sllseg_len1 cnf_list_cell store_cnf_list_cell "cnf_list" "next".
+  sep_apply (H23 retval_5 c3 retval_6); try easy.
+  sep_apply (H23 retval_6 c2 retval_7); try easy.
+  sep_apply (H23 retval_7 c1 y); try easy.
+  clear H23.
+  pose proof @sllseg_sll cnf_list_cell store_cnf_list_cell "cnf_list" "next".
+  unfold sll_cnf_list.
+  sep_apply (H23 retval_7 y (c1 :: nil) clist); try easy.
+  sep_apply (H23 retval_6 retval_7 (c2 :: nil) ((c1 :: nil) ++ clist)); try easy.
+  sep_apply (H23 retval_5 retval_6 (c3 :: nil) ((c2 :: nil) ++ (c1 :: nil) ++ clist)); try easy.
+  clear H23.
+  unfold store_predata.
+  Exists retval_5.
+  rewrite H25.
+  unfold iff2cnf_length_binary, iff2cnf_binary.
+  destruct (p1_pre ==? p2_pre); try contradiction.
+  repeat rewrite <- app_comm_cons.
+  unfold app.
+  rewrite <- H_c1, <- H_c2, <- H_c3.
+  assert (Zlength (c3 :: c2 :: c1 :: clist) = ccnt + 3). {
+    repeat rewrite Zlength_cons.
+    rewrite H3.
+    lia.
+  }
+  rewrite H23.
+  assert (prop_cnt_inf (c3 :: c2 :: c1 :: clist) <= pcnt). {
+    pose proof prop_cnt_nneg clist.
+    clear H24 H26 H27 H28 H29 H30.
+    assert (pcnt >= 1) by lia.
+    assert (prop_cnt_inf clist <= pcnt - 1) by lia.
+    unfold prop_cnt_inf in H26.
+    pose proof Z.max_lub_l _ _ _ H26.
+    pose proof Z.max_lub_r _ _ _ H26.
+    (* Search (Z.max _ _ <= _). *)
+    rewrite H_c1, H_c2, H_c3.
+    unfold prop_cnt_inf.
+    apply Z.max_lub.
+    + simpl.
+      repeat apply Z.max_lub; try lia.
+    + simpl.
+      (* Search (Z.abs _ <= _). *)
+      apply Z.abs_le.
+      split.
+      - (*Search (_ <= Z.min _ _). *)
+        repeat apply Z.min_glb; try lia.
+      - (*Search (Z.min _ _ <= _). *)
+        pose proof Z.le_min_l (Z.min p1_pre (Z.min (- p3_pre) (Z.min 0 0)))
+        (Z.min (Z.min p2_pre (Z.min (- p3_pre) (Z.min 0 0)))
+           (Z.min (Z.min (- p1_pre) (Z.min (- p2_pre) (Z.min p3_pre 0))) (min_cnf clist))).
+        pose proof Z.le_min_l p1_pre (Z.min (- p3_pre) (Z.min 0 0)).
+        remember (Z.min (Z.min p1_pre (Z.min (- p3_pre) (Z.min 0 0)))
+        (Z.min (Z.min p2_pre (Z.min (- p3_pre) (Z.min 0 0)))
+           (Z.min (Z.min (- p1_pre) (Z.min (- p2_pre) (Z.min p3_pre 0))) (min_cnf clist)))) as tmp2 eqn:H2000.
+        remember (Z.min p1_pre (Z.min (- p3_pre) (Z.min 0 0))) as tmp1 eqn:H1000.
+        clear H1000 H2000.
+        lia.
+  }
+  clear - H2 H31.
+  entailer!.
+Qed.
 
 Lemma proof_of_clause_gen_binary_return_wit_1_7 : clause_gen_binary_return_wit_1_7.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  clear H24 H25.
+  rename H26 into H24.
+  rewrite all_zero_list_3.
+  repeat rewrite replace_0th.
+  repeat rewrite replace_1st.
+  repeat rewrite replace_2nd.
+  assert (bop = SMTPROP_IMPLY). {
+    destruct bop; unfold SmtPBID in *; try contradiction; try lia.
+    reflexivity.
+  }
+  clear H23 H24.
+  remember (- p1_pre :: p2_pre :: - p3_pre :: nil) as c1 eqn:H_c1.
+  remember (- p2_pre :: p3_pre :: 0 :: nil) as c2 eqn:H_c2.
+  remember (p1_pre :: p3_pre :: 0 :: nil) as c3 eqn:H_c3.
+  pose proof store_cnf_list_fold.
+  sep_apply (H23 retval_7 c1 retval_3); try easy.
+  sep_apply (H23 retval_6 c2 retval_2); try easy.
+  sep_apply (H23 retval_5 c3 retval); try easy.
+  clear H23.
+  pose proof @sllseg_len1 cnf_list_cell store_cnf_list_cell "cnf_list" "next".
+  sep_apply (H23 retval_5 c3 retval_6); try easy.
+  sep_apply (H23 retval_6 c2 retval_7); try easy.
+  sep_apply (H23 retval_7 c1 y); try easy.
+  clear H23.
+  pose proof @sllseg_sll cnf_list_cell store_cnf_list_cell "cnf_list" "next".
+  unfold sll_cnf_list.
+  sep_apply (H23 retval_7 y (c1 :: nil) clist); try easy.
+  sep_apply (H23 retval_6 retval_7 (c2 :: nil) ((c1 :: nil) ++ clist)); try easy.
+  sep_apply (H23 retval_5 retval_6 (c3 :: nil) ((c2 :: nil) ++ (c1 :: nil) ++ clist)); try easy.
+  clear H23.
+  unfold store_predata.
+  Exists retval_5.
+  rewrite H25.
+  unfold iff2cnf_length_binary, iff2cnf_binary.
+  destruct (p1_pre ==? p2_pre); try contradiction.
+  repeat rewrite <- app_comm_cons.
+  unfold app.
+  rewrite <- H_c1, <- H_c2, <- H_c3.
+  assert (Zlength (c3 :: c2 :: c1 :: clist) = ccnt + 3). {
+    repeat rewrite Zlength_cons.
+    rewrite H3.
+    lia.
+  }
+  rewrite H23.
+  assert (prop_cnt_inf (c3 :: c2 :: c1 :: clist) <= pcnt). {
+    pose proof prop_cnt_nneg clist.
+    clear H24 H26 H27 H28 H29 H30.
+    assert (pcnt >= 1) by lia.
+    assert (prop_cnt_inf clist <= pcnt - 1) by lia.
+    unfold prop_cnt_inf in H26.
+    pose proof Z.max_lub_l _ _ _ H26.
+    pose proof Z.max_lub_r _ _ _ H26.
+    (* Search (Z.max _ _ <= _). *)
+    rewrite H_c1, H_c2, H_c3.
+    unfold prop_cnt_inf.
+    apply Z.max_lub.
+    + simpl.
+      repeat apply Z.max_lub; try lia.
+    + simpl.
+      (* Search (Z.abs _ <= _). *)
+      apply Z.abs_le.
+      split.
+      - (*Search (_ <= Z.min _ _). *)
+        repeat apply Z.min_glb; try lia.
+      - (*Search (Z.min _ _ <= _). *)
+        pose proof Z.le_min_l (Z.min p1_pre (Z.min p3_pre (Z.min 0 0)))
+        (Z.min (Z.min (- p2_pre) (Z.min p3_pre (Z.min 0 0)))
+           (Z.min (Z.min (- p1_pre) (Z.min p2_pre (Z.min (- p3_pre) 0))) (min_cnf clist))).
+        pose proof Z.le_min_l p1_pre (Z.min p3_pre (Z.min 0 0)).
+        remember (Z.min (Z.min p1_pre (Z.min p3_pre (Z.min 0 0)))
+        (Z.min (Z.min (- p2_pre) (Z.min p3_pre (Z.min 0 0)))
+           (Z.min (Z.min (- p1_pre) (Z.min p2_pre (Z.min (- p3_pre) 0))) (min_cnf clist)))) as tmp2 eqn:H2000.
+        remember (Z.min p1_pre (Z.min p3_pre (Z.min 0 0))) as tmp1 eqn:H1000.
+        clear H1000 H2000.
+        lia.
+  }
+  clear - H2 H31.
+  entailer!.
+Qed.
 
 Lemma proof_of_clause_gen_binary_return_wit_1_8 : clause_gen_binary_return_wit_1_8.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  (* clear H24 H25.
+  rename H26 into H24. *)
+  rewrite all_zero_list_3.
+  repeat rewrite replace_0th.
+  repeat rewrite replace_1st.
+  repeat rewrite replace_2nd.
+  assert (bop = SMTPROP_IMPLY). {
+    destruct bop; unfold SmtPBID in *; try contradiction; try lia.
+    reflexivity.
+  }
+  clear H23 H24.
+  remember (p3_pre :: 0 :: 0 :: nil) as c1 eqn:H_c1.
+  pose proof store_cnf_list_fold.
+  sep_apply (H23 retval_5 c1 retval); try easy.
+  clear H23.
+  pose proof @sllseg_len1 cnf_list_cell store_cnf_list_cell "cnf_list" "next".
+  sep_apply (H23 retval_5 c1 y); try easy.
+  clear H23.
+  pose proof @sllseg_sll cnf_list_cell store_cnf_list_cell "cnf_list" "next".
+  unfold sll_cnf_list.
+  sep_apply (H23 retval_5 y (c1 :: nil) clist); try easy.
+  clear H23.
+  unfold store_predata.
+  Exists retval_5.
+  rewrite H25.
+  unfold iff2cnf_length_binary, iff2cnf_binary.
+  destruct (p1_pre ==? p2_pre); try contradiction.
+  repeat rewrite <- app_comm_cons.
+  unfold app.
+  rewrite <- H_c1.
+  assert (Zlength (c1 :: clist) = ccnt + 1). {
+    repeat rewrite Zlength_cons.
+    rewrite H1.
+    lia.
+  }
+  rewrite H23.
+  assert (prop_cnt_inf (c1 :: clist) <= pcnt). {
+    pose proof prop_cnt_nneg clist.
+    clear H24 H26.
+    assert (pcnt >= 1) by lia.
+    assert (prop_cnt_inf clist <= pcnt - 1) by lia.
+    unfold prop_cnt_inf in H26.
+    pose proof Z.max_lub_l _ _ _ H26.
+    pose proof Z.max_lub_r _ _ _ H26.
+    (* Search (Z.max _ _ <= _). *)
+    rewrite H_c1.
+    unfold prop_cnt_inf.
+    apply Z.max_lub.
+    + simpl.
+      repeat apply Z.max_lub; try lia.
+    + simpl.
+      (* Search (Z.abs _ <= _). *)
+      apply Z.abs_le.
+      split.
+      - (*Search (_ <= Z.min _ _). *)
+        repeat apply Z.min_glb; try lia.
+      - (*Search (Z.min _ _ <= _). *)
+        pose proof Z.le_min_r (Z.min p3_pre (Z.min 0 (Z.min 0 0))) (min_cnf clist).
+        remember (Z.min (Z.min p3_pre (Z.min 0 (Z.min 0 0))) (min_cnf clist)) as tmp1 eqn:H1000.
+        clear H1000.
+        lia.
+  }
+  clear - H0 H27.
+  entailer!.
+Qed.
 
 Lemma proof_of_clause_gen_binary_return_wit_1_9 : clause_gen_binary_return_wit_1_9.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  clear H24.
+  rename H25 into H24.
+  rewrite all_zero_list_3.
+  repeat rewrite replace_0th.
+  repeat rewrite replace_1st.
+  repeat rewrite replace_2nd.
+  assert (bop = SMTPROP_IFF). {
+    destruct bop; unfold SmtPBID in *; try contradiction; try lia.
+    reflexivity.
+  }
+  clear H23 H24.
+  remember (p3_pre :: 0 :: 0 :: nil) as c1 eqn:H_c1.
+  pose proof store_cnf_list_fold.
+  sep_apply (H23 retval_5 c1 retval); try easy.
+  clear H23.
+  pose proof @sllseg_len1 cnf_list_cell store_cnf_list_cell "cnf_list" "next".
+  sep_apply (H23 retval_5 c1 y); try easy.
+  clear H23.
+  pose proof @sllseg_sll cnf_list_cell store_cnf_list_cell "cnf_list" "next".
+  unfold sll_cnf_list.
+  sep_apply (H23 retval_5 y (c1 :: nil) clist); try easy.
+  clear H23.
+  unfold store_predata.
+  Exists retval_5.
+  rewrite H25.
+  unfold iff2cnf_length_binary, iff2cnf_binary.
+  destruct (p1_pre ==? p2_pre); try contradiction.
+  repeat rewrite <- app_comm_cons.
+  unfold app.
+  rewrite <- H_c1.
+  assert (Zlength (c1 :: clist) = ccnt + 1). {
+    repeat rewrite Zlength_cons.
+    rewrite H1.
+    lia.
+  }
+  rewrite H23.
+  assert (prop_cnt_inf (c1 :: clist) <= pcnt). {
+    pose proof prop_cnt_nneg clist.
+    clear H24 H26.
+    assert (pcnt >= 1) by lia.
+    assert (prop_cnt_inf clist <= pcnt - 1) by lia.
+    unfold prop_cnt_inf in H26.
+    pose proof Z.max_lub_l _ _ _ H26.
+    pose proof Z.max_lub_r _ _ _ H26.
+    (* Search (Z.max _ _ <= _). *)
+    rewrite H_c1.
+    unfold prop_cnt_inf.
+    apply Z.max_lub.
+    + simpl.
+      repeat apply Z.max_lub; try lia.
+    + simpl.
+      (* Search (Z.abs _ <= _). *)
+      apply Z.abs_le.
+      split.
+      - (*Search (_ <= Z.min _ _). *)
+        repeat apply Z.min_glb; try lia.
+      - (*Search (Z.min _ _ <= _). *)
+        pose proof Z.le_min_r (Z.min p3_pre (Z.min 0 (Z.min 0 0))) (min_cnf clist).
+        remember (Z.min (Z.min p3_pre (Z.min 0 (Z.min 0 0))) (min_cnf clist)) as tmp1 eqn:H1000.
+        clear H1000.
+        lia.
+  }
+  clear - H0 H27.
+  entailer!.
+Qed.
 
 Lemma proof_of_clause_gen_binary_which_implies_wit_1 : clause_gen_binary_which_implies_wit_1.
 Proof. Admitted. 
