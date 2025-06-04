@@ -82,7 +82,8 @@ Fixpoint store_SmtProp (x: addr) (s: smt_prop) : Assertion :=
                         &(x # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op") # Int |-> SmtPUID op **
                         &(x # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1") # Ptr |-> y **
                         store_SmtProp y prop
-    | SmtV var => &(x # "SmtProp" ->ₛ "prop" .ₛ "Propvar") # Int |-> var
+    | SmtV var => [| var <> 0 |] &&
+                  &(x # "SmtProp" ->ₛ "prop" .ₛ "Propvar") # Int |-> var
   end.
 
 
@@ -100,7 +101,7 @@ Definition store_SmtProp' (x: addr) (s: smt_prop) : Assertion :=
                         &(x # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op") # Int |-> SmtPUID op **
                         &(x # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1") # Ptr |-> y **
                         store_SmtProp y prop
-    | SmtV var => [| x <> NULL |] &&
+    | SmtV var => [| x <> NULL |] && [| var <> 0 |] &&
                   &(x # "SmtProp" ->ₛ "prop" .ₛ "Propvar") # Int |-> var
   end.
 

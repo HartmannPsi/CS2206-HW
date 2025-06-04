@@ -199,39 +199,34 @@ Proof. Admitted.
 Lemma proof_of_clause_gen_binary_safety_wit_74 : clause_gen_binary_safety_wit_74.
 Proof. Admitted. 
 
-Lemma proof_of_clause_gen_binary_safety_wit_98 : clause_gen_binary_safety_wit_98.
+Lemma proof_of_clause_gen_binary_safety_wit_80 : clause_gen_binary_safety_wit_80.
 Proof. Admitted. 
 
-Lemma proof_of_clause_gen_binary_safety_wit_100 : clause_gen_binary_safety_wit_100.
+Lemma proof_of_clause_gen_binary_safety_wit_97 : clause_gen_binary_safety_wit_97.
 Proof. Admitted. 
 
-Lemma proof_of_clause_gen_binary_safety_wit_130 : clause_gen_binary_safety_wit_130.
+Lemma proof_of_clause_gen_binary_safety_wit_99 : clause_gen_binary_safety_wit_99.
 Proof. Admitted. 
 
-Lemma proof_of_clause_gen_binary_safety_wit_132 : clause_gen_binary_safety_wit_132.
+Lemma proof_of_clause_gen_binary_safety_wit_125 : clause_gen_binary_safety_wit_125.
 Proof. Admitted. 
 
-Lemma proof_of_clause_gen_binary_safety_wit_134 : clause_gen_binary_safety_wit_134.
+Lemma proof_of_clause_gen_binary_safety_wit_127 : clause_gen_binary_safety_wit_127.
 Proof. Admitted. 
 
-Lemma proof_of_clause_gen_binary_safety_wit_136 : clause_gen_binary_safety_wit_136.
+Lemma proof_of_clause_gen_binary_safety_wit_129 : clause_gen_binary_safety_wit_129.
 Proof. Admitted. 
 
-Lemma proof_of_clause_gen_binary_safety_wit_138 : clause_gen_binary_safety_wit_138.
+Lemma proof_of_clause_gen_binary_safety_wit_131 : clause_gen_binary_safety_wit_131.
 Proof. Admitted. 
 
-Lemma proof_of_clause_gen_binary_safety_wit_140 : clause_gen_binary_safety_wit_140.
+Lemma proof_of_clause_gen_binary_safety_wit_133 : clause_gen_binary_safety_wit_133.
 Proof. Admitted. 
 
-Lemma proof_of_clause_gen_binary_safety_wit_142 : clause_gen_binary_safety_wit_142.
+Lemma proof_of_clause_gen_binary_safety_wit_135 : clause_gen_binary_safety_wit_135.
 Proof. Admitted. 
 
 Lemma proof_of_clause_gen_binary_return_wit_1_1 : clause_gen_binary_return_wit_1_1.
-Proof.
-  pre_process.
-Admitted. 
-
-Lemma proof_of_clause_gen_binary_return_wit_1_2 : clause_gen_binary_return_wit_1_2.
 Proof.
   pre_process.
   rewrite all_zero_list_3.
@@ -325,7 +320,7 @@ Proof.
   entailer!.
 Qed.
 
-Lemma proof_of_clause_gen_binary_return_wit_1_3 : clause_gen_binary_return_wit_1_3.
+Lemma proof_of_clause_gen_binary_return_wit_1_2 : clause_gen_binary_return_wit_1_2.
 Proof.
   pre_process.
   rewrite all_zero_list_3.
@@ -405,7 +400,7 @@ Proof.
   entailer!.
 Qed.
 
-Lemma proof_of_clause_gen_binary_return_wit_1_4 : clause_gen_binary_return_wit_1_4.
+Lemma proof_of_clause_gen_binary_return_wit_1_3 : clause_gen_binary_return_wit_1_3.
 Proof.
   pre_process.
   rewrite all_zero_list_3.
@@ -486,7 +481,7 @@ Proof.
   entailer!.
 Qed.
 
-Lemma proof_of_clause_gen_binary_return_wit_1_5 : clause_gen_binary_return_wit_1_5.
+Lemma proof_of_clause_gen_binary_return_wit_1_4 : clause_gen_binary_return_wit_1_4.
 Proof.
   pre_process.
   clear H24.
@@ -569,7 +564,7 @@ Proof.
   entailer!.
 Qed.
 
-Lemma proof_of_clause_gen_binary_return_wit_1_6 : clause_gen_binary_return_wit_1_6.
+Lemma proof_of_clause_gen_binary_return_wit_1_5 : clause_gen_binary_return_wit_1_5.
 Proof.
   pre_process.
   clear H24.
@@ -652,7 +647,7 @@ Proof.
   entailer!.
 Qed.
 
-Lemma proof_of_clause_gen_binary_return_wit_1_7 : clause_gen_binary_return_wit_1_7.
+Lemma proof_of_clause_gen_binary_return_wit_1_6 : clause_gen_binary_return_wit_1_6.
 Proof.
   pre_process.
   clear H24 H25.
@@ -735,7 +730,7 @@ Proof.
   entailer!.
 Qed.
 
-Lemma proof_of_clause_gen_binary_return_wit_1_8 : clause_gen_binary_return_wit_1_8.
+Lemma proof_of_clause_gen_binary_return_wit_1_7 : clause_gen_binary_return_wit_1_7.
 Proof.
   pre_process.
   (* clear H24 H25.
@@ -804,7 +799,7 @@ Proof.
   entailer!.
 Qed.
 
-Lemma proof_of_clause_gen_binary_return_wit_1_9 : clause_gen_binary_return_wit_1_9.
+Lemma proof_of_clause_gen_binary_return_wit_1_8 : clause_gen_binary_return_wit_1_8.
 Proof.
   pre_process.
   clear H24.
@@ -874,7 +869,13 @@ Proof.
 Qed.
 
 Lemma proof_of_clause_gen_binary_which_implies_wit_1 : clause_gen_binary_which_implies_wit_1.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  unfold store_predata.
+  Intros y.
+  Exists y.
+  entailer!.
+Qed. 
 
 Lemma proof_of_prop2cnf_safety_wit_3 : prop2cnf_safety_wit_3.
 Proof. Admitted. 
@@ -886,10 +887,68 @@ Lemma proof_of_prop2cnf_safety_wit_9 : prop2cnf_safety_wit_9.
 Proof. Admitted. 
 
 Lemma proof_of_prop2cnf_return_wit_1_1 : prop2cnf_return_wit_1_1.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  clear H4 H5.
+  rename H6 into H4.
+  Exists clist pcnt ccnt var.
+  unfold store_predata.
+  Intros y.
+  Exists y.
+  entailer!; rewrite H in *.
+  + unfold SmtPTID, store_SmtProp.
+    unfold SmtPTID.
+    entailer!.
+  + rewrite prop_cnt_inf_var in *.
+    lia.
+  + rewrite prop_cnt_inf_var in *.
+    lia.
+  + unfold make_predata, make_prop2cnf_ret.
+    unfold prop2cnf_logic.
+    reflexivity.
+Qed.
 
 Lemma proof_of_prop2cnf_return_wit_1_2 : prop2cnf_return_wit_1_2.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  clear H15.
+  rewrite H11 in *.
+  unfold SmtPTID in *.
+  clear H16.
+  unfold store_predata.
+  Intros y0.
+  unfold iff2cnf_unary.
+  repeat rewrite <- app_comm_cons.
+  unfold app.
+  remember (retval :: pcnt'' + 1 :: 0 :: nil) as c1 eqn:H_c1.
+  remember (- retval :: - (pcnt'' + 1) :: 0 :: nil) as c2 eqn:H_c2.
+  Exists (c1 :: c2 :: clist'') (pcnt'' + 1) (ccnt'' + 2) (pcnt'' + 1) y0.
+  entailer!.
+  1: {
+    simpl store_SmtProp.
+    Exists y.
+    entailer!.
+  }
+  2: {
+    unfold make_prop2cnf_ret, make_predata.
+    simpl.
+    remember (prop2cnf_logic (SmtU op sub_prop) (clist, pcnt, ccnt)) as step1 eqn:Hstep1.
+    destruct step1 as [data1 p1].
+    
+    remember (prop2cnf_logic sub_prop (clist, pcnt, ccnt)) as step2 eqn:Hstep2.
+    destruct step2 as [data2 p2].
+    
+    destruct data2 as [tmp clause_cnt].
+    destruct tmp as [cnf_res prop_cnt].
+    unfold make_prop2cnf_ret, make_predata in H5.
+    rewrite <- H5 in Hstep2.
+    inversion Hstep2.
+    subst.
+    rewrite <- H_c1, H_c2.
+    inversion.
+  }
+  + unfold make_prop2cnf_ret, make_predata in H5.
+Qed.
 
 Lemma proof_of_prop2cnf_return_wit_1_3 : prop2cnf_return_wit_1_3.
 Proof. Admitted. 

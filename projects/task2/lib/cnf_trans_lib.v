@@ -373,6 +373,15 @@ Fixpoint min_var_SmtProp (s: smt_prop): Z :=
 Definition prop_cnt_inf_SmtProp (s: smt_prop): Z :=
   Z.max (max_var_SmtProp s) (Z.abs (min_var_SmtProp s)).
 
+Lemma prop_cnt_inf_var: forall var,
+  prop_cnt_inf_SmtProp (SmtV var) = Z.abs var.
+Proof.
+  unfold prop_cnt_inf_SmtProp.
+  intros.
+  unfold max_var_SmtProp, min_var_SmtProp.
+  lia.
+Qed.
+
 Definition PreData : Type := cnf_list * Z * Z.
 Definition prop2cnf_ret : Type := PreData * Z.
 
@@ -404,6 +413,25 @@ Fixpoint prop2cnf_logic (s: smt_prop) (data: PreData): prop2cnf_ret :=
 
     | SmtV var => (data, var)
   end.
+
+(* Lemma pcnt_upper_bound: forall clist' pcnt' ccnt' res' prop clist pcnt ccnt,
+  (clist', pcnt', ccnt', res') = prop2cnf_logic prop (clist, pcnt, ccnt)
+  -> prop_cnt_inf_SmtProp prop <= pcnt
+  -> pcnt' <= pcnt + 1.
+Proof.
+  intros.
+  destruct prop.
+  + simpl in H.
+  remember (prop2cnf_logic prop1 (clist, pcnt, ccnt)) as step1 eqn:Hstep1.
+  destruct step1 as [data1 p1].
+  
+  remember (prop2cnf_logic prop2 data1) as step2 eqn:Hstep2.
+  destruct step2 as [data2 p2].
+  
+  destruct data2 as [tmp clause_cnt].
+  destruct tmp as [cnf_res prop_cnt].
+  inversion H.
+Fail. *)
 
 Lemma all_zero_list_3:
   all_zero_list 3 = [0; 0; 0].

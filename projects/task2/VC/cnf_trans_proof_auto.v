@@ -257,9 +257,6 @@ Proof. Admitted.
 Lemma proof_of_clause_gen_binary_safety_wit_79 : clause_gen_binary_safety_wit_79.
 Proof. Admitted. 
 
-Lemma proof_of_clause_gen_binary_safety_wit_80 : clause_gen_binary_safety_wit_80.
-Proof. Admitted. 
-
 Lemma proof_of_clause_gen_binary_safety_wit_81 : clause_gen_binary_safety_wit_81.
 Proof. Admitted. 
 
@@ -308,10 +305,10 @@ Proof. Admitted.
 Lemma proof_of_clause_gen_binary_safety_wit_96 : clause_gen_binary_safety_wit_96.
 Proof. Admitted. 
 
-Lemma proof_of_clause_gen_binary_safety_wit_97 : clause_gen_binary_safety_wit_97.
+Lemma proof_of_clause_gen_binary_safety_wit_98 : clause_gen_binary_safety_wit_98.
 Proof. Admitted. 
 
-Lemma proof_of_clause_gen_binary_safety_wit_99 : clause_gen_binary_safety_wit_99.
+Lemma proof_of_clause_gen_binary_safety_wit_100 : clause_gen_binary_safety_wit_100.
 Proof. Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_101 : clause_gen_binary_safety_wit_101.
@@ -386,40 +383,22 @@ Proof. Admitted.
 Lemma proof_of_clause_gen_binary_safety_wit_124 : clause_gen_binary_safety_wit_124.
 Proof. Admitted. 
 
-Lemma proof_of_clause_gen_binary_safety_wit_125 : clause_gen_binary_safety_wit_125.
-Proof. Admitted. 
-
 Lemma proof_of_clause_gen_binary_safety_wit_126 : clause_gen_binary_safety_wit_126.
-Proof. Admitted. 
-
-Lemma proof_of_clause_gen_binary_safety_wit_127 : clause_gen_binary_safety_wit_127.
 Proof. Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_128 : clause_gen_binary_safety_wit_128.
 Proof. Admitted. 
 
-Lemma proof_of_clause_gen_binary_safety_wit_129 : clause_gen_binary_safety_wit_129.
+Lemma proof_of_clause_gen_binary_safety_wit_130 : clause_gen_binary_safety_wit_130.
 Proof. Admitted. 
 
-Lemma proof_of_clause_gen_binary_safety_wit_131 : clause_gen_binary_safety_wit_131.
+Lemma proof_of_clause_gen_binary_safety_wit_132 : clause_gen_binary_safety_wit_132.
 Proof. Admitted. 
 
-Lemma proof_of_clause_gen_binary_safety_wit_133 : clause_gen_binary_safety_wit_133.
+Lemma proof_of_clause_gen_binary_safety_wit_134 : clause_gen_binary_safety_wit_134.
 Proof. Admitted. 
 
-Lemma proof_of_clause_gen_binary_safety_wit_135 : clause_gen_binary_safety_wit_135.
-Proof. Admitted. 
-
-Lemma proof_of_clause_gen_binary_safety_wit_137 : clause_gen_binary_safety_wit_137.
-Proof. Admitted. 
-
-Lemma proof_of_clause_gen_binary_safety_wit_139 : clause_gen_binary_safety_wit_139.
-Proof. Admitted. 
-
-Lemma proof_of_clause_gen_binary_safety_wit_141 : clause_gen_binary_safety_wit_141.
-Proof. Admitted. 
-
-Lemma proof_of_clause_gen_binary_safety_wit_143 : clause_gen_binary_safety_wit_143.
+Lemma proof_of_clause_gen_binary_safety_wit_136 : clause_gen_binary_safety_wit_136.
 Proof. Admitted. 
 
 Lemma proof_of_clause_gen_binary_partial_solve_wit_1_pure : clause_gen_binary_partial_solve_wit_1_pure.
@@ -683,16 +662,31 @@ Proof. Admitted.
 Lemma proof_of_clause_gen_binary_partial_solve_wit_83 : clause_gen_binary_partial_solve_wit_83.
 Proof. Admitted. 
 
+Lemma proof_of_clause_gen_binary_partial_solve_wit_84_pure : clause_gen_binary_partial_solve_wit_84_pure.
+Proof. Admitted. 
+
 Lemma proof_of_clause_gen_binary_partial_solve_wit_84 : clause_gen_binary_partial_solve_wit_84.
+Proof. Admitted. 
+
+Lemma proof_of_clause_gen_binary_partial_solve_wit_85_pure : clause_gen_binary_partial_solve_wit_85_pure.
 Proof. Admitted. 
 
 Lemma proof_of_clause_gen_binary_partial_solve_wit_85 : clause_gen_binary_partial_solve_wit_85.
 Proof. Admitted. 
 
+Lemma proof_of_clause_gen_binary_partial_solve_wit_86_pure : clause_gen_binary_partial_solve_wit_86_pure.
+Proof. Admitted. 
+
 Lemma proof_of_clause_gen_binary_partial_solve_wit_86 : clause_gen_binary_partial_solve_wit_86.
 Proof. Admitted. 
 
+Lemma proof_of_clause_gen_binary_partial_solve_wit_87_pure : clause_gen_binary_partial_solve_wit_87_pure.
+Proof. Admitted. 
+
 Lemma proof_of_clause_gen_binary_partial_solve_wit_87 : clause_gen_binary_partial_solve_wit_87.
+Proof. Admitted. 
+
+Lemma proof_of_clause_gen_binary_partial_solve_wit_88_pure : clause_gen_binary_partial_solve_wit_88_pure.
 Proof. Admitted. 
 
 Lemma proof_of_clause_gen_binary_partial_solve_wit_88 : clause_gen_binary_partial_solve_wit_88.
@@ -798,36 +792,6 @@ Lemma proof_of_clause_gen_binary_partial_solve_wit_105_pure : clause_gen_binary_
 Proof. Admitted. 
 
 Lemma proof_of_clause_gen_binary_partial_solve_wit_105 : clause_gen_binary_partial_solve_wit_105.
-Proof. Admitted. 
-
-Lemma proof_of_clause_gen_binary_partial_solve_wit_106_pure : clause_gen_binary_partial_solve_wit_106_pure.
-Proof. Admitted. 
-
-Lemma proof_of_clause_gen_binary_partial_solve_wit_106 : clause_gen_binary_partial_solve_wit_106.
-Proof. Admitted. 
-
-Lemma proof_of_clause_gen_binary_partial_solve_wit_107_pure : clause_gen_binary_partial_solve_wit_107_pure.
-Proof. Admitted. 
-
-Lemma proof_of_clause_gen_binary_partial_solve_wit_107 : clause_gen_binary_partial_solve_wit_107.
-Proof. Admitted. 
-
-Lemma proof_of_clause_gen_binary_partial_solve_wit_108_pure : clause_gen_binary_partial_solve_wit_108_pure.
-Proof. Admitted. 
-
-Lemma proof_of_clause_gen_binary_partial_solve_wit_108 : clause_gen_binary_partial_solve_wit_108.
-Proof. Admitted. 
-
-Lemma proof_of_clause_gen_binary_partial_solve_wit_109_pure : clause_gen_binary_partial_solve_wit_109_pure.
-Proof. Admitted. 
-
-Lemma proof_of_clause_gen_binary_partial_solve_wit_109 : clause_gen_binary_partial_solve_wit_109.
-Proof. Admitted. 
-
-Lemma proof_of_clause_gen_binary_partial_solve_wit_110_pure : clause_gen_binary_partial_solve_wit_110_pure.
-Proof. Admitted. 
-
-Lemma proof_of_clause_gen_binary_partial_solve_wit_110 : clause_gen_binary_partial_solve_wit_110.
 Proof. Admitted. 
 
 Lemma proof_of_prop2cnf_safety_wit_1 : prop2cnf_safety_wit_1.

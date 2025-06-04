@@ -34,10 +34,10 @@ lib_FILES = \
 # 	 sll_queue 
 
 VC_code_proof_FILES = \
-	cnf_trans_goal_check.v \
 	cnf_trans_goal.v \
-	cnf_trans_proof_auto.v \
-	cnf_trans_proof_manual.v \
+	# cnf_trans_goal_check.v \
+	# cnf_trans_proof_auto.v \
+	# cnf_trans_proof_manual.v \
   # $(VC_code_FILE_NAME:%=VC/%_goal.v) \
   # $(VC_code_FILE_NAME:%=VC/%_proof_auto.v) \
   # $(VC_code_FILE_NAME:%=VC/%_proof_manual.v) \

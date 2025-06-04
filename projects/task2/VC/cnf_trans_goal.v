@@ -3870,18 +3870,11 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
 .
 
 Definition clause_gen_binary_safety_wit_80 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval: Z) ,
+  [| (retval <> 0) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
   &&  [| (p1_pre <> 0) |] 
   &&  [| (p2_pre <> 0) |] 
   &&  [| (p3_pre <> 0) |] 
@@ -3893,49 +3886,97 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre <> 2) |] 
+  &&  [| (op_pre <> 3) |]
+  &&  ((( &( "cnt" ) )) # Int  |-> 0)
+  **  (store_int_array retval 3 (all_zero_list (3)) )
+  **  ((( &( "clause4" ) )) # Ptr  |-> retval)
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
-  **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
-  **  ((( &( "clause1" ) )) # Ptr  |-> retval)
+  **  ((( &( "clause3" ) )) # Ptr  |-> retval_4)
+  **  (store_int_array retval_3 3 (all_zero_list (3)) )
+  **  ((( &( "clause2" ) )) # Ptr  |-> retval_3)
+  **  (store_int_array retval_2 3 (all_zero_list (3)) )
+  **  ((( &( "clause1" ) )) # Ptr  |-> retval_2)
   **  ((( &( "size" ) )) # Int  |-> 3)
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
   **  ((( &( "op" ) )) # Int  |-> op_pre)
   **  ((( &( "p3" ) )) # Int  |-> p3_pre)
   **  ((( &( "p2" ) )) # Int  |-> p2_pre)
   **  ((( &( "p1" ) )) # Int  |-> p1_pre)
+  **  (store_predata data_pre clist pcnt ccnt )
 |--
-  [| (1 <= INT_MAX) |] 
-  &&  [| ((INT_MIN) <= 1) |]
+  [| False |]
 .
 
 Definition clause_gen_binary_safety_wit_81 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre = 1) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
+  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
+  **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
+  **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
+  **  ((( &( "clause1" ) )) # Ptr  |-> retval)
+  **  ((( &( "size" ) )) # Int  |-> 3)
+  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
+  **  ((( &( "op" ) )) # Int  |-> op_pre)
+  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
+  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
+  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
+|--
+  [| (1 <= INT_MAX) |] 
+  &&  [| ((INT_MIN) <= 1) |]
+.
+
+Definition clause_gen_binary_safety_wit_82 := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 3 ) = 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
@@ -3999,7 +4040,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   [| False |]
 .
 
-Definition clause_gen_binary_safety_wit_82 := 
+Definition clause_gen_binary_safety_wit_83 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
@@ -4062,82 +4103,18 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
 |--
   [| (1 <= INT_MAX) |] 
   &&  [| ((INT_MIN) <= 1) |]
-.
-
-Definition clause_gen_binary_safety_wit_83 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) = 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
-  **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
-  **  ((( &( "clause1" ) )) # Ptr  |-> retval)
-  **  ((( &( "size" ) )) # Int  |-> 3)
-  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
-  **  ((( &( "op" ) )) # Int  |-> op_pre)
-  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
-  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
-  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
-|--
-  [| False |]
 .
 
 Definition clause_gen_binary_safety_wit_84 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| (data_pre <> 0) |] 
+  [| ((0 + 3 ) = 1) |] 
+  &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
   &&  [| (retval_8 <> 0) |] 
   &&  [| (retval_7 <> 0) |] 
   &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -4153,8 +4130,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre = 0) |]
+  &&  [| (op_pre = 1) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
@@ -4175,9 +4151,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
   **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
@@ -4191,12 +4167,77 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((( &( "p2" ) )) # Int  |-> p2_pre)
   **  ((( &( "p1" ) )) # Int  |-> p1_pre)
 |--
-  [| (1 <= INT_MAX) |] 
-  &&  [| ((INT_MIN) <= 1) |]
+  [| False |]
 .
 
 Definition clause_gen_binary_safety_wit_85 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre = 0) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
+  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
+  **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
+  **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
+  **  ((( &( "clause1" ) )) # Ptr  |-> retval)
+  **  ((( &( "size" ) )) # Int  |-> 3)
+  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
+  **  ((( &( "op" ) )) # Int  |-> op_pre)
+  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
+  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
+  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
+|--
+  [| (1 <= INT_MAX) |] 
+  &&  [| ((INT_MIN) <= 1) |]
+.
+
+Definition clause_gen_binary_safety_wit_86 := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 3 ) = 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
@@ -4261,7 +4302,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   [| False |]
 .
 
-Definition clause_gen_binary_safety_wit_86 := 
+Definition clause_gen_binary_safety_wit_87 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
@@ -4325,76 +4366,76 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
 |--
   [| (1 <= INT_MAX) |] 
   &&  [| ((INT_MIN) <= 1) |]
-.
-
-Definition clause_gen_binary_safety_wit_87 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) = 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
-  **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
-  **  ((( &( "clause1" ) )) # Ptr  |-> retval)
-  **  ((( &( "size" ) )) # Int  |-> 3)
-  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
-  **  ((( &( "op" ) )) # Int  |-> op_pre)
-  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
-  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
-  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
-|--
-  [| False |]
 .
 
 Definition clause_gen_binary_safety_wit_88 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+  [| ((0 + 3 ) = 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre = 0) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
+  **  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
+  **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
+  **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
+  **  ((( &( "clause1" ) )) # Ptr  |-> retval)
+  **  ((( &( "size" ) )) # Int  |-> 3)
+  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
+  **  ((( &( "op" ) )) # Int  |-> op_pre)
+  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
+  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
+  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
+|--
+  [| False |]
+.
+
+Definition clause_gen_binary_safety_wit_89 := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
   &&  [| (retval_8 <> 0) |] 
@@ -4460,7 +4501,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((INT_MIN) <= 1) |]
 .
 
-Definition clause_gen_binary_safety_wit_89 := 
+Definition clause_gen_binary_safety_wit_90 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 3 ) = 1) |] 
   &&  [| (data_pre <> 0) |] 
@@ -4527,7 +4568,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   [| False |]
 .
 
-Definition clause_gen_binary_safety_wit_90 := 
+Definition clause_gen_binary_safety_wit_91 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
@@ -4594,7 +4635,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((INT_MIN) <= 1) |]
 .
 
-Definition clause_gen_binary_safety_wit_91 := 
+Definition clause_gen_binary_safety_wit_92 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 1 ) <> 1) |] 
   &&  [| (data_pre <> 0) |] 
@@ -4661,7 +4702,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   [| False |]
 .
 
-Definition clause_gen_binary_safety_wit_92 := 
+Definition clause_gen_binary_safety_wit_93 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
@@ -4729,7 +4770,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((INT_MIN) <= 1) |]
 .
 
-Definition clause_gen_binary_safety_wit_93 := 
+Definition clause_gen_binary_safety_wit_94 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 4 ) = 1) |] 
   &&  [| (data_pre <> 0) |] 
@@ -4797,7 +4838,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   [| False |]
 .
 
-Definition clause_gen_binary_safety_wit_94 := 
+Definition clause_gen_binary_safety_wit_95 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
@@ -4865,7 +4906,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((INT_MIN) <= 1) |]
 .
 
-Definition clause_gen_binary_safety_wit_95 := 
+Definition clause_gen_binary_safety_wit_96 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 1 ) <> 1) |] 
   &&  [| (data_pre <> 0) |] 
@@ -4933,141 +4974,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   [| False |]
 .
 
-Definition clause_gen_binary_safety_wit_96 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre <> 3) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  ((( &( "cnt" ) )) # Int  |-> 0)
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
-  **  (store_int_array retval_2 3 (all_zero_list (3)) )
-  **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
-  **  (store_int_array retval 3 (all_zero_list (3)) )
-  **  ((( &( "clause1" ) )) # Ptr  |-> retval)
-  **  ((( &( "size" ) )) # Int  |-> 3)
-  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
-  **  ((( &( "op" ) )) # Int  |-> op_pre)
-  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
-  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
-  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
-|--
-  [| (1 <= INT_MAX) |] 
-  &&  [| ((INT_MIN) <= 1) |]
-.
-
 Definition clause_gen_binary_safety_wit_97 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| (0 = 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre <> 3) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  ((( &( "cnt" ) )) # Int  |-> 0)
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
-  **  (store_int_array retval_2 3 (all_zero_list (3)) )
-  **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
-  **  (store_int_array retval 3 (all_zero_list (3)) )
-  **  ((( &( "clause1" ) )) # Ptr  |-> retval)
-  **  ((( &( "size" ) )) # Int  |-> 3)
-  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
-  **  ((( &( "op" ) )) # Int  |-> op_pre)
-  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
-  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
-  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
-|--
-  [| False |]
-.
-
-Definition clause_gen_binary_safety_wit_98 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 1 ) = 1) |] 
   &&  [| (data_pre <> 0) |] 
@@ -5135,7 +5042,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((INT_MIN) <= (ccnt + 1 )) |]
 .
 
-Definition clause_gen_binary_safety_wit_99 := 
+Definition clause_gen_binary_safety_wit_98 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 1 ) = 1) |] 
   &&  [| (data_pre <> 0) |] 
@@ -5201,6 +5108,75 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
 |--
   [| (1 <= INT_MAX) |] 
   &&  [| ((INT_MIN) <= 1) |]
+.
+
+Definition clause_gen_binary_safety_wit_99 := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+  [| ((0 + 1 ) = 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre <> 2) |] 
+  &&  [| (op_pre = 3) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
+  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+  **  ((( &( "cnt" ) )) # Int  |-> (0 + 1 ))
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
+  **  (store_int_array retval_3 3 (all_zero_list (3)) )
+  **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
+  **  (store_int_array retval_2 3 (all_zero_list (3)) )
+  **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
+  **  ((( &( "clause1" ) )) # Ptr  |-> retval)
+  **  ((( &( "size" ) )) # Int  |-> 3)
+  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
+  **  ((( &( "op" ) )) # Int  |-> op_pre)
+  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
+  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
+  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
+|--
+  [| ((ccnt + 1 ) <= INT_MAX) |] 
+  &&  [| ((INT_MIN) <= (ccnt + 1 )) |]
 .
 
 Definition clause_gen_binary_safety_wit_100 := 
@@ -5268,80 +5244,11 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((( &( "p2" ) )) # Int  |-> p2_pre)
   **  ((( &( "p1" ) )) # Int  |-> p1_pre)
 |--
-  [| ((ccnt + 1 ) <= INT_MAX) |] 
-  &&  [| ((INT_MIN) <= (ccnt + 1 )) |]
-.
-
-Definition clause_gen_binary_safety_wit_101 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 1 ) = 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
-  **  ((( &( "cnt" ) )) # Int  |-> (0 + 1 ))
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
-  **  (store_int_array retval_2 3 (all_zero_list (3)) )
-  **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
-  **  ((( &( "clause1" ) )) # Ptr  |-> retval)
-  **  ((( &( "size" ) )) # Int  |-> 3)
-  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
-  **  ((( &( "op" ) )) # Int  |-> op_pre)
-  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
-  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
-  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
-|--
   [| (1 <= INT_MAX) |] 
   &&  [| ((INT_MIN) <= 1) |]
 .
 
-Definition clause_gen_binary_safety_wit_102 := 
+Definition clause_gen_binary_safety_wit_101 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 3 ) <> 1) |] 
   &&  [| (data_pre <> 0) |] 
@@ -5405,19 +5312,84 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
 |--
   [| (2 <= INT_MAX) |] 
   &&  [| ((INT_MIN) <= 2) |]
+.
+
+Definition clause_gen_binary_safety_wit_102 := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+  [| ((0 + 3 ) = 2) |] 
+  &&  [| ((0 + 3 ) <> 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre = 1) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
+  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
+  **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
+  **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
+  **  ((( &( "clause1" ) )) # Ptr  |-> retval)
+  **  ((( &( "size" ) )) # Int  |-> 3)
+  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
+  **  ((( &( "op" ) )) # Int  |-> op_pre)
+  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
+  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
+  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
+|--
+  [| False |]
 .
 
 Definition clause_gen_binary_safety_wit_103 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) = 2) |] 
-  &&  [| ((0 + 3 ) <> 1) |] 
+  [| ((0 + 3 ) <> 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
   &&  [| (retval_8 <> 0) |] 
   &&  [| (retval_7 <> 0) |] 
   &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -5454,7 +5426,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
   **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
   **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
   **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
@@ -5470,12 +5442,14 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((( &( "p2" ) )) # Int  |-> p2_pre)
   **  ((( &( "p1" ) )) # Int  |-> p1_pre)
 |--
-  [| False |]
+  [| (2 <= INT_MAX) |] 
+  &&  [| ((INT_MIN) <= 2) |]
 .
 
 Definition clause_gen_binary_safety_wit_104 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) <> 1) |] 
+  [| ((0 + 3 ) = 2) |] 
+  &&  [| ((0 + 3 ) <> 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
   &&  [| (retval_8 <> 0) |] 
@@ -5535,21 +5509,19 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((( &( "p2" ) )) # Int  |-> p2_pre)
   **  ((( &( "p1" ) )) # Int  |-> p1_pre)
 |--
-  [| (2 <= INT_MAX) |] 
-  &&  [| ((INT_MIN) <= 2) |]
+  [| False |]
 .
 
 Definition clause_gen_binary_safety_wit_105 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) = 2) |] 
-  &&  [| ((0 + 3 ) <> 1) |] 
+  [| ((0 + 3 ) <> 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
   &&  [| (retval_8 <> 0) |] 
   &&  [| (retval_7 <> 0) |] 
   &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (p1_pre = p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -5565,7 +5537,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
@@ -5586,9 +5559,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
@@ -5602,12 +5575,14 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((( &( "p2" ) )) # Int  |-> p2_pre)
   **  ((( &( "p1" ) )) # Int  |-> p1_pre)
 |--
-  [| False |]
+  [| (2 <= INT_MAX) |] 
+  &&  [| ((INT_MIN) <= 2) |]
 .
 
 Definition clause_gen_binary_safety_wit_106 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) <> 1) |] 
+  [| ((0 + 3 ) = 2) |] 
+  &&  [| ((0 + 3 ) <> 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
   &&  [| (retval_8 <> 0) |] 
@@ -5668,21 +5643,19 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((( &( "p2" ) )) # Int  |-> p2_pre)
   **  ((( &( "p1" ) )) # Int  |-> p1_pre)
 |--
-  [| (2 <= INT_MAX) |] 
-  &&  [| ((INT_MIN) <= 2) |]
+  [| False |]
 .
 
 Definition clause_gen_binary_safety_wit_107 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) = 2) |] 
-  &&  [| ((0 + 3 ) <> 1) |] 
+  [| ((0 + 3 ) <> 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
   &&  [| (retval_8 <> 0) |] 
   &&  [| (retval_7 <> 0) |] 
   &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -5720,7 +5693,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
   **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
@@ -5736,12 +5709,14 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((( &( "p2" ) )) # Int  |-> p2_pre)
   **  ((( &( "p1" ) )) # Int  |-> p1_pre)
 |--
-  [| False |]
+  [| (2 <= INT_MAX) |] 
+  &&  [| ((INT_MIN) <= 2) |]
 .
 
 Definition clause_gen_binary_safety_wit_108 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) <> 1) |] 
+  [| ((0 + 3 ) = 2) |] 
+  &&  [| ((0 + 3 ) <> 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
   &&  [| (retval_8 <> 0) |] 
@@ -5802,79 +5777,11 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((( &( "p2" ) )) # Int  |-> p2_pre)
   **  ((( &( "p1" ) )) # Int  |-> p1_pre)
 |--
-  [| (2 <= INT_MAX) |] 
-  &&  [| ((INT_MIN) <= 2) |]
+  [| False |]
 .
 
 Definition clause_gen_binary_safety_wit_109 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) = 2) |] 
-  &&  [| ((0 + 3 ) <> 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
-  **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
-  **  ((( &( "clause1" ) )) # Ptr  |-> retval)
-  **  ((( &( "size" ) )) # Int  |-> 3)
-  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
-  **  ((( &( "op" ) )) # Int  |-> op_pre)
-  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
-  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
-  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
-|--
-  [| False |]
-.
-
-Definition clause_gen_binary_safety_wit_110 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 3 ) <> 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
@@ -5941,7 +5848,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((INT_MIN) <= 2) |]
 .
 
-Definition clause_gen_binary_safety_wit_111 := 
+Definition clause_gen_binary_safety_wit_110 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 3 ) = 2) |] 
   &&  [| ((0 + 3 ) <> 1) |] 
@@ -6009,7 +5916,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   [| False |]
 .
 
-Definition clause_gen_binary_safety_wit_112 := 
+Definition clause_gen_binary_safety_wit_111 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 4 ) <> 1) |] 
   &&  [| (data_pre <> 0) |] 
@@ -6078,7 +5985,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((INT_MIN) <= 2) |]
 .
 
-Definition clause_gen_binary_safety_wit_113 := 
+Definition clause_gen_binary_safety_wit_112 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 4 ) = 2) |] 
   &&  [| ((0 + 4 ) <> 1) |] 
@@ -6147,15 +6054,17 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   [| False |]
 .
 
-Definition clause_gen_binary_safety_wit_114 := 
+Definition clause_gen_binary_safety_wit_113 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| (0 <> 1) |] 
+  [| ((0 + 3 ) <> 2) |] 
+  &&  [| ((0 + 3 ) <> 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
   &&  [| (retval_8 <> 0) |] 
   &&  [| (retval_7 <> 0) |] 
   &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -6171,10 +6080,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre <> 3) |]
+  &&  [| (op_pre = 1) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
@@ -6195,14 +6101,14 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  ((( &( "cnt" ) )) # Int  |-> 0)
+  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
   **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
-  **  (store_int_array retval_2 3 (all_zero_list (3)) )
   **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
-  **  (store_int_array retval 3 (all_zero_list (3)) )
   **  ((( &( "clause1" ) )) # Ptr  |-> retval)
   **  ((( &( "size" ) )) # Int  |-> 3)
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
@@ -6211,20 +6117,88 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((( &( "p2" ) )) # Int  |-> p2_pre)
   **  ((( &( "p1" ) )) # Int  |-> p1_pre)
 |--
-  [| (2 <= INT_MAX) |] 
-  &&  [| ((INT_MIN) <= 2) |]
+  [| (3 <= INT_MAX) |] 
+  &&  [| ((INT_MIN) <= 3) |]
+.
+
+Definition clause_gen_binary_safety_wit_114 := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+  [| ((0 + 3 ) <> 3) |] 
+  &&  [| ((0 + 3 ) <> 2) |] 
+  &&  [| ((0 + 3 ) <> 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre = 1) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
+  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
+  **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
+  **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
+  **  ((( &( "clause1" ) )) # Ptr  |-> retval)
+  **  ((( &( "size" ) )) # Int  |-> 3)
+  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
+  **  ((( &( "op" ) )) # Int  |-> op_pre)
+  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
+  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
+  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
+|--
+  [| False |]
 .
 
 Definition clause_gen_binary_safety_wit_115 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| (0 = 2) |] 
-  &&  [| (0 <> 1) |] 
+  [| ((0 + 3 ) <> 2) |] 
+  &&  [| ((0 + 3 ) <> 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
   &&  [| (retval_8 <> 0) |] 
   &&  [| (retval_7 <> 0) |] 
   &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -6240,10 +6214,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre <> 3) |]
+  &&  [| (op_pre = 1) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
@@ -6264,14 +6235,14 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  ((( &( "cnt" ) )) # Int  |-> 0)
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
   **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
-  **  (store_int_array retval_2 3 (all_zero_list (3)) )
   **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
-  **  (store_int_array retval 3 (all_zero_list (3)) )
   **  ((( &( "clause1" ) )) # Ptr  |-> retval)
   **  ((( &( "size" ) )) # Int  |-> 3)
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
@@ -6280,12 +6251,14 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((( &( "p2" ) )) # Int  |-> p2_pre)
   **  ((( &( "p1" ) )) # Int  |-> p1_pre)
 |--
-  [| False |]
+  [| (3 <= INT_MAX) |] 
+  &&  [| ((INT_MIN) <= 3) |]
 .
 
 Definition clause_gen_binary_safety_wit_116 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) <> 2) |] 
+  [| ((0 + 3 ) <> 3) |] 
+  &&  [| ((0 + 3 ) <> 2) |] 
   &&  [| ((0 + 3 ) <> 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
@@ -6293,7 +6266,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (retval_7 <> 0) |] 
   &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -6330,7 +6303,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
   **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
   **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
   **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
@@ -6346,14 +6319,12 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((( &( "p2" ) )) # Int  |-> p2_pre)
   **  ((( &( "p1" ) )) # Int  |-> p1_pre)
 |--
-  [| (3 <= INT_MAX) |] 
-  &&  [| ((INT_MIN) <= 3) |]
+  [| False |]
 .
 
 Definition clause_gen_binary_safety_wit_117 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) <> 3) |] 
-  &&  [| ((0 + 3 ) <> 2) |] 
+  [| ((0 + 3 ) <> 2) |] 
   &&  [| ((0 + 3 ) <> 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
@@ -6377,7 +6348,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
@@ -6398,9 +6370,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
@@ -6414,12 +6386,14 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((( &( "p2" ) )) # Int  |-> p2_pre)
   **  ((( &( "p1" ) )) # Int  |-> p1_pre)
 |--
-  [| False |]
+  [| (3 <= INT_MAX) |] 
+  &&  [| ((INT_MIN) <= 3) |]
 .
 
 Definition clause_gen_binary_safety_wit_118 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) <> 2) |] 
+  [| ((0 + 3 ) <> 3) |] 
+  &&  [| ((0 + 3 ) <> 2) |] 
   &&  [| ((0 + 3 ) <> 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
@@ -6427,7 +6401,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (retval_7 <> 0) |] 
   &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (p1_pre = p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -6443,7 +6417,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
@@ -6464,9 +6439,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
@@ -6480,14 +6455,12 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((( &( "p2" ) )) # Int  |-> p2_pre)
   **  ((( &( "p1" ) )) # Int  |-> p1_pre)
 |--
-  [| (3 <= INT_MAX) |] 
-  &&  [| ((INT_MIN) <= 3) |]
+  [| False |]
 .
 
 Definition clause_gen_binary_safety_wit_119 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) <> 3) |] 
-  &&  [| ((0 + 3 ) <> 2) |] 
+  [| ((0 + 3 ) <> 2) |] 
   &&  [| ((0 + 3 ) <> 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
@@ -6511,7 +6484,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
@@ -6532,9 +6506,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
@@ -6548,12 +6522,14 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((( &( "p2" ) )) # Int  |-> p2_pre)
   **  ((( &( "p1" ) )) # Int  |-> p1_pre)
 |--
-  [| False |]
+  [| (3 <= INT_MAX) |] 
+  &&  [| ((INT_MIN) <= 3) |]
 .
 
 Definition clause_gen_binary_safety_wit_120 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) <> 2) |] 
+  [| ((0 + 3 ) <> 3) |] 
+  &&  [| ((0 + 3 ) <> 2) |] 
   &&  [| ((0 + 3 ) <> 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
@@ -6561,7 +6537,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (retval_7 <> 0) |] 
   &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -6599,7 +6575,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
   **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
@@ -6615,14 +6591,12 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((( &( "p2" ) )) # Int  |-> p2_pre)
   **  ((( &( "p1" ) )) # Int  |-> p1_pre)
 |--
-  [| (3 <= INT_MAX) |] 
-  &&  [| ((INT_MIN) <= 3) |]
+  [| False |]
 .
 
 Definition clause_gen_binary_safety_wit_121 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) <> 3) |] 
-  &&  [| ((0 + 3 ) <> 2) |] 
+  [| ((0 + 3 ) <> 2) |] 
   &&  [| ((0 + 3 ) <> 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
@@ -6630,7 +6604,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (retval_7 <> 0) |] 
   &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -6647,7 +6621,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre = 0) |]
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre = 2) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
@@ -6668,9 +6643,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
@@ -6684,12 +6659,14 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((( &( "p2" ) )) # Int  |-> p2_pre)
   **  ((( &( "p1" ) )) # Int  |-> p1_pre)
 |--
-  [| False |]
+  [| (3 <= INT_MAX) |] 
+  &&  [| ((INT_MIN) <= 3) |]
 .
 
 Definition clause_gen_binary_safety_wit_122 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) <> 2) |] 
+  [| ((0 + 3 ) <> 3) |] 
+  &&  [| ((0 + 3 ) <> 2) |] 
   &&  [| ((0 + 3 ) <> 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
@@ -6714,7 +6691,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre = 0) |]
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre = 2) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
@@ -6735,9 +6713,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
@@ -6751,217 +6729,10 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((( &( "p2" ) )) # Int  |-> p2_pre)
   **  ((( &( "p1" ) )) # Int  |-> p1_pre)
 |--
-  [| (3 <= INT_MAX) |] 
-  &&  [| ((INT_MIN) <= 3) |]
+  [| False |]
 .
 
 Definition clause_gen_binary_safety_wit_123 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) <> 3) |] 
-  &&  [| ((0 + 3 ) <> 2) |] 
-  &&  [| ((0 + 3 ) <> 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
-  **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
-  **  ((( &( "clause1" ) )) # Ptr  |-> retval)
-  **  ((( &( "size" ) )) # Int  |-> 3)
-  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
-  **  ((( &( "op" ) )) # Int  |-> op_pre)
-  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
-  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
-  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
-|--
-  [| False |]
-.
-
-Definition clause_gen_binary_safety_wit_124 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) <> 2) |] 
-  &&  [| ((0 + 3 ) <> 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
-  **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
-  **  ((( &( "clause1" ) )) # Ptr  |-> retval)
-  **  ((( &( "size" ) )) # Int  |-> 3)
-  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
-  **  ((( &( "op" ) )) # Int  |-> op_pre)
-  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
-  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
-  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
-|--
-  [| (3 <= INT_MAX) |] 
-  &&  [| ((INT_MIN) <= 3) |]
-.
-
-Definition clause_gen_binary_safety_wit_125 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) <> 3) |] 
-  &&  [| ((0 + 3 ) <> 2) |] 
-  &&  [| ((0 + 3 ) <> 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
-  **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
-  **  ((( &( "clause1" ) )) # Ptr  |-> retval)
-  **  ((( &( "size" ) )) # Int  |-> 3)
-  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
-  **  ((( &( "op" ) )) # Int  |-> op_pre)
-  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
-  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
-  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
-|--
-  [| False |]
-.
-
-Definition clause_gen_binary_safety_wit_126 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 4 ) <> 2) |] 
   &&  [| ((0 + 4 ) <> 1) |] 
@@ -7031,7 +6802,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((INT_MIN) <= 3) |]
 .
 
-Definition clause_gen_binary_safety_wit_127 := 
+Definition clause_gen_binary_safety_wit_124 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 4 ) = 3) |] 
   &&  [| ((0 + 4 ) <> 2) |] 
@@ -7101,16 +6872,18 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   [| False |]
 .
 
-Definition clause_gen_binary_safety_wit_128 := 
+Definition clause_gen_binary_safety_wit_125 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| (0 <> 2) |] 
-  &&  [| (0 <> 1) |] 
+  [| ((0 + 3 ) = 3) |] 
+  &&  [| ((0 + 3 ) <> 2) |] 
+  &&  [| ((0 + 3 ) <> 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
   &&  [| (retval_8 <> 0) |] 
   &&  [| (retval_7 <> 0) |] 
   &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -7126,11 +6899,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre <> 3) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  &&  [| (op_pre = 1) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
@@ -7140,24 +6910,228 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
   **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
   **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
   **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  ((( &( "cnt" ) )) # Int  |-> 0)
+  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
   **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
-  **  (store_int_array retval_2 3 (all_zero_list (3)) )
   **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
-  **  (store_int_array retval 3 (all_zero_list (3)) )
+  **  ((( &( "clause1" ) )) # Ptr  |-> retval)
+  **  ((( &( "size" ) )) # Int  |-> 3)
+  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
+  **  ((( &( "op" ) )) # Int  |-> op_pre)
+  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
+  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
+  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
+|--
+  [| ((ccnt + 3 ) <= INT_MAX) |] 
+  &&  [| ((INT_MIN) <= (ccnt + 3 )) |]
+.
+
+Definition clause_gen_binary_safety_wit_126 := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+  [| ((0 + 3 ) = 3) |] 
+  &&  [| ((0 + 3 ) <> 2) |] 
+  &&  [| ((0 + 3 ) <> 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre = 1) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
+  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
+  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
+  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
+  **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
+  **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
+  **  ((( &( "clause1" ) )) # Ptr  |-> retval)
+  **  ((( &( "size" ) )) # Int  |-> 3)
+  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
+  **  ((( &( "op" ) )) # Int  |-> op_pre)
+  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
+  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
+  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
+|--
+  [| (3 <= INT_MAX) |] 
+  &&  [| ((INT_MIN) <= 3) |]
+.
+
+Definition clause_gen_binary_safety_wit_127 := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+  [| ((0 + 3 ) = 3) |] 
+  &&  [| ((0 + 3 ) <> 2) |] 
+  &&  [| ((0 + 3 ) <> 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre = 1) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
+  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
+  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
+  **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
+  **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
+  **  ((( &( "clause1" ) )) # Ptr  |-> retval)
+  **  ((( &( "size" ) )) # Int  |-> 3)
+  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
+  **  ((( &( "op" ) )) # Int  |-> op_pre)
+  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
+  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
+  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
+|--
+  [| ((ccnt + 3 ) <= INT_MAX) |] 
+  &&  [| ((INT_MIN) <= (ccnt + 3 )) |]
+.
+
+Definition clause_gen_binary_safety_wit_128 := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+  [| ((0 + 3 ) = 3) |] 
+  &&  [| ((0 + 3 ) <> 2) |] 
+  &&  [| ((0 + 3 ) <> 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre = 1) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
+  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
+  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
+  **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
+  **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
   **  ((( &( "clause1" ) )) # Ptr  |-> retval)
   **  ((( &( "size" ) )) # Int  |-> 3)
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
@@ -7172,15 +7146,16 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
 
 Definition clause_gen_binary_safety_wit_129 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| (0 = 3) |] 
-  &&  [| (0 <> 2) |] 
-  &&  [| (0 <> 1) |] 
+  [| ((0 + 3 ) = 3) |] 
+  &&  [| ((0 + 3 ) <> 2) |] 
+  &&  [| ((0 + 3 ) <> 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
   &&  [| (retval_8 <> 0) |] 
   &&  [| (retval_7 <> 0) |] 
   &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -7197,10 +7172,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre <> 3) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
+  &&  [| (op_pre = 0) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
   **  (sll_cnf_list y clist )
@@ -7210,24 +7183,24 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
   **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
   **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
   **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  ((( &( "cnt" ) )) # Int  |-> 0)
+  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
   **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
-  **  (store_int_array retval_2 3 (all_zero_list (3)) )
   **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
-  **  (store_int_array retval 3 (all_zero_list (3)) )
   **  ((( &( "clause1" ) )) # Ptr  |-> retval)
   **  ((( &( "size" ) )) # Int  |-> 3)
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
@@ -7236,7 +7209,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((( &( "p2" ) )) # Int  |-> p2_pre)
   **  ((( &( "p1" ) )) # Int  |-> p1_pre)
 |--
-  [| False |]
+  [| ((ccnt + 3 ) <= INT_MAX) |] 
+  &&  [| ((INT_MIN) <= (ccnt + 3 )) |]
 .
 
 Definition clause_gen_binary_safety_wit_130 := 
@@ -7266,7 +7240,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
@@ -7287,77 +7262,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
   **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
-  **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
-  **  ((( &( "clause1" ) )) # Ptr  |-> retval)
-  **  ((( &( "size" ) )) # Int  |-> 3)
-  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
-  **  ((( &( "op" ) )) # Int  |-> op_pre)
-  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
-  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
-  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
-|--
-  [| ((ccnt + 3 ) <= INT_MAX) |] 
-  &&  [| ((INT_MIN) <= (ccnt + 3 )) |]
-.
-
-Definition clause_gen_binary_safety_wit_131 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) = 3) |] 
-  &&  [| ((0 + 3 ) <> 2) |] 
-  &&  [| ((0 + 3 ) <> 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
@@ -7373,6 +7280,75 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
 |--
   [| (3 <= INT_MAX) |] 
   &&  [| ((INT_MIN) <= 3) |]
+.
+
+Definition clause_gen_binary_safety_wit_131 := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+  [| ((0 + 3 ) = 3) |] 
+  &&  [| ((0 + 3 ) <> 2) |] 
+  &&  [| ((0 + 3 ) <> 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre = 0) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
+  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
+  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
+  **  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
+  **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
+  **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
+  **  ((( &( "clause1" ) )) # Ptr  |-> retval)
+  **  ((( &( "size" ) )) # Int  |-> 3)
+  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
+  **  ((( &( "op" ) )) # Int  |-> op_pre)
+  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
+  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
+  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
+|--
+  [| ((ccnt + 3 ) <= INT_MAX) |] 
+  &&  [| ((INT_MIN) <= (ccnt + 3 )) |]
 .
 
 Definition clause_gen_binary_safety_wit_132 := 
@@ -7402,7 +7378,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
@@ -7423,9 +7400,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
   **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
@@ -7439,8 +7416,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((( &( "p2" ) )) # Int  |-> p2_pre)
   **  ((( &( "p1" ) )) # Int  |-> p1_pre)
 |--
-  [| ((ccnt + 3 ) <= INT_MAX) |] 
-  &&  [| ((INT_MIN) <= (ccnt + 3 )) |]
+  [| (3 <= INT_MAX) |] 
+  &&  [| ((INT_MIN) <= 3) |]
 .
 
 Definition clause_gen_binary_safety_wit_133 := 
@@ -7470,7 +7447,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre = 2) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
@@ -7491,9 +7470,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
   **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
   **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
@@ -7507,8 +7486,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((( &( "p2" ) )) # Int  |-> p2_pre)
   **  ((( &( "p1" ) )) # Int  |-> p1_pre)
 |--
-  [| (3 <= INT_MAX) |] 
-  &&  [| ((INT_MIN) <= 3) |]
+  [| ((ccnt + 3 ) <= INT_MAX) |] 
+  &&  [| ((INT_MIN) <= (ccnt + 3 )) |]
 .
 
 Definition clause_gen_binary_safety_wit_134 := 
@@ -7522,7 +7501,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (retval_7 <> 0) |] 
   &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -7539,7 +7518,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre = 0) |]
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre = 2) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
@@ -7560,9 +7540,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
   **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
@@ -7576,498 +7556,11 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((( &( "p2" ) )) # Int  |-> p2_pre)
   **  ((( &( "p1" ) )) # Int  |-> p1_pre)
 |--
-  [| ((ccnt + 3 ) <= INT_MAX) |] 
-  &&  [| ((INT_MIN) <= (ccnt + 3 )) |]
+  [| (3 <= INT_MAX) |] 
+  &&  [| ((INT_MIN) <= 3) |]
 .
 
 Definition clause_gen_binary_safety_wit_135 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) = 3) |] 
-  &&  [| ((0 + 3 ) <> 2) |] 
-  &&  [| ((0 + 3 ) <> 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
-  **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
-  **  ((( &( "clause1" ) )) # Ptr  |-> retval)
-  **  ((( &( "size" ) )) # Int  |-> 3)
-  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
-  **  ((( &( "op" ) )) # Int  |-> op_pre)
-  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
-  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
-  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
-|--
-  [| (3 <= INT_MAX) |] 
-  &&  [| ((INT_MIN) <= 3) |]
-.
-
-Definition clause_gen_binary_safety_wit_136 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) = 3) |] 
-  &&  [| ((0 + 3 ) <> 2) |] 
-  &&  [| ((0 + 3 ) <> 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
-  **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
-  **  ((( &( "clause1" ) )) # Ptr  |-> retval)
-  **  ((( &( "size" ) )) # Int  |-> 3)
-  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
-  **  ((( &( "op" ) )) # Int  |-> op_pre)
-  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
-  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
-  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
-|--
-  [| ((ccnt + 3 ) <= INT_MAX) |] 
-  &&  [| ((INT_MIN) <= (ccnt + 3 )) |]
-.
-
-Definition clause_gen_binary_safety_wit_137 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) = 3) |] 
-  &&  [| ((0 + 3 ) <> 2) |] 
-  &&  [| ((0 + 3 ) <> 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
-  **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
-  **  ((( &( "clause1" ) )) # Ptr  |-> retval)
-  **  ((( &( "size" ) )) # Int  |-> 3)
-  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
-  **  ((( &( "op" ) )) # Int  |-> op_pre)
-  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
-  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
-  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
-|--
-  [| (3 <= INT_MAX) |] 
-  &&  [| ((INT_MIN) <= 3) |]
-.
-
-Definition clause_gen_binary_safety_wit_138 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) = 3) |] 
-  &&  [| ((0 + 3 ) <> 2) |] 
-  &&  [| ((0 + 3 ) <> 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
-  **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
-  **  ((( &( "clause1" ) )) # Ptr  |-> retval)
-  **  ((( &( "size" ) )) # Int  |-> 3)
-  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
-  **  ((( &( "op" ) )) # Int  |-> op_pre)
-  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
-  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
-  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
-|--
-  [| ((ccnt + 3 ) <= INT_MAX) |] 
-  &&  [| ((INT_MIN) <= (ccnt + 3 )) |]
-.
-
-Definition clause_gen_binary_safety_wit_139 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) = 3) |] 
-  &&  [| ((0 + 3 ) <> 2) |] 
-  &&  [| ((0 + 3 ) <> 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
-  **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
-  **  ((( &( "clause1" ) )) # Ptr  |-> retval)
-  **  ((( &( "size" ) )) # Int  |-> 3)
-  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
-  **  ((( &( "op" ) )) # Int  |-> op_pre)
-  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
-  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
-  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
-|--
-  [| (3 <= INT_MAX) |] 
-  &&  [| ((INT_MIN) <= 3) |]
-.
-
-Definition clause_gen_binary_safety_wit_140 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| (0 <> 3) |] 
-  &&  [| (0 <> 2) |] 
-  &&  [| (0 <> 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre <> 3) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_8)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  ((( &( "cnt" ) )) # Int  |-> 0)
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
-  **  (store_int_array retval_2 3 (all_zero_list (3)) )
-  **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
-  **  (store_int_array retval 3 (all_zero_list (3)) )
-  **  ((( &( "clause1" ) )) # Ptr  |-> retval)
-  **  ((( &( "size" ) )) # Int  |-> 3)
-  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
-  **  ((( &( "op" ) )) # Int  |-> op_pre)
-  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
-  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
-  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
-|--
-  [| ((ccnt + 4 ) <= INT_MAX) |] 
-  &&  [| ((INT_MIN) <= (ccnt + 4 )) |]
-.
-
-Definition clause_gen_binary_safety_wit_141 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| (0 <> 3) |] 
-  &&  [| (0 <> 2) |] 
-  &&  [| (0 <> 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre <> 3) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_8)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  ((( &( "cnt" ) )) # Int  |-> 0)
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval_3)
-  **  (store_int_array retval_2 3 (all_zero_list (3)) )
-  **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
-  **  (store_int_array retval 3 (all_zero_list (3)) )
-  **  ((( &( "clause1" ) )) # Ptr  |-> retval)
-  **  ((( &( "size" ) )) # Int  |-> 3)
-  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
-  **  ((( &( "op" ) )) # Int  |-> op_pre)
-  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
-  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
-  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
-|--
-  [| (4 <= INT_MAX) |] 
-  &&  [| ((INT_MIN) <= 4) |]
-.
-
-Definition clause_gen_binary_safety_wit_142 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 4 ) <> 3) |] 
   &&  [| ((0 + 4 ) <> 2) |] 
@@ -8138,7 +7631,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((INT_MIN) <= (ccnt + 4 )) |]
 .
 
-Definition clause_gen_binary_safety_wit_143 := 
+Definition clause_gen_binary_safety_wit_136 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 4 ) <> 3) |] 
   &&  [| ((0 + 4 ) <> 2) |] 
@@ -8211,60 +7704,6 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
 
 Definition clause_gen_binary_return_wit_1_1 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| (0 <> 3) |] 
-  &&  [| (0 <> 2) |] 
-  &&  [| (0 <> 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre <> 3) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 4 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_8)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
-  **  (store_int_array retval_2 3 (all_zero_list (3)) )
-  **  (store_int_array retval 3 (all_zero_list (3)) )
-|--
-  (store_predata data_pre (app ((iff2cnf_binary (p1_pre) (p2_pre) (p3_pre) (bop))) (clist)) pcnt (ccnt + (iff2cnf_length_binary (p1_pre) (p2_pre) (p3_pre) (bop)) ) )
-.
-
-Definition clause_gen_binary_return_wit_1_2 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 4 ) <> 3) |] 
   &&  [| ((0 + 4 ) <> 2) |] 
   &&  [| ((0 + 4 ) <> 1) |] 
@@ -8318,7 +7757,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   (store_predata data_pre (app ((iff2cnf_binary (p1_pre) (p2_pre) (p3_pre) (bop))) (clist)) pcnt (ccnt + (iff2cnf_length_binary (p1_pre) (p2_pre) (p3_pre) (bop)) ) )
 .
 
-Definition clause_gen_binary_return_wit_1_3 := 
+Definition clause_gen_binary_return_wit_1_2 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 3 ) = 3) |] 
   &&  [| ((0 + 3 ) <> 2) |] 
@@ -8366,7 +7805,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   (store_predata data_pre (app ((iff2cnf_binary (p1_pre) (p2_pre) (p3_pre) (bop))) (clist)) pcnt (ccnt + (iff2cnf_length_binary (p1_pre) (p2_pre) (p3_pre) (bop)) ) )
 .
 
-Definition clause_gen_binary_return_wit_1_4 := 
+Definition clause_gen_binary_return_wit_1_3 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 3 ) = 3) |] 
   &&  [| ((0 + 3 ) <> 2) |] 
@@ -8414,7 +7853,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   (store_predata data_pre (app ((iff2cnf_binary (p1_pre) (p2_pre) (p3_pre) (bop))) (clist)) pcnt (ccnt + (iff2cnf_length_binary (p1_pre) (p2_pre) (p3_pre) (bop)) ) )
 .
 
-Definition clause_gen_binary_return_wit_1_5 := 
+Definition clause_gen_binary_return_wit_1_4 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 3 ) = 3) |] 
   &&  [| ((0 + 3 ) <> 2) |] 
@@ -8463,7 +7902,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   (store_predata data_pre (app ((iff2cnf_binary (p1_pre) (p2_pre) (p3_pre) (bop))) (clist)) pcnt (ccnt + (iff2cnf_length_binary (p1_pre) (p2_pre) (p3_pre) (bop)) ) )
 .
 
-Definition clause_gen_binary_return_wit_1_6 := 
+Definition clause_gen_binary_return_wit_1_5 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 3 ) = 3) |] 
   &&  [| ((0 + 3 ) <> 2) |] 
@@ -8512,7 +7951,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   (store_predata data_pre (app ((iff2cnf_binary (p1_pre) (p2_pre) (p3_pre) (bop))) (clist)) pcnt (ccnt + (iff2cnf_length_binary (p1_pre) (p2_pre) (p3_pre) (bop)) ) )
 .
 
-Definition clause_gen_binary_return_wit_1_7 := 
+Definition clause_gen_binary_return_wit_1_6 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 3 ) = 3) |] 
   &&  [| ((0 + 3 ) <> 2) |] 
@@ -8562,7 +8001,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   (store_predata data_pre (app ((iff2cnf_binary (p1_pre) (p2_pre) (p3_pre) (bop))) (clist)) pcnt (ccnt + (iff2cnf_length_binary (p1_pre) (p2_pre) (p3_pre) (bop)) ) )
 .
 
-Definition clause_gen_binary_return_wit_1_8 := 
+Definition clause_gen_binary_return_wit_1_7 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 1 ) = 1) |] 
   &&  [| (data_pre <> 0) |] 
@@ -8602,7 +8041,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   (store_predata data_pre (app ((iff2cnf_binary (p1_pre) (p2_pre) (p3_pre) (bop))) (clist)) pcnt (ccnt + (iff2cnf_length_binary (p1_pre) (p2_pre) (p3_pre) (bop)) ) )
 .
 
-Definition clause_gen_binary_return_wit_1_9 := 
+Definition clause_gen_binary_return_wit_1_8 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 1 ) = 1) |] 
   &&  [| (data_pre <> 0) |] 
@@ -11392,120 +10831,6 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
 .
 
 Definition clause_gen_binary_partial_solve_wit_52 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) ,
-  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre <> 3) |]
-  &&  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
-  **  (store_int_array retval_2 3 (all_zero_list (3)) )
-  **  (store_int_array retval 3 (all_zero_list (3)) )
-  **  (store_predata data_pre clist pcnt ccnt )
-|--
-  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre <> 3) |]
-  &&  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
-  **  (store_int_array retval_2 3 (all_zero_list (3)) )
-  **  (store_int_array retval 3 (all_zero_list (3)) )
-  **  (store_predata data_pre clist pcnt ccnt )
-.
-
-Definition clause_gen_binary_partial_solve_wit_53 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) ,
-  [| (retval_5 <> 0) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre <> 3) |]
-  &&  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
-  **  (store_int_array retval_2 3 (all_zero_list (3)) )
-  **  (store_int_array retval 3 (all_zero_list (3)) )
-  **  (store_predata data_pre clist pcnt ccnt )
-|--
-  [| (retval_5 <> 0) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre <> 3) |]
-  &&  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
-  **  (store_int_array retval_2 3 (all_zero_list (3)) )
-  **  (store_int_array retval 3 (all_zero_list (3)) )
-  **  (store_predata data_pre clist pcnt ccnt )
-.
-
-Definition clause_gen_binary_partial_solve_wit_54 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) ,
   [| (retval_5 <> 0) |] 
   &&  [| (p1_pre = p2_pre) |] 
@@ -11558,6 +10883,130 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
+  &&  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  (store_int_array retval_3 3 (all_zero_list (3)) )
+  **  (store_int_array retval_2 3 (all_zero_list (3)) )
+  **  (store_predata data_pre clist pcnt ccnt )
+.
+
+Definition clause_gen_binary_partial_solve_wit_53 := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) ,
+  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre <> 2) |] 
+  &&  [| (op_pre = 3) |]
+  &&  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  (store_int_array retval_4 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_predata data_pre clist pcnt ccnt )
+|--
+  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre <> 2) |] 
+  &&  [| (op_pre = 3) |]
+  &&  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  (store_int_array retval_4 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_predata data_pre clist pcnt ccnt )
+.
+
+Definition clause_gen_binary_partial_solve_wit_54 := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) ,
+  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre = 2) |]
+  &&  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  (store_int_array retval_3 3 (all_zero_list (3)) )
+  **  (store_int_array retval_2 3 (all_zero_list (3)) )
+  **  (store_predata data_pre clist pcnt ccnt )
+|--
+  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre = 2) |]
   &&  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
@@ -11589,15 +11038,14 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre = 3) |]
+  &&  [| (op_pre = 2) |]
   &&  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_4 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 |--
   [| (retval_5 <> 0) |] 
@@ -11619,22 +11067,21 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre = 3) |]
+  &&  [| (op_pre = 2) |]
   &&  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_4 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 .
 
 Definition clause_gen_binary_partial_solve_wit_56 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) ,
   [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -11651,19 +11098,18 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
+  &&  [| (op_pre = 0) |]
   &&  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
-  **  (store_int_array retval_2 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 |--
   [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -11680,22 +11126,21 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
+  &&  [| (op_pre = 0) |]
   &&  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
-  **  (store_int_array retval_2 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 .
 
 Definition clause_gen_binary_partial_solve_wit_57 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) ,
   [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (p1_pre = p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -11712,19 +11157,18 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
+  &&  [| (op_pre = 0) |]
   &&  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 |--
   [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (p1_pre = p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -11741,14 +11185,13 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
+  &&  [| (op_pre = 0) |]
   &&  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 .
@@ -11772,14 +11215,13 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre = 0) |]
+  &&  [| (op_pre = 1) |]
   &&  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 |--
@@ -11800,14 +11242,13 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre = 0) |]
+  &&  [| (op_pre = 1) |]
   &&  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 .
@@ -11831,14 +11272,13 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre = 0) |]
+  &&  [| (op_pre = 1) |]
   &&  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 |--
@@ -11859,22 +11299,22 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre = 0) |]
+  &&  [| (op_pre = 1) |]
   &&  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 .
 
 Definition clause_gen_binary_partial_solve_wit_60 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) ,
-  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) ,
+  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -11891,17 +11331,21 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
+  &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
   **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 |--
-  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
+  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -11918,10 +11362,13 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
+  &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
   **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
@@ -11929,9 +11376,10 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
 .
 
 Definition clause_gen_binary_partial_solve_wit_61 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) ,
-  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) ,
+  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -11948,17 +11396,21 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
+  &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
   **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
   **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 |--
-  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
+  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -11975,10 +11427,13 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
-  &&  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
+  &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
   **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
   **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
@@ -12005,16 +11460,17 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre = 0) |]
   &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 |--
@@ -12036,16 +11492,17 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre = 0) |]
   &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 .
@@ -12070,16 +11527,17 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre = 0) |]
   &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 |--
@@ -12101,16 +11559,17 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre = 0) |]
   &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 .
@@ -12119,7 +11578,7 @@ Definition clause_gen_binary_partial_solve_wit_64 :=
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) ,
   [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -12136,22 +11595,23 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre = 0) |]
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre = 2) |]
   &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 |--
   [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -12168,16 +11628,17 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre = 0) |]
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre = 2) |]
   &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 .
@@ -12186,7 +11647,7 @@ Definition clause_gen_binary_partial_solve_wit_65 :=
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) ,
   [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (p1_pre = p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -12203,22 +11664,23 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre = 0) |]
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre = 2) |]
   &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  (store_int_array retval_3 3 (all_zero_list (3)) )
+  **  (store_int_array retval_2 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 |--
   [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (p1_pre = p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -12235,17 +11697,18 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre = 0) |]
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre = 2) |]
   &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  (store_int_array retval_3 3 (all_zero_list (3)) )
+  **  (store_int_array retval_2 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 .
 
@@ -12271,17 +11734,18 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
+  &&  [| (op_pre <> 2) |] 
+  &&  [| (op_pre = 3) |]
   &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  (store_int_array retval_4 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
   **  (store_predata data_pre clist pcnt ccnt )
 |--
   [| (retval_6 <> 0) |] 
@@ -12304,17 +11768,18 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
+  &&  [| (op_pre <> 2) |] 
+  &&  [| (op_pre = 3) |]
   &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  (store_int_array retval_4 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
   **  (store_predata data_pre clist pcnt ccnt )
 .
 
@@ -12340,7 +11805,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
+  &&  [| (op_pre <> 2) |] 
+  &&  [| (op_pre = 3) |]
   &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
@@ -12373,7 +11839,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
+  &&  [| (op_pre <> 2) |] 
+  &&  [| (op_pre = 3) |]
   &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
@@ -12388,10 +11855,11 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
 .
 
 Definition clause_gen_binary_partial_solve_wit_68 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) ,
-  [| (retval_6 <> 0) |] 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) ,
+  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (p1_pre = p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -12411,21 +11879,25 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
+  &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_4 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  (store_int_array retval_3 3 (all_zero_list (3)) )
+  **  (store_int_array retval_2 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 |--
-  [| (retval_6 <> 0) |] 
+  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (p1_pre = p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -12445,24 +11917,28 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
+  &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_4 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  (store_int_array retval_3 3 (all_zero_list (3)) )
+  **  (store_int_array retval_2 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 .
 
 Definition clause_gen_binary_partial_solve_wit_69 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) ,
-  [| (retval_6 <> 0) |] 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) ,
+  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -12482,21 +11958,25 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
+  &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
-  **  (store_int_array retval_2 3 (all_zero_list (3)) )
+  **  (store_int_array retval_4 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
   **  (store_predata data_pre clist pcnt ccnt )
 |--
-  [| (retval_6 <> 0) |] 
+  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -12516,23 +11996,28 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
+  &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
-  **  (store_int_array retval_2 3 (all_zero_list (3)) )
+  **  (store_int_array retval_4 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
   **  (store_predata data_pre clist pcnt ccnt )
 .
 
 Definition clause_gen_binary_partial_solve_wit_70 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) ,
-  [| (retval_6 <> 0) |] 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) ,
+  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -12550,22 +12035,26 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre <> 3) |]
-  &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
+  &&  [| (op_pre = 2) |]
+  &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  (store_int_array retval_3 3 (all_zero_list (3)) )
   **  (store_int_array retval_2 3 (all_zero_list (3)) )
-  **  (store_int_array retval 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 |--
-  [| (retval_6 <> 0) |] 
+  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -12583,18 +12072,20 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre <> 3) |]
-  &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
+  &&  [| (op_pre = 2) |]
+  &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  (store_int_array retval_3 3 (all_zero_list (3)) )
   **  (store_int_array retval_2 3 (all_zero_list (3)) )
-  **  (store_int_array retval 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 .
 
@@ -12603,6 +12094,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   [| (retval_7 <> 0) |] 
   &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -12620,8 +12112,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre <> 3) |]
+  &&  [| (op_pre = 2) |]
   &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
@@ -12631,15 +12122,16 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
-  **  (store_int_array retval_2 3 (all_zero_list (3)) )
-  **  (store_int_array retval 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 |--
   [| (retval_7 <> 0) |] 
   &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -12657,8 +12149,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre <> 3) |]
+  &&  [| (op_pre = 2) |]
   &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
@@ -12668,10 +12159,10 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
-  **  (store_int_array retval_2 3 (all_zero_list (3)) )
-  **  (store_int_array retval 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 .
 
@@ -12680,7 +12171,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   [| (retval_7 <> 0) |] 
   &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -12697,9 +12188,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre = 3) |]
+  &&  [| (op_pre = 0) |]
   &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
@@ -12709,16 +12198,16 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
-  **  (store_int_array retval_2 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 |--
   [| (retval_7 <> 0) |] 
   &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -12735,9 +12224,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre = 3) |]
+  &&  [| (op_pre = 0) |]
   &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
@@ -12747,10 +12234,10 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
-  **  (store_int_array retval_2 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 .
 
@@ -12759,7 +12246,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   [| (retval_7 <> 0) |] 
   &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (p1_pre = p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -12776,9 +12263,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre = 3) |]
+  &&  [| (op_pre = 0) |]
   &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
@@ -12788,16 +12273,16 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_4 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 |--
   [| (retval_7 <> 0) |] 
   &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (p1_pre = p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -12814,9 +12299,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre = 3) |]
+  &&  [| (op_pre = 0) |]
   &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
@@ -12826,10 +12309,10 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_4 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 .
 
@@ -12838,7 +12321,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   [| (retval_7 <> 0) |] 
   &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -12854,9 +12337,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
+  &&  [| (op_pre = 1) |]
   &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
@@ -12866,16 +12347,16 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
-  **  (store_int_array retval_2 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 |--
   [| (retval_7 <> 0) |] 
   &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -12891,9 +12372,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
+  &&  [| (op_pre = 1) |]
   &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
@@ -12903,10 +12382,10 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
-  **  (store_int_array retval_2 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 .
 
@@ -12915,7 +12394,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   [| (retval_7 <> 0) |] 
   &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (p1_pre = p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -12931,9 +12410,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
+  &&  [| (op_pre = 1) |]
   &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
@@ -12943,16 +12420,16 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 |--
   [| (retval_7 <> 0) |] 
   &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (p1_pre = p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -12968,9 +12445,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
+  &&  [| (op_pre = 1) |]
   &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
@@ -12980,315 +12455,20 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 .
 
 Definition clause_gen_binary_partial_solve_wit_76 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) ,
-  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre = 0) |]
-  &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_predata data_pre clist pcnt ccnt )
-|--
-  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre = 0) |]
-  &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_predata data_pre clist pcnt ccnt )
-.
-
-Definition clause_gen_binary_partial_solve_wit_77 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) ,
-  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre = 0) |]
-  &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_predata data_pre clist pcnt ccnt )
-|--
-  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre = 0) |]
-  &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_predata data_pre clist pcnt ccnt )
-.
-
-Definition clause_gen_binary_partial_solve_wit_78 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) ,
-  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
-  &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_predata data_pre clist pcnt ccnt )
-|--
-  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
-  &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_predata data_pre clist pcnt ccnt )
-.
-
-Definition clause_gen_binary_partial_solve_wit_79 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) ,
-  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
-  &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_predata data_pre clist pcnt ccnt )
-|--
-  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
-  &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_predata data_pre clist pcnt ccnt )
-.
-
-Definition clause_gen_binary_partial_solve_wit_80 := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) ,
   [| (retval_8 <> 0) |] 
   &&  [| (retval_7 <> 0) |] 
   &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -13307,7 +12487,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre <> 3) |]
+  &&  [| (op_pre = 3) |]
   &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
@@ -13320,16 +12500,17 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  (store_int_array retval_3 3 (all_zero_list (3)) )
   **  (store_int_array retval_2 3 (all_zero_list (3)) )
-  **  (store_int_array retval 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 |--
   [| (retval_8 <> 0) |] 
   &&  [| (retval_7 <> 0) |] 
   &&  [| (retval_6 <> 0) |] 
   &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -13348,7 +12529,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre <> 3) |]
+  &&  [| (op_pre = 3) |]
   &&  (store_predata data_pre clist pcnt ccnt )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -13362,10 +12543,350 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  (store_int_array retval_3 3 (all_zero_list (3)) )
   **  (store_int_array retval_2 3 (all_zero_list (3)) )
-  **  (store_int_array retval 3 (all_zero_list (3)) )
+.
+
+Definition clause_gen_binary_partial_solve_wit_77 := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) ,
+  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre <> 2) |] 
+  &&  [| (op_pre = 3) |]
+  &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  (store_int_array retval_4 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_predata data_pre clist pcnt ccnt )
+|--
+  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre <> 2) |] 
+  &&  [| (op_pre = 3) |]
+  &&  (store_predata data_pre clist pcnt ccnt )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  (store_int_array retval_4 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+.
+
+Definition clause_gen_binary_partial_solve_wit_78 := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) ,
+  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre = 2) |]
+  &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  (store_int_array retval_3 3 (all_zero_list (3)) )
+  **  (store_int_array retval_2 3 (all_zero_list (3)) )
+  **  (store_predata data_pre clist pcnt ccnt )
+|--
+  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre = 2) |]
+  &&  (store_predata data_pre clist pcnt ccnt )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  (store_int_array retval_3 3 (all_zero_list (3)) )
+  **  (store_int_array retval_2 3 (all_zero_list (3)) )
+.
+
+Definition clause_gen_binary_partial_solve_wit_79 := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) ,
+  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre = 2) |]
+  &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  (store_predata data_pre clist pcnt ccnt )
+|--
+  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre = 2) |]
+  &&  (store_predata data_pre clist pcnt ccnt )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+.
+
+Definition clause_gen_binary_partial_solve_wit_80 := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) ,
+  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre = 0) |]
+  &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  (store_predata data_pre clist pcnt ccnt )
+|--
+  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre = 0) |]
+  &&  (store_predata data_pre clist pcnt ccnt )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
 .
 
 Definition clause_gen_binary_partial_solve_wit_81 := 
@@ -13391,9 +12912,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre = 3) |]
+  &&  [| (op_pre = 0) |]
   &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
@@ -13406,10 +12925,10 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
-  **  (store_int_array retval_2 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 |--
   [| (retval_8 <> 0) |] 
@@ -13433,9 +12952,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre = 3) |]
+  &&  [| (op_pre = 0) |]
   &&  (store_predata data_pre clist pcnt ccnt )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -13449,10 +12966,10 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
-  **  (store_int_array retval_2 3 (all_zero_list (3)) )
 .
 
 Definition clause_gen_binary_partial_solve_wit_82 := 
@@ -13477,10 +12994,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre = 3) |]
+  &&  [| (op_pre = 1) |]
   &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
@@ -13493,10 +13007,10 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_4 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 |--
   [| (retval_8 <> 0) |] 
@@ -13519,10 +13033,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre = 3) |]
+  &&  [| (op_pre = 1) |]
   &&  (store_predata data_pre clist pcnt ccnt )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -13536,10 +13047,10 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_4 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
 .
 
 Definition clause_gen_binary_partial_solve_wit_83 := 
@@ -13564,423 +13075,6 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
-  &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
-  **  (store_int_array retval_2 3 (all_zero_list (3)) )
-  **  (store_predata data_pre clist pcnt ccnt )
-|--
-  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
-  &&  (store_predata data_pre clist pcnt ccnt )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
-  **  (store_int_array retval_2 3 (all_zero_list (3)) )
-.
-
-Definition clause_gen_binary_partial_solve_wit_84 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) ,
-  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
-  &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_predata data_pre clist pcnt ccnt )
-|--
-  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
-  &&  (store_predata data_pre clist pcnt ccnt )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-.
-
-Definition clause_gen_binary_partial_solve_wit_85 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) ,
-  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre = 0) |]
-  &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_predata data_pre clist pcnt ccnt )
-|--
-  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre = 0) |]
-  &&  (store_predata data_pre clist pcnt ccnt )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-.
-
-Definition clause_gen_binary_partial_solve_wit_86 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) ,
-  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre = 0) |]
-  &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_predata data_pre clist pcnt ccnt )
-|--
-  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre = 0) |]
-  &&  (store_predata data_pre clist pcnt ccnt )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-.
-
-Definition clause_gen_binary_partial_solve_wit_87 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) ,
-  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
-  &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_predata data_pre clist pcnt ccnt )
-|--
-  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
-  &&  (store_predata data_pre clist pcnt ccnt )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-.
-
-Definition clause_gen_binary_partial_solve_wit_88 := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) ,
-  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -14040,7 +13134,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
 .
 
-Definition clause_gen_binary_partial_solve_wit_89_pure := 
+Definition clause_gen_binary_partial_solve_wit_84_pure := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 1 ) = 1) |] 
   &&  [| (data_pre <> 0) |] 
@@ -14109,7 +13203,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (3 > 0) |]
 .
 
-Definition clause_gen_binary_partial_solve_wit_89_aux := 
+Definition clause_gen_binary_partial_solve_wit_84_aux := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 1 ) = 1) |] 
   &&  [| (data_pre <> 0) |] 
@@ -14210,9 +13304,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  (store_int_array retval_3 3 (all_zero_list (3)) )
 .
 
-Definition clause_gen_binary_partial_solve_wit_89 := clause_gen_binary_partial_solve_wit_89_pure -> clause_gen_binary_partial_solve_wit_89_aux.
+Definition clause_gen_binary_partial_solve_wit_84 := clause_gen_binary_partial_solve_wit_84_pure -> clause_gen_binary_partial_solve_wit_84_aux.
 
-Definition clause_gen_binary_partial_solve_wit_90_pure := 
+Definition clause_gen_binary_partial_solve_wit_85_pure := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 1 ) = 1) |] 
   &&  [| (data_pre <> 0) |] 
@@ -14278,6 +13372,835 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
 |--
   [| (retval <> 0) |] 
   &&  [| (3 > 0) |]
+.
+
+Definition clause_gen_binary_partial_solve_wit_85_aux := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+  [| ((0 + 1 ) = 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre = 2) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  (store_int_array retval_3 3 (all_zero_list (3)) )
+  **  (store_int_array retval_2 3 (all_zero_list (3)) )
+|--
+  [| (retval_2 <> 0) |] 
+  &&  [| (3 > 0) |] 
+  &&  [| ((0 + 1 ) = 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre = 2) |]
+  &&  (store_int_array retval_2 3 (all_zero_list (3)) )
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  (store_int_array retval_3 3 (all_zero_list (3)) )
+.
+
+Definition clause_gen_binary_partial_solve_wit_85 := clause_gen_binary_partial_solve_wit_85_pure -> clause_gen_binary_partial_solve_wit_85_aux.
+
+Definition clause_gen_binary_partial_solve_wit_86_pure := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+  [| ((0 + 1 ) = 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre = 2) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
+  **  (store_int_array retval_2 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+  **  ((( &( "cnt" ) )) # Int  |-> (0 + 1 ))
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
+  **  (store_int_array retval 3 (all_zero_list (3)) )
+  **  ((( &( "clause3" ) )) # Ptr  |-> retval)
+  **  ((( &( "clause2" ) )) # Ptr  |-> retval_3)
+  **  ((( &( "clause1" ) )) # Ptr  |-> retval_2)
+  **  ((( &( "size" ) )) # Int  |-> 3)
+  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
+  **  ((( &( "op" ) )) # Int  |-> op_pre)
+  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
+  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
+  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
+|--
+  [| (retval <> 0) |] 
+  &&  [| (3 > 0) |]
+.
+
+Definition clause_gen_binary_partial_solve_wit_86_aux := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+  [| ((0 + 1 ) = 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre = 2) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  (store_int_array retval_3 3 (all_zero_list (3)) )
+|--
+  [| (retval_3 <> 0) |] 
+  &&  [| (3 > 0) |] 
+  &&  [| ((0 + 1 ) = 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre = 2) |]
+  &&  (store_int_array retval_3 3 (all_zero_list (3)) )
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+.
+
+Definition clause_gen_binary_partial_solve_wit_86 := clause_gen_binary_partial_solve_wit_86_pure -> clause_gen_binary_partial_solve_wit_86_aux.
+
+Definition clause_gen_binary_partial_solve_wit_87_pure := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+  [| ((0 + 1 ) = 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre <> 2) |] 
+  &&  [| (op_pre = 3) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
+  **  (store_int_array retval_2 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+  **  ((( &( "cnt" ) )) # Int  |-> (0 + 1 ))
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
+  **  (store_int_array retval 3 (all_zero_list (3)) )
+  **  ((( &( "clause3" ) )) # Ptr  |-> retval)
+  **  ((( &( "clause2" ) )) # Ptr  |-> retval_3)
+  **  ((( &( "clause1" ) )) # Ptr  |-> retval_2)
+  **  ((( &( "size" ) )) # Int  |-> 3)
+  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
+  **  ((( &( "op" ) )) # Int  |-> op_pre)
+  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
+  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
+  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
+|--
+  [| (retval <> 0) |] 
+  &&  [| (3 > 0) |]
+.
+
+Definition clause_gen_binary_partial_solve_wit_87_aux := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+  [| ((0 + 1 ) = 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre <> 2) |] 
+  &&  [| (op_pre = 3) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  (store_int_array retval_3 3 (all_zero_list (3)) )
+|--
+  [| (retval_3 <> 0) |] 
+  &&  [| (3 > 0) |] 
+  &&  [| ((0 + 1 ) = 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre <> 2) |] 
+  &&  [| (op_pre = 3) |]
+  &&  (store_int_array retval_3 3 (all_zero_list (3)) )
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+.
+
+Definition clause_gen_binary_partial_solve_wit_87 := clause_gen_binary_partial_solve_wit_87_pure -> clause_gen_binary_partial_solve_wit_87_aux.
+
+Definition clause_gen_binary_partial_solve_wit_88_pure := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+  [| ((0 + 1 ) = 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre <> 2) |] 
+  &&  [| (op_pre = 3) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
+  **  (store_int_array retval_2 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+  **  ((( &( "cnt" ) )) # Int  |-> (0 + 1 ))
+  **  (store_int_array retval 3 (all_zero_list (3)) )
+  **  ((( &( "clause4" ) )) # Ptr  |-> retval)
+  **  ((( &( "clause3" ) )) # Ptr  |-> retval_4)
+  **  ((( &( "clause2" ) )) # Ptr  |-> retval_3)
+  **  ((( &( "clause1" ) )) # Ptr  |-> retval_2)
+  **  ((( &( "size" ) )) # Int  |-> 3)
+  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
+  **  ((( &( "op" ) )) # Int  |-> op_pre)
+  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
+  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
+  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
+|--
+  [| (retval <> 0) |] 
+  &&  [| (3 > 0) |]
+.
+
+Definition clause_gen_binary_partial_solve_wit_88_aux := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+  [| ((0 + 1 ) = 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre <> 2) |] 
+  &&  [| (op_pre = 3) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+|--
+  [| (retval_4 <> 0) |] 
+  &&  [| (3 > 0) |] 
+  &&  [| ((0 + 1 ) = 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre <> 2) |] 
+  &&  [| (op_pre = 3) |]
+  &&  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+.
+
+Definition clause_gen_binary_partial_solve_wit_88 := clause_gen_binary_partial_solve_wit_88_pure -> clause_gen_binary_partial_solve_wit_88_aux.
+
+Definition clause_gen_binary_partial_solve_wit_89_pure := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+  [| ((0 + 1 ) = 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre = 2) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
+  **  (store_int_array retval_2 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+  **  ((( &( "cnt" ) )) # Int  |-> (0 + 1 ))
+  **  (store_int_array retval 3 (all_zero_list (3)) )
+  **  ((( &( "clause4" ) )) # Ptr  |-> retval)
+  **  ((( &( "clause3" ) )) # Ptr  |-> retval_4)
+  **  ((( &( "clause2" ) )) # Ptr  |-> retval_3)
+  **  ((( &( "clause1" ) )) # Ptr  |-> retval_2)
+  **  ((( &( "size" ) )) # Int  |-> 3)
+  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
+  **  ((( &( "op" ) )) # Int  |-> op_pre)
+  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
+  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
+  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
+|--
+  [| (retval <> 0) |] 
+  &&  [| (3 > 0) |]
+.
+
+Definition clause_gen_binary_partial_solve_wit_89_aux := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+  [| ((0 + 1 ) = 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre = 2) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+|--
+  [| (retval_4 <> 0) |] 
+  &&  [| (3 > 0) |] 
+  &&  [| ((0 + 1 ) = 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre = 2) |]
+  &&  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+.
+
+Definition clause_gen_binary_partial_solve_wit_89 := clause_gen_binary_partial_solve_wit_89_pure -> clause_gen_binary_partial_solve_wit_89_aux.
+
+Definition clause_gen_binary_partial_solve_wit_90_pure := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+  [| ((0 + 1 ) = 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre <> 0) |] 
+  &&  [| (op_pre = 2) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_5)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
+  **  ((&((retval)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list2" ) )) # Ptr  |-> retval)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  ((( &( "list1" ) )) # Ptr  |-> retval_6)
+  **  (store_int_array retval_2 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
+  **  ((( &( "cnt" ) )) # Int  |-> (0 + 1 ))
+  **  ((( &( "clause4" ) )) # Ptr  |-> retval_5)
+  **  ((( &( "clause3" ) )) # Ptr  |-> retval_4)
+  **  ((( &( "clause2" ) )) # Ptr  |-> retval_3)
+  **  ((( &( "clause1" ) )) # Ptr  |-> retval_2)
+  **  ((( &( "size" ) )) # Int  |-> 3)
+  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
+  **  ((( &( "op" ) )) # Int  |-> op_pre)
+  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
+  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
+  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
+|--
+  [| (retval <> 0) |]
 .
 
 Definition clause_gen_binary_partial_solve_wit_90_aux := 
@@ -14325,12 +14248,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
   **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
-  **  (store_int_array retval_2 3 (all_zero_list (3)) )
 |--
-  [| (retval_2 <> 0) |] 
-  &&  [| (3 > 0) |] 
+  [| (retval_6 <> 0) |] 
   &&  [| ((0 + 1 ) = 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
@@ -14357,7 +14276,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  (store_int_array retval_2 3 (all_zero_list (3)) )
+  &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
@@ -14368,31 +14289,26 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
   **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
 .
 
 Definition clause_gen_binary_partial_solve_wit_90 := clause_gen_binary_partial_solve_wit_90_pure -> clause_gen_binary_partial_solve_wit_90_aux.
 
 Definition clause_gen_binary_partial_solve_wit_91_pure := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 1 ) = 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
   &&  [| (retval_8 <> 0) |] 
   &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
   &&  [| (retval <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
   &&  [| (p1_pre <> 0) |] 
@@ -14408,33 +14324,32 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  &&  [| (op_pre <> 2) |] 
+  &&  [| (op_pre = 3) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_5)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
+  **  ((&((retval)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list2" ) )) # Ptr  |-> retval)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  ((( &( "list1" ) )) # Ptr  |-> retval_6)
   **  (store_int_array retval_2 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
   **  ((( &( "cnt" ) )) # Int  |-> (0 + 1 ))
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
-  **  (store_int_array retval 3 (all_zero_list (3)) )
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval)
+  **  ((( &( "clause4" ) )) # Ptr  |-> retval_5)
+  **  ((( &( "clause3" ) )) # Ptr  |-> retval_4)
   **  ((( &( "clause2" ) )) # Ptr  |-> retval_3)
   **  ((( &( "clause1" ) )) # Ptr  |-> retval_2)
   **  ((( &( "size" ) )) # Int  |-> 3)
@@ -14444,8 +14359,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((( &( "p2" ) )) # Int  |-> p2_pre)
   **  ((( &( "p1" ) )) # Int  |-> p1_pre)
 |--
-  [| (retval <> 0) |] 
-  &&  [| (3 > 0) |]
+  [| (retval <> 0) |]
 .
 
 Definition clause_gen_binary_partial_solve_wit_91_aux := 
@@ -14475,7 +14389,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
+  &&  [| (op_pre <> 2) |] 
+  &&  [| (op_pre = 3) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
@@ -14493,11 +14408,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
   **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
 |--
-  [| (retval_3 <> 0) |] 
-  &&  [| (3 > 0) |] 
+  [| (retval_6 <> 0) |] 
   &&  [| ((0 + 1 ) = 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
@@ -14523,8 +14435,11 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
-  &&  (store_int_array retval_3 3 (all_zero_list (3)) )
+  &&  [| (op_pre <> 2) |] 
+  &&  [| (op_pre = 3) |]
+  &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
@@ -14535,30 +14450,26 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
   **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
 .
 
 Definition clause_gen_binary_partial_solve_wit_91 := clause_gen_binary_partial_solve_wit_91_pure -> clause_gen_binary_partial_solve_wit_91_aux.
 
 Definition clause_gen_binary_partial_solve_wit_92_pure := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 1 ) = 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
   &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval <> 0) |] 
   &&  [| (retval_7 <> 0) |] 
   &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
   &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_5 <> 0) |] 
   &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
   &&  [| (p1_pre <> 0) |] 
@@ -14576,32 +14487,27 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_5)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
+  **  ((&((retval)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list3" ) )) # Ptr  |-> retval)
+  **  ((( &( "list2" ) )) # Ptr  |-> retval_7)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  ((( &( "list1" ) )) # Ptr  |-> retval_6)
   **  (store_int_array retval_2 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
   **  ((( &( "cnt" ) )) # Int  |-> (0 + 1 ))
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval_4)
-  **  (store_int_array retval 3 (all_zero_list (3)) )
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval)
+  **  ((( &( "clause4" ) )) # Ptr  |-> retval_5)
+  **  ((( &( "clause3" ) )) # Ptr  |-> retval_4)
   **  ((( &( "clause2" ) )) # Ptr  |-> retval_3)
   **  ((( &( "clause1" ) )) # Ptr  |-> retval_2)
   **  ((( &( "size" ) )) # Int  |-> 3)
@@ -14611,8 +14517,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((( &( "p2" ) )) # Int  |-> p2_pre)
   **  ((( &( "p1" ) )) # Int  |-> p1_pre)
 |--
-  [| (retval <> 0) |] 
-  &&  [| (3 > 0) |]
+  [| (retval <> 0) |]
 .
 
 Definition clause_gen_binary_partial_solve_wit_92_aux := 
@@ -14654,18 +14559,12 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
   **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  (store_int_array retval_3 3 (all_zero_list (3)) )
 |--
-  [| (retval_3 <> 0) |] 
-  &&  [| (3 > 0) |] 
+  [| (retval_7 <> 0) |] 
   &&  [| ((0 + 1 ) = 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
@@ -14693,7 +14592,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
   &&  [| (op_pre = 3) |]
-  &&  (store_int_array retval_3 3 (all_zero_list (3)) )
+  &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
@@ -14701,32 +14602,25 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
   **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
 .
 
 Definition clause_gen_binary_partial_solve_wit_92 := clause_gen_binary_partial_solve_wit_92_pure -> clause_gen_binary_partial_solve_wit_92_aux.
 
 Definition clause_gen_binary_partial_solve_wit_93_pure := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 1 ) = 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
   &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval <> 0) |] 
   &&  [| (retval_7 <> 0) |] 
   &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
   &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -14743,32 +14637,27 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  &&  [| (op_pre = 2) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_5)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
+  **  ((&((retval)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list3" ) )) # Ptr  |-> retval)
+  **  ((( &( "list2" ) )) # Ptr  |-> retval_7)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  ((( &( "list1" ) )) # Ptr  |-> retval_6)
   **  (store_int_array retval_2 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
   **  ((( &( "cnt" ) )) # Int  |-> (0 + 1 ))
-  **  (store_int_array retval 3 (all_zero_list (3)) )
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval)
+  **  ((( &( "clause4" ) )) # Ptr  |-> retval_5)
   **  ((( &( "clause3" ) )) # Ptr  |-> retval_4)
   **  ((( &( "clause2" ) )) # Ptr  |-> retval_3)
   **  ((( &( "clause1" ) )) # Ptr  |-> retval_2)
@@ -14779,8 +14668,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((( &( "p2" ) )) # Int  |-> p2_pre)
   **  ((( &( "p1" ) )) # Int  |-> p1_pre)
 |--
-  [| (retval <> 0) |] 
-  &&  [| (3 > 0) |]
+  [| (retval <> 0) |]
 .
 
 Definition clause_gen_binary_partial_solve_wit_93_aux := 
@@ -14810,8 +14698,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre = 3) |]
+  &&  [| (op_pre = 2) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
@@ -14822,17 +14709,12 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
   **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
 |--
-  [| (retval_4 <> 0) |] 
-  &&  [| (3 > 0) |] 
+  [| (retval_7 <> 0) |] 
   &&  [| ((0 + 1 ) = 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
@@ -14858,9 +14740,10 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre = 3) |]
-  &&  (store_int_array retval_4 3 (all_zero_list (3)) )
+  &&  [| (op_pre = 2) |]
+  &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
@@ -14868,12 +14751,6 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
@@ -14883,16 +14760,16 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
 Definition clause_gen_binary_partial_solve_wit_93 := clause_gen_binary_partial_solve_wit_93_pure -> clause_gen_binary_partial_solve_wit_93_aux.
 
 Definition clause_gen_binary_partial_solve_wit_94_pure := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (retval: Z) (y: Z) ,
   [| ((0 + 1 ) = 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval <> 0) |] 
   &&  [| (retval_8 <> 0) |] 
   &&  [| (retval_7 <> 0) |] 
   &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
   &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (retval_3 <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -14910,30 +14787,23 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
+  **  ((&((retval)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_5)
+  **  ((&((retval)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list4" ) )) # Ptr  |-> retval)
+  **  ((( &( "list3" ) )) # Ptr  |-> retval_8)
+  **  ((( &( "list2" ) )) # Ptr  |-> retval_7)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  ((( &( "list1" ) )) # Ptr  |-> retval_6)
   **  (store_int_array retval_2 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
   **  ((( &( "cnt" ) )) # Int  |-> (0 + 1 ))
-  **  (store_int_array retval 3 (all_zero_list (3)) )
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval)
+  **  ((( &( "clause4" ) )) # Ptr  |-> retval_5)
   **  ((( &( "clause3" ) )) # Ptr  |-> retval_4)
   **  ((( &( "clause2" ) )) # Ptr  |-> retval_3)
   **  ((( &( "clause1" ) )) # Ptr  |-> retval_2)
@@ -14944,8 +14814,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((( &( "p2" ) )) # Int  |-> p2_pre)
   **  ((( &( "p1" ) )) # Int  |-> p1_pre)
 |--
-  [| (retval <> 0) |] 
-  &&  [| (3 > 0) |]
+  [| (retval <> 0) |]
 .
 
 Definition clause_gen_binary_partial_solve_wit_94_aux := 
@@ -14983,20 +14852,12 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
   **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
 |--
-  [| (retval_4 <> 0) |] 
-  &&  [| (3 > 0) |] 
+  [| (retval_8 <> 0) |] 
   &&  [| ((0 + 1 ) = 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
@@ -15023,20 +14884,13 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
-  &&  (store_int_array retval_4 3 (all_zero_list (3)) )
+  &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
@@ -15046,13 +14900,13 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
 Definition clause_gen_binary_partial_solve_wit_94 := clause_gen_binary_partial_solve_wit_94_pure -> clause_gen_binary_partial_solve_wit_94_aux.
 
 Definition clause_gen_binary_partial_solve_wit_95_pure := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (retval: Z) (y: Z) ,
   [| ((0 + 1 ) = 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval <> 0) |] 
   &&  [| (retval_8 <> 0) |] 
   &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval <> 0) |] 
   &&  [| (retval_6 <> 0) |] 
   &&  [| (p1_pre = p2_pre) |] 
   &&  [| (retval_5 <> 0) |] 
@@ -15072,23 +14926,18 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
+  &&  [| (op_pre <> 2) |] 
+  &&  [| (op_pre = 3) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_5)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
   **  ((&((retval)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_5)
   **  ((&((retval)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval)
+  **  ((( &( "list4" ) )) # Ptr  |-> retval)
+  **  ((( &( "list3" ) )) # Ptr  |-> retval_8)
+  **  ((( &( "list2" ) )) # Ptr  |-> retval_7)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
@@ -15136,7 +14985,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
+  &&  [| (op_pre <> 2) |] 
+  &&  [| (op_pre = 3) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
@@ -15144,18 +14994,12 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
   **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
 |--
-  [| (retval_6 <> 0) |] 
+  [| (retval_8 <> 0) |] 
   &&  [| ((0 + 1 ) = 1) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist)) = ccnt) |] 
@@ -15181,20 +15025,15 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
-  &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  &&  [| (op_pre <> 2) |] 
+  &&  [| (op_pre = 3) |]
+  &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
   **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
@@ -15204,751 +15043,6 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
 Definition clause_gen_binary_partial_solve_wit_95 := clause_gen_binary_partial_solve_wit_95_pure -> clause_gen_binary_partial_solve_wit_95_aux.
 
 Definition clause_gen_binary_partial_solve_wit_96_pure := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 1 ) = 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_5)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
-  **  ((&((retval)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_6)
-  **  (store_int_array retval_2 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
-  **  ((( &( "cnt" ) )) # Int  |-> (0 + 1 ))
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval_5)
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval_4)
-  **  ((( &( "clause2" ) )) # Ptr  |-> retval_3)
-  **  ((( &( "clause1" ) )) # Ptr  |-> retval_2)
-  **  ((( &( "size" ) )) # Int  |-> 3)
-  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
-  **  ((( &( "op" ) )) # Int  |-> op_pre)
-  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
-  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
-  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
-|--
-  [| (retval <> 0) |]
-.
-
-Definition clause_gen_binary_partial_solve_wit_96_aux := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 1 ) = 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
-|--
-  [| (retval_6 <> 0) |] 
-  &&  [| ((0 + 1 ) = 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre = 3) |]
-  &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
-.
-
-Definition clause_gen_binary_partial_solve_wit_96 := clause_gen_binary_partial_solve_wit_96_pure -> clause_gen_binary_partial_solve_wit_96_aux.
-
-Definition clause_gen_binary_partial_solve_wit_97_pure := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 1 ) = 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_5)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_7)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_6)
-  **  (store_int_array retval_2 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
-  **  ((( &( "cnt" ) )) # Int  |-> (0 + 1 ))
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval_5)
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval_4)
-  **  ((( &( "clause2" ) )) # Ptr  |-> retval_3)
-  **  ((( &( "clause1" ) )) # Ptr  |-> retval_2)
-  **  ((( &( "size" ) )) # Int  |-> 3)
-  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
-  **  ((( &( "op" ) )) # Int  |-> op_pre)
-  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
-  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
-  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
-|--
-  [| (retval <> 0) |]
-.
-
-Definition clause_gen_binary_partial_solve_wit_97_aux := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 1 ) = 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
-|--
-  [| (retval_7 <> 0) |] 
-  &&  [| ((0 + 1 ) = 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre = 3) |]
-  &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
-.
-
-Definition clause_gen_binary_partial_solve_wit_97 := clause_gen_binary_partial_solve_wit_97_pure -> clause_gen_binary_partial_solve_wit_97_aux.
-
-Definition clause_gen_binary_partial_solve_wit_98_pure := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 1 ) = 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_5)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_7)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_6)
-  **  (store_int_array retval_2 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
-  **  ((( &( "cnt" ) )) # Int  |-> (0 + 1 ))
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval_5)
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval_4)
-  **  ((( &( "clause2" ) )) # Ptr  |-> retval_3)
-  **  ((( &( "clause1" ) )) # Ptr  |-> retval_2)
-  **  ((( &( "size" ) )) # Int  |-> 3)
-  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
-  **  ((( &( "op" ) )) # Int  |-> op_pre)
-  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
-  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
-  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
-|--
-  [| (retval <> 0) |]
-.
-
-Definition clause_gen_binary_partial_solve_wit_98_aux := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 1 ) = 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
-|--
-  [| (retval_7 <> 0) |] 
-  &&  [| ((0 + 1 ) = 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
-  &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
-.
-
-Definition clause_gen_binary_partial_solve_wit_98 := clause_gen_binary_partial_solve_wit_98_pure -> clause_gen_binary_partial_solve_wit_98_aux.
-
-Definition clause_gen_binary_partial_solve_wit_99_pure := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (retval: Z) (y: Z) ,
-  [| ((0 + 1 ) = 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_5)
-  **  ((&((retval)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_8)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_7)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_6)
-  **  (store_int_array retval_2 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
-  **  ((( &( "cnt" ) )) # Int  |-> (0 + 1 ))
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval_5)
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval_4)
-  **  ((( &( "clause2" ) )) # Ptr  |-> retval_3)
-  **  ((( &( "clause1" ) )) # Ptr  |-> retval_2)
-  **  ((( &( "size" ) )) # Int  |-> 3)
-  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
-  **  ((( &( "op" ) )) # Int  |-> op_pre)
-  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
-  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
-  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
-|--
-  [| (retval <> 0) |]
-.
-
-Definition clause_gen_binary_partial_solve_wit_99_aux := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 1 ) = 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
-|--
-  [| (retval_8 <> 0) |] 
-  &&  [| ((0 + 1 ) = 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre = 2) |]
-  &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
-.
-
-Definition clause_gen_binary_partial_solve_wit_99 := clause_gen_binary_partial_solve_wit_99_pure -> clause_gen_binary_partial_solve_wit_99_aux.
-
-Definition clause_gen_binary_partial_solve_wit_100_pure := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (retval: Z) (y: Z) ,
-  [| ((0 + 1 ) = 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_5)
-  **  ((&((retval)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_8)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_7)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_6)
-  **  (store_int_array retval_2 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
-  **  ((( &( "cnt" ) )) # Int  |-> (0 + 1 ))
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval_5)
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval_4)
-  **  ((( &( "clause2" ) )) # Ptr  |-> retval_3)
-  **  ((( &( "clause1" ) )) # Ptr  |-> retval_2)
-  **  ((( &( "size" ) )) # Int  |-> 3)
-  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
-  **  ((( &( "op" ) )) # Int  |-> op_pre)
-  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
-  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
-  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
-|--
-  [| (retval <> 0) |]
-.
-
-Definition clause_gen_binary_partial_solve_wit_100_aux := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 1 ) = 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre = 3) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
-|--
-  [| (retval_8 <> 0) |] 
-  &&  [| ((0 + 1 ) = 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre <> 0) |] 
-  &&  [| (op_pre <> 2) |] 
-  &&  [| (op_pre = 3) |]
-  &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 1 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  (store_int_array retval 3 (replace_Znth (0) (p3_pre) ((all_zero_list (3)))) )
-.
-
-Definition clause_gen_binary_partial_solve_wit_100 := clause_gen_binary_partial_solve_wit_100_pure -> clause_gen_binary_partial_solve_wit_100_aux.
-
-Definition clause_gen_binary_partial_solve_wit_101_pure := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 3 ) = 3) |] 
   &&  [| ((0 + 3 ) <> 2) |] 
@@ -16018,7 +15112,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (3 > 0) |]
 .
 
-Definition clause_gen_binary_partial_solve_wit_101_aux := 
+Definition clause_gen_binary_partial_solve_wit_96_aux := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 3 ) = 3) |] 
   &&  [| ((0 + 3 ) <> 2) |] 
@@ -16121,9 +15215,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
 .
 
-Definition clause_gen_binary_partial_solve_wit_101 := clause_gen_binary_partial_solve_wit_101_pure -> clause_gen_binary_partial_solve_wit_101_aux.
+Definition clause_gen_binary_partial_solve_wit_96 := clause_gen_binary_partial_solve_wit_96_pure -> clause_gen_binary_partial_solve_wit_96_aux.
 
-Definition clause_gen_binary_partial_solve_wit_102_pure := 
+Definition clause_gen_binary_partial_solve_wit_97_pure := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 3 ) = 3) |] 
   &&  [| ((0 + 3 ) <> 2) |] 
@@ -16192,7 +15286,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (3 > 0) |]
 .
 
-Definition clause_gen_binary_partial_solve_wit_102_aux := 
+Definition clause_gen_binary_partial_solve_wit_97_aux := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 3 ) = 3) |] 
   &&  [| ((0 + 3 ) <> 2) |] 
@@ -16293,9 +15387,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
 .
 
-Definition clause_gen_binary_partial_solve_wit_102 := clause_gen_binary_partial_solve_wit_102_pure -> clause_gen_binary_partial_solve_wit_102_aux.
+Definition clause_gen_binary_partial_solve_wit_97 := clause_gen_binary_partial_solve_wit_97_pure -> clause_gen_binary_partial_solve_wit_97_aux.
 
-Definition clause_gen_binary_partial_solve_wit_103_pure := 
+Definition clause_gen_binary_partial_solve_wit_98_pure := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 3 ) = 3) |] 
   &&  [| ((0 + 3 ) <> 2) |] 
@@ -16362,6 +15456,842 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
 |--
   [| (retval <> 0) |] 
   &&  [| (3 > 0) |]
+.
+
+Definition clause_gen_binary_partial_solve_wit_98_aux := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+  [| ((0 + 3 ) = 3) |] 
+  &&  [| ((0 + 3 ) <> 2) |] 
+  &&  [| ((0 + 3 ) <> 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre = 0) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
+  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+|--
+  [| (retval_4 <> 0) |] 
+  &&  [| (3 > 0) |] 
+  &&  [| ((0 + 3 ) = 3) |] 
+  &&  [| ((0 + 3 ) <> 2) |] 
+  &&  [| ((0 + 3 ) <> 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre = 0) |]
+  &&  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
+  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+.
+
+Definition clause_gen_binary_partial_solve_wit_98 := clause_gen_binary_partial_solve_wit_98_pure -> clause_gen_binary_partial_solve_wit_98_aux.
+
+Definition clause_gen_binary_partial_solve_wit_99_pure := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+  [| ((0 + 3 ) = 3) |] 
+  &&  [| ((0 + 3 ) <> 2) |] 
+  &&  [| ((0 + 3 ) <> 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre = 1) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
+  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
+  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
+  **  (store_int_array retval_4 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
+  **  (store_int_array retval 3 (all_zero_list (3)) )
+  **  ((( &( "clause4" ) )) # Ptr  |-> retval)
+  **  ((( &( "clause3" ) )) # Ptr  |-> retval_4)
+  **  ((( &( "clause2" ) )) # Ptr  |-> retval_3)
+  **  ((( &( "clause1" ) )) # Ptr  |-> retval_2)
+  **  ((( &( "size" ) )) # Int  |-> 3)
+  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
+  **  ((( &( "op" ) )) # Int  |-> op_pre)
+  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
+  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
+  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
+|--
+  [| (retval <> 0) |] 
+  &&  [| (3 > 0) |]
+.
+
+Definition clause_gen_binary_partial_solve_wit_99_aux := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+  [| ((0 + 3 ) = 3) |] 
+  &&  [| ((0 + 3 ) <> 2) |] 
+  &&  [| ((0 + 3 ) <> 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre = 1) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+|--
+  [| (retval_4 <> 0) |] 
+  &&  [| (3 > 0) |] 
+  &&  [| ((0 + 3 ) = 3) |] 
+  &&  [| ((0 + 3 ) <> 2) |] 
+  &&  [| ((0 + 3 ) <> 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre = 1) |]
+  &&  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+.
+
+Definition clause_gen_binary_partial_solve_wit_99 := clause_gen_binary_partial_solve_wit_99_pure -> clause_gen_binary_partial_solve_wit_99_aux.
+
+Definition clause_gen_binary_partial_solve_wit_100_pure := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+  [| ((0 + 3 ) = 3) |] 
+  &&  [| ((0 + 3 ) <> 2) |] 
+  &&  [| ((0 + 3 ) <> 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre = 1) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
+  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
+  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
+  **  (store_int_array retval_4 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
+  **  (store_int_array retval 3 (all_zero_list (3)) )
+  **  ((( &( "clause4" ) )) # Ptr  |-> retval)
+  **  ((( &( "clause3" ) )) # Ptr  |-> retval_4)
+  **  ((( &( "clause2" ) )) # Ptr  |-> retval_3)
+  **  ((( &( "clause1" ) )) # Ptr  |-> retval_2)
+  **  ((( &( "size" ) )) # Int  |-> 3)
+  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
+  **  ((( &( "op" ) )) # Int  |-> op_pre)
+  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
+  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
+  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
+|--
+  [| (retval <> 0) |] 
+  &&  [| (3 > 0) |]
+.
+
+Definition clause_gen_binary_partial_solve_wit_100_aux := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+  [| ((0 + 3 ) = 3) |] 
+  &&  [| ((0 + 3 ) <> 2) |] 
+  &&  [| ((0 + 3 ) <> 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre = 1) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
+  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_4 3 (all_zero_list (3)) )
+|--
+  [| (retval_4 <> 0) |] 
+  &&  [| (3 > 0) |] 
+  &&  [| ((0 + 3 ) = 3) |] 
+  &&  [| ((0 + 3 ) <> 2) |] 
+  &&  [| ((0 + 3 ) <> 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre = 1) |]
+  &&  (store_int_array retval_4 3 (all_zero_list (3)) )
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
+  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+.
+
+Definition clause_gen_binary_partial_solve_wit_100 := clause_gen_binary_partial_solve_wit_100_pure -> clause_gen_binary_partial_solve_wit_100_aux.
+
+Definition clause_gen_binary_partial_solve_wit_101_pure := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (retval: Z) (y: Z) ,
+  [| ((0 + 3 ) = 3) |] 
+  &&  [| ((0 + 3 ) <> 2) |] 
+  &&  [| ((0 + 3 ) <> 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre = 1) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_5)
+  **  ((&((retval)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list4" ) )) # Ptr  |-> retval)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  ((( &( "list3" ) )) # Ptr  |-> retval_8)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_8)
+  **  ((( &( "list2" ) )) # Ptr  |-> retval_7)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
+  **  ((( &( "list1" ) )) # Ptr  |-> retval_6)
+  **  (store_int_array retval_4 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
+  **  ((( &( "clause4" ) )) # Ptr  |-> retval_5)
+  **  ((( &( "clause3" ) )) # Ptr  |-> retval_4)
+  **  ((( &( "clause2" ) )) # Ptr  |-> retval_3)
+  **  ((( &( "clause1" ) )) # Ptr  |-> retval_2)
+  **  ((( &( "size" ) )) # Int  |-> 3)
+  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
+  **  ((( &( "op" ) )) # Int  |-> op_pre)
+  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
+  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
+  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
+|--
+  [| (retval <> 0) |]
+.
+
+Definition clause_gen_binary_partial_solve_wit_101_aux := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+  [| ((0 + 3 ) = 3) |] 
+  &&  [| ((0 + 3 ) <> 2) |] 
+  &&  [| ((0 + 3 ) <> 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre = 1) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
+  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+|--
+  [| (retval_8 <> 0) |] 
+  &&  [| ((0 + 3 ) = 3) |] 
+  &&  [| ((0 + 3 ) <> 2) |] 
+  &&  [| ((0 + 3 ) <> 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre = 1) |]
+  &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
+  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+.
+
+Definition clause_gen_binary_partial_solve_wit_101 := clause_gen_binary_partial_solve_wit_101_pure -> clause_gen_binary_partial_solve_wit_101_aux.
+
+Definition clause_gen_binary_partial_solve_wit_102_pure := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (retval: Z) (y: Z) ,
+  [| ((0 + 3 ) = 3) |] 
+  &&  [| ((0 + 3 ) <> 2) |] 
+  &&  [| ((0 + 3 ) <> 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre = 1) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_5)
+  **  ((&((retval)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list4" ) )) # Ptr  |-> retval)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  ((( &( "list3" ) )) # Ptr  |-> retval_8)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_8)
+  **  ((( &( "list2" ) )) # Ptr  |-> retval_7)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
+  **  ((( &( "list1" ) )) # Ptr  |-> retval_6)
+  **  (store_int_array retval_4 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
+  **  ((( &( "clause4" ) )) # Ptr  |-> retval_5)
+  **  ((( &( "clause3" ) )) # Ptr  |-> retval_4)
+  **  ((( &( "clause2" ) )) # Ptr  |-> retval_3)
+  **  ((( &( "clause1" ) )) # Ptr  |-> retval_2)
+  **  ((( &( "size" ) )) # Int  |-> 3)
+  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
+  **  ((( &( "op" ) )) # Int  |-> op_pre)
+  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
+  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
+  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
+|--
+  [| (retval <> 0) |]
+.
+
+Definition clause_gen_binary_partial_solve_wit_102_aux := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
+  [| ((0 + 3 ) = 3) |] 
+  &&  [| ((0 + 3 ) <> 2) |] 
+  &&  [| ((0 + 3 ) <> 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre = 1) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+|--
+  [| (retval_8 <> 0) |] 
+  &&  [| ((0 + 3 ) = 3) |] 
+  &&  [| ((0 + 3 ) <> 2) |] 
+  &&  [| ((0 + 3 ) <> 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (p1_pre <> p2_pre) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre = 1) |]
+  &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
+  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
+  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+.
+
+Definition clause_gen_binary_partial_solve_wit_102 := clause_gen_binary_partial_solve_wit_102_pure -> clause_gen_binary_partial_solve_wit_102_aux.
+
+Definition clause_gen_binary_partial_solve_wit_103_pure := 
+forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (retval: Z) (y: Z) ,
+  [| ((0 + 3 ) = 3) |] 
+  &&  [| ((0 + 3 ) <> 2) |] 
+  &&  [| ((0 + 3 ) <> 1) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist)) = ccnt) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (retval_8 <> 0) |] 
+  &&  [| (retval_7 <> 0) |] 
+  &&  [| (retval_6 <> 0) |] 
+  &&  [| (p1_pre = p2_pre) |] 
+  &&  [| (retval_5 <> 0) |] 
+  &&  [| (retval_4 <> 0) |] 
+  &&  [| (retval_3 <> 0) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (p1_pre <> 0) |] 
+  &&  [| (p2_pre <> 0) |] 
+  &&  [| (p3_pre <> 0) |] 
+  &&  [| (p1_pre <= pcnt) |] 
+  &&  [| (p2_pre <= pcnt) |] 
+  &&  [| (p3_pre <= pcnt) |] 
+  &&  [| ((-p1_pre) <= pcnt) |] 
+  &&  [| ((-p2_pre) <= pcnt) |] 
+  &&  [| ((-p3_pre) <= pcnt) |] 
+  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
+  &&  [| (op_pre = (SmtPBID (bop))) |] 
+  &&  [| (op_pre <> 1) |] 
+  &&  [| (op_pre = 0) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
+  **  (sll_cnf_list y clist )
+  **  ((&((retval)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_5)
+  **  ((&((retval)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
+  **  ((( &( "list4" ) )) # Ptr  |-> retval)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
+  **  ((( &( "list3" ) )) # Ptr  |-> retval_8)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
+  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_8)
+  **  ((( &( "list2" ) )) # Ptr  |-> retval_7)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
+  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
+  **  ((( &( "list1" ) )) # Ptr  |-> retval_6)
+  **  (store_int_array retval_4 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
+  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
+  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
+  **  ((( &( "clause4" ) )) # Ptr  |-> retval_5)
+  **  ((( &( "clause3" ) )) # Ptr  |-> retval_4)
+  **  ((( &( "clause2" ) )) # Ptr  |-> retval_3)
+  **  ((( &( "clause1" ) )) # Ptr  |-> retval_2)
+  **  ((( &( "size" ) )) # Int  |-> 3)
+  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
+  **  ((( &( "op" ) )) # Int  |-> op_pre)
+  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
+  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
+  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
+|--
+  [| (retval <> 0) |]
 .
 
 Definition clause_gen_binary_partial_solve_wit_103_aux := 
@@ -16412,10 +16342,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
   **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
 |--
-  [| (retval_4 <> 0) |] 
-  &&  [| (3 > 0) |] 
+  [| (retval_8 <> 0) |] 
   &&  [| ((0 + 3 ) = 3) |] 
   &&  [| ((0 + 3 ) <> 2) |] 
   &&  [| ((0 + 3 ) <> 1) |] 
@@ -16443,14 +16371,13 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
-  &&  (store_int_array retval_4 3 (all_zero_list (3)) )
+  &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
+  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
   **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
@@ -16468,839 +16395,6 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
 Definition clause_gen_binary_partial_solve_wit_103 := clause_gen_binary_partial_solve_wit_103_pure -> clause_gen_binary_partial_solve_wit_103_aux.
 
 Definition clause_gen_binary_partial_solve_wit_104_pure := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) = 3) |] 
-  &&  [| ((0 + 3 ) <> 2) |] 
-  &&  [| ((0 + 3 ) <> 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_4 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
-  **  (store_int_array retval 3 (all_zero_list (3)) )
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval)
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval_4)
-  **  ((( &( "clause2" ) )) # Ptr  |-> retval_3)
-  **  ((( &( "clause1" ) )) # Ptr  |-> retval_2)
-  **  ((( &( "size" ) )) # Int  |-> 3)
-  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
-  **  ((( &( "op" ) )) # Int  |-> op_pre)
-  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
-  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
-  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
-|--
-  [| (retval <> 0) |] 
-  &&  [| (3 > 0) |]
-.
-
-Definition clause_gen_binary_partial_solve_wit_104_aux := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) = 3) |] 
-  &&  [| ((0 + 3 ) <> 2) |] 
-  &&  [| ((0 + 3 ) <> 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-|--
-  [| (retval_4 <> 0) |] 
-  &&  [| (3 > 0) |] 
-  &&  [| ((0 + 3 ) = 3) |] 
-  &&  [| ((0 + 3 ) <> 2) |] 
-  &&  [| ((0 + 3 ) <> 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
-  &&  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-.
-
-Definition clause_gen_binary_partial_solve_wit_104 := clause_gen_binary_partial_solve_wit_104_pure -> clause_gen_binary_partial_solve_wit_104_aux.
-
-Definition clause_gen_binary_partial_solve_wit_105_pure := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) = 3) |] 
-  &&  [| ((0 + 3 ) <> 2) |] 
-  &&  [| ((0 + 3 ) <> 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_7)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_6)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_5)
-  **  (store_int_array retval_4 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
-  **  (store_int_array retval 3 (all_zero_list (3)) )
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval)
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval_4)
-  **  ((( &( "clause2" ) )) # Ptr  |-> retval_3)
-  **  ((( &( "clause1" ) )) # Ptr  |-> retval_2)
-  **  ((( &( "size" ) )) # Int  |-> 3)
-  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
-  **  ((( &( "op" ) )) # Int  |-> op_pre)
-  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
-  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
-  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
-|--
-  [| (retval <> 0) |] 
-  &&  [| (3 > 0) |]
-.
-
-Definition clause_gen_binary_partial_solve_wit_105_aux := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) = 3) |] 
-  &&  [| ((0 + 3 ) <> 2) |] 
-  &&  [| ((0 + 3 ) <> 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
-  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_4 3 (all_zero_list (3)) )
-|--
-  [| (retval_4 <> 0) |] 
-  &&  [| (3 > 0) |] 
-  &&  [| ((0 + 3 ) = 3) |] 
-  &&  [| ((0 + 3 ) <> 2) |] 
-  &&  [| ((0 + 3 ) <> 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
-  &&  (store_int_array retval_4 3 (all_zero_list (3)) )
-  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
-  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-.
-
-Definition clause_gen_binary_partial_solve_wit_105 := clause_gen_binary_partial_solve_wit_105_pure -> clause_gen_binary_partial_solve_wit_105_aux.
-
-Definition clause_gen_binary_partial_solve_wit_106_pure := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (retval: Z) (y: Z) ,
-  [| ((0 + 3 ) = 3) |] 
-  &&  [| ((0 + 3 ) <> 2) |] 
-  &&  [| ((0 + 3 ) <> 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_5)
-  **  ((&((retval)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_8)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_7)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_6)
-  **  (store_int_array retval_4 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval_5)
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval_4)
-  **  ((( &( "clause2" ) )) # Ptr  |-> retval_3)
-  **  ((( &( "clause1" ) )) # Ptr  |-> retval_2)
-  **  ((( &( "size" ) )) # Int  |-> 3)
-  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
-  **  ((( &( "op" ) )) # Int  |-> op_pre)
-  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
-  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
-  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
-|--
-  [| (retval <> 0) |]
-.
-
-Definition clause_gen_binary_partial_solve_wit_106_aux := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) = 3) |] 
-  &&  [| ((0 + 3 ) <> 2) |] 
-  &&  [| ((0 + 3 ) <> 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
-  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-|--
-  [| (retval_8 <> 0) |] 
-  &&  [| ((0 + 3 ) = 3) |] 
-  &&  [| ((0 + 3 ) <> 2) |] 
-  &&  [| ((0 + 3 ) <> 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
-  &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
-  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-.
-
-Definition clause_gen_binary_partial_solve_wit_106 := clause_gen_binary_partial_solve_wit_106_pure -> clause_gen_binary_partial_solve_wit_106_aux.
-
-Definition clause_gen_binary_partial_solve_wit_107_pure := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (retval: Z) (y: Z) ,
-  [| ((0 + 3 ) = 3) |] 
-  &&  [| ((0 + 3 ) <> 2) |] 
-  &&  [| ((0 + 3 ) <> 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_5)
-  **  ((&((retval)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_8)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_7)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_6)
-  **  (store_int_array retval_4 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval_5)
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval_4)
-  **  ((( &( "clause2" ) )) # Ptr  |-> retval_3)
-  **  ((( &( "clause1" ) )) # Ptr  |-> retval_2)
-  **  ((( &( "size" ) )) # Int  |-> 3)
-  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
-  **  ((( &( "op" ) )) # Int  |-> op_pre)
-  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
-  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
-  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
-|--
-  [| (retval <> 0) |]
-.
-
-Definition clause_gen_binary_partial_solve_wit_107_aux := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) = 3) |] 
-  &&  [| ((0 + 3 ) <> 2) |] 
-  &&  [| ((0 + 3 ) <> 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-|--
-  [| (retval_8 <> 0) |] 
-  &&  [| ((0 + 3 ) = 3) |] 
-  &&  [| ((0 + 3 ) <> 2) |] 
-  &&  [| ((0 + 3 ) <> 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre <> p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre = 1) |]
-  &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
-  **  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-.
-
-Definition clause_gen_binary_partial_solve_wit_107 := clause_gen_binary_partial_solve_wit_107_pure -> clause_gen_binary_partial_solve_wit_107_aux.
-
-Definition clause_gen_binary_partial_solve_wit_108_pure := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (retval: Z) (y: Z) ,
-  [| ((0 + 3 ) = 3) |] 
-  &&  [| ((0 + 3 ) <> 2) |] 
-  &&  [| ((0 + 3 ) <> 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_5)
-  **  ((&((retval)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((( &( "list4" ) )) # Ptr  |-> retval)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((( &( "list3" ) )) # Ptr  |-> retval_8)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_8)
-  **  ((( &( "list2" ) )) # Ptr  |-> retval_7)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
-  **  ((( &( "list1" ) )) # Ptr  |-> retval_6)
-  **  (store_int_array retval_4 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-  **  ((( &( "cnt" ) )) # Int  |-> (0 + 3 ))
-  **  ((( &( "clause4" ) )) # Ptr  |-> retval_5)
-  **  ((( &( "clause3" ) )) # Ptr  |-> retval_4)
-  **  ((( &( "clause2" ) )) # Ptr  |-> retval_3)
-  **  ((( &( "clause1" ) )) # Ptr  |-> retval_2)
-  **  ((( &( "size" ) )) # Int  |-> 3)
-  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
-  **  ((( &( "op" ) )) # Int  |-> op_pre)
-  **  ((( &( "p3" ) )) # Int  |-> p3_pre)
-  **  ((( &( "p2" ) )) # Int  |-> p2_pre)
-  **  ((( &( "p1" ) )) # Int  |-> p1_pre)
-|--
-  [| (retval <> 0) |]
-.
-
-Definition clause_gen_binary_partial_solve_wit_108_aux := 
-forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
-  [| ((0 + 3 ) = 3) |] 
-  &&  [| ((0 + 3 ) <> 2) |] 
-  &&  [| ((0 + 3 ) <> 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre = 0) |]
-  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
-  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-|--
-  [| (retval_8 <> 0) |] 
-  &&  [| ((0 + 3 ) = 3) |] 
-  &&  [| ((0 + 3 ) <> 2) |] 
-  &&  [| ((0 + 3 ) <> 1) |] 
-  &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist)) = ccnt) |] 
-  &&  [| (retval_8 <> 0) |] 
-  &&  [| (retval_7 <> 0) |] 
-  &&  [| (retval_6 <> 0) |] 
-  &&  [| (retval_5 <> 0) |] 
-  &&  [| (p1_pre = p2_pre) |] 
-  &&  [| (retval_4 <> 0) |] 
-  &&  [| (retval_3 <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| (retval <> 0) |] 
-  &&  [| (p1_pre <> 0) |] 
-  &&  [| (p2_pre <> 0) |] 
-  &&  [| (p3_pre <> 0) |] 
-  &&  [| (p1_pre <= pcnt) |] 
-  &&  [| (p2_pre <= pcnt) |] 
-  &&  [| (p3_pre <= pcnt) |] 
-  &&  [| ((-p1_pre) <= pcnt) |] 
-  &&  [| ((-p2_pre) <= pcnt) |] 
-  &&  [| ((-p3_pre) <= pcnt) |] 
-  &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
-  &&  [| (op_pre = (SmtPBID (bop))) |] 
-  &&  [| (op_pre <> 1) |] 
-  &&  [| (op_pre = 0) |]
-  &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
-  **  ((&((retval_8)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
-  **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 3 ))
-  **  (sll_cnf_list y clist )
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_3)
-  **  ((&((retval_7)  # "cnf_list" ->ₛ "next")) # Ptr  |-> y)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
-  **  ((&((retval_6)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_7)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval)
-  **  ((&((retval_5)  # "cnf_list" ->ₛ "next")) # Ptr  |-> retval_6)
-  **  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
-  **  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
-  **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
-.
-
-Definition clause_gen_binary_partial_solve_wit_108 := clause_gen_binary_partial_solve_wit_108_pure -> clause_gen_binary_partial_solve_wit_108_aux.
-
-Definition clause_gen_binary_partial_solve_wit_109_pure := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (retval: Z) (y: Z) ,
   [| ((0 + 3 ) = 3) |] 
   &&  [| ((0 + 3 ) <> 2) |] 
@@ -17367,7 +16461,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   [| (retval <> 0) |]
 .
 
-Definition clause_gen_binary_partial_solve_wit_109_aux := 
+Definition clause_gen_binary_partial_solve_wit_104_aux := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 3 ) = 3) |] 
   &&  [| ((0 + 3 ) <> 2) |] 
@@ -17465,9 +16559,9 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
 .
 
-Definition clause_gen_binary_partial_solve_wit_109 := clause_gen_binary_partial_solve_wit_109_pure -> clause_gen_binary_partial_solve_wit_109_aux.
+Definition clause_gen_binary_partial_solve_wit_104 := clause_gen_binary_partial_solve_wit_104_pure -> clause_gen_binary_partial_solve_wit_104_aux.
 
-Definition clause_gen_binary_partial_solve_wit_110_pure := 
+Definition clause_gen_binary_partial_solve_wit_105_pure := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (retval: Z) (y: Z) ,
   [| ((0 + 3 ) = 3) |] 
   &&  [| ((0 + 3 ) <> 2) |] 
@@ -17535,7 +16629,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   [| (retval <> 0) |]
 .
 
-Definition clause_gen_binary_partial_solve_wit_110_aux := 
+Definition clause_gen_binary_partial_solve_wit_105_aux := 
 forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPropBop) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (retval: Z) (retval_2: Z) (retval_3: Z) (retval_4: Z) (retval_5: Z) (retval_6: Z) (retval_7: Z) (retval_8: Z) (y: Z) ,
   [| ((0 + 3 ) = 3) |] 
   &&  [| ((0 + 3 ) <> 2) |] 
@@ -17635,7 +16729,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (bop: SmtPr
   **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
 .
 
-Definition clause_gen_binary_partial_solve_wit_110 := clause_gen_binary_partial_solve_wit_110_pure -> clause_gen_binary_partial_solve_wit_110_aux.
+Definition clause_gen_binary_partial_solve_wit_105 := clause_gen_binary_partial_solve_wit_105_pure -> clause_gen_binary_partial_solve_wit_105_aux.
 
 Definition clause_gen_binary_which_implies_wit_1 := 
 forall (data_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) ,
@@ -17681,7 +16775,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 .
 
 Definition prop2cnf_safety_wit_3 := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) (y'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) (y'': Z) ,
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'')) = ccnt'') |] 
   &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
@@ -17699,6 +16793,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
   &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
@@ -17714,6 +16809,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
   **  ((( &( "res" ) )) # Int  |-> 0)
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
 |--
@@ -17722,7 +16818,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 .
 
 Definition prop2cnf_safety_wit_4 := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) (y'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) (y'': Z) ,
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'')) = ccnt'') |] 
   &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
@@ -17740,6 +16836,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
   &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
@@ -17755,6 +16852,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
   **  ((( &( "res" ) )) # Int  |-> 0)
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
 |--
@@ -17779,7 +16877,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 .
 
 Definition prop2cnf_safety_wit_6 := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) (y'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) (y'': Z) ,
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'')) = ccnt'') |] 
   &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
@@ -17791,6 +16889,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((-res) <= pcnt') |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
@@ -17804,6 +16903,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((( &( "p" ) )) # Ptr  |-> p_pre)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
   **  ((( &( "res" ) )) # Int  |-> 0)
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
 |--
@@ -17812,7 +16912,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 .
 
 Definition prop2cnf_safety_wit_7 := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) (y'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) (y'': Z) ,
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'')) = ccnt'') |] 
   &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
@@ -17824,6 +16924,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((-res) <= pcnt') |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
@@ -17837,6 +16938,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((( &( "p" ) )) # Ptr  |-> p_pre)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
   **  ((( &( "res" ) )) # Int  |-> 0)
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
 |--
@@ -17893,6 +16995,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
   &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
@@ -17902,10 +17005,10 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 |--
-  EX (clist'': (@list (@list Z)))  (ccnt'': Z)  (pcnt'': Z) ,
-  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res_2)) = (prop2cnf_logic (rt) ((make_predata (clist') (pcnt') (ccnt'))))) |] 
+  EX (clist'': (@list (@list Z)))  (pcnt'': Z)  (ccnt'': Z) ,
+  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res_2)) = (prop2cnf_logic (rt) ((make_predata (clist') (pcnt') (ccnt'))))) |] 
   &&  [| (retval_2 = res_2) |] 
   &&  [| (res_2 <> 0) |] 
   &&  [| (res_2 <= pcnt'_2) |] 
@@ -17918,6 +17021,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
   &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
@@ -17927,6 +17031,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 .
 
 Definition prop2cnf_entail_wit_2 := 
@@ -17938,6 +17043,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((-res) <= pcnt') |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
@@ -17946,16 +17052,17 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  (store_predata data_pre clist' pcnt' ccnt' )
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 |--
-  EX (clist'': (@list (@list Z)))  (ccnt'': Z)  (pcnt'': Z) ,
-  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (sub_prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  EX (clist'': (@list (@list Z)))  (pcnt'': Z)  (ccnt'': Z) ,
+  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (sub_prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
   &&  [| (retval = res) |] 
   &&  [| (res <> 0) |] 
   &&  [| (res <= pcnt') |] 
   &&  [| ((-res) <= pcnt') |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
@@ -17964,17 +17071,21 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  (store_SmtProp y sub_prop )
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 .
 
 Definition prop2cnf_return_wit_1_1 := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (var: Z) ,
   [| (prop = (SmtV (var))) |] 
+  &&  [| (var <> 0) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t <> 6) |] 
   &&  [| (t = 7) |]
   &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Propvar")) # Int  |-> var)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
   **  (store_predata data_pre clist pcnt ccnt )
 |--
   EX (clist': (@list (@list Z)))  (pcnt': Z)  (ccnt': Z)  (res: Z) ,
@@ -17988,7 +17099,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 .
 
 Definition prop2cnf_return_wit_1_2 := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) ,
   [| (((prop_cnt_inf (clist'')) + 1 ) <= (pcnt'' + 1 )) |] 
   &&  [| ((pcnt'' + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
@@ -18002,6 +17113,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((-res_2) <= pcnt'_2) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
@@ -18010,6 +17122,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  (store_SmtProp y sub_prop )
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 |--
   EX (clist': (@list (@list Z)))  (pcnt': Z)  (ccnt': Z)  (res: Z) ,
   [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -18022,7 +17135,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 .
 
 Definition prop2cnf_return_wit_1_3 := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval: Z) (clist'_3: (@list (@list Z))) (pcnt'_3: Z) (ccnt'_3: Z) (res_3: Z) (retval_2: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval: Z) (clist'_3: (@list (@list Z))) (pcnt'_3: Z) (ccnt'_3: Z) (res_3: Z) (retval_2: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) ,
   [| (((prop_cnt_inf (clist'')) + 1 ) <= (pcnt'' + 1 )) |] 
   &&  [| ((pcnt'' + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
@@ -18042,6 +17155,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
   &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
@@ -18051,6 +17165,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 |--
   EX (clist': (@list (@list Z)))  (pcnt': Z)  (ccnt': Z)  (res: Z) ,
   [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -18113,6 +17228,7 @@ Definition prop2cnf_partial_solve_wit_2 := prop2cnf_partial_solve_wit_2_pure -> 
 Definition prop2cnf_partial_solve_wit_3_pure := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) ,
   [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
@@ -18122,6 +17238,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
   **  (store_SmtProp y lt )
   **  (store_SmtProp z rt )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
   **  ((( &( "res" ) )) # Int  |-> 0)
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
   **  (store_predata data_pre clist pcnt ccnt )
@@ -18132,6 +17249,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 Definition prop2cnf_partial_solve_wit_3_aux := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) ,
   [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
@@ -18140,10 +17258,12 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
   **  (store_SmtProp y lt )
   **  (store_SmtProp z rt )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
   **  (store_predata data_pre clist pcnt ccnt )
 |--
   [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
@@ -18152,6 +17272,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
   **  (store_SmtProp y lt )
   **  (store_SmtProp z rt )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
   **  (store_predata data_pre clist pcnt ccnt )
 .
 
@@ -18162,6 +17283,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
   &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
@@ -18172,6 +17294,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
   **  (store_SmtProp y lt )
   **  (store_SmtProp z rt )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
   **  ((( &( "res" ) )) # Int  |-> 0)
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
   **  (store_predata data_pre clist pcnt ccnt )
@@ -18184,6 +17307,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
   &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
@@ -18192,12 +17316,14 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
   **  (store_SmtProp y lt )
   **  (store_SmtProp z rt )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
   **  (store_predata data_pre clist pcnt ccnt )
 |--
   [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
   &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
@@ -18207,6 +17333,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
   **  (store_SmtProp z rt )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 .
 
 Definition prop2cnf_partial_solve_wit_4 := prop2cnf_partial_solve_wit_4_pure -> prop2cnf_partial_solve_wit_4_aux.
@@ -18221,6 +17348,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
   &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
@@ -18233,6 +17361,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
   **  (store_SmtProp z rt )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
   **  ((( &( "res" ) )) # Int  |-> 0)
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
 |--
@@ -18249,6 +17378,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
   &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
@@ -18258,6 +17388,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
   **  (store_SmtProp z rt )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 |--
   [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt') |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -18268,6 +17399,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
   &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
@@ -18277,14 +17409,14 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 .
 
 Definition prop2cnf_partial_solve_wit_5 := prop2cnf_partial_solve_wit_5_pure -> prop2cnf_partial_solve_wit_5_aux.
 
 Definition prop2cnf_partial_solve_wit_6 := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) ,
-  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res_2)) = (prop2cnf_logic (rt) ((make_predata (clist') (pcnt') (ccnt'))))) |] 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) ,
+  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res_2)) = (prop2cnf_logic (rt) ((make_predata (clist') (pcnt') (ccnt'))))) |] 
   &&  [| (retval_2 = res_2) |] 
   &&  [| (res_2 <> 0) |] 
   &&  [| (res_2 <= pcnt'_2) |] 
@@ -18297,6 +17429,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
   &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
@@ -18306,9 +17439,9 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 |--
-  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res_2)) = (prop2cnf_logic (rt) ((make_predata (clist') (pcnt') (ccnt'))))) |] 
+  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res_2)) = (prop2cnf_logic (rt) ((make_predata (clist') (pcnt') (ccnt'))))) |] 
   &&  [| (retval_2 = res_2) |] 
   &&  [| (res_2 <> 0) |] 
   &&  [| (res_2 <= pcnt'_2) |] 
@@ -18321,6 +17454,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
   &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
@@ -18330,10 +17464,11 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 .
 
 Definition prop2cnf_partial_solve_wit_7_pure := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) (y'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) (y'': Z) ,
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'')) = ccnt'') |] 
   &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
@@ -18351,6 +17486,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
   &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
@@ -18366,6 +17502,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
   **  ((( &( "res" ) )) # Int  |-> (pcnt'' + 1 ))
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
 |--
@@ -18374,7 +17511,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 .
 
 Definition prop2cnf_partial_solve_wit_7_aux := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) (y'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) (y'': Z) ,
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'')) = ccnt'') |] 
   &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
@@ -18392,6 +17529,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
   &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
@@ -18404,6 +17542,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 |--
   [| (pcnt'' >= 0) |] 
   &&  [| ((pcnt'' + 1 ) = (pcnt'' + 1 )) |] 
@@ -18424,6 +17563,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
   &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
@@ -18436,12 +17576,13 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 .
 
 Definition prop2cnf_partial_solve_wit_7 := prop2cnf_partial_solve_wit_7_pure -> prop2cnf_partial_solve_wit_7_aux.
 
 Definition prop2cnf_partial_solve_wit_8_pure := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) (y'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) (y'': Z) ,
   [| ((pcnt'' + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'')) = ccnt'') |] 
@@ -18460,6 +17601,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
   &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
@@ -18476,6 +17618,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
 |--
   [| (data_pre <> 0) |] 
@@ -18484,7 +17627,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 .
 
 Definition prop2cnf_partial_solve_wit_8_aux := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) (y'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) (y'': Z) ,
   [| ((pcnt'' + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'')) = ccnt'') |] 
@@ -18503,6 +17646,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
   &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
@@ -18515,6 +17659,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 |--
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'')) = ccnt'') |] 
@@ -18537,6 +17682,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
   &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
@@ -18549,12 +17695,13 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 .
 
 Definition prop2cnf_partial_solve_wit_8 := prop2cnf_partial_solve_wit_8_pure -> prop2cnf_partial_solve_wit_8_aux.
 
 Definition prop2cnf_partial_solve_wit_9_pure := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) ,
   [| ((pcnt'' + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'')) = ccnt'') |] 
@@ -18573,6 +17720,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
   &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
@@ -18586,13 +17734,14 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
 |--
   [| ((prop_cnt_inf (clist'')) <= pcnt'') |]
 .
 
 Definition prop2cnf_partial_solve_wit_9_aux := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) ,
   [| ((pcnt'' + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'')) = ccnt'') |] 
@@ -18611,6 +17760,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
   &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
@@ -18620,6 +17770,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 |--
   [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
   &&  [| ((pcnt'' + 1 ) <> 0) |] 
@@ -18640,6 +17791,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
   &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
@@ -18649,12 +17801,13 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 .
 
 Definition prop2cnf_partial_solve_wit_9 := prop2cnf_partial_solve_wit_9_pure -> prop2cnf_partial_solve_wit_9_aux.
 
 Definition prop2cnf_partial_solve_wit_10_pure := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) ,
   [| (((prop_cnt_inf (clist'')) + 1 ) <= (pcnt'' + 1 )) |] 
   &&  [| ((pcnt'' + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
@@ -18674,6 +17827,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
   &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
@@ -18687,6 +17841,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
 |--
   [| (retval <> 0) |] 
@@ -18707,7 +17862,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 .
 
 Definition prop2cnf_partial_solve_wit_10_aux := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) ,
   [| (((prop_cnt_inf (clist'')) + 1 ) <= (pcnt'' + 1 )) |] 
   &&  [| ((pcnt'' + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
@@ -18727,6 +17882,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
   &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
@@ -18736,6 +17892,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 |--
   [| (retval <> 0) |] 
   &&  [| (retval_2 <> 0) |] 
@@ -18771,6 +17928,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
   &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
@@ -18780,6 +17938,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 .
 
 Definition prop2cnf_partial_solve_wit_10 := prop2cnf_partial_solve_wit_10_pure -> prop2cnf_partial_solve_wit_10_aux.
@@ -18827,6 +17986,7 @@ Definition prop2cnf_partial_solve_wit_11 := prop2cnf_partial_solve_wit_11_pure -
 Definition prop2cnf_partial_solve_wit_12_pure := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) ,
   [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
@@ -18835,6 +17995,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  (store_SmtProp y sub_prop )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
   **  ((( &( "res" ) )) # Int  |-> 0)
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
   **  (store_predata data_pre clist pcnt ccnt )
@@ -18845,6 +18006,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 Definition prop2cnf_partial_solve_wit_12_aux := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) ,
   [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
@@ -18852,10 +18014,12 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  (store_SmtProp y sub_prop )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
   **  (store_predata data_pre clist pcnt ccnt )
 |--
   [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
@@ -18863,6 +18027,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  (store_SmtProp y sub_prop )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
   **  (store_predata data_pre clist pcnt ccnt )
 .
 
@@ -18872,6 +18037,7 @@ Definition prop2cnf_partial_solve_wit_13_pure :=
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) ,
   [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
@@ -18881,6 +18047,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  (store_SmtProp y sub_prop )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
   **  ((( &( "res" ) )) # Int  |-> 0)
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
   **  (store_predata data_pre clist pcnt ccnt )
@@ -18892,6 +18059,7 @@ Definition prop2cnf_partial_solve_wit_13_aux :=
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) ,
   [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
@@ -18899,11 +18067,13 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  (store_SmtProp y sub_prop )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
   **  (store_predata data_pre clist pcnt ccnt )
 |--
   [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
@@ -18912,20 +18082,21 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  (store_predata data_pre clist pcnt ccnt )
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 .
 
 Definition prop2cnf_partial_solve_wit_13 := prop2cnf_partial_solve_wit_13_pure -> prop2cnf_partial_solve_wit_13_aux.
 
 Definition prop2cnf_partial_solve_wit_14 := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) ,
-  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (sub_prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) ,
+  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (sub_prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
   &&  [| (retval = res) |] 
   &&  [| (res <> 0) |] 
   &&  [| (res <= pcnt') |] 
   &&  [| ((-res) <= pcnt') |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
@@ -18934,15 +18105,16 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  (store_SmtProp y sub_prop )
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 |--
-  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (sub_prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (sub_prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
   &&  [| (retval = res) |] 
   &&  [| (res <> 0) |] 
   &&  [| (res <= pcnt') |] 
   &&  [| ((-res) <= pcnt') |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
@@ -18951,10 +18123,11 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  (store_SmtProp y sub_prop )
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 .
 
 Definition prop2cnf_partial_solve_wit_15_pure := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) (y'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) (y'': Z) ,
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'')) = ccnt'') |] 
   &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
@@ -18966,6 +18139,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((-res) <= pcnt') |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
@@ -18979,6 +18153,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((( &( "p" ) )) # Ptr  |-> p_pre)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
   **  ((( &( "res" ) )) # Int  |-> (pcnt'' + 1 ))
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
 |--
@@ -18987,7 +18162,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 .
 
 Definition prop2cnf_partial_solve_wit_15_aux := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) (y'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) (y'': Z) ,
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'')) = ccnt'') |] 
   &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
@@ -18999,6 +18174,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((-res) <= pcnt') |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
@@ -19010,6 +18186,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  (store_SmtProp y sub_prop )
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 |--
   [| (pcnt'' >= 0) |] 
   &&  [| ((pcnt'' + 1 ) = (pcnt'' + 1 )) |] 
@@ -19024,6 +18201,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((-res) <= pcnt') |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
@@ -19035,12 +18213,13 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  (store_SmtProp y sub_prop )
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 .
 
 Definition prop2cnf_partial_solve_wit_15 := prop2cnf_partial_solve_wit_15_pure -> prop2cnf_partial_solve_wit_15_aux.
 
 Definition prop2cnf_partial_solve_wit_16_pure := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) (y'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) (y'': Z) ,
   [| ((pcnt'' + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'')) = ccnt'') |] 
@@ -19053,6 +18232,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((-res) <= pcnt') |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
@@ -19067,6 +18247,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((( &( "p" ) )) # Ptr  |-> p_pre)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
 |--
   [| (data_pre <> 0) |] 
@@ -19075,7 +18256,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 .
 
 Definition prop2cnf_partial_solve_wit_16_aux := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) (y'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) (y'': Z) ,
   [| ((pcnt'' + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'')) = ccnt'') |] 
@@ -19088,6 +18269,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((-res) <= pcnt') |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
@@ -19099,6 +18281,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  (store_SmtProp y sub_prop )
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 |--
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'')) = ccnt'') |] 
@@ -19115,6 +18298,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((-res) <= pcnt') |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
@@ -19126,12 +18310,13 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  (store_SmtProp y sub_prop )
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 .
 
 Definition prop2cnf_partial_solve_wit_16 := prop2cnf_partial_solve_wit_16_pure -> prop2cnf_partial_solve_wit_16_aux.
 
 Definition prop2cnf_partial_solve_wit_17_pure := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) ,
   [| ((pcnt'' + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'')) = ccnt'') |] 
@@ -19144,6 +18329,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((-res) <= pcnt') |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
@@ -19155,13 +18341,14 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((( &( "p" ) )) # Ptr  |-> p_pre)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
 |--
   [| ((prop_cnt_inf (clist'')) <= pcnt'') |]
 .
 
 Definition prop2cnf_partial_solve_wit_17_aux := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) ,
   [| ((pcnt'' + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'')) = ccnt'') |] 
@@ -19174,6 +18361,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((-res) <= pcnt') |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
@@ -19182,6 +18370,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  (store_SmtProp y sub_prop )
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 |--
   [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
   &&  [| ((pcnt'' + 1 ) <> 0) |] 
@@ -19196,6 +18385,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((-res) <= pcnt') |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
@@ -19204,12 +18394,13 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  (store_SmtProp y sub_prop )
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 .
 
 Definition prop2cnf_partial_solve_wit_17 := prop2cnf_partial_solve_wit_17_pure -> prop2cnf_partial_solve_wit_17_aux.
 
 Definition prop2cnf_partial_solve_wit_18_pure := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) ,
   [| (((prop_cnt_inf (clist'')) + 1 ) <= (pcnt'' + 1 )) |] 
   &&  [| ((pcnt'' + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
@@ -19223,6 +18414,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((-res) <= pcnt') |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
@@ -19234,6 +18426,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((( &( "p" ) )) # Ptr  |-> p_pre)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
 |--
   [| (retval <> 0) |] 
@@ -19248,7 +18441,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 .
 
 Definition prop2cnf_partial_solve_wit_18_aux := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) ,
   [| (((prop_cnt_inf (clist'')) + 1 ) <= (pcnt'' + 1 )) |] 
   &&  [| ((pcnt'' + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
@@ -19262,6 +18455,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((-res) <= pcnt') |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
@@ -19270,6 +18464,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  (store_SmtProp y sub_prop )
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 |--
   [| (retval <> 0) |] 
   &&  [| ((pcnt'' + 1 ) <> 0) |] 
@@ -19293,6 +18488,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((-res) <= pcnt') |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
@@ -19301,6 +18497,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  (store_SmtProp y sub_prop )
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 .
 
 Definition prop2cnf_partial_solve_wit_18 := prop2cnf_partial_solve_wit_18_pure -> prop2cnf_partial_solve_wit_18_aux.
@@ -19319,8 +18516,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
   **  (store_predata data_pre clist pcnt ccnt )
 |--
-  [| ((SmtPTID (prop)) = (SmtPTID (prop))) |] 
-  &&  [| ((SmtPTID (prop)) = 7) |]
+  [| (7 = 7) |] 
+  &&  [| (7 = (SmtPTID (prop))) |]
 .
 
 Definition prop2cnf_partial_solve_wit_19_aux := 
@@ -19334,14 +18531,14 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  (store_SmtProp' p_pre prop )
   **  (store_predata data_pre clist pcnt ccnt )
 |--
-  [| ((SmtPTID (prop)) = (SmtPTID (prop))) |] 
-  &&  [| ((SmtPTID (prop)) = 7) |] 
+  [| (7 = 7) |] 
+  &&  [| (7 = (SmtPTID (prop))) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t <> 6) |] 
   &&  [| (t = 7) |]
-  &&  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  &&  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> 7)
   **  (store_SmtProp' p_pre prop )
   **  (store_predata data_pre clist pcnt ccnt )
 .
@@ -19366,12 +18563,14 @@ forall (p_pre: Z) (prop: smt_prop) (p_pre_type: Z) (p: Z) ,
   **  (store_SmtProp' p prop )
 |--
   EX (z: Z)  (y: Z)  (op: SmtPropBop)  (lt: smt_prop)  (rt: smt_prop) ,
-  [| (prop = (SmtB (op) (lt) (rt))) |]
+  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |]
   &&  ((&((p)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  ((&((p)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
   **  (store_SmtProp y lt )
   **  (store_SmtProp z rt )
+  **  ((&((p)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 .
 
 Definition prop2cnf_which_implies_wit_3 := 
@@ -19385,13 +18584,14 @@ forall (pcnt: Z) (prop: smt_prop) (lt: smt_prop) (rt: smt_prop) ,
 .
 
 Definition prop2cnf_which_implies_wit_4 := 
-forall (data_pre: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) ,
+forall (data_pre: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) ,
   (store_predata data_pre clist'' pcnt'' ccnt'' )
 |--
   EX (y'': Z) ,
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |]
+  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
+  &&  [| (pcnt'' >= 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt'')
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
@@ -19409,7 +18609,7 @@ forall (pcnt'': Z) (res: Z) ,
 .
 
 Definition prop2cnf_which_implies_wit_6 := 
-forall (data_pre: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) (y'': Z) ,
+forall (data_pre: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) (y'': Z) ,
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'')) = ccnt'') |] 
   &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |]
@@ -19438,10 +18638,12 @@ forall (p_pre: Z) (prop: smt_prop) (p_pre_type: Z) (p: Z) ,
   **  (store_SmtProp' p prop )
 |--
   EX (y: Z)  (op: SmtPropUop)  (sub_prop: smt_prop) ,
-  [| (prop = (SmtU (op) (sub_prop))) |]
+  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| (p_pre <> 0) |]
   &&  ((&((p)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
   **  ((&((p)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  (store_SmtProp y sub_prop )
+  **  ((&((p)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 .
 
 Definition prop2cnf_which_implies_wit_9 := 
@@ -19454,13 +18656,14 @@ forall (pcnt: Z) (prop: smt_prop) (sub_prop: smt_prop) ,
 .
 
 Definition prop2cnf_which_implies_wit_10 := 
-forall (data_pre: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) ,
+forall (data_pre: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) ,
   (store_predata data_pre clist'' pcnt'' ccnt'' )
 |--
   EX (y'': Z) ,
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |]
+  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
+  &&  [| (pcnt'' >= 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt'')
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
@@ -19478,7 +18681,7 @@ forall (pcnt'': Z) (res: Z) ,
 .
 
 Definition prop2cnf_which_implies_wit_12 := 
-forall (data_pre: Z) (clist'': (@list (@list Z))) (ccnt'': Z) (pcnt'': Z) (y'': Z) ,
+forall (data_pre: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) (y'': Z) ,
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'')) = ccnt'') |] 
   &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |]
@@ -19501,14 +18704,17 @@ forall (clist'': (@list (@list Z))) (pcnt'': Z) ,
 
 Definition prop2cnf_which_implies_wit_14 := 
 forall (p_pre: Z) (prop: smt_prop) (p_pre_type: Z) (p: Z) ,
-  [| (p_pre_type = (SmtPTID (prop))) |] 
-  &&  [| (p_pre_type = 7) |]
+  [| (p_pre_type = 7) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |]
   &&  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
   **  (store_SmtProp' p prop )
 |--
   EX (var: Z) ,
-  [| (prop = (SmtV (var))) |]
+  [| (prop = (SmtV (var))) |] 
+  &&  [| (var <> 0) |] 
+  &&  [| (p_pre <> 0) |]
   &&  ((&((p)  # "SmtProp" ->ₛ "prop" .ₛ "Propvar")) # Int  |-> var)
+  **  ((&((p)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 .
 
 Module Type VC_Correct.
@@ -19671,13 +18877,6 @@ Axiom proof_of_clause_gen_binary_safety_wit_133 : clause_gen_binary_safety_wit_1
 Axiom proof_of_clause_gen_binary_safety_wit_134 : clause_gen_binary_safety_wit_134.
 Axiom proof_of_clause_gen_binary_safety_wit_135 : clause_gen_binary_safety_wit_135.
 Axiom proof_of_clause_gen_binary_safety_wit_136 : clause_gen_binary_safety_wit_136.
-Axiom proof_of_clause_gen_binary_safety_wit_137 : clause_gen_binary_safety_wit_137.
-Axiom proof_of_clause_gen_binary_safety_wit_138 : clause_gen_binary_safety_wit_138.
-Axiom proof_of_clause_gen_binary_safety_wit_139 : clause_gen_binary_safety_wit_139.
-Axiom proof_of_clause_gen_binary_safety_wit_140 : clause_gen_binary_safety_wit_140.
-Axiom proof_of_clause_gen_binary_safety_wit_141 : clause_gen_binary_safety_wit_141.
-Axiom proof_of_clause_gen_binary_safety_wit_142 : clause_gen_binary_safety_wit_142.
-Axiom proof_of_clause_gen_binary_safety_wit_143 : clause_gen_binary_safety_wit_143.
 Axiom proof_of_clause_gen_binary_return_wit_1_1 : clause_gen_binary_return_wit_1_1.
 Axiom proof_of_clause_gen_binary_return_wit_1_2 : clause_gen_binary_return_wit_1_2.
 Axiom proof_of_clause_gen_binary_return_wit_1_3 : clause_gen_binary_return_wit_1_3.
@@ -19686,7 +18885,6 @@ Axiom proof_of_clause_gen_binary_return_wit_1_5 : clause_gen_binary_return_wit_1
 Axiom proof_of_clause_gen_binary_return_wit_1_6 : clause_gen_binary_return_wit_1_6.
 Axiom proof_of_clause_gen_binary_return_wit_1_7 : clause_gen_binary_return_wit_1_7.
 Axiom proof_of_clause_gen_binary_return_wit_1_8 : clause_gen_binary_return_wit_1_8.
-Axiom proof_of_clause_gen_binary_return_wit_1_9 : clause_gen_binary_return_wit_1_9.
 Axiom proof_of_clause_gen_binary_partial_solve_wit_1_pure : clause_gen_binary_partial_solve_wit_1_pure.
 Axiom proof_of_clause_gen_binary_partial_solve_wit_1 : clause_gen_binary_partial_solve_wit_1.
 Axiom proof_of_clause_gen_binary_partial_solve_wit_2_pure : clause_gen_binary_partial_solve_wit_2_pure.
@@ -19774,10 +18972,15 @@ Axiom proof_of_clause_gen_binary_partial_solve_wit_80 : clause_gen_binary_partia
 Axiom proof_of_clause_gen_binary_partial_solve_wit_81 : clause_gen_binary_partial_solve_wit_81.
 Axiom proof_of_clause_gen_binary_partial_solve_wit_82 : clause_gen_binary_partial_solve_wit_82.
 Axiom proof_of_clause_gen_binary_partial_solve_wit_83 : clause_gen_binary_partial_solve_wit_83.
+Axiom proof_of_clause_gen_binary_partial_solve_wit_84_pure : clause_gen_binary_partial_solve_wit_84_pure.
 Axiom proof_of_clause_gen_binary_partial_solve_wit_84 : clause_gen_binary_partial_solve_wit_84.
+Axiom proof_of_clause_gen_binary_partial_solve_wit_85_pure : clause_gen_binary_partial_solve_wit_85_pure.
 Axiom proof_of_clause_gen_binary_partial_solve_wit_85 : clause_gen_binary_partial_solve_wit_85.
+Axiom proof_of_clause_gen_binary_partial_solve_wit_86_pure : clause_gen_binary_partial_solve_wit_86_pure.
 Axiom proof_of_clause_gen_binary_partial_solve_wit_86 : clause_gen_binary_partial_solve_wit_86.
+Axiom proof_of_clause_gen_binary_partial_solve_wit_87_pure : clause_gen_binary_partial_solve_wit_87_pure.
 Axiom proof_of_clause_gen_binary_partial_solve_wit_87 : clause_gen_binary_partial_solve_wit_87.
+Axiom proof_of_clause_gen_binary_partial_solve_wit_88_pure : clause_gen_binary_partial_solve_wit_88_pure.
 Axiom proof_of_clause_gen_binary_partial_solve_wit_88 : clause_gen_binary_partial_solve_wit_88.
 Axiom proof_of_clause_gen_binary_partial_solve_wit_89_pure : clause_gen_binary_partial_solve_wit_89_pure.
 Axiom proof_of_clause_gen_binary_partial_solve_wit_89 : clause_gen_binary_partial_solve_wit_89.
@@ -19813,16 +19016,6 @@ Axiom proof_of_clause_gen_binary_partial_solve_wit_104_pure : clause_gen_binary_
 Axiom proof_of_clause_gen_binary_partial_solve_wit_104 : clause_gen_binary_partial_solve_wit_104.
 Axiom proof_of_clause_gen_binary_partial_solve_wit_105_pure : clause_gen_binary_partial_solve_wit_105_pure.
 Axiom proof_of_clause_gen_binary_partial_solve_wit_105 : clause_gen_binary_partial_solve_wit_105.
-Axiom proof_of_clause_gen_binary_partial_solve_wit_106_pure : clause_gen_binary_partial_solve_wit_106_pure.
-Axiom proof_of_clause_gen_binary_partial_solve_wit_106 : clause_gen_binary_partial_solve_wit_106.
-Axiom proof_of_clause_gen_binary_partial_solve_wit_107_pure : clause_gen_binary_partial_solve_wit_107_pure.
-Axiom proof_of_clause_gen_binary_partial_solve_wit_107 : clause_gen_binary_partial_solve_wit_107.
-Axiom proof_of_clause_gen_binary_partial_solve_wit_108_pure : clause_gen_binary_partial_solve_wit_108_pure.
-Axiom proof_of_clause_gen_binary_partial_solve_wit_108 : clause_gen_binary_partial_solve_wit_108.
-Axiom proof_of_clause_gen_binary_partial_solve_wit_109_pure : clause_gen_binary_partial_solve_wit_109_pure.
-Axiom proof_of_clause_gen_binary_partial_solve_wit_109 : clause_gen_binary_partial_solve_wit_109.
-Axiom proof_of_clause_gen_binary_partial_solve_wit_110_pure : clause_gen_binary_partial_solve_wit_110_pure.
-Axiom proof_of_clause_gen_binary_partial_solve_wit_110 : clause_gen_binary_partial_solve_wit_110.
 Axiom proof_of_clause_gen_binary_which_implies_wit_1 : clause_gen_binary_which_implies_wit_1.
 Axiom proof_of_prop2cnf_safety_wit_1 : prop2cnf_safety_wit_1.
 Axiom proof_of_prop2cnf_safety_wit_2 : prop2cnf_safety_wit_2.
