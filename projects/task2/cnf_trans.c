@@ -407,10 +407,6 @@ int prop2cnf(SmtProp *p, PreData *data)
           ;
       /*@ exists clist'' pcnt'' ccnt'',
           store_predata(data@pre, clist'', pcnt'', ccnt'')
-      */
-      /*@ Given clist'' pcnt'' ccnt''
-       */
-      /*@ store_predata(data@pre, clist'', pcnt'', ccnt'')
           which implies
           data@pre != 0 && Zlength(clist'') == ccnt'' &&
           prop_cnt_inf(clist'') <= pcnt'' && pcnt'' >= 0 &&
@@ -422,7 +418,7 @@ int prop2cnf(SmtProp *p, PreData *data)
        */
       data->prop_cnt = data->prop_cnt + 1;
       res = data->prop_cnt;
-      /*@ pcnt'' >= 0 && res == pcnt'' + 1
+      /*@ pcnt' >= 0 && res == pcnt' + 1
           which implies
           res != 0
       */
