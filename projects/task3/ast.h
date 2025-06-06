@@ -1,4 +1,6 @@
-/*@ Import Coq Require Import ast_lib */
+/*@ Import Coq From SimpleC.EE Require Import ast_lib */
+/*@ Import Coq From SimpleC.EE Require Import malloc */
+/*@ Import Coq From SimpleC.EE Require Import super_poly_sll2 */
 
 /*@ Extern Coq (term :: *) */
 /*@ Extern Coq (var_sub :: *) */
