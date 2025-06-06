@@ -322,7 +322,7 @@ int prop2cnf(SmtProp *p, PreData *data)
    */
   switch (p->type) {
     case SMTB_PROP: {
-      /*@ p@pre->type == SmtPTID(prop) && p@pre->type == 5 &&
+      /*@ p@pre->type == SmtPTID(prop) && p@pre->type == 5 && p == p@pre &&
           store_SmtProp'(p, prop)
           which implies
           exists op lt rt y z,
@@ -336,7 +336,7 @@ int prop2cnf(SmtProp *p, PreData *data)
        */
       /*@ Given op lt rt y z
        */
-      /*@ prop_cnt_inf_SmtProp(prop) <= pcnt
+      /*@ prop_cnt_inf_SmtProp(prop) <= pcnt && prop == SmtB(op, lt, rt)
           which implies
           prop_cnt_inf_SmtProp(lt) <= pcnt &&
           prop_cnt_inf_SmtProp(rt) <= pcnt
@@ -414,7 +414,7 @@ int prop2cnf(SmtProp *p, PreData *data)
       break;
     }
     case SMTU_PROP: {
-      /*@ p@pre->type == SmtPTID(prop) && p@pre->type == 6 &&
+      /*@ p@pre->type == SmtPTID(prop) && p@pre->type == 6 && p == p@pre &&
           store_SmtProp'(p, prop)
           which implies
           exists op sub_prop y,
@@ -426,7 +426,7 @@ int prop2cnf(SmtProp *p, PreData *data)
       */
       /*@ Given op sub_prop y
        */
-      /*@ prop_cnt_inf_SmtProp(prop) <= pcnt
+      /*@ prop_cnt_inf_SmtProp(prop) <= pcnt && prop == SmtU(op, sub_prop)
           which implies
           prop_cnt_inf_SmtProp(sub_prop) <= pcnt
         */
@@ -490,7 +490,7 @@ int prop2cnf(SmtProp *p, PreData *data)
     }
     case SMT_PROPVAR: {
       /*@ p@pre->type == 7 &&
-          p@pre->type == SmtPTID(prop) &&
+          p@pre->type == SmtPTID(prop) && p == p@pre &&
           store_SmtProp'(p, prop)
           which implies
           exists var,

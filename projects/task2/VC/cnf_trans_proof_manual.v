@@ -1450,38 +1450,119 @@ Proof.
 Qed.
 
 Lemma proof_of_prop2cnf_partial_solve_wit_5_pure : prop2cnf_partial_solve_wit_5_pure.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  rewrite H6 in *.
+  unfold make_predata, make_prop2cnf_ret in H.
+  pose proof pcnt_upper_incr _ _ _ _ _ _ _ _ H.
+  assert (prop_cnt_inf_SmtProp rt <= pcnt') by lia.
+  entailer!.
+Qed.
 
 Lemma proof_of_prop2cnf_partial_solve_wit_10_pure : prop2cnf_partial_solve_wit_10_pure.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  entailer!;
+  unfold make_predata, make_prop2cnf_ret in H5;
+  pose proof pcnt_upper_incr _ _ _ _ _ _ _ _ H5; lia.
+Qed.
 
 Lemma proof_of_prop2cnf_which_implies_wit_1 : prop2cnf_which_implies_wit_1.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  sep_apply store_SmtProp_unfold.
+  Exists (SmtPTID prop).
+  entailer!.
+Qed. 
 
 Lemma proof_of_prop2cnf_which_implies_wit_2 : prop2cnf_which_implies_wit_2.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  rewrite H0.
+  rewrite <- H, H0.
+  sep_apply store_SmtProp'_Binary.
+  Intros op lt rt y z.
+  Exists z y op lt rt.
+  entailer!.
+  lia.
+Qed. 
 
 Lemma proof_of_prop2cnf_which_implies_wit_3 : prop2cnf_which_implies_wit_3.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  rewrite H0 in H.
+  pose proof prop_cnt_inf_Binary_l _ _ _ _ H.
+  pose proof prop_cnt_inf_Binary_r _ _ _ _ H.
+  entailer!.
+Qed.
 
 Lemma proof_of_prop2cnf_which_implies_wit_4 : prop2cnf_which_implies_wit_4.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  unfold store_predata.
+  Intros y.
+  Exists y.
+  entailer!.
+  pose proof prop_cnt_nneg clist'_2.
+  lia.
+Qed. 
 
 Lemma proof_of_prop2cnf_which_implies_wit_6 : prop2cnf_which_implies_wit_6.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  unfold store_predata.
+  Exists y''.
+  entailer!.
+Qed.
 
 Lemma proof_of_prop2cnf_which_implies_wit_8 : prop2cnf_which_implies_wit_8.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  rewrite H0.
+  rewrite <- H, H0.
+  sep_apply store_SmtProp'_Unary.
+  Intros op prop0 y.
+  Exists y op prop0.
+  entailer!.
+  lia.
+Qed. 
 
 Lemma proof_of_prop2cnf_which_implies_wit_9 : prop2cnf_which_implies_wit_9.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  rewrite H0 in H.
+  pose proof prop_cnt_inf_Unary_r _ _ _ H.
+  entailer!.
+Qed.
 
 Lemma proof_of_prop2cnf_which_implies_wit_10 : prop2cnf_which_implies_wit_10.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  unfold store_predata.
+  Intros y.
+  Exists y.
+  entailer!.
+  pose proof prop_cnt_nneg clist'.
+  lia.
+Qed.
 
 Lemma proof_of_prop2cnf_which_implies_wit_12 : prop2cnf_which_implies_wit_12.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  unfold store_predata.
+  Exists y''.
+  entailer!.
+Qed.
 
 Lemma proof_of_prop2cnf_which_implies_wit_14 : prop2cnf_which_implies_wit_14.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  rewrite H.
+  rewrite <- H0, H.
+  sep_apply store_SmtProp'_Var.
+  Intros var.
+  Exists var.
+  entailer!.
+  lia.
+Qed.
 

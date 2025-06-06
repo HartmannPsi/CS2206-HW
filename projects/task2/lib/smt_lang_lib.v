@@ -166,7 +166,7 @@ Qed.
 Lemma store_SmtProp'_Var: forall x s,
   SmtPTID s = 7%Z ->
   store_SmtProp' x s |--
-  EX v, [| s = SmtV v |] && [| x <> NULL |] &&
+  EX v, [| s = SmtV v |] && [| x <> NULL |] && [| v <> 0 |] &&
     &(x # "SmtProp" ->ₛ "prop" .ₛ "Propvar") # Int |-> v.
 Proof.
   intros.

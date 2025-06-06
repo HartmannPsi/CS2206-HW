@@ -17255,7 +17255,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
   **  (store_predata data_pre clist pcnt ccnt )
 |--
-  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |]
+  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op) (lt) (rt))) |]
 .
 
 Definition prop2cnf_partial_solve_wit_3_aux := 
@@ -17274,6 +17275,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  (store_predata data_pre clist pcnt ccnt )
 |--
   [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
   &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
   &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
@@ -18018,7 +18020,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
   **  (store_predata data_pre clist pcnt ccnt )
 |--
-  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |]
+  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
+  &&  [| (prop = (SmtU (op) (sub_prop))) |]
 .
 
 Definition prop2cnf_partial_solve_wit_12_aux := 
@@ -18036,6 +18039,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  (store_predata data_pre clist pcnt ccnt )
 |--
   [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
+  &&  [| (prop = (SmtU (op) (sub_prop))) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |] 
   &&  [| (p_pre <> 0) |] 
   &&  [| (t = (SmtPTID (prop))) |] 
@@ -18598,26 +18602,27 @@ forall (prop: smt_prop) (p: Z) ,
 .
 
 Definition prop2cnf_which_implies_wit_2 := 
-forall (p_pre: Z) (prop: smt_prop) (p_pre_type: Z) (p: Z) ,
+forall (p_pre: Z) (prop: smt_prop) (p_pre_type: Z) ,
   [| (p_pre_type = (SmtPTID (prop))) |] 
   &&  [| (p_pre_type = 5) |]
   &&  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
-  **  (store_SmtProp' p prop )
+  **  (store_SmtProp' p_pre prop )
 |--
   EX (z: Z)  (y: Z)  (op: SmtPropBop)  (lt: smt_prop)  (rt: smt_prop) ,
   [| (prop = (SmtB (op) (lt) (rt))) |] 
   &&  [| (p_pre <> 0) |]
-  &&  ((&((p)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
-  **  ((&((p)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
+  &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
   **  (store_SmtProp y lt )
   **  (store_SmtProp z rt )
-  **  ((&((p)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 .
 
 Definition prop2cnf_which_implies_wit_3 := 
-forall (pcnt: Z) (prop: smt_prop) (lt: smt_prop) (rt: smt_prop) ,
-  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |]
+forall (pcnt: Z) (prop: smt_prop) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) ,
+  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op) (lt) (rt))) |]
   &&  emp
 |--
   [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
@@ -18673,24 +18678,25 @@ forall (pcnt'_2: Z) (clist'_2: (@list (@list Z))) ,
 .
 
 Definition prop2cnf_which_implies_wit_8 := 
-forall (p_pre: Z) (prop: smt_prop) (p_pre_type: Z) (p: Z) ,
+forall (p_pre: Z) (prop: smt_prop) (p_pre_type: Z) ,
   [| (p_pre_type = (SmtPTID (prop))) |] 
   &&  [| (p_pre_type = 6) |]
   &&  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
-  **  (store_SmtProp' p prop )
+  **  (store_SmtProp' p_pre prop )
 |--
   EX (y: Z)  (op: SmtPropUop)  (sub_prop: smt_prop) ,
   [| (prop = (SmtU (op) (sub_prop))) |] 
   &&  [| (p_pre <> 0) |]
-  &&  ((&((p)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
-  **  ((&((p)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
+  &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  (store_SmtProp y sub_prop )
-  **  ((&((p)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 .
 
 Definition prop2cnf_which_implies_wit_9 := 
-forall (pcnt: Z) (prop: smt_prop) (sub_prop: smt_prop) ,
-  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |]
+forall (pcnt: Z) (prop: smt_prop) (op: SmtPropUop) (sub_prop: smt_prop) ,
+  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
+  &&  [| (prop = (SmtU (op) (sub_prop))) |]
   &&  emp
 |--
   [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |]
@@ -18745,18 +18751,18 @@ forall (pcnt': Z) (clist': (@list (@list Z))) ,
 .
 
 Definition prop2cnf_which_implies_wit_14 := 
-forall (p_pre: Z) (prop: smt_prop) (p_pre_type: Z) (p: Z) ,
+forall (p_pre: Z) (prop: smt_prop) (p_pre_type: Z) ,
   [| (p_pre_type = 7) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |]
   &&  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
-  **  (store_SmtProp' p prop )
+  **  (store_SmtProp' p_pre prop )
 |--
   EX (var: Z) ,
   [| (prop = (SmtV (var))) |] 
   &&  [| (var <> 0) |] 
   &&  [| (p_pre <> 0) |]
-  &&  ((&((p)  # "SmtProp" ->ₛ "prop" .ₛ "Propvar")) # Int  |-> var)
-  **  ((&((p)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Propvar")) # Int  |-> var)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 .
 
 Module Type VC_Correct.

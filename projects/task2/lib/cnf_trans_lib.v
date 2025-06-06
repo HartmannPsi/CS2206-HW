@@ -370,6 +370,13 @@ Fixpoint min_var_SmtProp (s: smt_prop): Z :=
     | SmtV var => var
   end.
 
+Lemma min_le_max_var_SmtProp: forall s,
+  min_var_SmtProp s <= max_var_SmtProp s.
+Proof.
+  intros.
+  induction s; simpl; try lia.
+Qed.
+
 Definition prop_cnt_inf_SmtProp (s: smt_prop): Z :=
   Z.max (max_var_SmtProp s) (Z.abs (min_var_SmtProp s)).
 
@@ -380,6 +387,81 @@ Proof.
   intros.
   unfold max_var_SmtProp, min_var_SmtProp.
   lia.
+Qed.
+
+Lemma prop_cnt_inf_Binary_l: forall op lt rt pcnt,
+  prop_cnt_inf_SmtProp (SmtB op lt rt) <= pcnt ->
+  prop_cnt_inf_SmtProp lt <= pcnt.
+Proof.
+  unfold prop_cnt_inf_SmtProp.
+  intros.
+  apply Z.max_lub.
+  + pose proof Z.max_lub_l _ _ _ H.
+    simpl max_var_SmtProp in H0.
+    pose proof Z.max_lub_l _ _ _ H0.
+    easy.
+  + pose proof Z.max_lub_r _ _ _ H.
+    simpl max_var_SmtProp in H0.
+    pose proof Z.abs_le (min_var_SmtProp (SmtB op lt rt)) pcnt.
+    destruct H1.
+    clear H2.
+    specialize (H1 H0).
+    simpl in H1.
+    destruct H1.
+    apply Z.abs_le.
+    split.
+    pose proof Z.min_glb_l _ _ _ H1.
+    easy.
+    pose proof min_le_max_var_SmtProp lt.
+    pose proof Z.max_lub_l _ _ _ H.
+    simpl max_var_SmtProp in H4.
+    pose proof Z.max_lub_l _ _ _ H4.
+    lia.
+Qed.
+
+Lemma prop_cnt_inf_Binary_r: forall op lt rt pcnt,
+  prop_cnt_inf_SmtProp (SmtB op lt rt) <= pcnt ->
+  prop_cnt_inf_SmtProp rt <= pcnt.
+Proof.
+  unfold prop_cnt_inf_SmtProp.
+  intros.
+  apply Z.max_lub.
+  + pose proof Z.max_lub_l _ _ _ H.
+    simpl max_var_SmtProp in H0.
+    pose proof Z.max_lub_r _ _ _ H0.
+    easy.
+  + pose proof Z.max_lub_r _ _ _ H.
+    simpl max_var_SmtProp in H0.
+    pose proof Z.abs_le (min_var_SmtProp (SmtB op lt rt)) pcnt.
+    destruct H1.
+    clear H2.
+    specialize (H1 H0).
+    simpl in H1.
+    destruct H1.
+    apply Z.abs_le.
+    split.
+    pose proof Z.min_glb_r _ _ _ H1.
+    easy.
+    pose proof min_le_max_var_SmtProp rt.
+    pose proof Z.max_lub_l _ _ _ H.
+    simpl max_var_SmtProp in H4.
+    pose proof Z.max_lub_r _ _ _ H4.
+    lia.
+Qed.
+
+Lemma prop_cnt_inf_Unary_r: forall op prop pcnt,
+  prop_cnt_inf_SmtProp (SmtU op prop) <= pcnt ->
+  prop_cnt_inf_SmtProp prop <= pcnt.
+Proof.
+  unfold prop_cnt_inf_SmtProp.
+  intros.
+  apply Z.max_lub.
+  + pose proof Z.max_lub_l _ _ _ H.
+    simpl max_var_SmtProp in H0.
+    easy.
+  + pose proof Z.max_lub_r _ _ _ H.
+    simpl min_var_SmtProp in H0.
+    easy.
 Qed.
 
 Definition PreData : Type := cnf_list * Z * Z.
