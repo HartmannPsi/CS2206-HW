@@ -528,6 +528,119 @@ Proof.
     lia.
 Qed.
 
+Lemma iff2cnf_length_binary_upper_bound : forall p1 p2 p3 op,
+  iff2cnf_length_binary p1 p2 p3 op <= 4.
+Proof.
+  intros.
+  destruct op; simpl; destruct (p1 ==? p2); try lia.
+Qed.
+
+
+Lemma ccnt_upper_bound: forall prop clist' pcnt' ccnt' res' clist pcnt ccnt,
+  (clist', pcnt', ccnt', res') = prop2cnf_logic prop (clist, pcnt, ccnt)
+  -> ccnt' <= ccnt + 4 * SmtProp_size prop.
+Proof.
+  intro prop.
+  induction prop.
+  + intros.
+    simpl in H.
+    remember (prop2cnf_logic prop1 (clist, pcnt, ccnt)) as step1 eqn:Hstep1.
+    destruct step1 as [data1 p1].
+    remember (prop2cnf_logic prop2 data1) as step2 eqn:Hstep2.
+    destruct step2 as [data2 p2].
+    destruct data2 as [tmp clause_cnt].
+    destruct tmp as [cnf_res prop_cnt].
+    destruct data1 as [tmp'' ccnt'_1].
+    destruct tmp'' as [clist'_1 pcnt'_1].
+    inversion H.
+    specialize (IHprop2  _ _ _ _ _ _ _ Hstep2).
+    specialize (IHprop1  _ _ _ _ _ _ _ Hstep1).
+    assert (SmtProp_size (SmtB op prop1 prop2) = 1 + SmtProp_size prop1 + SmtProp_size prop2) as Hsize.
+    {
+      unfold SmtProp_size.
+      simpl.
+      lia.
+    }
+    rewrite Hsize.
+    assert (clause_cnt <= 4 * SmtProp_size prop2 + 4 * SmtProp_size prop1 + ccnt) by lia.
+    pose proof iff2cnf_length_binary_upper_bound p1 p2 (prop_cnt + 1) op as Hlen.
+    lia.
+  + intros.
+    simpl in H.
+    remember (prop2cnf_logic prop (clist, pcnt, ccnt)) as step1 eqn:Hstep1.
+    destruct step1 as [data1 p1].
+    destruct data1 as [tmp clause_cnt].
+    destruct tmp as [cnf_res prop_cnt].
+    inversion H.
+    specialize (IHprop  _ _ _ _ _ _ _ Hstep1).
+    assert (SmtProp_size (SmtU op prop) = 1 + SmtProp_size prop) as Hsize.
+    {
+      unfold SmtProp_size.
+      simpl.
+      lia.
+    }
+    rewrite Hsize.
+    lia.
+  + intros.
+    simpl in H.
+    inversion H.
+    simpl.
+    lia.
+Qed.
+
+Lemma clist_upper_bound: forall prop clist' pcnt' ccnt' res' clist pcnt ccnt,
+  (clist', pcnt', ccnt', res') = prop2cnf_logic prop (clist, pcnt, ccnt)
+  -> Zlength clist' <= Zlength clist + 4 * SmtProp_size prop.
+Proof.
+  intro prop.
+  induction prop; intros.
+  + simpl in H.
+    remember (prop2cnf_logic prop1 (clist, pcnt, ccnt)) as step1 eqn:Hstep1.
+    destruct step1 as [data1 p1].
+    remember (prop2cnf_logic prop2 data1) as step2 eqn:Hstep2.
+    destruct step2 as [data2 p2].
+    destruct data2 as [tmp clause_cnt].
+    destruct tmp as [cnf_res prop_cnt].
+    destruct data1 as [tmp'' ccnt'_1].
+    destruct tmp'' as [clist'_1 pcnt'_1].
+    inversion H.
+    specialize (IHprop2  _ _ _ _ _ _ _ Hstep2).
+    specialize (IHprop1  _ _ _ _ _ _ _ Hstep1).
+    assert (SmtProp_size (SmtB op prop1 prop2) = 1 + SmtProp_size prop1 + SmtProp_size prop2) as Hsize.
+    {
+      unfold SmtProp_size.
+      simpl.
+      lia.
+    }
+    rewrite Hsize.
+    assert (Zlength cnf_res <= Zlength clist + 4 * SmtProp_size prop2 + 4 * SmtProp_size prop1) by lia.
+    Search "Z" "Zlength" "app".
+    rewrite Zlength_app.
+    rewrite iff2cnf_length_eq.
+    pose proof iff2cnf_length_binary_upper_bound p1 p2 (prop_cnt + 1) op as Hlen.
+    lia.
+  + simpl in H.
+    remember (prop2cnf_logic prop (clist, pcnt, ccnt)) as step1 eqn:Hstep1.
+    destruct step1 as [data1 p1].
+    destruct data1 as [tmp clause_cnt].
+    destruct tmp as [cnf_res prop_cnt].
+    inversion H.
+    specialize (IHprop  _ _ _ _ _ _ _ Hstep1).
+    repeat rewrite Zlength_cons.
+    assert (SmtProp_size (SmtU op prop) = 1 + SmtProp_size prop) as Hsize.
+    {
+      unfold SmtProp_size.
+      simpl.
+      lia.
+    }
+    rewrite Hsize.
+    lia.
+  + simpl in H.
+    inversion H.
+    simpl.
+    lia.
+Qed.
+
 Lemma all_zero_list_3:
   all_zero_list 3 = [0; 0; 0].
 Proof.

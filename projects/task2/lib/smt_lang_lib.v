@@ -200,3 +200,10 @@ Definition sllbseg_SmtProplist (x: addr) (y: addr) (l: SmtProplist): Assertion :
 (* End smt_lang_store_lists2. *)
 
 (* Import smt_lang_store_lists2. *)
+
+Fixpoint SmtProp_size (s: smt_prop) : Z :=
+  match s with
+    | SmtB _ lt rt => 1 + SmtProp_size lt + SmtProp_size rt
+    | SmtU _ prop => 1 + SmtProp_size prop
+    | SmtV _ => 1
+  end.
