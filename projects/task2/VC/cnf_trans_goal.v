@@ -16775,85 +16775,87 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 .
 
 Definition prop2cnf_safety_wit_3 := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) (y'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (res'_2: Z) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (pcnt'_1: Z) (ccnt'_1: Z) (res'_1: Z) (lt': smt_prop) (op': SmtPropBop) (t': Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) (y'': Z) ,
   [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res_2)) = (prop2cnf_logic (rt) ((make_predata (clist') (pcnt') (ccnt'))))) |] 
-  &&  [| (retval_2 = res_2) |] 
-  &&  [| (res_2 <> 0) |] 
-  &&  [| (res_2 <= pcnt'_2) |] 
-  &&  [| ((-res_2) <= pcnt'_2) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
-  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
-  &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
+  &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
+  &&  [| (pcnt'_2 >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res'_2)) = (prop2cnf_logic (rt') ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))))) |] 
+  &&  [| (res'_2 <> 0) |] 
+  &&  [| (res'_2 <= pcnt'_2) |] 
+  &&  [| ((-res'_2) <= pcnt'_2) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (res'_1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res'_1 <> 0) |] 
+  &&  [| (res'_1 <= pcnt'_1) |] 
+  &&  [| ((-res'_1) <= pcnt'_1) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t = 5) |]
+  &&  [| (t' = 5) |] 
+  &&  [| (v_3 = (SmtPBID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt'')
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
-  **  (sll_cnf_list y'' clist'' )
-  **  (store_SmtProp z rt )
-  **  ((( &( "p2" ) )) # Int  |-> retval_2)
-  **  (store_SmtProp y lt )
-  **  ((( &( "p1" ) )) # Int  |-> retval)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt'_2)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'_2)
+  **  (sll_cnf_list y'' clist'_2 )
+  **  ((( &( "p2" ) )) # Int  |-> res'_2)
+  **  ((( &( "p1" ) )) # Int  |-> res'_1)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> v)
+  **  (store_SmtProp v rt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> v_2)
+  **  (store_SmtProp v_2 lt' )
   **  ((( &( "p" ) )) # Ptr  |-> p_pre)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
-  **  ((( &( "res" ) )) # Int  |-> 0)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> v_3)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
+  **  ((( &( "res" ) )) # Int  |-> res)
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
 |--
-  [| ((pcnt'' + 1 ) <= INT_MAX) |] 
-  &&  [| ((INT_MIN) <= (pcnt'' + 1 )) |]
+  [| ((pcnt'_2 + 1 ) <= INT_MAX) |] 
+  &&  [| ((INT_MIN) <= (pcnt'_2 + 1 )) |]
 .
 
 Definition prop2cnf_safety_wit_4 := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) (y'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (res'_2: Z) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (pcnt'_1: Z) (ccnt'_1: Z) (res'_1: Z) (lt': smt_prop) (op': SmtPropBop) (t': Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) (y'': Z) ,
   [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res_2)) = (prop2cnf_logic (rt) ((make_predata (clist') (pcnt') (ccnt'))))) |] 
-  &&  [| (retval_2 = res_2) |] 
-  &&  [| (res_2 <> 0) |] 
-  &&  [| (res_2 <= pcnt'_2) |] 
-  &&  [| ((-res_2) <= pcnt'_2) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
-  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
-  &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
+  &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
+  &&  [| (pcnt'_2 >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res'_2)) = (prop2cnf_logic (rt') ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))))) |] 
+  &&  [| (res'_2 <> 0) |] 
+  &&  [| (res'_2 <= pcnt'_2) |] 
+  &&  [| ((-res'_2) <= pcnt'_2) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (res'_1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res'_1 <> 0) |] 
+  &&  [| (res'_1 <= pcnt'_1) |] 
+  &&  [| ((-res'_1) <= pcnt'_1) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t = 5) |]
+  &&  [| (t' = 5) |] 
+  &&  [| (v_3 = (SmtPBID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt'')
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
-  **  (sll_cnf_list y'' clist'' )
-  **  (store_SmtProp z rt )
-  **  ((( &( "p2" ) )) # Int  |-> retval_2)
-  **  (store_SmtProp y lt )
-  **  ((( &( "p1" ) )) # Int  |-> retval)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt'_2)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'_2)
+  **  (sll_cnf_list y'' clist'_2 )
+  **  ((( &( "p2" ) )) # Int  |-> res'_2)
+  **  ((( &( "p1" ) )) # Int  |-> res'_1)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> v)
+  **  (store_SmtProp v rt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> v_2)
+  **  (store_SmtProp v_2 lt' )
   **  ((( &( "p" ) )) # Ptr  |-> p_pre)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
-  **  ((( &( "res" ) )) # Int  |-> 0)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> v_3)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
+  **  ((( &( "res" ) )) # Int  |-> res)
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
 |--
   [| (1 <= INT_MAX) |] 
@@ -16877,69 +16879,73 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 .
 
 Definition prop2cnf_safety_wit_6 := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) (y'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (res': Z) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) (t': Z) (v: Z) (v_2: Z) (p_pre_type: Z) (res: Z) (y'': Z) ,
   [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (sub_prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
-  &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| ((Zlength (clist')) = ccnt') |] 
+  &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
+  &&  [| (pcnt' >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res')) = (prop2cnf_logic (sub_prop') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res' <> 0) |] 
+  &&  [| (res' <= pcnt') |] 
+  &&  [| ((-res') <= pcnt') |] 
+  &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
+  &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t <> 5) |] 
-  &&  [| (t = 6) |]
+  &&  [| (t' <> 5) |] 
+  &&  [| (t' = 6) |] 
+  &&  [| (v_2 = (SmtPUID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt'')
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
-  **  (sll_cnf_list y'' clist'' )
-  **  (store_SmtProp y sub_prop )
-  **  ((( &( "p1" ) )) # Int  |-> retval)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt')
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt')
+  **  (sll_cnf_list y'' clist' )
+  **  ((( &( "p1" ) )) # Int  |-> res')
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> v)
+  **  (store_SmtProp v sub_prop' )
   **  ((( &( "p" ) )) # Ptr  |-> p_pre)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
-  **  ((( &( "res" ) )) # Int  |-> 0)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> v_2)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
+  **  ((( &( "res" ) )) # Int  |-> res)
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
 |--
-  [| ((pcnt'' + 1 ) <= INT_MAX) |] 
-  &&  [| ((INT_MIN) <= (pcnt'' + 1 )) |]
+  [| ((pcnt' + 1 ) <= INT_MAX) |] 
+  &&  [| ((INT_MIN) <= (pcnt' + 1 )) |]
 .
 
 Definition prop2cnf_safety_wit_7 := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) (y'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (res': Z) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) (t': Z) (v: Z) (v_2: Z) (p_pre_type: Z) (res: Z) (y'': Z) ,
   [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (sub_prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
-  &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| ((Zlength (clist')) = ccnt') |] 
+  &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
+  &&  [| (pcnt' >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res')) = (prop2cnf_logic (sub_prop') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res' <> 0) |] 
+  &&  [| (res' <= pcnt') |] 
+  &&  [| ((-res') <= pcnt') |] 
+  &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
+  &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t <> 5) |] 
-  &&  [| (t = 6) |]
+  &&  [| (t' <> 5) |] 
+  &&  [| (t' = 6) |] 
+  &&  [| (v_2 = (SmtPUID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt'')
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
-  **  (sll_cnf_list y'' clist'' )
-  **  (store_SmtProp y sub_prop )
-  **  ((( &( "p1" ) )) # Int  |-> retval)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt')
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt')
+  **  (sll_cnf_list y'' clist' )
+  **  ((( &( "p1" ) )) # Int  |-> res')
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> v)
+  **  (store_SmtProp v sub_prop' )
   **  ((( &( "p" ) )) # Ptr  |-> p_pre)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
-  **  ((( &( "res" ) )) # Int  |-> 0)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> v_2)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
+  **  ((( &( "res" ) )) # Int  |-> res)
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
 |--
   [| (1 <= INT_MAX) |] 
@@ -16981,17 +16987,17 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 .
 
 Definition prop2cnf_entail_wit_1 := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) ,
-  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res_2)) = (prop2cnf_logic (rt) ((make_predata (clist') (pcnt') (ccnt'))))) |] 
-  &&  [| (retval_2 = res_2) |] 
-  &&  [| (res_2 <> 0) |] 
-  &&  [| (res_2 <= pcnt'_2) |] 
-  &&  [| ((-res_2) <= pcnt'_2) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist'_3: (@list (@list Z))) (pcnt'_3: Z) (ccnt'_3: Z) (res_2: Z) (retval: Z) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval_2: Z) ,
+  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (rt) ((make_predata (clist'_3) (pcnt'_3) (ccnt'_3))))) |] 
+  &&  [| (retval_2 = res) |] 
   &&  [| (res <> 0) |] 
   &&  [| (res <= pcnt') |] 
   &&  [| ((-res) <= pcnt') |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_3) (pcnt'_3) (ccnt'_3))) (res_2)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (retval = res_2) |] 
+  &&  [| (res_2 <> 0) |] 
+  &&  [| (res_2 <= pcnt'_3) |] 
+  &&  [| ((-res_2) <= pcnt'_3) |] 
   &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
   &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
@@ -17000,47 +17006,48 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (t = 5) |]
   &&  (store_SmtProp z rt )
-  **  (store_predata data_pre clist'_2 pcnt'_2 ccnt'_2 )
+  **  (store_predata data_pre clist' pcnt' ccnt' )
   **  (store_SmtProp y lt )
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 |--
-  EX (clist'': (@list (@list Z)))  (pcnt'': Z)  (ccnt'': Z) ,
-  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res_2)) = (prop2cnf_logic (rt) ((make_predata (clist') (pcnt') (ccnt'))))) |] 
-  &&  [| (retval_2 = res_2) |] 
-  &&  [| (res_2 <> 0) |] 
-  &&  [| (res_2 <= pcnt'_2) |] 
-  &&  [| ((-res_2) <= pcnt'_2) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
-  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
-  &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  EX (p_pre_type: Z)  (v: Z)  (v_2: Z)  (v_3: Z)  (t': Z)  (op': SmtPropBop)  (lt': smt_prop)  (rt': smt_prop)  (clist'_1: (@list (@list Z)))  (pcnt'_1: Z)  (ccnt'_1: Z)  (clist'_2: (@list (@list Z)))  (pcnt'_2: Z)  (ccnt'_2: Z) ,
+  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (retval_2)) = (prop2cnf_logic (rt') ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))))) |] 
+  &&  [| (retval_2 <> 0) |] 
+  &&  [| (retval_2 <= pcnt'_2) |] 
+  &&  [| ((-retval_2) <= pcnt'_2) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (retval)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (retval <= pcnt'_1) |] 
+  &&  [| ((-retval) <= pcnt'_1) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t = 5) |]
-  &&  (store_predata data_pre clist'' pcnt'' ccnt'' )
-  **  (store_SmtProp z rt )
-  **  (store_SmtProp y lt )
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  &&  [| (t' = 5) |] 
+  &&  [| (v = (SmtPBID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (0 = 0) |]
+  &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> v_3)
+  **  (store_SmtProp v_3 rt' )
+  **  (store_predata data_pre clist'_2 pcnt'_2 ccnt'_2 )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> v_2)
+  **  (store_SmtProp v_2 lt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> v)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 .
 
 Definition prop2cnf_entail_wit_2 := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) ,
-  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (sub_prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res: Z) (retval: Z) ,
+  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res)) = (prop2cnf_logic (sub_prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
   &&  [| (retval = res) |] 
   &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
+  &&  [| (res <= pcnt'_2) |] 
+  &&  [| ((-res) <= pcnt'_2) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |] 
   &&  [| (p_pre <> 0) |] 
@@ -17049,29 +17056,31 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (t <> 5) |] 
   &&  [| (t = 6) |]
   &&  (store_SmtProp y sub_prop )
-  **  (store_predata data_pre clist' pcnt' ccnt' )
+  **  (store_predata data_pre clist'_2 pcnt'_2 ccnt'_2 )
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 |--
-  EX (clist'': (@list (@list Z)))  (pcnt'': Z)  (ccnt'': Z) ,
-  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (sub_prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
-  &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  EX (p_pre_type: Z)  (v: Z)  (v_2: Z)  (t': Z)  (op': SmtPropUop)  (sub_prop': smt_prop)  (clist': (@list (@list Z)))  (pcnt': Z)  (ccnt': Z) ,
+  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (retval)) = (prop2cnf_logic (sub_prop') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (retval <> 0) |] 
+  &&  [| (retval <= pcnt') |] 
+  &&  [| ((-retval) <= pcnt') |] 
+  &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
+  &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t <> 5) |] 
-  &&  [| (t = 6) |]
-  &&  (store_predata data_pre clist'' pcnt'' ccnt'' )
-  **  (store_SmtProp y sub_prop )
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  &&  [| (t' <> 5) |] 
+  &&  [| (t' = 6) |] 
+  &&  [| (v = (SmtPUID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (0 = 0) |]
+  &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> v_2)
+  **  (store_SmtProp v_2 sub_prop' )
+  **  (store_predata data_pre clist' pcnt' ccnt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> v)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 .
 
 Definition prop2cnf_return_wit_1_1 := 
@@ -17099,34 +17108,36 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 .
 
 Definition prop2cnf_return_wit_1_2 := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) ,
-  [| (((prop_cnt_inf (clist'')) + 1 ) <= (pcnt'' + 1 )) |] 
-  &&  [| ((pcnt'' + 1 ) <> 0) |] 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (res': Z) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) (t': Z) (v: Z) (v_2: Z) (p_pre_type: Z) (res_2: Z) ,
+  [| (((prop_cnt_inf (clist'_2)) + 1 ) <= (pcnt'_2 + 1 )) |] 
+  &&  [| ((pcnt'_2 + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res_2)) = (prop2cnf_logic (sub_prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res_2) |] 
-  &&  [| (res_2 <> 0) |] 
-  &&  [| (res_2 <= pcnt'_2) |] 
-  &&  [| ((-res_2) <= pcnt'_2) |] 
-  &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
-  &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
+  &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
+  &&  [| (pcnt'_2 >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res')) = (prop2cnf_logic (sub_prop') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res' <> 0) |] 
+  &&  [| (res' <= pcnt'_2) |] 
+  &&  [| ((-res') <= pcnt'_2) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
+  &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t <> 5) |] 
-  &&  [| (t = 6) |]
-  &&  (store_predata data_pre (app ((iff2cnf_unary (retval) ((pcnt'' + 1 )))) (clist'')) (pcnt'' + 1 ) (ccnt'' + 2 ) )
-  **  (store_SmtProp y sub_prop )
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  &&  [| (t' <> 5) |] 
+  &&  [| (t' = 6) |] 
+  &&  [| (v_2 = (SmtPUID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res_2 = 0) |]
+  &&  (store_predata data_pre (app ((iff2cnf_unary (res') ((pcnt'_2 + 1 )))) (clist'_2)) (pcnt'_2 + 1 ) (ccnt'_2 + 2 ) )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> v)
+  **  (store_SmtProp v sub_prop' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> v_2)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 |--
   EX (clist': (@list (@list Z)))  (pcnt': Z)  (ccnt': Z)  (res: Z) ,
   [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| ((pcnt'' + 1 ) = res) |] 
+  &&  [| ((pcnt'_2 + 1 ) = res) |] 
   &&  [| (res <> 0) |] 
   &&  [| (res <= pcnt') |] 
   &&  [| ((-res) <= pcnt') |]
@@ -17135,41 +17146,42 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 .
 
 Definition prop2cnf_return_wit_1_3 := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval: Z) (clist'_3: (@list (@list Z))) (pcnt'_3: Z) (ccnt'_3: Z) (res_3: Z) (retval_2: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) ,
-  [| (((prop_cnt_inf (clist'')) + 1 ) <= (pcnt'' + 1 )) |] 
-  &&  [| ((pcnt'' + 1 ) <> 0) |] 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (res'_2: Z) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (pcnt'_1: Z) (ccnt'_1: Z) (res'_1: Z) (lt': smt_prop) (op': SmtPropBop) (t': Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res_2: Z) ,
+  [| (((prop_cnt_inf (clist'_2)) + 1 ) <= (pcnt'_2 + 1 )) |] 
+  &&  [| ((pcnt'_2 + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_3) (pcnt'_3) (ccnt'_3))) (res_3)) = (prop2cnf_logic (rt) ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))))) |] 
-  &&  [| (retval_2 = res_3) |] 
-  &&  [| (res_3 <> 0) |] 
-  &&  [| (res_3 <= pcnt'_3) |] 
-  &&  [| ((-res_3) <= pcnt'_3) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res_2)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res_2) |] 
-  &&  [| (res_2 <> 0) |] 
-  &&  [| (res_2 <= pcnt'_2) |] 
-  &&  [| ((-res_2) <= pcnt'_2) |] 
-  &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
-  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
-  &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
+  &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
+  &&  [| (pcnt'_2 >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res'_2)) = (prop2cnf_logic (rt') ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))))) |] 
+  &&  [| (res'_2 <> 0) |] 
+  &&  [| (res'_2 <= pcnt'_2) |] 
+  &&  [| ((-res'_2) <= pcnt'_2) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (res'_1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res'_1 <> 0) |] 
+  &&  [| (res'_1 <= pcnt'_1) |] 
+  &&  [| ((-res'_1) <= pcnt'_1) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t = 5) |]
-  &&  (store_predata data_pre (app ((iff2cnf_binary (retval) (retval_2) ((pcnt'' + 1 )) (op))) (clist'')) (pcnt'' + 1 ) (ccnt'' + (iff2cnf_length_binary (retval) (retval_2) ((pcnt'' + 1 )) (op)) ) )
-  **  (store_SmtProp z rt )
-  **  (store_SmtProp y lt )
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  &&  [| (t' = 5) |] 
+  &&  [| (v_3 = (SmtPBID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res_2 = 0) |]
+  &&  (store_predata data_pre (app ((iff2cnf_binary (res'_1) (res'_2) ((pcnt'_2 + 1 )) (op'))) (clist'_2)) (pcnt'_2 + 1 ) (ccnt'_2 + (iff2cnf_length_binary (res'_1) (res'_2) ((pcnt'_2 + 1 )) (op')) ) )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> v)
+  **  (store_SmtProp v rt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> v_2)
+  **  (store_SmtProp v_2 lt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> v_3)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 |--
   EX (clist': (@list (@list Z)))  (pcnt': Z)  (ccnt': Z)  (res: Z) ,
   [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| ((pcnt'' + 1 ) = res) |] 
+  &&  [| ((pcnt'_2 + 1 ) = res) |] 
   &&  [| (res <> 0) |] 
   &&  [| (res <= pcnt') |] 
   &&  [| ((-res) <= pcnt') |]
@@ -17415,530 +17427,536 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 Definition prop2cnf_partial_solve_wit_5 := prop2cnf_partial_solve_wit_5_pure -> prop2cnf_partial_solve_wit_5_aux.
 
 Definition prop2cnf_partial_solve_wit_6 := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) ,
-  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res_2)) = (prop2cnf_logic (rt) ((make_predata (clist') (pcnt') (ccnt'))))) |] 
-  &&  [| (retval_2 = res_2) |] 
-  &&  [| (res_2 <> 0) |] 
-  &&  [| (res_2 <= pcnt'_2) |] 
-  &&  [| ((-res_2) <= pcnt'_2) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
-  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
-  &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (res'_2: Z) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (pcnt'_1: Z) (ccnt'_1: Z) (res'_1: Z) (lt': smt_prop) (op': SmtPropBop) (t': Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) ,
+  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res'_2)) = (prop2cnf_logic (rt') ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))))) |] 
+  &&  [| (res'_2 <> 0) |] 
+  &&  [| (res'_2 <= pcnt'_2) |] 
+  &&  [| ((-res'_2) <= pcnt'_2) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (res'_1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res'_1 <> 0) |] 
+  &&  [| (res'_1 <= pcnt'_1) |] 
+  &&  [| ((-res'_1) <= pcnt'_1) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t = 5) |]
-  &&  (store_predata data_pre clist'' pcnt'' ccnt'' )
-  **  (store_SmtProp z rt )
-  **  (store_SmtProp y lt )
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  &&  [| (t' = 5) |] 
+  &&  [| (v_3 = (SmtPBID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
+  &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> v)
+  **  (store_SmtProp v rt' )
+  **  (store_predata data_pre clist'_2 pcnt'_2 ccnt'_2 )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> v_2)
+  **  (store_SmtProp v_2 lt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> v_3)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 |--
-  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res_2)) = (prop2cnf_logic (rt) ((make_predata (clist') (pcnt') (ccnt'))))) |] 
-  &&  [| (retval_2 = res_2) |] 
-  &&  [| (res_2 <> 0) |] 
-  &&  [| (res_2 <= pcnt'_2) |] 
-  &&  [| ((-res_2) <= pcnt'_2) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
-  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
-  &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res'_2)) = (prop2cnf_logic (rt') ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))))) |] 
+  &&  [| (res'_2 <> 0) |] 
+  &&  [| (res'_2 <= pcnt'_2) |] 
+  &&  [| ((-res'_2) <= pcnt'_2) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (res'_1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res'_1 <> 0) |] 
+  &&  [| (res'_1 <= pcnt'_1) |] 
+  &&  [| ((-res'_1) <= pcnt'_1) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t = 5) |]
-  &&  (store_predata data_pre clist'' pcnt'' ccnt'' )
-  **  (store_SmtProp z rt )
-  **  (store_SmtProp y lt )
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  &&  [| (t' = 5) |] 
+  &&  [| (v_3 = (SmtPBID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
+  &&  (store_predata data_pre clist'_2 pcnt'_2 ccnt'_2 )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> v)
+  **  (store_SmtProp v rt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> v_2)
+  **  (store_SmtProp v_2 lt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> v_3)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 .
 
 Definition prop2cnf_partial_solve_wit_7_pure := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) (y'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (res'_2: Z) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (pcnt'_1: Z) (ccnt'_1: Z) (res'_1: Z) (lt': smt_prop) (op': SmtPropBop) (t': Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) (y'': Z) ,
   [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res_2)) = (prop2cnf_logic (rt) ((make_predata (clist') (pcnt') (ccnt'))))) |] 
-  &&  [| (retval_2 = res_2) |] 
-  &&  [| (res_2 <> 0) |] 
-  &&  [| (res_2 <= pcnt'_2) |] 
-  &&  [| ((-res_2) <= pcnt'_2) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
-  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
-  &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
+  &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
+  &&  [| (pcnt'_2 >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res'_2)) = (prop2cnf_logic (rt') ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))))) |] 
+  &&  [| (res'_2 <> 0) |] 
+  &&  [| (res'_2 <= pcnt'_2) |] 
+  &&  [| ((-res'_2) <= pcnt'_2) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (res'_1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res'_1 <> 0) |] 
+  &&  [| (res'_1 <= pcnt'_1) |] 
+  &&  [| ((-res'_1) <= pcnt'_1) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t = 5) |]
+  &&  [| (t' = 5) |] 
+  &&  [| (v_3 = (SmtPBID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
-  **  (sll_cnf_list y'' clist'' )
-  **  (store_SmtProp z rt )
-  **  ((( &( "p2" ) )) # Int  |-> retval_2)
-  **  (store_SmtProp y lt )
-  **  ((( &( "p1" ) )) # Int  |-> retval)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'_2 + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'_2)
+  **  (sll_cnf_list y'' clist'_2 )
+  **  ((( &( "p2" ) )) # Int  |-> res'_2)
+  **  ((( &( "p1" ) )) # Int  |-> res'_1)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> v)
+  **  (store_SmtProp v rt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> v_2)
+  **  (store_SmtProp v_2 lt' )
   **  ((( &( "p" ) )) # Ptr  |-> p_pre)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
-  **  ((( &( "res" ) )) # Int  |-> (pcnt'' + 1 ))
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> v_3)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
+  **  ((( &( "res" ) )) # Int  |-> (pcnt'_2 + 1 ))
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
 |--
-  [| (pcnt'' >= 0) |] 
-  &&  [| ((pcnt'' + 1 ) = (pcnt'' + 1 )) |]
+  [| (pcnt'_2 >= 0) |] 
+  &&  [| ((pcnt'_2 + 1 ) = (pcnt'_2 + 1 )) |]
 .
 
 Definition prop2cnf_partial_solve_wit_7_aux := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) (y'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (res'_2: Z) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (pcnt'_1: Z) (ccnt'_1: Z) (res'_1: Z) (lt': smt_prop) (op': SmtPropBop) (t': Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) (y'': Z) ,
   [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res_2)) = (prop2cnf_logic (rt) ((make_predata (clist') (pcnt') (ccnt'))))) |] 
-  &&  [| (retval_2 = res_2) |] 
-  &&  [| (res_2 <> 0) |] 
-  &&  [| (res_2 <= pcnt'_2) |] 
-  &&  [| ((-res_2) <= pcnt'_2) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
-  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
-  &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
+  &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
+  &&  [| (pcnt'_2 >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res'_2)) = (prop2cnf_logic (rt') ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))))) |] 
+  &&  [| (res'_2 <> 0) |] 
+  &&  [| (res'_2 <= pcnt'_2) |] 
+  &&  [| ((-res'_2) <= pcnt'_2) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (res'_1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res'_1 <> 0) |] 
+  &&  [| (res'_1 <= pcnt'_1) |] 
+  &&  [| ((-res'_1) <= pcnt'_1) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t = 5) |]
+  &&  [| (t' = 5) |] 
+  &&  [| (v_3 = (SmtPBID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
-  **  (sll_cnf_list y'' clist'' )
-  **  (store_SmtProp z rt )
-  **  (store_SmtProp y lt )
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'_2 + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'_2)
+  **  (sll_cnf_list y'' clist'_2 )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> v)
+  **  (store_SmtProp v rt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> v_2)
+  **  (store_SmtProp v_2 lt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> v_3)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 |--
-  [| (pcnt'' >= 0) |] 
-  &&  [| ((pcnt'' + 1 ) = (pcnt'' + 1 )) |] 
+  [| (pcnt'_2 >= 0) |] 
+  &&  [| ((pcnt'_2 + 1 ) = (pcnt'_2 + 1 )) |] 
   &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res_2)) = (prop2cnf_logic (rt) ((make_predata (clist') (pcnt') (ccnt'))))) |] 
-  &&  [| (retval_2 = res_2) |] 
-  &&  [| (res_2 <> 0) |] 
-  &&  [| (res_2 <= pcnt'_2) |] 
-  &&  [| ((-res_2) <= pcnt'_2) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
-  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
-  &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
+  &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
+  &&  [| (pcnt'_2 >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res'_2)) = (prop2cnf_logic (rt') ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))))) |] 
+  &&  [| (res'_2 <> 0) |] 
+  &&  [| (res'_2 <= pcnt'_2) |] 
+  &&  [| ((-res'_2) <= pcnt'_2) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (res'_1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res'_1 <> 0) |] 
+  &&  [| (res'_1 <= pcnt'_1) |] 
+  &&  [| ((-res'_1) <= pcnt'_1) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t = 5) |]
+  &&  [| (t' = 5) |] 
+  &&  [| (v_3 = (SmtPBID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
-  **  (sll_cnf_list y'' clist'' )
-  **  (store_SmtProp z rt )
-  **  (store_SmtProp y lt )
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'_2 + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'_2)
+  **  (sll_cnf_list y'' clist'_2 )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> v)
+  **  (store_SmtProp v rt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> v_2)
+  **  (store_SmtProp v_2 lt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> v_3)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 .
 
 Definition prop2cnf_partial_solve_wit_7 := prop2cnf_partial_solve_wit_7_pure -> prop2cnf_partial_solve_wit_7_aux.
 
 Definition prop2cnf_partial_solve_wit_8_pure := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) (y'': Z) ,
-  [| ((pcnt'' + 1 ) <> 0) |] 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (res'_2: Z) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (pcnt'_1: Z) (ccnt'_1: Z) (res'_1: Z) (lt': smt_prop) (op': SmtPropBop) (t': Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) (y'': Z) ,
+  [| ((pcnt'_2 + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res_2)) = (prop2cnf_logic (rt) ((make_predata (clist') (pcnt') (ccnt'))))) |] 
-  &&  [| (retval_2 = res_2) |] 
-  &&  [| (res_2 <> 0) |] 
-  &&  [| (res_2 <= pcnt'_2) |] 
-  &&  [| ((-res_2) <= pcnt'_2) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
-  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
-  &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
+  &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
+  &&  [| (pcnt'_2 >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res'_2)) = (prop2cnf_logic (rt') ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))))) |] 
+  &&  [| (res'_2 <> 0) |] 
+  &&  [| (res'_2 <= pcnt'_2) |] 
+  &&  [| ((-res'_2) <= pcnt'_2) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (res'_1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res'_1 <> 0) |] 
+  &&  [| (res'_1 <= pcnt'_1) |] 
+  &&  [| ((-res'_1) <= pcnt'_1) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t = 5) |]
-  &&  ((( &( "res" ) )) # Int  |-> (pcnt'' + 1 ))
+  &&  [| (t' = 5) |] 
+  &&  [| (v_3 = (SmtPBID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
+  &&  ((( &( "res" ) )) # Int  |-> (pcnt'_2 + 1 ))
   **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
-  **  (sll_cnf_list y'' clist'' )
-  **  (store_SmtProp z rt )
-  **  ((( &( "p2" ) )) # Int  |-> retval_2)
-  **  (store_SmtProp y lt )
-  **  ((( &( "p1" ) )) # Int  |-> retval)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'_2 + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'_2)
+  **  (sll_cnf_list y'' clist'_2 )
+  **  ((( &( "p2" ) )) # Int  |-> res'_2)
+  **  ((( &( "p1" ) )) # Int  |-> res'_1)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> v)
+  **  (store_SmtProp v rt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> v_2)
+  **  (store_SmtProp v_2 lt' )
   **  ((( &( "p" ) )) # Ptr  |-> p_pre)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> v_3)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
 |--
   [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |]
+  &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
+  &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |]
 .
 
 Definition prop2cnf_partial_solve_wit_8_aux := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) (y'': Z) ,
-  [| ((pcnt'' + 1 ) <> 0) |] 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (res'_2: Z) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (pcnt'_1: Z) (ccnt'_1: Z) (res'_1: Z) (lt': smt_prop) (op': SmtPropBop) (t': Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) (y'': Z) ,
+  [| ((pcnt'_2 + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res_2)) = (prop2cnf_logic (rt) ((make_predata (clist') (pcnt') (ccnt'))))) |] 
-  &&  [| (retval_2 = res_2) |] 
-  &&  [| (res_2 <> 0) |] 
-  &&  [| (res_2 <= pcnt'_2) |] 
-  &&  [| ((-res_2) <= pcnt'_2) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
-  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
-  &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
+  &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
+  &&  [| (pcnt'_2 >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res'_2)) = (prop2cnf_logic (rt') ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))))) |] 
+  &&  [| (res'_2 <> 0) |] 
+  &&  [| (res'_2 <= pcnt'_2) |] 
+  &&  [| ((-res'_2) <= pcnt'_2) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (res'_1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res'_1 <> 0) |] 
+  &&  [| (res'_1 <= pcnt'_1) |] 
+  &&  [| ((-res'_1) <= pcnt'_1) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t = 5) |]
+  &&  [| (t' = 5) |] 
+  &&  [| (v_3 = (SmtPBID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
-  **  (sll_cnf_list y'' clist'' )
-  **  (store_SmtProp z rt )
-  **  (store_SmtProp y lt )
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'_2 + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'_2)
+  **  (sll_cnf_list y'' clist'_2 )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> v)
+  **  (store_SmtProp v rt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> v_2)
+  **  (store_SmtProp v_2 lt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> v_3)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 |--
   [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| ((pcnt'' + 1 ) <> 0) |] 
+  &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
+  &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
+  &&  [| ((pcnt'_2 + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res_2)) = (prop2cnf_logic (rt) ((make_predata (clist') (pcnt') (ccnt'))))) |] 
-  &&  [| (retval_2 = res_2) |] 
-  &&  [| (res_2 <> 0) |] 
-  &&  [| (res_2 <= pcnt'_2) |] 
-  &&  [| ((-res_2) <= pcnt'_2) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
-  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
-  &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
+  &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
+  &&  [| (pcnt'_2 >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res'_2)) = (prop2cnf_logic (rt') ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))))) |] 
+  &&  [| (res'_2 <> 0) |] 
+  &&  [| (res'_2 <= pcnt'_2) |] 
+  &&  [| ((-res'_2) <= pcnt'_2) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (res'_1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res'_1 <> 0) |] 
+  &&  [| (res'_1 <= pcnt'_1) |] 
+  &&  [| ((-res'_1) <= pcnt'_1) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t = 5) |]
+  &&  [| (t' = 5) |] 
+  &&  [| (v_3 = (SmtPBID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
-  **  (sll_cnf_list y'' clist'' )
-  **  (store_SmtProp z rt )
-  **  (store_SmtProp y lt )
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'_2 + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'_2)
+  **  (sll_cnf_list y'' clist'_2 )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> v)
+  **  (store_SmtProp v rt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> v_2)
+  **  (store_SmtProp v_2 lt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> v_3)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 .
 
 Definition prop2cnf_partial_solve_wit_8 := prop2cnf_partial_solve_wit_8_pure -> prop2cnf_partial_solve_wit_8_aux.
 
 Definition prop2cnf_partial_solve_wit_9_pure := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) ,
-  [| ((pcnt'' + 1 ) <> 0) |] 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (res'_2: Z) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (pcnt'_1: Z) (ccnt'_1: Z) (res'_1: Z) (lt': smt_prop) (op': SmtPropBop) (t': Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) ,
+  [| ((pcnt'_2 + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res_2)) = (prop2cnf_logic (rt) ((make_predata (clist') (pcnt') (ccnt'))))) |] 
-  &&  [| (retval_2 = res_2) |] 
-  &&  [| (res_2 <> 0) |] 
-  &&  [| (res_2 <= pcnt'_2) |] 
-  &&  [| ((-res_2) <= pcnt'_2) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
-  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
-  &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
+  &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
+  &&  [| (pcnt'_2 >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res'_2)) = (prop2cnf_logic (rt') ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))))) |] 
+  &&  [| (res'_2 <> 0) |] 
+  &&  [| (res'_2 <= pcnt'_2) |] 
+  &&  [| ((-res'_2) <= pcnt'_2) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (res'_1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res'_1 <> 0) |] 
+  &&  [| (res'_1 <= pcnt'_1) |] 
+  &&  [| ((-res'_1) <= pcnt'_1) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t = 5) |]
-  &&  (store_predata data_pre clist'' (pcnt'' + 1 ) ccnt'' )
-  **  ((( &( "res" ) )) # Int  |-> (pcnt'' + 1 ))
-  **  (store_SmtProp z rt )
-  **  ((( &( "p2" ) )) # Int  |-> retval_2)
-  **  (store_SmtProp y lt )
-  **  ((( &( "p1" ) )) # Int  |-> retval)
+  &&  [| (t' = 5) |] 
+  &&  [| (v_3 = (SmtPBID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
+  &&  (store_predata data_pre clist'_2 (pcnt'_2 + 1 ) ccnt'_2 )
+  **  ((( &( "res" ) )) # Int  |-> (pcnt'_2 + 1 ))
+  **  ((( &( "p2" ) )) # Int  |-> res'_2)
+  **  ((( &( "p1" ) )) # Int  |-> res'_1)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> v)
+  **  (store_SmtProp v rt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> v_2)
+  **  (store_SmtProp v_2 lt' )
   **  ((( &( "p" ) )) # Ptr  |-> p_pre)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> v_3)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
 |--
-  [| ((prop_cnt_inf (clist'')) <= pcnt'') |]
+  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |]
 .
 
 Definition prop2cnf_partial_solve_wit_9_aux := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) ,
-  [| ((pcnt'' + 1 ) <> 0) |] 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (res'_2: Z) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (pcnt'_1: Z) (ccnt'_1: Z) (res'_1: Z) (lt': smt_prop) (op': SmtPropBop) (t': Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) ,
+  [| ((pcnt'_2 + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res_2)) = (prop2cnf_logic (rt) ((make_predata (clist') (pcnt') (ccnt'))))) |] 
-  &&  [| (retval_2 = res_2) |] 
-  &&  [| (res_2 <> 0) |] 
-  &&  [| (res_2 <= pcnt'_2) |] 
-  &&  [| ((-res_2) <= pcnt'_2) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
-  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
-  &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
+  &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
+  &&  [| (pcnt'_2 >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res'_2)) = (prop2cnf_logic (rt') ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))))) |] 
+  &&  [| (res'_2 <> 0) |] 
+  &&  [| (res'_2 <= pcnt'_2) |] 
+  &&  [| ((-res'_2) <= pcnt'_2) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (res'_1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res'_1 <> 0) |] 
+  &&  [| (res'_1 <= pcnt'_1) |] 
+  &&  [| ((-res'_1) <= pcnt'_1) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t = 5) |]
-  &&  (store_predata data_pre clist'' (pcnt'' + 1 ) ccnt'' )
-  **  (store_SmtProp z rt )
-  **  (store_SmtProp y lt )
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  &&  [| (t' = 5) |] 
+  &&  [| (v_3 = (SmtPBID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
+  &&  (store_predata data_pre clist'_2 (pcnt'_2 + 1 ) ccnt'_2 )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> v)
+  **  (store_SmtProp v rt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> v_2)
+  **  (store_SmtProp v_2 lt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> v_3)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 |--
-  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| ((pcnt'' + 1 ) <> 0) |] 
+  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
+  &&  [| ((pcnt'_2 + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res_2)) = (prop2cnf_logic (rt) ((make_predata (clist') (pcnt') (ccnt'))))) |] 
-  &&  [| (retval_2 = res_2) |] 
-  &&  [| (res_2 <> 0) |] 
-  &&  [| (res_2 <= pcnt'_2) |] 
-  &&  [| ((-res_2) <= pcnt'_2) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
-  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
-  &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
+  &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
+  &&  [| (pcnt'_2 >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res'_2)) = (prop2cnf_logic (rt') ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))))) |] 
+  &&  [| (res'_2 <> 0) |] 
+  &&  [| (res'_2 <= pcnt'_2) |] 
+  &&  [| ((-res'_2) <= pcnt'_2) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (res'_1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res'_1 <> 0) |] 
+  &&  [| (res'_1 <= pcnt'_1) |] 
+  &&  [| ((-res'_1) <= pcnt'_1) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t = 5) |]
-  &&  (store_predata data_pre clist'' (pcnt'' + 1 ) ccnt'' )
-  **  (store_SmtProp z rt )
-  **  (store_SmtProp y lt )
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  &&  [| (t' = 5) |] 
+  &&  [| (v_3 = (SmtPBID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
+  &&  (store_predata data_pre clist'_2 (pcnt'_2 + 1 ) ccnt'_2 )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> v)
+  **  (store_SmtProp v rt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> v_2)
+  **  (store_SmtProp v_2 lt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> v_3)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 .
 
 Definition prop2cnf_partial_solve_wit_9 := prop2cnf_partial_solve_wit_9_pure -> prop2cnf_partial_solve_wit_9_aux.
 
 Definition prop2cnf_partial_solve_wit_10_pure := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) ,
-  [| (((prop_cnt_inf (clist'')) + 1 ) <= (pcnt'' + 1 )) |] 
-  &&  [| ((pcnt'' + 1 ) <> 0) |] 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (res'_2: Z) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (pcnt'_1: Z) (ccnt'_1: Z) (res'_1: Z) (lt': smt_prop) (op': SmtPropBop) (t': Z) (v_2: Z) (v_3: Z) (v: Z) (p_pre_type: Z) (res: Z) ,
+  [| (((prop_cnt_inf (clist'_2)) + 1 ) <= (pcnt'_2 + 1 )) |] 
+  &&  [| ((pcnt'_2 + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res_2)) = (prop2cnf_logic (rt) ((make_predata (clist') (pcnt') (ccnt'))))) |] 
-  &&  [| (retval_2 = res_2) |] 
-  &&  [| (res_2 <> 0) |] 
-  &&  [| (res_2 <= pcnt'_2) |] 
-  &&  [| ((-res_2) <= pcnt'_2) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
-  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
-  &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
+  &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
+  &&  [| (pcnt'_2 >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res'_2)) = (prop2cnf_logic (rt') ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))))) |] 
+  &&  [| (res'_2 <> 0) |] 
+  &&  [| (res'_2 <= pcnt'_2) |] 
+  &&  [| ((-res'_2) <= pcnt'_2) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (res'_1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res'_1 <> 0) |] 
+  &&  [| (res'_1 <= pcnt'_1) |] 
+  &&  [| ((-res'_1) <= pcnt'_1) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t = 5) |]
-  &&  (store_predata data_pre clist'' (pcnt'' + 1 ) ccnt'' )
-  **  ((( &( "res" ) )) # Int  |-> (pcnt'' + 1 ))
-  **  (store_SmtProp z rt )
-  **  ((( &( "p2" ) )) # Int  |-> retval_2)
-  **  (store_SmtProp y lt )
-  **  ((( &( "p1" ) )) # Int  |-> retval)
+  &&  [| (t' = 5) |] 
+  &&  [| (v = (SmtPBID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
+  &&  (store_predata data_pre clist'_2 (pcnt'_2 + 1 ) ccnt'_2 )
+  **  ((( &( "res" ) )) # Int  |-> (pcnt'_2 + 1 ))
+  **  ((( &( "p2" ) )) # Int  |-> res'_2)
+  **  ((( &( "p1" ) )) # Int  |-> res'_1)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> v_2)
+  **  (store_SmtProp v_2 rt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> v_3)
+  **  (store_SmtProp v_3 lt' )
   **  ((( &( "p" ) )) # Ptr  |-> p_pre)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> v)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
 |--
-  [| (retval <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| ((pcnt'' + 1 ) <> 0) |] 
-  &&  [| (retval <= (pcnt'' + 1 )) |] 
-  &&  [| (retval_2 <= (pcnt'' + 1 )) |] 
-  &&  [| ((pcnt'' + 1 ) <= (pcnt'' + 1 )) |] 
-  &&  [| ((-retval) <= (pcnt'' + 1 )) |] 
-  &&  [| ((-retval_2) <= (pcnt'' + 1 )) |] 
-  &&  [| ((-(pcnt'' + 1 )) <= (pcnt'' + 1 )) |] 
-  &&  [| (((prop_cnt_inf (clist'')) + 1 ) <= (pcnt'' + 1 )) |] 
-  &&  [| ((SmtPBID (op)) = (SmtPBID (op))) |] 
-  &&  [| ((-res_2) <= (pcnt'' + 1 )) |] 
-  &&  [| ((-res) <= (pcnt'' + 1 )) |] 
-  &&  [| (res_2 <= (pcnt'' + 1 )) |] 
-  &&  [| (res <= (pcnt'' + 1 )) |]
+  [| (res'_1 <> 0) |] 
+  &&  [| (res'_2 <> 0) |] 
+  &&  [| ((pcnt'_2 + 1 ) <> 0) |] 
+  &&  [| (res'_2 <= (pcnt'_2 + 1 )) |] 
+  &&  [| ((pcnt'_2 + 1 ) <= (pcnt'_2 + 1 )) |] 
+  &&  [| ((-res'_2) <= (pcnt'_2 + 1 )) |] 
+  &&  [| ((-(pcnt'_2 + 1 )) <= (pcnt'_2 + 1 )) |] 
+  &&  [| (((prop_cnt_inf (clist'_2)) + 1 ) <= (pcnt'_2 + 1 )) |] 
+  &&  [| (v = (SmtPBID (op'))) |] 
+  &&  [| ((-res'_1) <= (pcnt'_2 + 1 )) |] 
+  &&  [| (res'_1 <= (pcnt'_2 + 1 )) |]
 .
 
 Definition prop2cnf_partial_solve_wit_10_aux := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'_2: (@list (@list Z))) (pcnt'_2: Z) (ccnt'_2: Z) (res_2: Z) (retval_2: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) ,
-  [| (((prop_cnt_inf (clist'')) + 1 ) <= (pcnt'' + 1 )) |] 
-  &&  [| ((pcnt'' + 1 ) <> 0) |] 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (res'_2: Z) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (pcnt'_1: Z) (ccnt'_1: Z) (res'_1: Z) (lt': smt_prop) (op': SmtPropBop) (t': Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) ,
+  [| (((prop_cnt_inf (clist'_2)) + 1 ) <= (pcnt'_2 + 1 )) |] 
+  &&  [| ((pcnt'_2 + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res_2)) = (prop2cnf_logic (rt) ((make_predata (clist') (pcnt') (ccnt'))))) |] 
-  &&  [| (retval_2 = res_2) |] 
-  &&  [| (res_2 <> 0) |] 
-  &&  [| (res_2 <= pcnt'_2) |] 
-  &&  [| ((-res_2) <= pcnt'_2) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
-  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
-  &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
+  &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
+  &&  [| (pcnt'_2 >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res'_2)) = (prop2cnf_logic (rt') ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))))) |] 
+  &&  [| (res'_2 <> 0) |] 
+  &&  [| (res'_2 <= pcnt'_2) |] 
+  &&  [| ((-res'_2) <= pcnt'_2) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (res'_1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res'_1 <> 0) |] 
+  &&  [| (res'_1 <= pcnt'_1) |] 
+  &&  [| ((-res'_1) <= pcnt'_1) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t = 5) |]
-  &&  (store_predata data_pre clist'' (pcnt'' + 1 ) ccnt'' )
-  **  (store_SmtProp z rt )
-  **  (store_SmtProp y lt )
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  &&  [| (t' = 5) |] 
+  &&  [| (v_3 = (SmtPBID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
+  &&  (store_predata data_pre clist'_2 (pcnt'_2 + 1 ) ccnt'_2 )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> v)
+  **  (store_SmtProp v rt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> v_2)
+  **  (store_SmtProp v_2 lt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> v_3)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 |--
-  [| (retval <> 0) |] 
-  &&  [| (retval_2 <> 0) |] 
-  &&  [| ((pcnt'' + 1 ) <> 0) |] 
-  &&  [| (retval <= (pcnt'' + 1 )) |] 
-  &&  [| (retval_2 <= (pcnt'' + 1 )) |] 
-  &&  [| ((pcnt'' + 1 ) <= (pcnt'' + 1 )) |] 
-  &&  [| ((-retval) <= (pcnt'' + 1 )) |] 
-  &&  [| ((-retval_2) <= (pcnt'' + 1 )) |] 
-  &&  [| ((-(pcnt'' + 1 )) <= (pcnt'' + 1 )) |] 
-  &&  [| (((prop_cnt_inf (clist'')) + 1 ) <= (pcnt'' + 1 )) |] 
-  &&  [| ((SmtPBID (op)) = (SmtPBID (op))) |] 
-  &&  [| ((-res_2) <= (pcnt'' + 1 )) |] 
-  &&  [| ((-res) <= (pcnt'' + 1 )) |] 
-  &&  [| (res_2 <= (pcnt'' + 1 )) |] 
-  &&  [| (res <= (pcnt'' + 1 )) |] 
-  &&  [| (((prop_cnt_inf (clist'')) + 1 ) <= (pcnt'' + 1 )) |] 
-  &&  [| ((pcnt'' + 1 ) <> 0) |] 
+  [| (res'_1 <> 0) |] 
+  &&  [| (res'_2 <> 0) |] 
+  &&  [| ((pcnt'_2 + 1 ) <> 0) |] 
+  &&  [| (res'_2 <= (pcnt'_2 + 1 )) |] 
+  &&  [| ((pcnt'_2 + 1 ) <= (pcnt'_2 + 1 )) |] 
+  &&  [| ((-res'_2) <= (pcnt'_2 + 1 )) |] 
+  &&  [| ((-(pcnt'_2 + 1 )) <= (pcnt'_2 + 1 )) |] 
+  &&  [| (((prop_cnt_inf (clist'_2)) + 1 ) <= (pcnt'_2 + 1 )) |] 
+  &&  [| (v_3 = (SmtPBID (op'))) |] 
+  &&  [| ((-res'_1) <= (pcnt'_2 + 1 )) |] 
+  &&  [| (res'_1 <= (pcnt'_2 + 1 )) |] 
+  &&  [| (((prop_cnt_inf (clist'_2)) + 1 ) <= (pcnt'_2 + 1 )) |] 
+  &&  [| ((pcnt'_2 + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res_2)) = (prop2cnf_logic (rt) ((make_predata (clist') (pcnt') (ccnt'))))) |] 
-  &&  [| (retval_2 = res_2) |] 
-  &&  [| (res_2 <> 0) |] 
-  &&  [| (res_2 <= pcnt'_2) |] 
-  &&  [| ((-res_2) <= pcnt'_2) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
-  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
-  &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
+  &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
+  &&  [| (pcnt'_2 >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (res'_2)) = (prop2cnf_logic (rt') ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))))) |] 
+  &&  [| (res'_2 <> 0) |] 
+  &&  [| (res'_2 <= pcnt'_2) |] 
+  &&  [| ((-res'_2) <= pcnt'_2) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (res'_1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res'_1 <> 0) |] 
+  &&  [| (res'_1 <= pcnt'_1) |] 
+  &&  [| ((-res'_1) <= pcnt'_1) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t = 5) |]
-  &&  (store_predata data_pre clist'' (pcnt'' + 1 ) ccnt'' )
-  **  (store_SmtProp z rt )
-  **  (store_SmtProp y lt )
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  &&  [| (t' = 5) |] 
+  &&  [| (v_3 = (SmtPBID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
+  &&  (store_predata data_pre clist'_2 (pcnt'_2 + 1 ) ccnt'_2 )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> v)
+  **  (store_SmtProp v rt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> v_2)
+  **  (store_SmtProp v_2 lt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> v_3)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 .
 
 Definition prop2cnf_partial_solve_wit_10 := prop2cnf_partial_solve_wit_10_pure -> prop2cnf_partial_solve_wit_10_aux.
@@ -18088,416 +18106,440 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 Definition prop2cnf_partial_solve_wit_13 := prop2cnf_partial_solve_wit_13_pure -> prop2cnf_partial_solve_wit_13_aux.
 
 Definition prop2cnf_partial_solve_wit_14 := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) ,
-  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (sub_prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
-  &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (res': Z) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) (t': Z) (v: Z) (v_2: Z) (p_pre_type: Z) (res: Z) ,
+  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res')) = (prop2cnf_logic (sub_prop') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res' <> 0) |] 
+  &&  [| (res' <= pcnt') |] 
+  &&  [| ((-res') <= pcnt') |] 
+  &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
+  &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t <> 5) |] 
-  &&  [| (t = 6) |]
-  &&  (store_predata data_pre clist'' pcnt'' ccnt'' )
-  **  (store_SmtProp y sub_prop )
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  &&  [| (t' <> 5) |] 
+  &&  [| (t' = 6) |] 
+  &&  [| (v_2 = (SmtPUID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
+  &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> v)
+  **  (store_SmtProp v sub_prop' )
+  **  (store_predata data_pre clist' pcnt' ccnt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> v_2)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 |--
-  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (sub_prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
-  &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res')) = (prop2cnf_logic (sub_prop') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res' <> 0) |] 
+  &&  [| (res' <= pcnt') |] 
+  &&  [| ((-res') <= pcnt') |] 
+  &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
+  &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t <> 5) |] 
-  &&  [| (t = 6) |]
-  &&  (store_predata data_pre clist'' pcnt'' ccnt'' )
-  **  (store_SmtProp y sub_prop )
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  &&  [| (t' <> 5) |] 
+  &&  [| (t' = 6) |] 
+  &&  [| (v_2 = (SmtPUID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
+  &&  (store_predata data_pre clist' pcnt' ccnt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> v)
+  **  (store_SmtProp v sub_prop' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> v_2)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 .
 
 Definition prop2cnf_partial_solve_wit_15_pure := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) (y'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (res': Z) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) (t': Z) (v: Z) (v_2: Z) (p_pre_type: Z) (res: Z) (y'': Z) ,
   [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (sub_prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
-  &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| ((Zlength (clist')) = ccnt') |] 
+  &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
+  &&  [| (pcnt' >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res')) = (prop2cnf_logic (sub_prop') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res' <> 0) |] 
+  &&  [| (res' <= pcnt') |] 
+  &&  [| ((-res') <= pcnt') |] 
+  &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
+  &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t <> 5) |] 
-  &&  [| (t = 6) |]
+  &&  [| (t' <> 5) |] 
+  &&  [| (t' = 6) |] 
+  &&  [| (v_2 = (SmtPUID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
-  **  (sll_cnf_list y'' clist'' )
-  **  (store_SmtProp y sub_prop )
-  **  ((( &( "p1" ) )) # Int  |-> retval)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt' + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt')
+  **  (sll_cnf_list y'' clist' )
+  **  ((( &( "p1" ) )) # Int  |-> res')
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> v)
+  **  (store_SmtProp v sub_prop' )
   **  ((( &( "p" ) )) # Ptr  |-> p_pre)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
-  **  ((( &( "res" ) )) # Int  |-> (pcnt'' + 1 ))
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> v_2)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
+  **  ((( &( "res" ) )) # Int  |-> (pcnt' + 1 ))
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
 |--
-  [| (pcnt'' >= 0) |] 
-  &&  [| ((pcnt'' + 1 ) = (pcnt'' + 1 )) |]
+  [| (pcnt' >= 0) |] 
+  &&  [| ((pcnt' + 1 ) = (pcnt' + 1 )) |]
 .
 
 Definition prop2cnf_partial_solve_wit_15_aux := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) (y'': Z) ,
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (res': Z) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) (t': Z) (v: Z) (v_2: Z) (p_pre_type: Z) (res: Z) (y'': Z) ,
   [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (sub_prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
-  &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| ((Zlength (clist')) = ccnt') |] 
+  &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
+  &&  [| (pcnt' >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res')) = (prop2cnf_logic (sub_prop') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res' <> 0) |] 
+  &&  [| (res' <= pcnt') |] 
+  &&  [| ((-res') <= pcnt') |] 
+  &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
+  &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t <> 5) |] 
-  &&  [| (t = 6) |]
+  &&  [| (t' <> 5) |] 
+  &&  [| (t' = 6) |] 
+  &&  [| (v_2 = (SmtPUID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
-  **  (sll_cnf_list y'' clist'' )
-  **  (store_SmtProp y sub_prop )
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt' + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt')
+  **  (sll_cnf_list y'' clist' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> v)
+  **  (store_SmtProp v sub_prop' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> v_2)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 |--
-  [| (pcnt'' >= 0) |] 
-  &&  [| ((pcnt'' + 1 ) = (pcnt'' + 1 )) |] 
+  [| (pcnt' >= 0) |] 
+  &&  [| ((pcnt' + 1 ) = (pcnt' + 1 )) |] 
   &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (sub_prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
-  &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| ((Zlength (clist')) = ccnt') |] 
+  &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
+  &&  [| (pcnt' >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res')) = (prop2cnf_logic (sub_prop') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res' <> 0) |] 
+  &&  [| (res' <= pcnt') |] 
+  &&  [| ((-res') <= pcnt') |] 
+  &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
+  &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t <> 5) |] 
-  &&  [| (t = 6) |]
+  &&  [| (t' <> 5) |] 
+  &&  [| (t' = 6) |] 
+  &&  [| (v_2 = (SmtPUID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
-  **  (sll_cnf_list y'' clist'' )
-  **  (store_SmtProp y sub_prop )
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt' + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt')
+  **  (sll_cnf_list y'' clist' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> v)
+  **  (store_SmtProp v sub_prop' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> v_2)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 .
 
 Definition prop2cnf_partial_solve_wit_15 := prop2cnf_partial_solve_wit_15_pure -> prop2cnf_partial_solve_wit_15_aux.
 
 Definition prop2cnf_partial_solve_wit_16_pure := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) (y'': Z) ,
-  [| ((pcnt'' + 1 ) <> 0) |] 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (res': Z) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) (t': Z) (v: Z) (v_2: Z) (p_pre_type: Z) (res: Z) (y'': Z) ,
+  [| ((pcnt' + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (sub_prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
-  &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| ((Zlength (clist')) = ccnt') |] 
+  &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
+  &&  [| (pcnt' >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res')) = (prop2cnf_logic (sub_prop') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res' <> 0) |] 
+  &&  [| (res' <= pcnt') |] 
+  &&  [| ((-res') <= pcnt') |] 
+  &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
+  &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t <> 5) |] 
-  &&  [| (t = 6) |]
-  &&  ((( &( "res" ) )) # Int  |-> (pcnt'' + 1 ))
+  &&  [| (t' <> 5) |] 
+  &&  [| (t' = 6) |] 
+  &&  [| (v_2 = (SmtPUID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
+  &&  ((( &( "res" ) )) # Int  |-> (pcnt' + 1 ))
   **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
-  **  (sll_cnf_list y'' clist'' )
-  **  (store_SmtProp y sub_prop )
-  **  ((( &( "p1" ) )) # Int  |-> retval)
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt' + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt')
+  **  (sll_cnf_list y'' clist' )
+  **  ((( &( "p1" ) )) # Int  |-> res')
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> v)
+  **  (store_SmtProp v sub_prop' )
   **  ((( &( "p" ) )) # Ptr  |-> p_pre)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> v_2)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
 |--
   [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |]
+  &&  [| ((Zlength (clist')) = ccnt') |] 
+  &&  [| ((prop_cnt_inf (clist')) <= pcnt') |]
 .
 
 Definition prop2cnf_partial_solve_wit_16_aux := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) (y'': Z) ,
-  [| ((pcnt'' + 1 ) <> 0) |] 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (res': Z) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) (t': Z) (v: Z) (v_2: Z) (p_pre_type: Z) (res: Z) (y'': Z) ,
+  [| ((pcnt' + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (sub_prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
-  &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| ((Zlength (clist')) = ccnt') |] 
+  &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
+  &&  [| (pcnt' >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res')) = (prop2cnf_logic (sub_prop') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res' <> 0) |] 
+  &&  [| (res' <= pcnt') |] 
+  &&  [| ((-res') <= pcnt') |] 
+  &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
+  &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t <> 5) |] 
-  &&  [| (t = 6) |]
+  &&  [| (t' <> 5) |] 
+  &&  [| (t' = 6) |] 
+  &&  [| (v_2 = (SmtPUID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
-  **  (sll_cnf_list y'' clist'' )
-  **  (store_SmtProp y sub_prop )
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt' + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt')
+  **  (sll_cnf_list y'' clist' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> v)
+  **  (store_SmtProp v sub_prop' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> v_2)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 |--
   [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| ((pcnt'' + 1 ) <> 0) |] 
+  &&  [| ((Zlength (clist')) = ccnt') |] 
+  &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
+  &&  [| ((pcnt' + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (sub_prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
-  &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| ((Zlength (clist')) = ccnt') |] 
+  &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
+  &&  [| (pcnt' >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res')) = (prop2cnf_logic (sub_prop') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res' <> 0) |] 
+  &&  [| (res' <= pcnt') |] 
+  &&  [| ((-res') <= pcnt') |] 
+  &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
+  &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t <> 5) |] 
-  &&  [| (t = 6) |]
+  &&  [| (t' <> 5) |] 
+  &&  [| (t' = 6) |] 
+  &&  [| (v_2 = (SmtPUID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
-  **  (sll_cnf_list y'' clist'' )
-  **  (store_SmtProp y sub_prop )
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt' + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt')
+  **  (sll_cnf_list y'' clist' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> v)
+  **  (store_SmtProp v sub_prop' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> v_2)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 .
 
 Definition prop2cnf_partial_solve_wit_16 := prop2cnf_partial_solve_wit_16_pure -> prop2cnf_partial_solve_wit_16_aux.
 
 Definition prop2cnf_partial_solve_wit_17_pure := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) ,
-  [| ((pcnt'' + 1 ) <> 0) |] 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (res': Z) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) (t': Z) (v: Z) (v_2: Z) (p_pre_type: Z) (res: Z) ,
+  [| ((pcnt' + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (sub_prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
-  &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| ((Zlength (clist')) = ccnt') |] 
+  &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
+  &&  [| (pcnt' >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res')) = (prop2cnf_logic (sub_prop') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res' <> 0) |] 
+  &&  [| (res' <= pcnt') |] 
+  &&  [| ((-res') <= pcnt') |] 
+  &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
+  &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t <> 5) |] 
-  &&  [| (t = 6) |]
-  &&  (store_predata data_pre clist'' (pcnt'' + 1 ) ccnt'' )
-  **  ((( &( "res" ) )) # Int  |-> (pcnt'' + 1 ))
-  **  (store_SmtProp y sub_prop )
-  **  ((( &( "p1" ) )) # Int  |-> retval)
+  &&  [| (t' <> 5) |] 
+  &&  [| (t' = 6) |] 
+  &&  [| (v_2 = (SmtPUID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
+  &&  (store_predata data_pre clist' (pcnt' + 1 ) ccnt' )
+  **  ((( &( "res" ) )) # Int  |-> (pcnt' + 1 ))
+  **  ((( &( "p1" ) )) # Int  |-> res')
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> v)
+  **  (store_SmtProp v sub_prop' )
   **  ((( &( "p" ) )) # Ptr  |-> p_pre)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> v_2)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
 |--
-  [| ((prop_cnt_inf (clist'')) <= pcnt'') |]
+  [| ((prop_cnt_inf (clist')) <= pcnt') |]
 .
 
 Definition prop2cnf_partial_solve_wit_17_aux := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) ,
-  [| ((pcnt'' + 1 ) <> 0) |] 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (res': Z) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) (t': Z) (v: Z) (v_2: Z) (p_pre_type: Z) (res: Z) ,
+  [| ((pcnt' + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (sub_prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
-  &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| ((Zlength (clist')) = ccnt') |] 
+  &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
+  &&  [| (pcnt' >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res')) = (prop2cnf_logic (sub_prop') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res' <> 0) |] 
+  &&  [| (res' <= pcnt') |] 
+  &&  [| ((-res') <= pcnt') |] 
+  &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
+  &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t <> 5) |] 
-  &&  [| (t = 6) |]
-  &&  (store_predata data_pre clist'' (pcnt'' + 1 ) ccnt'' )
-  **  (store_SmtProp y sub_prop )
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  &&  [| (t' <> 5) |] 
+  &&  [| (t' = 6) |] 
+  &&  [| (v_2 = (SmtPUID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
+  &&  (store_predata data_pre clist' (pcnt' + 1 ) ccnt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> v)
+  **  (store_SmtProp v sub_prop' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> v_2)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 |--
-  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| ((pcnt'' + 1 ) <> 0) |] 
+  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
+  &&  [| ((pcnt' + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (sub_prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
-  &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| ((Zlength (clist')) = ccnt') |] 
+  &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
+  &&  [| (pcnt' >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res')) = (prop2cnf_logic (sub_prop') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res' <> 0) |] 
+  &&  [| (res' <= pcnt') |] 
+  &&  [| ((-res') <= pcnt') |] 
+  &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
+  &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t <> 5) |] 
-  &&  [| (t = 6) |]
-  &&  (store_predata data_pre clist'' (pcnt'' + 1 ) ccnt'' )
-  **  (store_SmtProp y sub_prop )
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  &&  [| (t' <> 5) |] 
+  &&  [| (t' = 6) |] 
+  &&  [| (v_2 = (SmtPUID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
+  &&  (store_predata data_pre clist' (pcnt' + 1 ) ccnt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> v)
+  **  (store_SmtProp v sub_prop' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> v_2)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 .
 
 Definition prop2cnf_partial_solve_wit_17 := prop2cnf_partial_solve_wit_17_pure -> prop2cnf_partial_solve_wit_17_aux.
 
 Definition prop2cnf_partial_solve_wit_18_pure := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) ,
-  [| (((prop_cnt_inf (clist'')) + 1 ) <= (pcnt'' + 1 )) |] 
-  &&  [| ((pcnt'' + 1 ) <> 0) |] 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (res': Z) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) (t': Z) (v: Z) (v_2: Z) (p_pre_type: Z) (res: Z) ,
+  [| (((prop_cnt_inf (clist')) + 1 ) <= (pcnt' + 1 )) |] 
+  &&  [| ((pcnt' + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (sub_prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
-  &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| ((Zlength (clist')) = ccnt') |] 
+  &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
+  &&  [| (pcnt' >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res')) = (prop2cnf_logic (sub_prop') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res' <> 0) |] 
+  &&  [| (res' <= pcnt') |] 
+  &&  [| ((-res') <= pcnt') |] 
+  &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
+  &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t <> 5) |] 
-  &&  [| (t = 6) |]
-  &&  (store_predata data_pre clist'' (pcnt'' + 1 ) ccnt'' )
-  **  ((( &( "res" ) )) # Int  |-> (pcnt'' + 1 ))
-  **  (store_SmtProp y sub_prop )
-  **  ((( &( "p1" ) )) # Int  |-> retval)
+  &&  [| (t' <> 5) |] 
+  &&  [| (t' = 6) |] 
+  &&  [| (v_2 = (SmtPUID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
+  &&  (store_predata data_pre clist' (pcnt' + 1 ) ccnt' )
+  **  ((( &( "res" ) )) # Int  |-> (pcnt' + 1 ))
+  **  ((( &( "p1" ) )) # Int  |-> res')
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> v)
+  **  (store_SmtProp v sub_prop' )
   **  ((( &( "p" ) )) # Ptr  |-> p_pre)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> v_2)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
 |--
-  [| (retval <> 0) |] 
-  &&  [| ((pcnt'' + 1 ) <> 0) |] 
-  &&  [| (((prop_cnt_inf (clist'')) + 1 ) <= (pcnt'' + 1 )) |] 
-  &&  [| (retval <= (pcnt'' + 1 )) |] 
-  &&  [| ((pcnt'' + 1 ) <= (pcnt'' + 1 )) |] 
-  &&  [| ((-retval) <= (pcnt'' + 1 )) |] 
-  &&  [| ((-(pcnt'' + 1 )) <= (pcnt'' + 1 )) |] 
-  &&  [| ((-res) <= (pcnt'' + 1 )) |] 
-  &&  [| (res <= (pcnt'' + 1 )) |]
+  [| (res' <> 0) |] 
+  &&  [| ((pcnt' + 1 ) <> 0) |] 
+  &&  [| (((prop_cnt_inf (clist')) + 1 ) <= (pcnt' + 1 )) |] 
+  &&  [| (res' <= (pcnt' + 1 )) |] 
+  &&  [| ((pcnt' + 1 ) <= (pcnt' + 1 )) |] 
+  &&  [| ((-res') <= (pcnt' + 1 )) |] 
+  &&  [| ((-(pcnt' + 1 )) <= (pcnt' + 1 )) |]
 .
 
 Definition prop2cnf_partial_solve_wit_18_aux := 
-forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) (clist': (@list (@list Z))) (pcnt': Z) (ccnt': Z) (res: Z) (retval: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) ,
-  [| (((prop_cnt_inf (clist'')) + 1 ) <= (pcnt'' + 1 )) |] 
-  &&  [| ((pcnt'' + 1 ) <> 0) |] 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (res': Z) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) (t': Z) (v: Z) (v_2: Z) (p_pre_type: Z) (res: Z) ,
+  [| (((prop_cnt_inf (clist')) + 1 ) <= (pcnt' + 1 )) |] 
+  &&  [| ((pcnt' + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (sub_prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
-  &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| ((Zlength (clist')) = ccnt') |] 
+  &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
+  &&  [| (pcnt' >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res')) = (prop2cnf_logic (sub_prop') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res' <> 0) |] 
+  &&  [| (res' <= pcnt') |] 
+  &&  [| ((-res') <= pcnt') |] 
+  &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
+  &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t <> 5) |] 
-  &&  [| (t = 6) |]
-  &&  (store_predata data_pre clist'' (pcnt'' + 1 ) ccnt'' )
-  **  (store_SmtProp y sub_prop )
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  &&  [| (t' <> 5) |] 
+  &&  [| (t' = 6) |] 
+  &&  [| (v_2 = (SmtPUID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
+  &&  (store_predata data_pre clist' (pcnt' + 1 ) ccnt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> v)
+  **  (store_SmtProp v sub_prop' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> v_2)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 |--
-  [| (retval <> 0) |] 
-  &&  [| ((pcnt'' + 1 ) <> 0) |] 
-  &&  [| (((prop_cnt_inf (clist'')) + 1 ) <= (pcnt'' + 1 )) |] 
-  &&  [| (retval <= (pcnt'' + 1 )) |] 
-  &&  [| ((pcnt'' + 1 ) <= (pcnt'' + 1 )) |] 
-  &&  [| ((-retval) <= (pcnt'' + 1 )) |] 
-  &&  [| ((-(pcnt'' + 1 )) <= (pcnt'' + 1 )) |] 
-  &&  [| ((-res) <= (pcnt'' + 1 )) |] 
-  &&  [| (res <= (pcnt'' + 1 )) |] 
-  &&  [| (((prop_cnt_inf (clist'')) + 1 ) <= (pcnt'' + 1 )) |] 
-  &&  [| ((pcnt'' + 1 ) <> 0) |] 
+  [| (res' <> 0) |] 
+  &&  [| ((pcnt' + 1 ) <> 0) |] 
+  &&  [| (((prop_cnt_inf (clist')) + 1 ) <= (pcnt' + 1 )) |] 
+  &&  [| (res' <= (pcnt' + 1 )) |] 
+  &&  [| ((pcnt' + 1 ) <= (pcnt' + 1 )) |] 
+  &&  [| ((-res') <= (pcnt' + 1 )) |] 
+  &&  [| ((-(pcnt' + 1 )) <= (pcnt' + 1 )) |] 
+  &&  [| (((prop_cnt_inf (clist')) + 1 ) <= (pcnt' + 1 )) |] 
+  &&  [| ((pcnt' + 1 ) <> 0) |] 
   &&  [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |] 
-  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res)) = (prop2cnf_logic (sub_prop) ((make_predata (clist) (pcnt) (ccnt))))) |] 
-  &&  [| (retval = res) |] 
-  &&  [| (res <> 0) |] 
-  &&  [| (res <= pcnt') |] 
-  &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
-  &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| ((Zlength (clist')) = ccnt') |] 
+  &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
+  &&  [| (pcnt' >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (res')) = (prop2cnf_logic (sub_prop') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (res' <> 0) |] 
+  &&  [| (res' <= pcnt') |] 
+  &&  [| ((-res') <= pcnt') |] 
+  &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
+  &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
-  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
-  &&  [| (t <> 5) |] 
-  &&  [| (t = 6) |]
-  &&  (store_predata data_pre clist'' (pcnt'' + 1 ) ccnt'' )
-  **  (store_SmtProp y sub_prop )
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
-  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  &&  [| (t' <> 5) |] 
+  &&  [| (t' = 6) |] 
+  &&  [| (v_2 = (SmtPUID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
+  &&  (store_predata data_pre clist' (pcnt' + 1 ) ccnt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> v)
+  **  (store_SmtProp v sub_prop' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> v_2)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 .
 
 Definition prop2cnf_partial_solve_wit_18 := prop2cnf_partial_solve_wit_18_pure -> prop2cnf_partial_solve_wit_18_aux.
@@ -18584,24 +18626,24 @@ forall (pcnt: Z) (prop: smt_prop) (lt: smt_prop) (rt: smt_prop) ,
 .
 
 Definition prop2cnf_which_implies_wit_4 := 
-forall (data_pre: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) ,
-  (store_predata data_pre clist'' pcnt'' ccnt'' )
+forall (data_pre: Z) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) ,
+  (store_predata data_pre clist'_2 pcnt'_2 ccnt'_2 )
 |--
   EX (y'': Z) ,
   [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |]
+  &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
+  &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
+  &&  [| (pcnt'_2 >= 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt'')
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
-  **  (sll_cnf_list y'' clist'' )
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt'_2)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'_2)
+  **  (sll_cnf_list y'' clist'_2 )
 .
 
 Definition prop2cnf_which_implies_wit_5 := 
-forall (pcnt'': Z) (res: Z) ,
-  [| (pcnt'' >= 0) |] 
-  &&  [| (res = (pcnt'' + 1 )) |]
+forall (pcnt'_2: Z) (res: Z) ,
+  [| (pcnt'_2 >= 0) |] 
+  &&  [| (res = (pcnt'_2 + 1 )) |]
   &&  emp
 |--
   [| (res <> 0) |]
@@ -18609,24 +18651,24 @@ forall (pcnt'': Z) (res: Z) ,
 .
 
 Definition prop2cnf_which_implies_wit_6 := 
-forall (data_pre: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) (y'': Z) ,
+forall (data_pre: Z) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (y'': Z) ,
   [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |]
+  &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
+  &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
-  **  (sll_cnf_list y'' clist'' )
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'_2 + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'_2)
+  **  (sll_cnf_list y'' clist'_2 )
 |--
-  (store_predata data_pre clist'' (pcnt'' + 1 ) ccnt'' )
+  (store_predata data_pre clist'_2 (pcnt'_2 + 1 ) ccnt'_2 )
 .
 
 Definition prop2cnf_which_implies_wit_7 := 
-forall (clist'': (@list (@list Z))) (pcnt'': Z) ,
-  [| ((prop_cnt_inf (clist'')) <= pcnt'') |]
+forall (pcnt'_2: Z) (clist'_2: (@list (@list Z))) ,
+  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |]
   &&  emp
 |--
-  [| (((prop_cnt_inf (clist'')) + 1 ) <= (pcnt'' + 1 )) |]
+  [| (((prop_cnt_inf (clist'_2)) + 1 ) <= (pcnt'_2 + 1 )) |]
   &&  emp
 .
 
@@ -18656,24 +18698,24 @@ forall (pcnt: Z) (prop: smt_prop) (sub_prop: smt_prop) ,
 .
 
 Definition prop2cnf_which_implies_wit_10 := 
-forall (data_pre: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) ,
-  (store_predata data_pre clist'' pcnt'' ccnt'' )
+forall (data_pre: Z) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) ,
+  (store_predata data_pre clist' pcnt' ccnt' )
 |--
   EX (y'': Z) ,
   [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |] 
-  &&  [| (pcnt'' >= 0) |]
+  &&  [| ((Zlength (clist')) = ccnt') |] 
+  &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
+  &&  [| (pcnt' >= 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt'')
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
-  **  (sll_cnf_list y'' clist'' )
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt')
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt')
+  **  (sll_cnf_list y'' clist' )
 .
 
 Definition prop2cnf_which_implies_wit_11 := 
-forall (pcnt'': Z) (res: Z) ,
-  [| (pcnt'' >= 0) |] 
-  &&  [| (res = (pcnt'' + 1 )) |]
+forall (pcnt': Z) (res: Z) ,
+  [| (pcnt' >= 0) |] 
+  &&  [| (res = (pcnt' + 1 )) |]
   &&  emp
 |--
   [| (res <> 0) |]
@@ -18681,24 +18723,24 @@ forall (pcnt'': Z) (res: Z) ,
 .
 
 Definition prop2cnf_which_implies_wit_12 := 
-forall (data_pre: Z) (clist'': (@list (@list Z))) (pcnt'': Z) (ccnt'': Z) (y'': Z) ,
+forall (data_pre: Z) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (y'': Z) ,
   [| (data_pre <> 0) |] 
-  &&  [| ((Zlength (clist'')) = ccnt'') |] 
-  &&  [| ((prop_cnt_inf (clist'')) <= pcnt'') |]
+  &&  [| ((Zlength (clist')) = ccnt') |] 
+  &&  [| ((prop_cnt_inf (clist')) <= pcnt') |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
-  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt'' + 1 ))
-  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'')
-  **  (sll_cnf_list y'' clist'' )
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> (pcnt' + 1 ))
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt')
+  **  (sll_cnf_list y'' clist' )
 |--
-  (store_predata data_pre clist'' (pcnt'' + 1 ) ccnt'' )
+  (store_predata data_pre clist' (pcnt' + 1 ) ccnt' )
 .
 
 Definition prop2cnf_which_implies_wit_13 := 
-forall (clist'': (@list (@list Z))) (pcnt'': Z) ,
-  [| ((prop_cnt_inf (clist'')) <= pcnt'') |]
+forall (pcnt': Z) (clist': (@list (@list Z))) ,
+  [| ((prop_cnt_inf (clist')) <= pcnt') |]
   &&  emp
 |--
-  [| (((prop_cnt_inf (clist'')) + 1 ) <= (pcnt'' + 1 )) |]
+  [| (((prop_cnt_inf (clist')) + 1 ) <= (pcnt' + 1 )) |]
   &&  emp
 .
 

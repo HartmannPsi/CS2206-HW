@@ -414,24 +414,37 @@ Fixpoint prop2cnf_logic (s: smt_prop) (data: PreData): prop2cnf_ret :=
     | SmtV var => (data, var)
   end.
 
-(* Lemma pcnt_upper_bound: forall clist' pcnt' ccnt' res' prop clist pcnt ccnt,
+Lemma pcnt_upper_incr: forall prop clist' pcnt' ccnt' res' clist pcnt ccnt,
   (clist', pcnt', ccnt', res') = prop2cnf_logic prop (clist, pcnt, ccnt)
-  -> prop_cnt_inf_SmtProp prop <= pcnt
-  -> pcnt' <= pcnt + 1.
+  -> pcnt <= pcnt'.
 Proof.
-  intros.
-  destruct prop.
+  intro prop.
+  induction prop; intros.
   + simpl in H.
-  remember (prop2cnf_logic prop1 (clist, pcnt, ccnt)) as step1 eqn:Hstep1.
-  destruct step1 as [data1 p1].
-  
-  remember (prop2cnf_logic prop2 data1) as step2 eqn:Hstep2.
-  destruct step2 as [data2 p2].
-  
-  destruct data2 as [tmp clause_cnt].
-  destruct tmp as [cnf_res prop_cnt].
-  inversion H.
-Fail. *)
+    remember (prop2cnf_logic prop1 (clist, pcnt, ccnt)) as step1 eqn:Hstep1.
+    destruct step1 as [data1 p1].
+    remember (prop2cnf_logic prop2 data1) as step2 eqn:Hstep2.
+    destruct step2 as [data2 p2].
+    destruct data2 as [tmp clause_cnt].
+    destruct tmp as [cnf_res prop_cnt].
+    destruct data1 as [tmp'' ccnt'_1].
+    destruct tmp'' as [clist'_1 pcnt'_1].
+    inversion H.
+    specialize (IHprop2  _ _ _ _ _ _ _ Hstep2).
+    specialize (IHprop1  _ _ _ _ _ _ _ Hstep1).
+    lia.
+  + simpl in H.
+    remember (prop2cnf_logic prop (clist, pcnt, ccnt)) as step1 eqn:Hstep1.
+    destruct step1 as [data1 p1].
+    destruct data1 as [tmp clause_cnt].
+    destruct tmp as [cnf_res prop_cnt].
+    inversion H.
+    specialize (IHprop  _ _ _ _ _ _ _ Hstep1).
+    lia.
+  + simpl in H.
+    inversion H.
+    lia.
+Qed.
 
 Lemma all_zero_list_3:
   all_zero_list 3 = [0; 0; 0].

@@ -905,6 +905,9 @@ Proof. Admitted.
 Lemma proof_of_prop2cnf_partial_solve_wit_17 : prop2cnf_partial_solve_wit_17.
 Proof. Admitted. 
 
+Lemma proof_of_prop2cnf_partial_solve_wit_18_pure : prop2cnf_partial_solve_wit_18_pure.
+Proof. Admitted. 
+
 Lemma proof_of_prop2cnf_partial_solve_wit_18 : prop2cnf_partial_solve_wit_18.
 Proof. Admitted. 
 
