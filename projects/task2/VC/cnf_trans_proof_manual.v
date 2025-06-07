@@ -24,13 +24,24 @@ From SimpleC.EE Require Import super_poly_sll2.
 Local Open Scope sac.
 
 Lemma proof_of_clause_gen_unary_safety_wit_5 : clause_gen_unary_safety_wit_5.
-Proof. Admitted. 
+Proof.
+  pre_process.
+Admitted. 
 
 Lemma proof_of_clause_gen_unary_safety_wit_7 : clause_gen_unary_safety_wit_7.
-Proof. Admitted. 
+Proof.
+  pre_process.
+Admitted. 
 
 Lemma proof_of_clause_gen_unary_safety_wit_8 : clause_gen_unary_safety_wit_8.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  pose proof @Zlength_nonneg (list Z) clist.
+  rewrite H0 in *.
+  assert (-2147483648 <= ccnt + 2) by lia.
+  assert (ccnt + 2 <= 2147483647) by lia.
+  entailer!.
+Qed.
 
 Lemma proof_of_clause_gen_unary_return_wit_1 : clause_gen_unary_return_wit_1.
 Proof.
@@ -148,85 +159,181 @@ Proof.
 Qed.
 
 Lemma proof_of_clause_gen_binary_safety_wit_5 : clause_gen_binary_safety_wit_5.
-Proof. Admitted. 
+Proof.
+  pre_process.
+Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_8 : clause_gen_binary_safety_wit_8.
-Proof. Admitted. 
+Proof.
+  pre_process.
+Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_13 : clause_gen_binary_safety_wit_13.
-Proof. Admitted. 
+Proof.
+  pre_process.
+Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_16 : clause_gen_binary_safety_wit_16.
-Proof. Admitted. 
+Proof.
+  pre_process.
+Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_24 : clause_gen_binary_safety_wit_24.
-Proof. Admitted. 
+Proof.
+  pre_process.
+Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_27 : clause_gen_binary_safety_wit_27.
-Proof. Admitted. 
+Proof.
+  pre_process.
+Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_29 : clause_gen_binary_safety_wit_29.
-Proof. Admitted. 
+Proof.
+  pre_process.
+Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_31 : clause_gen_binary_safety_wit_31.
-Proof. Admitted. 
+Proof.
+  pre_process.
+Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_34 : clause_gen_binary_safety_wit_34.
-Proof. Admitted. 
+Proof.
+  pre_process.
+Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_44 : clause_gen_binary_safety_wit_44.
-Proof. Admitted. 
+Proof.
+  pre_process.
+Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_47 : clause_gen_binary_safety_wit_47.
-Proof. Admitted. 
+Proof.
+  pre_process.
+Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_50 : clause_gen_binary_safety_wit_50.
-Proof. Admitted. 
+Proof.
+  pre_process.
+Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_61 : clause_gen_binary_safety_wit_61.
-Proof. Admitted. 
+Proof.
+  pre_process.
+Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_63 : clause_gen_binary_safety_wit_63.
-Proof. Admitted. 
+Proof.
+  pre_process.
+Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_67 : clause_gen_binary_safety_wit_67.
-Proof. Admitted. 
+Proof.
+  pre_process.
+Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_69 : clause_gen_binary_safety_wit_69.
-Proof. Admitted. 
+Proof.
+  pre_process.
+Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_71 : clause_gen_binary_safety_wit_71.
-Proof. Admitted. 
+Proof.
+  pre_process.
+Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_74 : clause_gen_binary_safety_wit_74.
-Proof. Admitted. 
+Proof.
+  pre_process.
+Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_80 : clause_gen_binary_safety_wit_80.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  entailer!.
+  destruct bop; try contradiction.
+Qed.
 
 Lemma proof_of_clause_gen_binary_safety_wit_97 : clause_gen_binary_safety_wit_97.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  pose proof @Zlength_nonneg _ clist.
+  rewrite H1 in *.
+  assert (-2147483648 <= ccnt + 1) by lia.
+  assert (ccnt + 1 <= 2147483647) by lia.
+  entailer!.
+Qed.
 
 Lemma proof_of_clause_gen_binary_safety_wit_99 : clause_gen_binary_safety_wit_99.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  pose proof @Zlength_nonneg _ clist.
+  rewrite H1 in *.
+  assert (-2147483648 <= ccnt + 1) by lia.
+  assert (ccnt + 1 <= 2147483647) by lia.
+  entailer!.
+Qed.
 
 Lemma proof_of_clause_gen_binary_safety_wit_125 : clause_gen_binary_safety_wit_125.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  pose proof @Zlength_nonneg _ clist.
+  rewrite H3 in *.
+  assert (-2147483648 <= ccnt + 3) by lia.
+  assert (ccnt + 3 <= 2147483647) by lia.
+  entailer!.
+Qed.
 
 Lemma proof_of_clause_gen_binary_safety_wit_127 : clause_gen_binary_safety_wit_127.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  pose proof @Zlength_nonneg _ clist.
+  rewrite H3 in *.
+  assert (-2147483648 <= ccnt + 3) by lia.
+  assert (ccnt + 3 <= 2147483647) by lia.
+  entailer!.
+Qed.
 
 Lemma proof_of_clause_gen_binary_safety_wit_129 : clause_gen_binary_safety_wit_129.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  pose proof @Zlength_nonneg _ clist.
+  rewrite H3 in *.
+  assert (-2147483648 <= ccnt + 3) by lia.
+  assert (ccnt + 3 <= 2147483647) by lia.
+  entailer!.
+Qed.
 
 Lemma proof_of_clause_gen_binary_safety_wit_131 : clause_gen_binary_safety_wit_131.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  pose proof @Zlength_nonneg _ clist.
+  rewrite H3 in *.
+  assert (-2147483648 <= ccnt + 3) by lia.
+  assert (ccnt + 3 <= 2147483647) by lia.
+  entailer!.
+Qed.
 
 Lemma proof_of_clause_gen_binary_safety_wit_133 : clause_gen_binary_safety_wit_133.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  pose proof @Zlength_nonneg _ clist.
+  rewrite H3 in *.
+  assert (-2147483648 <= ccnt + 3) by lia.
+  assert (ccnt + 3 <= 2147483647) by lia.
+  entailer!.
+Qed.
 
 Lemma proof_of_clause_gen_binary_safety_wit_135 : clause_gen_binary_safety_wit_135.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  pose proof @Zlength_nonneg _ clist.
+  rewrite H3 in *.
+  assert (-2147483648 <= ccnt + 4) by lia.
+  assert (ccnt + 4 <= 2147483647) by lia.
+  entailer!.
+Qed.
 
 Lemma proof_of_clause_gen_binary_return_wit_1_1 : clause_gen_binary_return_wit_1_1.
 Proof.
@@ -905,13 +1012,22 @@ Proof.
 Qed. 
 
 Lemma proof_of_prop2cnf_safety_wit_3 : prop2cnf_safety_wit_3.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  assert (-2147483648 <= pcnt'_2 + 1) by lia.
+Admitted. 
 
 Lemma proof_of_prop2cnf_safety_wit_6 : prop2cnf_safety_wit_6.
-Proof. Admitted. 
+Proof.
+  pre_process.
+Admitted. 
 
 Lemma proof_of_prop2cnf_safety_wit_9 : prop2cnf_safety_wit_9.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  entailer!.
+  destruct prop; try contradiction.
+Qed.
 
 Lemma proof_of_prop2cnf_return_wit_1_1 : prop2cnf_return_wit_1_1.
 Proof.
