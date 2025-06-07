@@ -89,9 +89,9 @@ void clause_gen_unary(int p2, int p3, PreData *data)
 /*@ With clist pcnt ccnt max_size
       Require p2 != 0 && p3 != 0 && prop_cnt_inf(clist) + 1 <= pcnt && p2 <=
               pcnt && p3 <= pcnt && -p2 <= pcnt && -p3 <= pcnt &&
-              Zlength(clist) <= max_size && max_size <= 114514 &&
+              Zlength(clist) <= max_size && max_size <= 40000 &&
               store_predata(data, clist, pcnt, ccnt)
-      Ensure Zlength(clist) <= max_size && max_size <= 114514 &&
+      Ensure Zlength(clist) <= max_size && max_size <= 40000 &&
              store_predata(data, app(iff2cnf_unary(p2, p3), clist), pcnt,
              ccnt + 2)
 */
@@ -140,9 +140,9 @@ void clause_gen_binary(int p1, int p2, int p3, int op, PreData *data)
               pcnt && p3 <= pcnt && -p1 <= pcnt && -p2 <= pcnt &&
               -p3 <= pcnt &&
               prop_cnt_inf(clist) + 1 <= pcnt && op == SmtPBID(bop) &&
-              Zlength(clist) <= max_size && max_size <= 114514 &&
+              Zlength(clist) <= max_size && max_size <= 40000 &&
               store_predata(data, clist, pcnt, ccnt)
-      Ensure Zlength(clist) <= max_size && max_size <= 114514 &&
+      Ensure Zlength(clist) <= max_size && max_size <= 40000 &&
              store_predata(data, app(iff2cnf_binary(p1, p2, p3, bop),
                            clist), pcnt, ccnt + iff2cnf_length_binary(p1, p2,
                                                                       p3, bop))
@@ -307,16 +307,16 @@ void clause_gen_binary(int p1, int p2, int p3, int op, PreData *data)
 int prop2cnf(SmtProp *p, PreData *data)
 /*@ With prop clist pcnt ccnt
       Require prop_cnt_inf_SmtProp(prop) <= pcnt &&
-              SmtProp_size(prop) <= 114514 &&
+              SmtProp_size(prop) <= 10000 &&
+              Zlength(clist) <= 40000 - 4 * SmtProp_size(prop) &&
               store_SmtProp(p, prop) *
               store_predata(data, clist, pcnt, ccnt)
       Ensure exists clist' pcnt' ccnt' res,
              make_prop2cnf_ret(make_predata(clist', pcnt', ccnt'), res) ==
              prop2cnf_logic(prop, make_predata(clist, pcnt, ccnt)) &&
              __return == res && res != 0 && res <= pcnt' && -res <= pcnt' &&
-             SmtProp_size(prop) <= 114514 && Zlength(clist') <= (4 *
-                                SmtProp_size(prop)
-                                + Zlength(clist)) && store_SmtProp(p, prop) *
+             SmtProp_size(prop) <= 10000 && Zlength(clist') <= Zlength(clist) +
+             4 * SmtProp_size(prop) && store_SmtProp(p, prop) *
              store_predata(data, clist', pcnt', ccnt')
 */
 {
@@ -349,31 +349,92 @@ int prop2cnf(SmtProp *p, PreData *data)
           prop_cnt_inf_SmtProp(lt) <= pcnt &&
           prop_cnt_inf_SmtProp(rt) <= pcnt
        */
-      int p1 = prop2cnf(
-          p->prop.Binary_prop.prop1,
-          data) /*@ where max_size = (114514 - 4 * SmtProp_size(prop))*/;
+      /*@ SmtProp_size(prop) <= 10000 && prop == SmtB(op, lt, rt)
+          which implies
+          SmtProp_size(lt) <= 10000 &&
+          SmtProp_size(rt) <= 10000
+       */
+      /*@ Zlength(clist) <= 40000 - 4 * SmtProp_size(prop) && prop == SmtB(op,
+                                                              lt, rt)
+          which implies
+          Zlength(clist) <= 40000 - 4 * SmtProp_size(lt)
+       */
+      int p1 = prop2cnf(p->prop.Binary_prop.prop1, data);
+      /*@ Assert
+          exists ccnt' pcnt' clist' t,
+          make_prop2cnf_ret(make_predata(clist', pcnt', ccnt'),
+          p1)
+          == prop2cnf_logic(lt, make_predata(clist, pcnt, ccnt))
+          && p1 != 0 && p1 <= pcnt' && -p1 <= pcnt' &&
+          SmtProp_size(lt) <= 10000 &&
+          Zlength(clist') <= Zlength(clist) + 4 * SmtProp_size(lt) &&
+          Zlength(clist) <= 40000 - 4 * SmtProp_size(lt) &&
+          SmtProp_size(lt) <= 10000 &&
+          SmtProp_size(rt) <= 10000 &&
+          prop_cnt_inf_SmtProp(lt) <= pcnt &&
+          prop_cnt_inf_SmtProp(rt) <= pcnt &&
+          prop == SmtB(op, lt, rt) &&
+          p@pre != 0 &&
+          t == SmtPTID(prop) &&
+          prop_cnt_inf_SmtProp(prop) <= pcnt &&
+          SmtProp_size(prop) <= 10000 &&
+          Zlength(clist) <= 40000 - 4 * SmtProp_size(prop) &&
+          t == 5 &&
+          store_SmtProp(p@pre->prop.Binary_prop.prop1, lt) *
+          store_predata(data@pre, clist', pcnt', ccnt') *
+          (p == p@pre) *
+          (p@pre->prop.Binary_prop.op == SmtPBID(op)) *
+          store_SmtProp(p@pre->prop.Binary_prop.prop2, rt) *
+          (p@pre->type == SmtPTID(prop)) *
+          (res == 0) *
+          (data == data@pre)
+      */
+      /*@ Given ccnt' pcnt' clist'
+       */
+      /*@ Zlength(clist') <= Zlength(clist) + 4 * SmtProp_size(lt) &&
+          Zlength(clist) <= 40000 - 4 * SmtProp_size(prop) &&
+          prop == SmtB(op, lt, rt)
+          which implies
+          Zlength(clist') <= 40000 - 4 * SmtProp_size(rt)
+       */
+      /*@ make_prop2cnf_ret(make_predata(clist', pcnt', ccnt'), p1)
+                  == prop2cnf_logic(lt, make_predata(clist, pcnt, ccnt)) &&
+          prop_cnt_inf_SmtProp(rt) <= pcnt
+          which implies
+          pcnt <= pcnt' &&
+          prop_cnt_inf_SmtProp(rt) <= pcnt'
+       */
       int p2 = prop2cnf(p->prop.Binary_prop.prop2, data);
       /*@ Assert
-          exists res'_2 ccnt'_2 pcnt'_2 clist'_2 rt' clist'_1 pcnt'_1 ccnt'_1
-                 res'_1 lt' op' t',
+          exists ccnt'_2 pcnt'_2 clist'_2 rt' clist'_1 pcnt'_1 ccnt'_1
+                 lt' op' t',
           make_prop2cnf_ret(make_predata(clist'_2, pcnt'_2, ccnt'_2),
-                            res'_2)
+                            p2)
                                    == prop2cnf_logic(rt', make_predata(clist'_1,
                                              pcnt'_1, ccnt'_1))
-          && p2 == res'_2
-          && res'_2 != 0 && res'_2 <= pcnt'_2
-          && -res'_2 <= pcnt'_2 &&
-          make_prop2cnf_ret(make_predata(clist'_1, pcnt'_1, ccnt'_1), res'_1)
+          && p2 != 0 && p2 <= pcnt'_2
+          && -p2 <= pcnt'_2 &&
+          SmtProp_size(rt') <= 10000 &&
+          Zlength(clist'_2) <= Zlength(clist'_1) + 4 * SmtProp_size(rt')
+          && pcnt <= pcnt'_1 && prop_cnt_inf_SmtProp(rt') <= pcnt'_1 &&
+          Zlength(clist'_1) <= 40000 - 4 * SmtProp_size(rt') &&
+          make_prop2cnf_ret(make_predata(clist'_1, pcnt'_1, ccnt'_1), p1)
                            == prop2cnf_logic(lt', make_predata(clist, pcnt,
                                              ccnt))
-          && p1 == res'_1
-          && res'_1 != 0 && res'_1 <= pcnt'_1 && -res'_1 <= pcnt'_1 &&
+          && p1 != 0 && p1 <= pcnt'_1 && -p1 <= pcnt'_1 &&
+          SmtProp_size(lt') <= 10000 &&
+          Zlength(clist'_1) <= Zlength(clist) + 4 * SmtProp_size(lt') &&
+          Zlength(clist) <= 40000 - 4 * SmtProp_size(lt') &&
+          SmtProp_size(lt') <= 10000 &&
+          SmtProp_size(rt') <= 10000 &&
           prop_cnt_inf_SmtProp(lt') <= pcnt &&
           prop_cnt_inf_SmtProp(rt') <= pcnt &&
           prop == SmtB(op', lt', rt') &&
           p@pre != 0 &&
           t' == SmtPTID(prop) &&
           prop_cnt_inf_SmtProp(prop) <= pcnt &&
+          SmtProp_size(prop) <= 10000 &&
+          Zlength(clist) <= 40000 - 4 * SmtProp_size(prop) &&
           t' == 5 &&
           store_SmtProp(p@pre->prop.Binary_prop.prop2, rt') *
           store_predata(data@pre, clist'_2, pcnt'_2, ccnt'_2) *
@@ -383,9 +444,9 @@ int prop2cnf(SmtProp *p, PreData *data)
           (p@pre->type == SmtPTID(prop)) *
           (res == 0) *
           (data == data@pre)
-       */
-      /*@ Given res'_2 ccnt'_2 pcnt'_2 clist'_2 rt' clist'_1 pcnt'_1 ccnt'_1
-          res'_1 lt' op' t'
+      */
+      /*@ Given ccnt'_2 pcnt'_2 clist'_2 rt' clist'_1 pcnt'_1 ccnt'_1
+                lt' op' t'
        */
       /*@ store_predata(data@pre, clist'_2, pcnt'_2, ccnt'_2)
           which implies
@@ -417,9 +478,21 @@ int prop2cnf(SmtProp *p, PreData *data)
           which implies
           prop_cnt_inf(clist'_2) + 1 <= pcnt'_2 + 1
        */
-      clause_gen_binary(p1, p2, res, p->prop.Binary_prop.op,
-                        data) /*@ where clist = clist'_2, pcnt = (pcnt'_2 + 1),
-                                 ccnt = ccnt'_2, bop = op' */
+      /*@ Zlength(clist'_2) <= Zlength(clist'_1) + 4 * SmtProp_size(rt') &&
+          Zlength(clist'_1) <= Zlength(clist) + 4 * SmtProp_size(lt') &&
+          prop == SmtB(op', lt', rt')
+          which implies
+          Zlength(clist'_2) <= Zlength(clist) + 4 * SmtProp_size(prop) - 4
+       */
+      /*@ SmtProp_size(prop) <= 10000
+          which implies
+          4 * SmtProp_size(prop) - 4 <= 39996
+       */
+      clause_gen_binary(
+          p1, p2, res, p->prop.Binary_prop.op,
+          data) /*@ where clist = clist'_2, pcnt = (pcnt'_2 + 1),
+                   ccnt = ccnt'_2, bop = op', max_size = (Zlength(clist) + 4 *
+                   SmtProp_size(prop) - 4) */
           ;
       break;
     }
@@ -440,19 +513,34 @@ int prop2cnf(SmtProp *p, PreData *data)
           which implies
           prop_cnt_inf_SmtProp(sub_prop) <= pcnt
         */
+      /*@ SmtProp_size(prop) <= 10000 && prop == SmtU(op, sub_prop)
+          which implies
+          SmtProp_size(sub_prop) <= 10000
+       */
+      /*@ Zlength(clist) <= 40000 - 4 * SmtProp_size(prop) && prop == SmtU(op,
+                                                              sub_prop)
+          which implies
+          Zlength(clist) <= 40000 - 4 * SmtProp_size(sub_prop)
+       */
       int p1 = prop2cnf(p->prop.Unary_prop.prop1,
                         data) /* where prop = sub_prop, clist = clist, pcnt =
                                  pcnt, ccnt = ccnt */
           ;
       /*@ Assert
-          exists res' ccnt' pcnt' clist' sub_prop' op' t',
-          make_prop2cnf_ret(make_predata(clist', pcnt', ccnt'),
-         res')
-          == prop2cnf_logic(sub_prop', make_predata(clist, pcnt, ccnt)) && p1
-         == res' && res' != 0 && res' <= pcnt' && -res' <=
-         pcnt' && prop_cnt_inf_SmtProp(sub_prop') <= pcnt && prop ==
-         SmtU(op', sub_prop') && p@pre != 0 && t' == SmtPTID(prop) &&
+          exists ccnt' pcnt' clist' sub_prop' op' t',
+          make_prop2cnf_ret(make_predata(clist', pcnt', ccnt'), p1)
+          == prop2cnf_logic(sub_prop', make_predata(clist, pcnt, ccnt))
+          && p1 != 0 && p1 <= pcnt' && -p1 <= pcnt'
+          && SmtProp_size(sub_prop') <= 10000
+          && Zlength(clist') <= Zlength(clist) + 4 * SmtProp_size(sub_prop')
+          && Zlength(clist) <= 40000 - 4 * SmtProp_size(sub_prop')
+          && SmtProp_size(sub_prop') <= 10000 &&
+          prop_cnt_inf_SmtProp(sub_prop') <= pcnt &&
+          prop == SmtU(op', sub_prop') &&
+          p@pre != 0 && t' == SmtPTID(prop) &&
           prop_cnt_inf_SmtProp(prop) <= pcnt &&
+          SmtProp_size(prop) <= 10000 &&
+          Zlength(clist) <= 40000 - 4 * SmtProp_size(prop) &&
           t' != 5 &&
           t' == 6 &&
           store_SmtProp(p@pre->prop.Unary_prop.prop1, sub_prop') *
@@ -463,7 +551,7 @@ int prop2cnf(SmtProp *p, PreData *data)
           (res == 0) *
           (data == data@pre)
        */
-      /*@ Given res' ccnt' pcnt' clist' sub_prop' op' t'
+      /*@ Given ccnt' pcnt' clist' sub_prop' op' t'
        */
       /*@ store_predata(data@pre, clist', pcnt', ccnt')
           which implies
@@ -495,7 +583,19 @@ int prop2cnf(SmtProp *p, PreData *data)
           which implies
           prop_cnt_inf(clist') + 1 <= pcnt' + 1
        */
-      clause_gen_unary(p1, res, data);
+      /*@ Zlength(clist') <= Zlength(clist) + 4 * SmtProp_size(sub_prop') &&
+          prop == SmtU(op', sub_prop')
+          which implies
+          Zlength(clist') <= Zlength(clist) + 4 * SmtProp_size(prop) - 4
+       */
+      /*@ SmtProp_size(prop) <= 10000
+          which implies
+          4 * SmtProp_size(prop) - 4 <= 39996
+       */
+      clause_gen_unary(p1, res, data) /*@ where clist = clist', pcnt =
+       (pcnt' + 1), ccnt = ccnt', max_size = (Zlength(clist) + 4
+       * SmtProp_size(prop) - 4) */
+          ;
       break;
     }
     case SMT_PROPVAR: {
