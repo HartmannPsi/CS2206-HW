@@ -402,7 +402,10 @@ int prop2cnf(SmtProp *p, PreData *data)
           prop_cnt_inf_SmtProp(rt) <= pcnt
           which implies
           pcnt <= pcnt' &&
-          prop_cnt_inf_SmtProp(rt) <= pcnt'
+          prop_cnt_inf_SmtProp(rt) <= pcnt' &&
+          make_prop2cnf_ret(make_predata(clist', pcnt', ccnt'), p1)
+                  == prop2cnf_logic(lt, make_predata(clist, pcnt, ccnt)) &&
+          prop_cnt_inf_SmtProp(rt) <= pcnt
        */
       int p2 = prop2cnf(p->prop.Binary_prop.prop2, data);
       /*@ Assert

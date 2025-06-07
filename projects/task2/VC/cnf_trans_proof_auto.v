@@ -818,6 +818,9 @@ Proof. Admitted.
 Lemma proof_of_prop2cnf_entail_wit_2 : prop2cnf_entail_wit_2.
 Proof. Admitted. 
 
+Lemma proof_of_prop2cnf_entail_wit_3 : prop2cnf_entail_wit_3.
+Proof. Admitted. 
+
 Lemma proof_of_prop2cnf_partial_solve_wit_1 : prop2cnf_partial_solve_wit_1.
 Proof. Admitted. 
 
@@ -839,7 +842,13 @@ Proof. Admitted.
 Lemma proof_of_prop2cnf_partial_solve_wit_4 : prop2cnf_partial_solve_wit_4.
 Proof. Admitted. 
 
+Lemma proof_of_prop2cnf_partial_solve_wit_5_pure : prop2cnf_partial_solve_wit_5_pure.
+Proof. Admitted. 
+
 Lemma proof_of_prop2cnf_partial_solve_wit_5 : prop2cnf_partial_solve_wit_5.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_partial_solve_wit_6_pure : prop2cnf_partial_solve_wit_6_pure.
 Proof. Admitted. 
 
 Lemma proof_of_prop2cnf_partial_solve_wit_6 : prop2cnf_partial_solve_wit_6.
@@ -884,6 +893,9 @@ Proof. Admitted.
 Lemma proof_of_prop2cnf_partial_solve_wit_13 : prop2cnf_partial_solve_wit_13.
 Proof. Admitted. 
 
+Lemma proof_of_prop2cnf_partial_solve_wit_14_pure : prop2cnf_partial_solve_wit_14_pure.
+Proof. Admitted. 
+
 Lemma proof_of_prop2cnf_partial_solve_wit_14 : prop2cnf_partial_solve_wit_14.
 Proof. Admitted. 
 
@@ -891,9 +903,6 @@ Lemma proof_of_prop2cnf_partial_solve_wit_15_pure : prop2cnf_partial_solve_wit_1
 Proof. Admitted. 
 
 Lemma proof_of_prop2cnf_partial_solve_wit_15 : prop2cnf_partial_solve_wit_15.
-Proof. Admitted. 
-
-Lemma proof_of_prop2cnf_partial_solve_wit_16_pure : prop2cnf_partial_solve_wit_16_pure.
 Proof. Admitted. 
 
 Lemma proof_of_prop2cnf_partial_solve_wit_16 : prop2cnf_partial_solve_wit_16.
@@ -917,15 +926,78 @@ Proof. Admitted.
 Lemma proof_of_prop2cnf_partial_solve_wit_19 : prop2cnf_partial_solve_wit_19.
 Proof. Admitted. 
 
-Lemma proof_of_prop2cnf_which_implies_wit_5 : prop2cnf_which_implies_wit_5.
+Lemma proof_of_prop2cnf_partial_solve_wit_20_pure : prop2cnf_partial_solve_wit_20_pure.
 Proof. Admitted. 
 
-Lemma proof_of_prop2cnf_which_implies_wit_7 : prop2cnf_which_implies_wit_7.
+Lemma proof_of_prop2cnf_partial_solve_wit_20 : prop2cnf_partial_solve_wit_20.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_partial_solve_wit_21_pure : prop2cnf_partial_solve_wit_21_pure.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_partial_solve_wit_21 : prop2cnf_partial_solve_wit_21.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_partial_solve_wit_22 : prop2cnf_partial_solve_wit_22.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_partial_solve_wit_23_pure : prop2cnf_partial_solve_wit_23_pure.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_partial_solve_wit_23 : prop2cnf_partial_solve_wit_23.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_partial_solve_wit_24_pure : prop2cnf_partial_solve_wit_24_pure.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_partial_solve_wit_24 : prop2cnf_partial_solve_wit_24.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_partial_solve_wit_25_pure : prop2cnf_partial_solve_wit_25_pure.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_partial_solve_wit_25 : prop2cnf_partial_solve_wit_25.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_partial_solve_wit_26_pure : prop2cnf_partial_solve_wit_26_pure.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_partial_solve_wit_26 : prop2cnf_partial_solve_wit_26.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_partial_solve_wit_27_pure : prop2cnf_partial_solve_wit_27_pure.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_partial_solve_wit_27 : prop2cnf_partial_solve_wit_27.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_partial_solve_wit_28_pure : prop2cnf_partial_solve_wit_28_pure.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_partial_solve_wit_28 : prop2cnf_partial_solve_wit_28.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_partial_solve_wit_29_pure : prop2cnf_partial_solve_wit_29_pure.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_partial_solve_wit_29 : prop2cnf_partial_solve_wit_29.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_which_implies_wit_9 : prop2cnf_which_implies_wit_9.
 Proof. Admitted. 
 
 Lemma proof_of_prop2cnf_which_implies_wit_11 : prop2cnf_which_implies_wit_11.
 Proof. Admitted. 
 
 Lemma proof_of_prop2cnf_which_implies_wit_13 : prop2cnf_which_implies_wit_13.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_which_implies_wit_19 : prop2cnf_which_implies_wit_19.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_which_implies_wit_21 : prop2cnf_which_implies_wit_21.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_which_implies_wit_23 : prop2cnf_which_implies_wit_23.
 Proof. Admitted. 
 

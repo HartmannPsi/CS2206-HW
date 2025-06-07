@@ -39,6 +39,8 @@ Proof.
   rename H9 into H200.
   rename H10 into H300.
   rename H11 into H400.
+  rename H12 into H500.
+  rename H13 into H600.
   assert ( all_zero_list 3 = 0 :: 0 :: 0 :: nil). {
     unfold all_zero_list.
     unfold all_zero_list_nat.
@@ -233,6 +235,12 @@ Proof.
   repeat rewrite replace_0th.
   repeat rewrite replace_1st.
   repeat rewrite replace_2nd.
+  rename H24 into Hs1.
+  rename H25 into Hs2.
+  rename H26 into H24.
+  rename H27 into H25.
+  rename H28 into H26.
+  rename H29 into H27.
   pose proof store_cnf_list_fold.
   sep_apply (H28 retval_8 (- p1_pre :: p2_pre :: - p3_pre :: nil) retval_4); try easy.
   sep_apply (H28 retval_7 (p1_pre :: - p2_pre :: - p3_pre :: nil) retval_3); try easy.
@@ -316,7 +324,7 @@ Proof.
   }
   repeat rewrite <- app_comm_cons.
   unfold app.
-  clear - H H2.
+  clear - H H2 Hs1 Hs2.
   entailer!.
 Qed.
 
@@ -331,7 +339,10 @@ Proof.
     destruct bop; unfold SmtPBID in *; try contradiction; try lia.
     reflexivity.
   }
-  clear H23 H24.
+  clear H23 H26.
+  rename H24 into Hs1.
+  rename H25 into Hs2.
+  rename H27 into H25.
   remember ((p1_pre :: - p3_pre :: 0 :: nil)) as c1 eqn:H_c1.
   remember ((- p2_pre :: p3_pre :: 0 :: nil)) as c2 eqn:H_c2.
   remember ((- p1_pre :: p3_pre :: 0 :: nil)) as c3 eqn:H_c3.
@@ -396,7 +407,7 @@ Proof.
         clear H1000 H2000.
         lia.
   }
-  clear - H2 H31.
+  clear - H2 H31 Hs1 Hs2.
   entailer!.
 Qed.
 
@@ -411,7 +422,10 @@ Proof.
     destruct bop; unfold SmtPBID in *; try contradiction; try lia.
     reflexivity.
   }
-  clear H23 H24.
+  clear H23 H26.
+  rename H24 into Hs1.
+  rename H25 into Hs2.
+  rename H27 into H25.
   remember (p1_pre :: p2_pre :: - p3_pre :: nil) as c1 eqn:H_c1.
   remember (- p2_pre :: p3_pre :: 0 :: nil) as c2 eqn:H_c2.
   remember (- p1_pre :: p3_pre :: 0 :: nil) as c3 eqn:H_c3.
@@ -477,15 +491,14 @@ Proof.
         clear H1000 H2000.
         lia.
   }
-  clear - H2 H31.
+  clear - H2 H31 Hs1 Hs2.
   entailer!.
 Qed.
 
 Lemma proof_of_clause_gen_binary_return_wit_1_4 : clause_gen_binary_return_wit_1_4.
 Proof.
   pre_process.
-  clear H24.
-  rename H25 into H24.
+  clear H26.
   rewrite all_zero_list_3.
   repeat rewrite replace_0th.
   repeat rewrite replace_1st.
@@ -494,7 +507,10 @@ Proof.
     destruct bop; unfold SmtPBID in *; try contradiction; try lia.
     reflexivity.
   }
-  clear H23 H24.
+  clear H23 H27.
+  rename H24 into Hs1.
+  rename H25 into Hs2.
+  rename H26 into H25.
   remember (- p1_pre :: p3_pre :: 0 :: nil) as c1 eqn:H_c1.
   remember (p2_pre :: - p3_pre :: 0 :: nil) as c2 eqn:H_c2.
   remember (p1_pre :: - p3_pre :: 0 :: nil) as c3 eqn:H_c3.
@@ -560,15 +576,14 @@ Proof.
         clear H1000 H2000.
         lia.
   }
-  clear - H2 H31.
+  clear - H2 H31 Hs1 Hs2.
   entailer!.
 Qed.
 
 Lemma proof_of_clause_gen_binary_return_wit_1_5 : clause_gen_binary_return_wit_1_5.
 Proof.
   pre_process.
-  clear H24.
-  rename H25 into H24.
+  clear H26.
   rewrite all_zero_list_3.
   repeat rewrite replace_0th.
   repeat rewrite replace_1st.
@@ -577,7 +592,10 @@ Proof.
     destruct bop; unfold SmtPBID in *; try contradiction; try lia.
     reflexivity.
   }
-  clear H23 H24.
+  clear H23 H27.
+  rename H24 into Hs1.
+  rename H25 into Hs2.
+  rename H26 into H25.
   remember (- p1_pre :: - p2_pre :: p3_pre :: nil) as c1 eqn:H_c1.
   remember (p2_pre :: - p3_pre :: 0 :: nil) as c2 eqn:H_c2.
   remember (p1_pre :: - p3_pre :: 0 :: nil) as c3 eqn:H_c3.
@@ -643,15 +661,14 @@ Proof.
         clear H1000 H2000.
         lia.
   }
-  clear - H2 H31.
+  clear - H2 H31 Hs1 Hs2.
   entailer!.
 Qed.
 
 Lemma proof_of_clause_gen_binary_return_wit_1_6 : clause_gen_binary_return_wit_1_6.
 Proof.
   pre_process.
-  clear H24 H25.
-  rename H26 into H24.
+  clear H26 H27.
   rewrite all_zero_list_3.
   repeat rewrite replace_0th.
   repeat rewrite replace_1st.
@@ -660,7 +677,10 @@ Proof.
     destruct bop; unfold SmtPBID in *; try contradiction; try lia.
     reflexivity.
   }
-  clear H23 H24.
+  clear H23 H28.
+  rename H24 into Hs1.
+  rename H25 into Hs2.
+  rename H26 into H25.
   remember (- p1_pre :: p2_pre :: - p3_pre :: nil) as c1 eqn:H_c1.
   remember (- p2_pre :: p3_pre :: 0 :: nil) as c2 eqn:H_c2.
   remember (p1_pre :: p3_pre :: 0 :: nil) as c3 eqn:H_c3.
@@ -726,7 +746,7 @@ Proof.
         clear H1000 H2000.
         lia.
   }
-  clear - H2 H31.
+  clear - H2 H31 Hs1 Hs2.
   entailer!.
 Qed.
 
@@ -743,7 +763,11 @@ Proof.
     destruct bop; unfold SmtPBID in *; try contradiction; try lia.
     reflexivity.
   }
-  clear H23 H24.
+  clear H25 H24.
+  rename H22 into Hs1.
+  rename H23 into Hs2.
+  rename H26 into H22.
+  rename H27 into H25.
   remember (p3_pre :: 0 :: 0 :: nil) as c1 eqn:H_c1.
   pose proof store_cnf_list_fold.
   sep_apply (H23 retval_5 c1 retval); try easy.
@@ -795,7 +819,7 @@ Proof.
         clear H1000.
         lia.
   }
-  clear - H0 H27.
+  clear - H0 H27 Hs1 Hs2.
   entailer!.
 Qed.
 
@@ -812,7 +836,10 @@ Proof.
     destruct bop; unfold SmtPBID in *; try contradiction; try lia.
     reflexivity.
   }
-  clear H23 H24.
+  clear H26 H24.
+  rename H22 into Hs1.
+  rename H23 into Hs2.
+  rename H27 into H22.
   remember (p3_pre :: 0 :: 0 :: nil) as c1 eqn:H_c1.
   pose proof store_cnf_list_fold.
   sep_apply (H23 retval_5 c1 retval); try easy.
@@ -864,7 +891,7 @@ Proof.
         clear H1000.
         lia.
   }
-  clear - H0 H27.
+  clear - H0 H27 Hs1 Hs2.
   entailer!.
 Qed.
 
@@ -889,13 +916,19 @@ Proof. Admitted.
 Lemma proof_of_prop2cnf_return_wit_1_1 : prop2cnf_return_wit_1_1.
 Proof.
   pre_process.
-  clear H4 H5.
-  rename H6 into H4.
+  clear H6 H7.
+  rename H4 into Hs1.
+  rename H5 into Hs2.
+  rename H8 into H4.
   Exists clist pcnt ccnt var.
   unfold store_predata.
   Intros y.
   Exists y.
   entailer!; rewrite H in *.
+  2: {
+    pose proof SmtProp_size_nonneg (SmtV var).
+    lia.
+  }
   + unfold SmtPTID, store_SmtProp.
     unfold SmtPTID.
     entailer!.
@@ -908,21 +941,22 @@ Proof.
     reflexivity.
 Qed.
 
+Opaque Z.add Z.sub Z.mul Z.opp Z.of_nat Z.of_N Z.succ.
 
 Lemma proof_of_prop2cnf_return_wit_1_2 : prop2cnf_return_wit_1_2.
 Proof.
   pre_process.
-  clear H14.
-  rewrite H10 in *.
+  clear H21.
+  rewrite H15 in *.
   unfold SmtPTID in *.
-  clear H15.
+  clear H22.
   unfold store_predata.
   Intros y0.
   unfold iff2cnf_unary.
   repeat rewrite <- app_comm_cons.
   unfold app.
-  remember (res' :: pcnt'_2 + 1 :: 0 :: nil) as c1 eqn:H_c1.
-  remember (- res' :: - (pcnt'_2 + 1) :: 0 :: nil) as c2 eqn:H_c2.
+  remember (p1 :: pcnt'_2 + 1 :: 0 :: nil) as c1 eqn:H_c1.
+  remember (- p1 :: - (pcnt'_2 + 1) :: 0 :: nil) as c2 eqn:H_c2.
   Exists (c1 :: c2 :: clist'_2) (pcnt'_2 + 1) (ccnt'_2 + 2) (pcnt'_2 + 1) y0.
   entailer!.
   1: {
@@ -932,27 +966,33 @@ Proof.
     entailer!.
   }
   2: {
+    simpl SmtProp_size.
+    repeat rewrite Zlength_cons.
+    pose proof SmtProp_size_nonneg sub_prop'.
+    lia.
+  }
+  2: {
     unfold make_prop2cnf_ret, make_predata.
     simpl.
     remember (prop2cnf_logic (sub_prop') (clist, pcnt, ccnt)) as step1 eqn:Hstep1.
-    destruct step1 as [data1 p1].  
+    destruct step1 as [data1 p1''].  
     destruct data1 as [tmp clause_cnt].
     destruct tmp as [cnf_res prop_cnt].
-    unfold make_prop2cnf_ret, make_predata in H5.
-    rewrite <- H5 in Hstep1.
+    unfold make_prop2cnf_ret, make_predata in H9.
+    rewrite <- H9 in Hstep1.
     inversion Hstep1.
     subst.
     reflexivity.
   }
   (* unfold make_prop2cnf_ret, make_predata in H5. *)
   unfold prop_cnt_inf.
-  unfold prop_cnt_inf in H3.
-    pose proof Z.max_lub_l _ _ _ H3.
-    pose proof Z.max_lub_r _ _ _ H3.
+  unfold prop_cnt_inf in H7.
+    pose proof Z.max_lub_l _ _ _ H7.
+    pose proof Z.max_lub_r _ _ _ H7.
   apply Z.max_lub; rewrite H_c1, H_c2.
   + simpl.
-    assert (res' <= pcnt'_2 + 1) by lia.
-    assert (- res' <= pcnt'_2 + 1) by lia.
+    assert (p1 <= pcnt'_2 + 1) by lia.
+    assert (- p1 <= pcnt'_2 + 1) by lia.
     assert (0 <= pcnt'_2 + 1) by lia.
     assert (max_cnf clist'_2 <= pcnt'_2 + 1) by lia.
     repeat apply Z.max_lub; try lia.
@@ -962,12 +1002,12 @@ Proof.
     - (*Search (_ <= Z.min _ _). *)
       repeat apply Z.min_glb; try lia.
     - (*Search (Z.min _ _ <= _). *)
-      pose proof Z.le_min_l (Z.min res' (Z.min (pcnt'_2 + 1) (Z.min 0 0)))
-      (Z.min (Z.min (- res') (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0))) (min_cnf clist'_2)).
-      pose proof Z.le_min_l res' (Z.min (pcnt'_2 + 1) (Z.min 0 0)).
-      remember (Z.min (Z.min res' (Z.min (pcnt'_2 + 1) (Z.min 0 0)))
-      (Z.min (Z.min (- res') (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0))) (min_cnf clist'_2))) as tmp1 eqn:H1000.
-      remember (Z.min res' (Z.min (pcnt'_2 + 1) (Z.min 0 0))) as tmp2 eqn:H2000.
+      pose proof Z.le_min_l (Z.min p1 (Z.min (pcnt'_2 + 1) (Z.min 0 0)))
+      (Z.min (Z.min (- p1) (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0))) (min_cnf clist'_2)).
+      pose proof Z.le_min_l p1 (Z.min (pcnt'_2 + 1) (Z.min 0 0)).
+      remember (Z.min (Z.min p1 (Z.min (pcnt'_2 + 1) (Z.min 0 0)))
+      (Z.min (Z.min (- p1) (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0))) (min_cnf clist'_2))) as tmp1 eqn:H1000.
+      remember (Z.min p1 (Z.min (pcnt'_2 + 1) (Z.min 0 0))) as tmp2 eqn:H2000.
       clear H1000.
       clear H2000.
       lia.
@@ -976,18 +1016,52 @@ Qed.
 Lemma proof_of_prop2cnf_return_wit_1_3 : prop2cnf_return_wit_1_3.
 Proof.
   pre_process.
+  rename H into Hs.
+  rename H0 into Hs0.
+  rename H1 into Hs1.
+  rename H2 into Hs2.
+  rename H13 into Hs3.
+  rename H20 into Hs4.
+  rename H27 into Hs5.
+  rename H28 into Hs6.
+  rename H21 into Hs7.
+  rename H22 into Hs8.
+  rename H3 into H.
+  rename H4 into H0.
+  rename H5 into H1.
+  rename H6 into H2.
+  rename H7 into H3.
+  rename H8 into H4.
+  rename H9 into H5.
+  rename H10 into H6.
+  rename H11 into H7.
+  rename H12 into H8.
+  rename H14 into H11.
+  rename H15 into H10.
+  rename H16 into H9.
+  rename H17 into H12.
+  rename H18 into H13.
+  rename H19 into H14.
+  rename H23 into H15.
+  rename H24 into H16.
+  rename H25 into H17.
+  rename H26 into H18.
+  rename H29 into H19.
+  rename H30 into H20.
+  rename H31 into H21.
+  rename H32 into H22.
   rewrite H15 in *.
   unfold SmtPTID in *.
   clear H19.
   unfold store_predata.
   Intros y0.
   unfold iff2cnf_binary, iff2cnf_length_binary.
-  destruct op'; destruct (res'_1 ==? res'_2);
+  destruct op'; destruct (p1 ==? p2);
   repeat rewrite <- app_comm_cons;
   unfold app.
-  + remember (res'_1 :: - (pcnt'_2 + 1) :: 0 :: nil) as c1 eqn:H_c1.
-    remember (res'_2 :: - (pcnt'_2 + 1) :: 0 :: nil) as c2 eqn:H_c2.
-    remember (- res'_1 :: pcnt'_2 + 1 :: 0 :: nil) as c3 eqn:H_c3.
+  + remember (p1 :: - (pcnt'_2 + 1) :: 0 :: nil) as c1 eqn:H_c1.
+    remember (p2 :: - (pcnt'_2 + 1) :: 0 :: nil) as c2 eqn:H_c2.
+    remember (- p1 :: pcnt'_2 + 1 :: 0 :: nil) as c3 eqn:H_c3.
     Exists (c1 :: c2 :: c3 :: clist'_2) (pcnt'_2 + 1) (ccnt'_2 + 3) (pcnt'_2 + 1) y0.
     entailer!.
     1: {
@@ -998,10 +1072,14 @@ Proof.
       entailer!.
     }
     2: {
+      repeat rewrite Zlength_cons.
+      lia.
+    }
+    2: {
       unfold make_prop2cnf_ret, make_predata.
       simpl.
       remember (prop2cnf_logic lt' (clist, pcnt, ccnt)) as step1 eqn:Hstep1.
-      destruct step1 as [data1 p1].
+      destruct step1 as [data1 p1'].
       remember (prop2cnf_logic rt' data1) as step2 eqn:Hstep2.
       destruct step2 as [tmp clause_cnt].
       destruct tmp as [cnf_res prop_cnt].
@@ -1012,7 +1090,7 @@ Proof.
       rewrite H26 in Hstep2.
       rewrite <- H5 in Hstep2.
       inversion Hstep2.
-      destruct (res'_1 ==? res'_2); try contradiction.
+      destruct (p1 ==? p2); try contradiction.
       subst.
       reflexivity.
     }
@@ -1029,20 +1107,20 @@ Proof.
       * (*Search (_ <= Z.min _ _). *)
         repeat apply Z.min_glb; try lia.
       * (*Search (Z.min _ _ <= _). *)
-        pose proof Z.le_min_l (Z.min res'_1 (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0)))
-        (Z.min (Z.min res'_2 (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0)))
-           (Z.min (Z.min (- res'_1) (Z.min (pcnt'_2 + 1) (Z.min 0 0))) (min_cnf clist'_2))).
-        pose proof Z.le_min_l res'_1 (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0)).
-        remember (Z.min (Z.min res'_1 (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0)))
-        (Z.min (Z.min res'_2 (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0)))
-           (Z.min (Z.min (- res'_1) (Z.min (pcnt'_2 + 1) (Z.min 0 0))) (min_cnf clist'_2)))) as tmp1 eqn:H1000.
-        remember (Z.min res'_1 (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0))) as tmp2 eqn:H2000.
+        pose proof Z.le_min_l (Z.min p1 (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0)))
+        (Z.min (Z.min p2 (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0)))
+           (Z.min (Z.min (- p1) (Z.min (pcnt'_2 + 1) (Z.min 0 0))) (min_cnf clist'_2))).
+        pose proof Z.le_min_l p1 (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0)).
+        remember (Z.min (Z.min p1 (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0)))
+        (Z.min (Z.min p2 (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0)))
+           (Z.min (Z.min (- p1) (Z.min (pcnt'_2 + 1) (Z.min 0 0))) (min_cnf clist'_2)))) as tmp1 eqn:H1000.
+        remember (Z.min p1 (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0))) as tmp2 eqn:H2000.
         clear H1000.
         clear H2000.
         lia.
-  + remember (res'_1 :: - (pcnt'_2 + 1) :: 0 :: nil) as c1 eqn:H_c1.
-    remember (res'_2 :: - (pcnt'_2 + 1) :: 0 :: nil) as c2 eqn:H_c2.
-    remember (- res'_1 :: - res'_2 :: pcnt'_2 + 1 :: nil) as c3 eqn:H_c3.
+  + remember (p1 :: - (pcnt'_2 + 1) :: 0 :: nil) as c1 eqn:H_c1.
+    remember (p2 :: - (pcnt'_2 + 1) :: 0 :: nil) as c2 eqn:H_c2.
+    remember (- p1 :: - p2 :: pcnt'_2 + 1 :: nil) as c3 eqn:H_c3.
     Exists (c1 :: c2 :: c3 :: clist'_2) (pcnt'_2 + 1) (ccnt'_2 + 3) (pcnt'_2 + 1) y0.
     entailer!.
     1: {
@@ -1053,10 +1131,14 @@ Proof.
       entailer!.
     }
     2: {
+      repeat rewrite Zlength_cons.
+      lia.
+    }
+    2: {
       unfold make_prop2cnf_ret, make_predata.
       simpl.
       remember (prop2cnf_logic lt' (clist, pcnt, ccnt)) as step1 eqn:Hstep1.
-      destruct step1 as [data1 p1].
+      destruct step1 as [data1 p1'].
       remember (prop2cnf_logic rt' data1) as step2 eqn:Hstep2.
       destruct step2 as [tmp clause_cnt].
       destruct tmp as [cnf_res prop_cnt].
@@ -1067,7 +1149,7 @@ Proof.
       rewrite H26 in Hstep2.
       rewrite <- H5 in Hstep2.
       inversion Hstep2.
-      destruct (res'_1 ==? res'_2); try contradiction.
+      destruct (p1 ==? p2); try contradiction.
       subst.
       reflexivity.
     }
@@ -1086,20 +1168,20 @@ Proof.
       * (*Search (_ <= Z.min _ _). *)
         repeat apply Z.min_glb; try lia.
       * (*Search (Z.min _ _ <= _). *)
-        pose proof Z.le_min_l (Z.min res'_1 (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0)))
-        (Z.min (Z.min res'_2 (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0)))
-           (Z.min (Z.min (- res'_1) (Z.min (- res'_2) (Z.min (pcnt'_2 + 1) 0))) (min_cnf clist'_2))).
-        pose proof Z.le_min_l res'_1 (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0)).
-        remember ( Z.min (Z.min res'_1 (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0)))
-        (Z.min (Z.min res'_2 (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0)))
-           (Z.min (Z.min (- res'_1) (Z.min (- res'_2) (Z.min (pcnt'_2 + 1) 0))) (min_cnf clist'_2)))) as tmp1 eqn:H1000.
-        remember (Z.min res'_1 (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0))) as tmp2 eqn:H2000.
+        pose proof Z.le_min_l (Z.min p1 (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0)))
+        (Z.min (Z.min p2 (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0)))
+           (Z.min (Z.min (- p1) (Z.min (- p2) (Z.min (pcnt'_2 + 1) 0))) (min_cnf clist'_2))).
+        pose proof Z.le_min_l p1 (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0)).
+        remember ( Z.min (Z.min p1 (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0)))
+        (Z.min (Z.min p2 (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0)))
+           (Z.min (Z.min (- p1) (Z.min (- p2) (Z.min (pcnt'_2 + 1) 0))) (min_cnf clist'_2)))) as tmp1 eqn:H1000.
+        remember (Z.min p1 (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0))) as tmp2 eqn:H2000.
         clear H1000.
         clear H2000.
         lia.
-  + remember (- res'_1 :: pcnt'_2 + 1 :: 0 :: nil) as c1 eqn:H_c1.
-    remember (- res'_2 :: pcnt'_2 + 1 :: 0 :: nil) as c2 eqn:H_c2.
-    remember (res'_1 :: - (pcnt'_2 + 1) :: 0 :: nil) as c3 eqn:H_c3.
+  + remember (- p1 :: pcnt'_2 + 1 :: 0 :: nil) as c1 eqn:H_c1.
+    remember (- p2 :: pcnt'_2 + 1 :: 0 :: nil) as c2 eqn:H_c2.
+    remember (p1 :: - (pcnt'_2 + 1) :: 0 :: nil) as c3 eqn:H_c3.
     Exists (c1 :: c2 :: c3 :: clist'_2) (pcnt'_2 + 1) (ccnt'_2 + 3) (pcnt'_2 + 1) y0.
     entailer!.
     1: {
@@ -1110,10 +1192,14 @@ Proof.
       entailer!.
     }
     2: {
+      repeat rewrite Zlength_cons.
+      lia.
+    }
+    2: {
       unfold make_prop2cnf_ret, make_predata.
       simpl.
       remember (prop2cnf_logic lt' (clist, pcnt, ccnt)) as step1 eqn:Hstep1.
-      destruct step1 as [data1 p1].
+      destruct step1 as [data1 p1'].
       remember (prop2cnf_logic rt' data1) as step2 eqn:Hstep2.
       destruct step2 as [tmp clause_cnt].
       destruct tmp as [cnf_res prop_cnt].
@@ -1124,7 +1210,7 @@ Proof.
       rewrite H26 in Hstep2.
       rewrite <- H5 in Hstep2.
       inversion Hstep2.
-      destruct (res'_1 ==? res'_2); try contradiction.
+      destruct (p1 ==? p2); try contradiction.
       subst.
       reflexivity.
     }
@@ -1143,20 +1229,20 @@ Proof.
       * (*Search (_ <= Z.min _ _). *)
         repeat apply Z.min_glb; try lia.
       * (*Search (Z.min _ _ <= _). *)
-        pose proof Z.le_min_l (Z.min (- res'_1) (Z.min (pcnt'_2 + 1) (Z.min 0 0)))
-        (Z.min (Z.min (- res'_2) (Z.min (pcnt'_2 + 1) (Z.min 0 0)))
-           (Z.min (Z.min res'_1 (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0))) (min_cnf clist'_2))).
-        pose proof Z.le_min_l (- res'_1) (Z.min (pcnt'_2 + 1) (Z.min 0 0)).
-        remember (Z.min (Z.min (- res'_1) (Z.min (pcnt'_2 + 1) (Z.min 0 0)))
-        (Z.min (Z.min (- res'_2) (Z.min (pcnt'_2 + 1) (Z.min 0 0)))
-           (Z.min (Z.min res'_1 (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0))) (min_cnf clist'_2))) ) as tmp1 eqn:H1000.
-        remember (Z.min (- res'_1) (Z.min (pcnt'_2 + 1) (Z.min 0 0))) as tmp2 eqn:H2000.
+        pose proof Z.le_min_l (Z.min (- p1) (Z.min (pcnt'_2 + 1) (Z.min 0 0)))
+        (Z.min (Z.min (- p2) (Z.min (pcnt'_2 + 1) (Z.min 0 0)))
+           (Z.min (Z.min p1 (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0))) (min_cnf clist'_2))).
+        pose proof Z.le_min_l (- p1) (Z.min (pcnt'_2 + 1) (Z.min 0 0)).
+        remember (Z.min (Z.min (- p1) (Z.min (pcnt'_2 + 1) (Z.min 0 0)))
+        (Z.min (Z.min (- p2) (Z.min (pcnt'_2 + 1) (Z.min 0 0)))
+           (Z.min (Z.min p1 (Z.min (- (pcnt'_2 + 1)) (Z.min 0 0))) (min_cnf clist'_2))) ) as tmp1 eqn:H1000.
+        remember (Z.min (- p1) (Z.min (pcnt'_2 + 1) (Z.min 0 0))) as tmp2 eqn:H2000.
         clear H1000.
         clear H2000.
         lia.
-  + remember (- res'_1 :: pcnt'_2 + 1 :: 0 :: nil) as c1 eqn:H_c1.
-    remember (- res'_2 :: pcnt'_2 + 1 :: 0 :: nil) as c2 eqn:H_c2.
-    remember (res'_1 :: res'_2 :: - (pcnt'_2 + 1) :: nil) as c3 eqn:H_c3.
+  + remember (- p1 :: pcnt'_2 + 1 :: 0 :: nil) as c1 eqn:H_c1.
+    remember (- p2 :: pcnt'_2 + 1 :: 0 :: nil) as c2 eqn:H_c2.
+    remember (p1 :: p2 :: - (pcnt'_2 + 1) :: nil) as c3 eqn:H_c3.
     Exists (c1 :: c2 :: c3 :: clist'_2) (pcnt'_2 + 1) (ccnt'_2 + 3) (pcnt'_2 + 1) y0.
     entailer!.
     1: {
@@ -1167,10 +1253,14 @@ Proof.
       entailer!.
     }
     2: {
+      repeat rewrite Zlength_cons.
+      lia.
+    }
+    2: {
       unfold make_prop2cnf_ret, make_predata.
       simpl.
       remember (prop2cnf_logic lt' (clist, pcnt, ccnt)) as step1 eqn:Hstep1.
-      destruct step1 as [data1 p1].
+      destruct step1 as [data1 p1''].
       remember (prop2cnf_logic rt' data1) as step2 eqn:Hstep2.
       destruct step2 as [tmp clause_cnt].
       destruct tmp as [cnf_res prop_cnt].
@@ -1181,7 +1271,7 @@ Proof.
       rewrite H26 in Hstep2.
       rewrite <- H5 in Hstep2.
       inversion Hstep2.
-      destruct (res'_1 ==? res'_2); try contradiction.
+      destruct (p1 ==? p2); try contradiction.
       subst.
       reflexivity.
     }
@@ -1200,20 +1290,20 @@ Proof.
       * (*Search (_ <= Z.min _ _). *)
         repeat apply Z.min_glb; try lia.
       * (*Search (Z.min _ _ <= _). *)
-        pose proof Z.le_min_l (Z.min (- res'_1) (Z.min (pcnt'_2 + 1) (Z.min 0 0)))
-        (Z.min (Z.min (- res'_2) (Z.min (pcnt'_2 + 1) (Z.min 0 0)))
-           (Z.min (Z.min res'_1 (Z.min res'_2 (Z.min (- (pcnt'_2 + 1)) 0))) (min_cnf clist'_2))).
-        pose proof Z.le_min_l (- res'_1) (Z.min (pcnt'_2 + 1) (Z.min 0 0)).
-        remember (Z.min (Z.min (- res'_1) (Z.min (pcnt'_2 + 1) (Z.min 0 0)))
-        (Z.min (Z.min (- res'_2) (Z.min (pcnt'_2 + 1) (Z.min 0 0)))
-           (Z.min (Z.min res'_1 (Z.min res'_2 (Z.min (- (pcnt'_2 + 1)) 0))) (min_cnf clist'_2)))) as tmp1 eqn:H1000.
-        remember (Z.min (- res'_1) (Z.min (pcnt'_2 + 1) (Z.min 0 0))) as tmp2 eqn:H2000.
+        pose proof Z.le_min_l (Z.min (- p1) (Z.min (pcnt'_2 + 1) (Z.min 0 0)))
+        (Z.min (Z.min (- p2) (Z.min (pcnt'_2 + 1) (Z.min 0 0)))
+           (Z.min (Z.min p1 (Z.min p2 (Z.min (- (pcnt'_2 + 1)) 0))) (min_cnf clist'_2))).
+        pose proof Z.le_min_l (- p1) (Z.min (pcnt'_2 + 1) (Z.min 0 0)).
+        remember (Z.min (Z.min (- p1) (Z.min (pcnt'_2 + 1) (Z.min 0 0)))
+        (Z.min (Z.min (- p2) (Z.min (pcnt'_2 + 1) (Z.min 0 0)))
+           (Z.min (Z.min p1 (Z.min p2 (Z.min (- (pcnt'_2 + 1)) 0))) (min_cnf clist'_2)))) as tmp1 eqn:H1000.
+        remember (Z.min (- p1) (Z.min (pcnt'_2 + 1) (Z.min 0 0))) as tmp2 eqn:H2000.
         clear H1000.
         clear H2000.
         lia.
   + remember (pcnt'_2 + 1 :: 0 :: 0 :: nil) as c1 eqn:H_c1.
-    (* remember (- res'_2 :: pcnt'_2 + 1 :: 0 :: nil) as c2 eqn:H_c2.
-    remember (res'_1 :: res'_2 :: - (pcnt'_2 + 1) :: nil) as c3 eqn:H_c3. *)
+    (* remember (- p2 :: pcnt'_2 + 1 :: 0 :: nil) as c2 eqn:H_c2.
+    remember (p1 :: p2 :: - (pcnt'_2 + 1) :: nil) as c3 eqn:H_c3. *)
     Exists (c1 :: clist'_2) (pcnt'_2 + 1) (ccnt'_2 + 1) (pcnt'_2 + 1) y0.
     entailer!.
     1: {
@@ -1222,6 +1312,10 @@ Proof.
       Exists v_2 v.
       simpl.
       entailer!.
+    }
+    2: {
+      repeat rewrite Zlength_cons.
+      lia.
     }
     2: {
       rewrite Zlength_cons, H2.
@@ -1231,7 +1325,7 @@ Proof.
       unfold make_prop2cnf_ret, make_predata.
       simpl.
       remember (prop2cnf_logic lt' (clist, pcnt, ccnt)) as step1 eqn:Hstep1.
-      destruct step1 as [data1 p1].
+      destruct step1 as [data1 p1'].
       remember (prop2cnf_logic rt' data1) as step2 eqn:Hstep2.
       destruct step2 as [tmp clause_cnt].
       destruct tmp as [cnf_res prop_cnt].
@@ -1242,7 +1336,7 @@ Proof.
       rewrite H26 in Hstep2.
       rewrite <- H5 in Hstep2.
       inversion Hstep2.
-      destruct (res'_1 ==? res'_2); try contradiction.
+      destruct (p1 ==? p2); try contradiction.
       subst.
       reflexivity.
     }
@@ -1265,9 +1359,9 @@ Proof.
         remember (Z.min (Z.min (pcnt'_2 + 1) (Z.min 0 (Z.min 0 0))) (min_cnf clist'_2)) as tmp1 eqn:H1000.
         clear H1000.
         lia.
-  + remember (res'_1 :: pcnt'_2 + 1 :: 0 :: nil) as c1 eqn:H_c1.
-    remember (- res'_2 :: pcnt'_2 + 1 :: 0 :: nil) as c2 eqn:H_c2.
-    remember (- res'_1 :: res'_2 :: - (pcnt'_2 + 1) :: nil) as c3 eqn:H_c3.
+  + remember (p1 :: pcnt'_2 + 1 :: 0 :: nil) as c1 eqn:H_c1.
+    remember (- p2 :: pcnt'_2 + 1 :: 0 :: nil) as c2 eqn:H_c2.
+    remember (- p1 :: p2 :: - (pcnt'_2 + 1) :: nil) as c3 eqn:H_c3.
     Exists (c1 :: c2 :: c3 :: clist'_2) (pcnt'_2 + 1) (ccnt'_2 + 3) (pcnt'_2 + 1) y0.
     entailer!.
     1: {
@@ -1283,10 +1377,14 @@ Proof.
       lia.
     }
     2: {
+      repeat rewrite Zlength_cons.
+      lia.
+    }
+    2: {
       unfold make_prop2cnf_ret, make_predata.
       simpl.
       remember (prop2cnf_logic lt' (clist, pcnt, ccnt)) as step1 eqn:Hstep1.
-      destruct step1 as [data1 p1].
+      destruct step1 as [data1 p1'].
       remember (prop2cnf_logic rt' data1) as step2 eqn:Hstep2.
       destruct step2 as [tmp clause_cnt].
       destruct tmp as [cnf_res prop_cnt].
@@ -1297,7 +1395,7 @@ Proof.
       rewrite H26 in Hstep2.
       rewrite <- H5 in Hstep2.
       inversion Hstep2.
-      destruct (res'_1 ==? res'_2); try contradiction.
+      destruct (p1 ==? p2); try contradiction.
       subst.
       reflexivity.
     }
@@ -1316,20 +1414,20 @@ Proof.
       * (*Search (_ <= Z.min _ _). *)
         repeat apply Z.min_glb; try lia.
       * (*Search (Z.min _ _ <= _). *)
-        pose proof Z.le_min_l (Z.min res'_1 (Z.min (pcnt'_2 + 1) (Z.min 0 0)))
-        (Z.min (Z.min (- res'_2) (Z.min (pcnt'_2 + 1) (Z.min 0 0)))
-           (Z.min (Z.min (- res'_1) (Z.min res'_2 (Z.min (- (pcnt'_2 + 1)) 0))) (min_cnf clist'_2))).
-        pose proof Z.le_min_l res'_1 (Z.min (pcnt'_2 + 1) (Z.min 0 0)).
-        remember (Z.min (Z.min res'_1 (Z.min (pcnt'_2 + 1) (Z.min 0 0)))
-        (Z.min (Z.min (- res'_2) (Z.min (pcnt'_2 + 1) (Z.min 0 0)))
-           (Z.min (Z.min (- res'_1) (Z.min res'_2 (Z.min (- (pcnt'_2 + 1)) 0))) (min_cnf clist'_2)))) as tmp1 eqn:H1000.
-        remember (Z.min res'_1 (Z.min (pcnt'_2 + 1) (Z.min 0 0))) as tmp2 eqn:H2000.
+        pose proof Z.le_min_l (Z.min p1 (Z.min (pcnt'_2 + 1) (Z.min 0 0)))
+        (Z.min (Z.min (- p2) (Z.min (pcnt'_2 + 1) (Z.min 0 0)))
+           (Z.min (Z.min (- p1) (Z.min p2 (Z.min (- (pcnt'_2 + 1)) 0))) (min_cnf clist'_2))).
+        pose proof Z.le_min_l p1 (Z.min (pcnt'_2 + 1) (Z.min 0 0)).
+        remember (Z.min (Z.min p1 (Z.min (pcnt'_2 + 1) (Z.min 0 0)))
+        (Z.min (Z.min (- p2) (Z.min (pcnt'_2 + 1) (Z.min 0 0)))
+           (Z.min (Z.min (- p1) (Z.min p2 (Z.min (- (pcnt'_2 + 1)) 0))) (min_cnf clist'_2)))) as tmp1 eqn:H1000.
+        remember (Z.min p1 (Z.min (pcnt'_2 + 1) (Z.min 0 0))) as tmp2 eqn:H2000.
         clear H1000.
         clear H2000.
         lia.
   + remember (pcnt'_2 + 1 :: 0 :: 0 :: nil) as c1 eqn:H_c1.
-    (* remember (- res'_2 :: pcnt'_2 + 1 :: 0 :: nil) as c2 eqn:H_c2.
-    remember (- res'_1 :: res'_2 :: - (pcnt'_2 + 1) :: nil) as c3 eqn:H_c3. *)
+    (* remember (- p2 :: pcnt'_2 + 1 :: 0 :: nil) as c2 eqn:H_c2.
+    remember (- p1 :: p2 :: - (pcnt'_2 + 1) :: nil) as c3 eqn:H_c3. *)
     Exists (c1 :: clist'_2) (pcnt'_2 + 1) (ccnt'_2 + 1) (pcnt'_2 + 1) y0.
     entailer!.
     1: {
@@ -1341,6 +1439,10 @@ Proof.
     }
     2: {
       repeat rewrite Zlength_cons.
+      lia.
+    }
+    2: {
+      repeat rewrite Zlength_cons.
       rewrite H2.
       lia.
     }
@@ -1348,7 +1450,7 @@ Proof.
       unfold make_prop2cnf_ret, make_predata.
       simpl.
       remember (prop2cnf_logic lt' (clist, pcnt, ccnt)) as step1 eqn:Hstep1.
-      destruct step1 as [data1 p1].
+      destruct step1 as [data1 p1'].
       remember (prop2cnf_logic rt' data1) as step2 eqn:Hstep2.
       destruct step2 as [tmp clause_cnt].
       destruct tmp as [cnf_res prop_cnt].
@@ -1359,7 +1461,7 @@ Proof.
       rewrite H26 in Hstep2.
       rewrite <- H5 in Hstep2.
       inversion Hstep2.
-      destruct (res'_1 ==? res'_2); try contradiction.
+      destruct (p1 ==? p2); try contradiction.
       subst.
       reflexivity.
     }
@@ -1382,10 +1484,10 @@ Proof.
         remember (Z.min (Z.min (pcnt'_2 + 1) (Z.min 0 (Z.min 0 0))) (min_cnf clist'_2)) as tmp1 eqn:H1000.
         clear H1000.
         lia.
-  + remember (res'_1 :: res'_2 :: pcnt'_2 + 1 :: nil) as c1 eqn:H_c1.
-    remember (- res'_1 :: - res'_2 :: pcnt'_2 + 1 :: nil) as c2 eqn:H_c2.
-    remember (res'_1 :: - res'_2 :: - (pcnt'_2 + 1) :: nil) as c3 eqn:H_c3.
-    remember (- res'_1 :: res'_2 :: - (pcnt'_2 + 1) :: nil) as c4 eqn:H_c4.
+  + remember (p1 :: p2 :: pcnt'_2 + 1 :: nil) as c1 eqn:H_c1.
+    remember (- p1 :: - p2 :: pcnt'_2 + 1 :: nil) as c2 eqn:H_c2.
+    remember (p1 :: - p2 :: - (pcnt'_2 + 1) :: nil) as c3 eqn:H_c3.
+    remember (- p1 :: p2 :: - (pcnt'_2 + 1) :: nil) as c4 eqn:H_c4.
     Exists (c1 :: c2 :: c3 :: c4 :: clist'_2) (pcnt'_2 + 1) (ccnt'_2 + 4) (pcnt'_2 + 1) y0.
     entailer!.
     1: {
@@ -1397,6 +1499,10 @@ Proof.
     }
     2: {
       repeat rewrite Zlength_cons.
+      lia.
+    }
+    2: {
+      repeat rewrite Zlength_cons.
       rewrite H2.
       lia.
     }
@@ -1404,7 +1510,7 @@ Proof.
       unfold make_prop2cnf_ret, make_predata.
       simpl.
       remember (prop2cnf_logic lt' (clist, pcnt, ccnt)) as step1 eqn:Hstep1.
-      destruct step1 as [data1 p1].
+      destruct step1 as [data1 p1'].
       remember (prop2cnf_logic rt' data1) as step2 eqn:Hstep2.
       destruct step2 as [tmp clause_cnt].
       destruct tmp as [cnf_res prop_cnt].
@@ -1415,7 +1521,7 @@ Proof.
       rewrite H26 in Hstep2.
       rewrite <- H5 in Hstep2.
       inversion Hstep2.
-      destruct (res'_1 ==? res'_2); try contradiction.
+      destruct (p1 ==? p2); try contradiction.
       subst.
       reflexivity.
     }
@@ -1434,37 +1540,30 @@ Proof.
       * (*Search (_ <= Z.min _ _). *)
         repeat apply Z.min_glb; try lia.
       * (*Search (Z.min _ _ <= _). *)
-        pose proof Z.le_min_l (Z.min res'_1 (Z.min res'_2 (Z.min (pcnt'_2 + 1) 0)))
-        (Z.min (Z.min (- res'_1) (Z.min (- res'_2) (Z.min (pcnt'_2 + 1) 0)))
-           (Z.min (Z.min res'_1 (Z.min (- res'_2) (Z.min (- (pcnt'_2 + 1)) 0)))
-              (Z.min (Z.min (- res'_1) (Z.min res'_2 (Z.min (- (pcnt'_2 + 1)) 0))) (min_cnf clist'_2)))) .
-        pose proof Z.le_min_l res'_1 (Z.min res'_2 (Z.min (pcnt'_2 + 1) 0)).
-        remember (Z.min (Z.min res'_1 (Z.min res'_2 (Z.min (pcnt'_2 + 1) 0)))
-        (Z.min (Z.min (- res'_1) (Z.min (- res'_2) (Z.min (pcnt'_2 + 1) 0)))
-           (Z.min (Z.min res'_1 (Z.min (- res'_2) (Z.min (- (pcnt'_2 + 1)) 0)))
-              (Z.min (Z.min (- res'_1) (Z.min res'_2 (Z.min (- (pcnt'_2 + 1)) 0))) (min_cnf clist'_2)))) ) as tmp1 eqn:H1000.
-        remember (Z.min res'_1 (Z.min res'_2 (Z.min (pcnt'_2 + 1) 0))) as tmp2 eqn:H2000.
+        pose proof Z.le_min_l (Z.min p1 (Z.min p2 (Z.min (pcnt'_2 + 1) 0)))
+        (Z.min (Z.min (- p1) (Z.min (- p2) (Z.min (pcnt'_2 + 1) 0)))
+           (Z.min (Z.min p1 (Z.min (- p2) (Z.min (- (pcnt'_2 + 1)) 0)))
+              (Z.min (Z.min (- p1) (Z.min p2 (Z.min (- (pcnt'_2 + 1)) 0))) (min_cnf clist'_2)))) .
+        pose proof Z.le_min_l p1 (Z.min p2 (Z.min (pcnt'_2 + 1) 0)).
+        remember (Z.min (Z.min p1 (Z.min p2 (Z.min (pcnt'_2 + 1) 0)))
+        (Z.min (Z.min (- p1) (Z.min (- p2) (Z.min (pcnt'_2 + 1) 0)))
+           (Z.min (Z.min p1 (Z.min (- p2) (Z.min (- (pcnt'_2 + 1)) 0)))
+              (Z.min (Z.min (- p1) (Z.min p2 (Z.min (- (pcnt'_2 + 1)) 0))) (min_cnf clist'_2)))) ) as tmp1 eqn:H1000.
+        remember (Z.min p1 (Z.min p2 (Z.min (pcnt'_2 + 1) 0))) as tmp2 eqn:H2000.
         clear H1000.
         clear H2000.
         lia.
 Qed.
 
-Lemma proof_of_prop2cnf_partial_solve_wit_5_pure : prop2cnf_partial_solve_wit_5_pure.
+Lemma proof_of_prop2cnf_partial_solve_wit_16_pure : prop2cnf_partial_solve_wit_16_pure.
 Proof.
   pre_process.
-  rewrite H6 in *.
-  unfold make_predata, make_prop2cnf_ret in H.
-  pose proof pcnt_upper_incr _ _ _ _ _ _ _ _ H.
-  assert (prop_cnt_inf_SmtProp rt <= pcnt') by lia.
+  rewrite H21 in *.
+  unfold make_predata, make_prop2cnf_ret in H7.
+  pose proof pcnt_upper_incr _ _ _ _ _ _ _ _ H7.
+  assert (p1' <= pcnt'_2 + 1) by lia.
+  assert (- p1' <= pcnt'_2 + 1) by lia.
   entailer!.
-Qed.
-
-Lemma proof_of_prop2cnf_partial_solve_wit_10_pure : prop2cnf_partial_solve_wit_10_pure.
-Proof.
-  pre_process.
-  entailer!;
-  unfold make_predata, make_prop2cnf_ret in H5;
-  pose proof pcnt_upper_incr _ _ _ _ _ _ _ _ H5; lia.
 Qed.
 
 Lemma proof_of_prop2cnf_which_implies_wit_1 : prop2cnf_which_implies_wit_1.
@@ -1499,6 +1598,49 @@ Qed.
 Lemma proof_of_prop2cnf_which_implies_wit_4 : prop2cnf_which_implies_wit_4.
 Proof.
   pre_process.
+  rewrite H0 in H.
+  simpl in H.
+  pose proof SmtProp_size_nonneg lt.
+  pose proof SmtProp_size_nonneg rt.
+  assert (SmtProp_size lt <= 10000) by lia.
+  assert (SmtProp_size rt <= 10000) by lia.
+  entailer!.
+Qed.
+
+Lemma proof_of_prop2cnf_which_implies_wit_5 : prop2cnf_which_implies_wit_5.
+Proof.
+  pre_process.
+  rewrite H0 in H.
+  simpl in H.
+  pose proof SmtProp_size_nonneg lt.
+  pose proof SmtProp_size_nonneg rt.
+  assert (Zlength clist <= 40000 - 4 * SmtProp_size lt) by lia.
+  entailer!.
+Qed.
+
+Lemma proof_of_prop2cnf_which_implies_wit_6 : prop2cnf_which_implies_wit_6.
+Proof.
+  pre_process.
+  rewrite H1 in *.
+  simpl in H0.
+  pose proof SmtProp_size_nonneg lt.
+  pose proof SmtProp_size_nonneg rt.
+  assert (Zlength clist' <= 40000 - 4 * SmtProp_size rt) by lia.
+  entailer!.
+Qed.
+
+Lemma proof_of_prop2cnf_which_implies_wit_7 : prop2cnf_which_implies_wit_7.
+Proof.
+  pre_process.
+  unfold make_predata, make_prop2cnf_ret in H.
+  pose proof pcnt_upper_incr _ _ _ _ _ _ _ _ H.
+  assert (prop_cnt_inf_SmtProp rt <= pcnt') by lia.
+  entailer!.
+Qed.
+
+Lemma proof_of_prop2cnf_which_implies_wit_8 : prop2cnf_which_implies_wit_8.
+Proof.
+  pre_process.
   unfold store_predata.
   Intros y.
   Exists y.
@@ -1507,7 +1649,7 @@ Proof.
   lia.
 Qed. 
 
-Lemma proof_of_prop2cnf_which_implies_wit_6 : prop2cnf_which_implies_wit_6.
+Lemma proof_of_prop2cnf_which_implies_wit_10 : prop2cnf_which_implies_wit_10.
 Proof.
   pre_process.
   unfold store_predata.
@@ -1515,7 +1657,16 @@ Proof.
   entailer!.
 Qed.
 
-Lemma proof_of_prop2cnf_which_implies_wit_8 : prop2cnf_which_implies_wit_8.
+Lemma proof_of_prop2cnf_which_implies_wit_12 : prop2cnf_which_implies_wit_12.
+Proof.
+  pre_process.
+  rewrite H1.
+  simpl.
+  assert (Zlength clist'_2 <= Zlength clist + 4 * (1 + SmtProp_size lt' + SmtProp_size rt') - 4) by lia.
+  entailer!.
+Qed.
+
+Lemma proof_of_prop2cnf_which_implies_wit_14 : prop2cnf_which_implies_wit_14.
 Proof.
   pre_process.
   rewrite H0.
@@ -1527,7 +1678,7 @@ Proof.
   lia.
 Qed. 
 
-Lemma proof_of_prop2cnf_which_implies_wit_9 : prop2cnf_which_implies_wit_9.
+Lemma proof_of_prop2cnf_which_implies_wit_15 : prop2cnf_which_implies_wit_15.
 Proof.
   pre_process.
   rewrite H0 in H.
@@ -1535,7 +1686,26 @@ Proof.
   entailer!.
 Qed.
 
-Lemma proof_of_prop2cnf_which_implies_wit_10 : prop2cnf_which_implies_wit_10.
+Lemma proof_of_prop2cnf_which_implies_wit_16 : prop2cnf_which_implies_wit_16.
+Proof.
+  pre_process.
+  rewrite H0 in H.
+  simpl in H.
+  assert (SmtProp_size sub_prop <= 10000) by lia.
+  entailer!.
+Qed.
+
+Lemma proof_of_prop2cnf_which_implies_wit_17 : prop2cnf_which_implies_wit_17.
+Proof.
+  pre_process.
+  rewrite H0 in H.
+  simpl in H.
+  pose proof SmtProp_size_nonneg sub_prop.
+  assert (Zlength clist <= 40000 - 4 * SmtProp_size sub_prop) by lia.
+  entailer!.
+Qed.
+
+Lemma proof_of_prop2cnf_which_implies_wit_18 : prop2cnf_which_implies_wit_18.
 Proof.
   pre_process.
   unfold store_predata.
@@ -1546,7 +1716,8 @@ Proof.
   lia.
 Qed.
 
-Lemma proof_of_prop2cnf_which_implies_wit_12 : prop2cnf_which_implies_wit_12.
+
+Lemma proof_of_prop2cnf_which_implies_wit_20 : prop2cnf_which_implies_wit_20.
 Proof.
   pre_process.
   unfold store_predata.
@@ -1554,7 +1725,16 @@ Proof.
   entailer!.
 Qed.
 
-Lemma proof_of_prop2cnf_which_implies_wit_14 : prop2cnf_which_implies_wit_14.
+Lemma proof_of_prop2cnf_which_implies_wit_22 : prop2cnf_which_implies_wit_22.
+Proof.
+  pre_process.
+  rewrite H0.
+  simpl.
+  assert (Zlength clist' <= Zlength clist + 4 * (1 + SmtProp_size sub_prop') - 4) by lia.
+  entailer!.
+Qed.
+
+Lemma proof_of_prop2cnf_which_implies_wit_24 : prop2cnf_which_implies_wit_24.
 Proof.
   pre_process.
   rewrite H.

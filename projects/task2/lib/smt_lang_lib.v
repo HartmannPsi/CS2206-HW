@@ -207,3 +207,16 @@ Fixpoint SmtProp_size (s: smt_prop) : Z :=
     | SmtU _ prop => 1 + SmtProp_size prop
     | SmtV _ => 1
   end.
+
+Opaque Z.add Z.sub Z.mul Z.opp Z.of_nat Z.of_N Z.succ.
+
+Lemma SmtProp_size_nonneg: forall s, 0 <= SmtProp_size s.
+Proof.
+  induction s as [b lt IHlt rt IHrt | u prop IH | v].
+  - simpl SmtProp_size.
+    lia. (* 1 + IHlt + IHrt >= 0 *)
+  - simpl. (* SmtU *)
+    lia.
+  - simpl. lia. (* SmtV *)
+Qed.
+  
