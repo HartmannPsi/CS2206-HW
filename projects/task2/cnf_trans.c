@@ -315,7 +315,7 @@ int prop2cnf(SmtProp *p, PreData *data)
              make_prop2cnf_ret(make_predata(clist', pcnt', ccnt'), res) ==
              prop2cnf_logic(prop, make_predata(clist, pcnt, ccnt)) &&
              __return == res && res != 0 && res <= pcnt' && -res <= pcnt' &&
-             SmtProp_size(prop) <= 10000 && Zlength(clist') <= Zlength(clist) +
+             Zlength(clist') <= Zlength(clist) +
              4 * SmtProp_size(prop) && store_SmtProp(p, prop) *
              store_predata(data, clist', pcnt', ccnt')
 */
@@ -414,19 +414,13 @@ int prop2cnf(SmtProp *p, PreData *data)
                                              pcnt'_1, ccnt'_1))
           && p2 != 0 && p2 <= pcnt'_2
           && -p2 <= pcnt'_2 &&
-          SmtProp_size(rt') <= 10000 &&
           Zlength(clist'_2) <= Zlength(clist'_1) + 4 * SmtProp_size(rt')
           && pcnt <= pcnt'_1 && prop_cnt_inf_SmtProp(rt') <= pcnt'_1 &&
-          Zlength(clist'_1) <= 40000 - 4 * SmtProp_size(rt') &&
           make_prop2cnf_ret(make_predata(clist'_1, pcnt'_1, ccnt'_1), p1)
                            == prop2cnf_logic(lt', make_predata(clist, pcnt,
                                              ccnt))
           && p1 != 0 && p1 <= pcnt'_1 && -p1 <= pcnt'_1 &&
-          SmtProp_size(lt') <= 10000 &&
           Zlength(clist'_1) <= Zlength(clist) + 4 * SmtProp_size(lt') &&
-          Zlength(clist) <= 40000 - 4 * SmtProp_size(lt') &&
-          SmtProp_size(lt') <= 10000 &&
-          SmtProp_size(rt') <= 10000 &&
           prop_cnt_inf_SmtProp(lt') <= pcnt &&
           prop_cnt_inf_SmtProp(rt') <= pcnt &&
           prop == SmtB(op', lt', rt') &&
@@ -531,10 +525,7 @@ int prop2cnf(SmtProp *p, PreData *data)
           make_prop2cnf_ret(make_predata(clist', pcnt', ccnt'), p1)
           == prop2cnf_logic(sub_prop', make_predata(clist, pcnt, ccnt))
           && p1 != 0 && p1 <= pcnt' && -p1 <= pcnt'
-          && SmtProp_size(sub_prop') <= 10000
-          && Zlength(clist') <= Zlength(clist) + 4 * SmtProp_size(sub_prop')
-          && Zlength(clist) <= 40000 - 4 * SmtProp_size(sub_prop')
-          && SmtProp_size(sub_prop') <= 10000 &&
+          && Zlength(clist') <= Zlength(clist) + 4 * SmtProp_size(sub_prop') &&
           prop_cnt_inf_SmtProp(sub_prop') <= pcnt &&
           prop == SmtU(op', sub_prop') &&
           p@pre != 0 && t' == SmtPTID(prop) &&
