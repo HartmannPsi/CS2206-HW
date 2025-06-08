@@ -35,7 +35,13 @@ Proof. Admitted.
 Lemma proof_of_clause_gen_unary_safety_wit_4 : clause_gen_unary_safety_wit_4.
 Proof. Admitted. 
 
+Lemma proof_of_clause_gen_unary_safety_wit_5 : clause_gen_unary_safety_wit_5.
+Proof. Admitted. 
+
 Lemma proof_of_clause_gen_unary_safety_wit_6 : clause_gen_unary_safety_wit_6.
+Proof. Admitted. 
+
+Lemma proof_of_clause_gen_unary_safety_wit_7 : clause_gen_unary_safety_wit_7.
 Proof. Admitted. 
 
 Lemma proof_of_clause_gen_unary_safety_wit_9 : clause_gen_unary_safety_wit_9.
@@ -86,10 +92,16 @@ Proof. Admitted.
 Lemma proof_of_clause_gen_binary_safety_wit_4 : clause_gen_binary_safety_wit_4.
 Proof. Admitted. 
 
+Lemma proof_of_clause_gen_binary_safety_wit_5 : clause_gen_binary_safety_wit_5.
+Proof. Admitted. 
+
 Lemma proof_of_clause_gen_binary_safety_wit_6 : clause_gen_binary_safety_wit_6.
 Proof. Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_7 : clause_gen_binary_safety_wit_7.
+Proof. Admitted. 
+
+Lemma proof_of_clause_gen_binary_safety_wit_8 : clause_gen_binary_safety_wit_8.
 Proof. Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_9 : clause_gen_binary_safety_wit_9.
@@ -104,10 +116,16 @@ Proof. Admitted.
 Lemma proof_of_clause_gen_binary_safety_wit_12 : clause_gen_binary_safety_wit_12.
 Proof. Admitted. 
 
+Lemma proof_of_clause_gen_binary_safety_wit_13 : clause_gen_binary_safety_wit_13.
+Proof. Admitted. 
+
 Lemma proof_of_clause_gen_binary_safety_wit_14 : clause_gen_binary_safety_wit_14.
 Proof. Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_15 : clause_gen_binary_safety_wit_15.
+Proof. Admitted. 
+
+Lemma proof_of_clause_gen_binary_safety_wit_16 : clause_gen_binary_safety_wit_16.
 Proof. Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_17 : clause_gen_binary_safety_wit_17.
@@ -131,22 +149,37 @@ Proof. Admitted.
 Lemma proof_of_clause_gen_binary_safety_wit_23 : clause_gen_binary_safety_wit_23.
 Proof. Admitted. 
 
+Lemma proof_of_clause_gen_binary_safety_wit_24 : clause_gen_binary_safety_wit_24.
+Proof. Admitted. 
+
 Lemma proof_of_clause_gen_binary_safety_wit_25 : clause_gen_binary_safety_wit_25.
 Proof. Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_26 : clause_gen_binary_safety_wit_26.
 Proof. Admitted. 
 
+Lemma proof_of_clause_gen_binary_safety_wit_27 : clause_gen_binary_safety_wit_27.
+Proof. Admitted. 
+
 Lemma proof_of_clause_gen_binary_safety_wit_28 : clause_gen_binary_safety_wit_28.
 Proof. Admitted. 
 
+Lemma proof_of_clause_gen_binary_safety_wit_29 : clause_gen_binary_safety_wit_29.
+Proof. Admitted. 
+
 Lemma proof_of_clause_gen_binary_safety_wit_30 : clause_gen_binary_safety_wit_30.
+Proof. Admitted. 
+
+Lemma proof_of_clause_gen_binary_safety_wit_31 : clause_gen_binary_safety_wit_31.
 Proof. Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_32 : clause_gen_binary_safety_wit_32.
 Proof. Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_33 : clause_gen_binary_safety_wit_33.
+Proof. Admitted. 
+
+Lemma proof_of_clause_gen_binary_safety_wit_34 : clause_gen_binary_safety_wit_34.
 Proof. Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_35 : clause_gen_binary_safety_wit_35.
@@ -176,16 +209,25 @@ Proof. Admitted.
 Lemma proof_of_clause_gen_binary_safety_wit_43 : clause_gen_binary_safety_wit_43.
 Proof. Admitted. 
 
+Lemma proof_of_clause_gen_binary_safety_wit_44 : clause_gen_binary_safety_wit_44.
+Proof. Admitted. 
+
 Lemma proof_of_clause_gen_binary_safety_wit_45 : clause_gen_binary_safety_wit_45.
 Proof. Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_46 : clause_gen_binary_safety_wit_46.
 Proof. Admitted. 
 
+Lemma proof_of_clause_gen_binary_safety_wit_47 : clause_gen_binary_safety_wit_47.
+Proof. Admitted. 
+
 Lemma proof_of_clause_gen_binary_safety_wit_48 : clause_gen_binary_safety_wit_48.
 Proof. Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_49 : clause_gen_binary_safety_wit_49.
+Proof. Admitted. 
+
+Lemma proof_of_clause_gen_binary_safety_wit_50 : clause_gen_binary_safety_wit_50.
 Proof. Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_51 : clause_gen_binary_safety_wit_51.
@@ -218,7 +260,13 @@ Proof. Admitted.
 Lemma proof_of_clause_gen_binary_safety_wit_60 : clause_gen_binary_safety_wit_60.
 Proof. Admitted. 
 
+Lemma proof_of_clause_gen_binary_safety_wit_61 : clause_gen_binary_safety_wit_61.
+Proof. Admitted. 
+
 Lemma proof_of_clause_gen_binary_safety_wit_62 : clause_gen_binary_safety_wit_62.
+Proof. Admitted. 
+
+Lemma proof_of_clause_gen_binary_safety_wit_63 : clause_gen_binary_safety_wit_63.
 Proof. Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_64 : clause_gen_binary_safety_wit_64.
@@ -230,16 +278,28 @@ Proof. Admitted.
 Lemma proof_of_clause_gen_binary_safety_wit_66 : clause_gen_binary_safety_wit_66.
 Proof. Admitted. 
 
+Lemma proof_of_clause_gen_binary_safety_wit_67 : clause_gen_binary_safety_wit_67.
+Proof. Admitted. 
+
 Lemma proof_of_clause_gen_binary_safety_wit_68 : clause_gen_binary_safety_wit_68.
 Proof. Admitted. 
 
+Lemma proof_of_clause_gen_binary_safety_wit_69 : clause_gen_binary_safety_wit_69.
+Proof. Admitted. 
+
 Lemma proof_of_clause_gen_binary_safety_wit_70 : clause_gen_binary_safety_wit_70.
+Proof. Admitted. 
+
+Lemma proof_of_clause_gen_binary_safety_wit_71 : clause_gen_binary_safety_wit_71.
 Proof. Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_72 : clause_gen_binary_safety_wit_72.
 Proof. Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_73 : clause_gen_binary_safety_wit_73.
+Proof. Admitted. 
+
+Lemma proof_of_clause_gen_binary_safety_wit_74 : clause_gen_binary_safety_wit_74.
 Proof. Admitted. 
 
 Lemma proof_of_clause_gen_binary_safety_wit_75 : clause_gen_binary_safety_wit_75.
@@ -800,10 +860,16 @@ Proof. Admitted.
 Lemma proof_of_prop2cnf_safety_wit_2 : prop2cnf_safety_wit_2.
 Proof. Admitted. 
 
+Lemma proof_of_prop2cnf_safety_wit_3 : prop2cnf_safety_wit_3.
+Proof. Admitted. 
+
 Lemma proof_of_prop2cnf_safety_wit_4 : prop2cnf_safety_wit_4.
 Proof. Admitted. 
 
 Lemma proof_of_prop2cnf_safety_wit_5 : prop2cnf_safety_wit_5.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_safety_wit_6 : prop2cnf_safety_wit_6.
 Proof. Admitted. 
 
 Lemma proof_of_prop2cnf_safety_wit_7 : prop2cnf_safety_wit_7.
@@ -872,6 +938,9 @@ Proof. Admitted.
 Lemma proof_of_prop2cnf_partial_solve_wit_9 : prop2cnf_partial_solve_wit_9.
 Proof. Admitted. 
 
+Lemma proof_of_prop2cnf_partial_solve_wit_10_pure : prop2cnf_partial_solve_wit_10_pure.
+Proof. Admitted. 
+
 Lemma proof_of_prop2cnf_partial_solve_wit_10 : prop2cnf_partial_solve_wit_10.
 Proof. Admitted. 
 
@@ -879,9 +948,6 @@ Lemma proof_of_prop2cnf_partial_solve_wit_11_pure : prop2cnf_partial_solve_wit_1
 Proof. Admitted. 
 
 Lemma proof_of_prop2cnf_partial_solve_wit_11 : prop2cnf_partial_solve_wit_11.
-Proof. Admitted. 
-
-Lemma proof_of_prop2cnf_partial_solve_wit_12_pure : prop2cnf_partial_solve_wit_12_pure.
 Proof. Admitted. 
 
 Lemma proof_of_prop2cnf_partial_solve_wit_12 : prop2cnf_partial_solve_wit_12.
@@ -905,6 +971,9 @@ Proof. Admitted.
 Lemma proof_of_prop2cnf_partial_solve_wit_15 : prop2cnf_partial_solve_wit_15.
 Proof. Admitted. 
 
+Lemma proof_of_prop2cnf_partial_solve_wit_16_pure : prop2cnf_partial_solve_wit_16_pure.
+Proof. Admitted. 
+
 Lemma proof_of_prop2cnf_partial_solve_wit_16 : prop2cnf_partial_solve_wit_16.
 Proof. Admitted. 
 
@@ -920,9 +989,6 @@ Proof. Admitted.
 Lemma proof_of_prop2cnf_partial_solve_wit_18 : prop2cnf_partial_solve_wit_18.
 Proof. Admitted. 
 
-Lemma proof_of_prop2cnf_partial_solve_wit_19_pure : prop2cnf_partial_solve_wit_19_pure.
-Proof. Admitted. 
-
 Lemma proof_of_prop2cnf_partial_solve_wit_19 : prop2cnf_partial_solve_wit_19.
 Proof. Admitted. 
 
@@ -936,6 +1002,9 @@ Lemma proof_of_prop2cnf_partial_solve_wit_21_pure : prop2cnf_partial_solve_wit_2
 Proof. Admitted. 
 
 Lemma proof_of_prop2cnf_partial_solve_wit_21 : prop2cnf_partial_solve_wit_21.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_partial_solve_wit_22_pure : prop2cnf_partial_solve_wit_22_pure.
 Proof. Admitted. 
 
 Lemma proof_of_prop2cnf_partial_solve_wit_22 : prop2cnf_partial_solve_wit_22.
@@ -959,9 +1028,6 @@ Proof. Admitted.
 Lemma proof_of_prop2cnf_partial_solve_wit_25 : prop2cnf_partial_solve_wit_25.
 Proof. Admitted. 
 
-Lemma proof_of_prop2cnf_partial_solve_wit_26_pure : prop2cnf_partial_solve_wit_26_pure.
-Proof. Admitted. 
-
 Lemma proof_of_prop2cnf_partial_solve_wit_26 : prop2cnf_partial_solve_wit_26.
 Proof. Admitted. 
 
@@ -983,21 +1049,51 @@ Proof. Admitted.
 Lemma proof_of_prop2cnf_partial_solve_wit_29 : prop2cnf_partial_solve_wit_29.
 Proof. Admitted. 
 
-Lemma proof_of_prop2cnf_which_implies_wit_9 : prop2cnf_which_implies_wit_9.
+Lemma proof_of_prop2cnf_partial_solve_wit_30_pure : prop2cnf_partial_solve_wit_30_pure.
 Proof. Admitted. 
 
-Lemma proof_of_prop2cnf_which_implies_wit_11 : prop2cnf_which_implies_wit_11.
+Lemma proof_of_prop2cnf_partial_solve_wit_30 : prop2cnf_partial_solve_wit_30.
 Proof. Admitted. 
 
-Lemma proof_of_prop2cnf_which_implies_wit_13 : prop2cnf_which_implies_wit_13.
+Lemma proof_of_prop2cnf_partial_solve_wit_31_pure : prop2cnf_partial_solve_wit_31_pure.
 Proof. Admitted. 
 
-Lemma proof_of_prop2cnf_which_implies_wit_19 : prop2cnf_which_implies_wit_19.
+Lemma proof_of_prop2cnf_partial_solve_wit_31 : prop2cnf_partial_solve_wit_31.
 Proof. Admitted. 
 
-Lemma proof_of_prop2cnf_which_implies_wit_21 : prop2cnf_which_implies_wit_21.
+Lemma proof_of_prop2cnf_partial_solve_wit_32_pure : prop2cnf_partial_solve_wit_32_pure.
 Proof. Admitted. 
 
-Lemma proof_of_prop2cnf_which_implies_wit_23 : prop2cnf_which_implies_wit_23.
+Lemma proof_of_prop2cnf_partial_solve_wit_32 : prop2cnf_partial_solve_wit_32.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_partial_solve_wit_33_pure : prop2cnf_partial_solve_wit_33_pure.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_partial_solve_wit_33 : prop2cnf_partial_solve_wit_33.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_partial_solve_wit_34_pure : prop2cnf_partial_solve_wit_34_pure.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_partial_solve_wit_34 : prop2cnf_partial_solve_wit_34.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_which_implies_wit_12 : prop2cnf_which_implies_wit_12.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_which_implies_wit_14 : prop2cnf_which_implies_wit_14.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_which_implies_wit_16 : prop2cnf_which_implies_wit_16.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_which_implies_wit_24 : prop2cnf_which_implies_wit_24.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_which_implies_wit_26 : prop2cnf_which_implies_wit_26.
+Proof. Admitted. 
+
+Lemma proof_of_prop2cnf_which_implies_wit_28 : prop2cnf_which_implies_wit_28.
 Proof. Admitted. 
 

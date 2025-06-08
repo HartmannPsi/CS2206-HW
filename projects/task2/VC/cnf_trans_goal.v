@@ -34,7 +34,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  ((( &( "size" ) )) # Int  |->_)
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
   **  ((( &( "p3" ) )) # Int  |-> p3_pre)
@@ -57,7 +58,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  (store_int_array retval 3 (all_zero_list (3)) )
   **  ((( &( "clause2" ) )) # Ptr  |-> retval)
   **  (store_int_array retval_2 3 (all_zero_list (3)) )
@@ -84,7 +86,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  (store_int_array retval 3 (replace_Znth (0) (p2_pre) ((all_zero_list (3)))) )
   **  (store_int_array retval_2 3 (all_zero_list (3)) )
   **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
@@ -111,7 +114,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_2 3 (all_zero_list (3)) )
   **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
@@ -138,7 +142,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_2 3 (all_zero_list (3)) )
   **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
@@ -164,7 +169,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  (store_int_array retval_2 3 (replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))) )
   **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
   **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
@@ -191,7 +197,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  (store_int_array retval_2 3 (replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))) )
   **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
   **  ((( &( "clause2" ) )) # Ptr  |-> retval_2)
@@ -221,7 +228,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_3)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
@@ -263,7 +271,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_3)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt)
@@ -305,7 +314,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_3)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
   **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> (ccnt + 2 ))
@@ -334,7 +344,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  ((( &( "clause1" ) )) # Ptr  |->_)
   **  ((( &( "size" ) )) # Int  |-> 3)
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
@@ -355,7 +366,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  (store_predata data_pre clist pcnt ccnt )
 |--
   [| (3 > 0) |] 
@@ -367,7 +379,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  (store_predata data_pre clist pcnt ccnt )
 .
 
@@ -384,7 +397,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  ((( &( "clause2" ) )) # Ptr  |->_)
   **  (store_int_array retval 3 (all_zero_list (3)) )
   **  ((( &( "clause1" ) )) # Ptr  |-> retval)
@@ -408,7 +422,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  (store_int_array retval 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 |--
@@ -422,7 +437,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  (store_int_array retval 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 .
@@ -441,7 +457,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  (store_int_array retval_2 3 (all_zero_list (3)) )
   **  (store_int_array retval 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
@@ -456,7 +473,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  (((retval + (0 * sizeof(INT) ) )) # Int  |->_)
   **  (store_int_array_missing_i_rec retval 0 0 3 (all_zero_list (3)) )
   **  (store_int_array retval_2 3 (all_zero_list (3)) )
@@ -475,7 +493,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  (store_int_array retval 3 (replace_Znth (0) (p2_pre) ((all_zero_list (3)))) )
   **  (store_int_array retval_2 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
@@ -490,7 +509,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  (((retval + (1 * sizeof(INT) ) )) # Int  |->_)
   **  (store_int_array_missing_i_rec retval 1 0 3 (replace_Znth (0) (p2_pre) ((all_zero_list (3)))) )
   **  (store_int_array retval_2 3 (all_zero_list (3)) )
@@ -509,7 +529,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_2 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
@@ -524,7 +545,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  (((retval_2 + (0 * sizeof(INT) ) )) # Int  |->_)
   **  (store_int_array_missing_i_rec retval_2 0 0 3 (all_zero_list (3)) )
   **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
@@ -543,7 +565,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  (store_int_array retval_2 3 (replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))) )
   **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
   **  (store_predata data_pre clist pcnt ccnt )
@@ -558,7 +581,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  (((retval_2 + (1 * sizeof(INT) ) )) # Int  |->_)
   **  (store_int_array_missing_i_rec retval_2 1 0 3 (replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))) )
   **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
@@ -577,7 +601,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
   **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
   **  (store_predata data_pre clist pcnt ccnt )
@@ -592,7 +617,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
   **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
   **  (store_predata data_pre clist pcnt ccnt )
@@ -611,7 +637,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  ((&((retval_3)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_3)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_3)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
@@ -630,7 +657,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  ((&((retval_3)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_3)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
   **  ((&((retval_3)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
@@ -653,7 +681,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  ((&((retval_4)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_4)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
   **  ((&((retval_4)  # "cnf_list" ->ₛ "next")) # Ptr  |-> 0)
@@ -676,7 +705,8 @@ forall (data_pre: Z) (p3_pre: Z) (p2_pre: Z) (max_size: Z) (ccnt: Z) (pcnt: Z) (
   &&  [| ((-p2_pre) <= pcnt) |] 
   &&  [| ((-p3_pre) <= pcnt) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  (store_predata data_pre clist pcnt ccnt )
   **  ((&((retval_4)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_4)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_2)
@@ -717,7 +747,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  ((( &( "size" ) )) # Int  |->_)
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
   **  ((( &( "op" ) )) # Int  |-> op_pre)
@@ -748,7 +779,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  ((( &( "cnt" ) )) # Int  |->_)
   **  (store_int_array retval 3 (all_zero_list (3)) )
   **  ((( &( "clause4" ) )) # Ptr  |-> retval)
@@ -788,7 +820,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  ((( &( "cnt" ) )) # Int  |-> 0)
   **  (store_int_array retval 3 (all_zero_list (3)) )
   **  ((( &( "clause4" ) )) # Ptr  |-> retval)
@@ -829,6 +862,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((( &( "cnt" ) )) # Int  |-> 0)
   **  (store_int_array retval 3 (all_zero_list (3)) )
@@ -870,6 +904,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((( &( "cnt" ) )) # Int  |-> 0)
   **  (store_int_array retval 3 (all_zero_list (3)) )
@@ -910,6 +945,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval 3 (replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))) )
   **  ((( &( "cnt" ) )) # Int  |-> 0)
@@ -951,6 +987,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
   **  ((( &( "cnt" ) )) # Int  |-> 0)
@@ -992,6 +1029,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
   **  ((( &( "cnt" ) )) # Int  |-> 0)
@@ -1032,6 +1070,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval_2 3 (replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))) )
   **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
@@ -1074,6 +1113,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
   **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
@@ -1116,6 +1156,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval_3 3 (replace_Znth (0) (p1_pre) ((all_zero_list (3)))) )
   **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
@@ -1158,6 +1199,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval_3 3 (replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
@@ -1200,6 +1242,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval_3 3 (replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
@@ -1241,6 +1284,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
   **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
@@ -1283,6 +1327,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval_3 3 (replace_Znth (0) (p1_pre) ((all_zero_list (3)))) )
   **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
@@ -1325,6 +1370,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval_3 3 (replace_Znth (0) (p1_pre) ((all_zero_list (3)))) )
   **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
@@ -1366,6 +1412,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
   **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
@@ -1408,6 +1455,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
   **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
@@ -1450,6 +1498,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
@@ -1492,6 +1541,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
@@ -1533,6 +1583,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |]
   &&  ((( &( "cnt" ) )) # Int  |-> 0)
   **  (store_int_array retval 3 (all_zero_list (3)) )
@@ -1574,6 +1625,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((( &( "cnt" ) )) # Int  |-> 0)
@@ -1616,6 +1668,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval 3 (replace_Znth (0) (p1_pre) ((all_zero_list (3)))) )
@@ -1658,6 +1711,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval 3 (replace_Znth (0) (p1_pre) ((all_zero_list (3)))) )
@@ -1699,6 +1753,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
@@ -1741,6 +1796,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval_2 3 (replace_Znth (0) (p2_pre) ((all_zero_list (3)))) )
@@ -1783,6 +1839,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval_2 3 (replace_Znth (0) (p2_pre) ((all_zero_list (3)))) )
@@ -1825,6 +1882,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
@@ -1868,6 +1926,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
@@ -1910,6 +1969,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval_3 3 (replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))) )
@@ -1953,6 +2013,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval_3 3 (replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))) )
@@ -1995,6 +2056,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval_3 3 (replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
@@ -2038,6 +2100,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
@@ -2081,6 +2144,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
@@ -2123,6 +2187,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval_3 3 (replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))) )
@@ -2166,6 +2231,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
@@ -2209,6 +2275,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
@@ -2252,6 +2319,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
@@ -2295,6 +2363,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
@@ -2337,6 +2406,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |]
   &&  ((( &( "cnt" ) )) # Int  |-> 0)
@@ -2380,6 +2450,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -2424,6 +2495,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -2468,6 +2540,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -2512,6 +2585,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -2555,6 +2629,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -2599,6 +2674,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -2643,6 +2719,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -2686,6 +2763,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -2730,6 +2808,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -2774,6 +2853,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -2817,6 +2897,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -2861,6 +2942,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -2905,6 +2987,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -2949,6 +3032,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -2993,6 +3077,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -3036,6 +3121,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |]
@@ -3080,6 +3166,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -3125,6 +3212,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -3170,6 +3258,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -3215,6 +3304,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -3260,6 +3350,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -3304,6 +3395,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -3349,6 +3441,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -3393,6 +3486,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -3438,6 +3532,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -3483,6 +3578,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -3528,6 +3624,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -3572,6 +3669,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -3617,6 +3715,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -3661,6 +3760,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -3706,6 +3806,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -3750,6 +3851,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -3795,6 +3897,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -3840,6 +3943,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -3884,6 +3988,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -3929,6 +4034,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -3974,6 +4080,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -4019,6 +4126,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -4064,6 +4172,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -4108,6 +4217,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -4158,6 +4268,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
@@ -4226,6 +4337,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
@@ -4292,6 +4404,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
@@ -4360,6 +4473,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
@@ -4426,6 +4540,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
@@ -4495,6 +4610,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
@@ -4562,6 +4678,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
@@ -4631,6 +4748,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
@@ -4698,6 +4816,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -4768,6 +4887,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -4836,6 +4956,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -4906,6 +5027,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -4974,6 +5096,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -5045,6 +5168,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -5114,6 +5238,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -5185,6 +5310,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -5255,6 +5381,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -5325,6 +5452,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -5395,6 +5523,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -5466,6 +5595,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -5537,6 +5667,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
@@ -5606,6 +5737,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
@@ -5673,6 +5805,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
@@ -5742,6 +5875,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
@@ -5809,6 +5943,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
@@ -5879,6 +6014,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
@@ -5947,6 +6083,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
@@ -6017,6 +6154,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
@@ -6085,6 +6223,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -6156,6 +6295,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -6225,6 +6365,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -6297,6 +6438,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -6368,6 +6510,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
@@ -6438,6 +6581,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
@@ -6506,6 +6650,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
@@ -6576,6 +6721,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
@@ -6644,6 +6790,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
@@ -6715,6 +6862,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
@@ -6784,6 +6932,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
@@ -6855,6 +7004,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y)
@@ -6924,6 +7074,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -6996,6 +7147,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -7066,6 +7218,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -7139,6 +7292,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -7211,6 +7365,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
@@ -7281,6 +7436,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
@@ -7351,6 +7507,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
@@ -7421,6 +7578,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
@@ -7491,6 +7649,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
@@ -7562,6 +7721,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
@@ -7633,6 +7793,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
@@ -7704,6 +7865,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
@@ -7775,6 +7937,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -7847,6 +8010,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -7919,6 +8083,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -7992,6 +8157,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -8065,6 +8231,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -8124,6 +8291,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
@@ -8176,6 +8344,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
@@ -8228,6 +8397,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
@@ -8281,6 +8451,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
@@ -8334,6 +8505,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -8386,6 +8558,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -8430,6 +8603,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -8462,7 +8636,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  ((( &( "clause1" ) )) # Ptr  |->_)
   **  ((( &( "size" ) )) # Int  |-> 3)
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
@@ -8489,7 +8664,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  (store_predata data_pre clist pcnt ccnt )
 |--
   [| (3 > 0) |] 
@@ -8505,7 +8681,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  (store_predata data_pre clist pcnt ccnt )
 .
 
@@ -8526,7 +8703,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  ((( &( "clause2" ) )) # Ptr  |->_)
   **  (store_int_array retval 3 (all_zero_list (3)) )
   **  ((( &( "clause1" ) )) # Ptr  |-> retval)
@@ -8556,7 +8734,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  (store_int_array retval 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 |--
@@ -8574,7 +8753,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  (store_int_array retval 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
 .
@@ -8597,7 +8777,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  ((( &( "clause3" ) )) # Ptr  |->_)
   **  (store_int_array retval 3 (all_zero_list (3)) )
   **  ((( &( "clause2" ) )) # Ptr  |-> retval)
@@ -8630,7 +8811,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  (store_int_array retval_2 3 (all_zero_list (3)) )
   **  (store_int_array retval 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
@@ -8650,7 +8832,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  (store_int_array retval_2 3 (all_zero_list (3)) )
   **  (store_int_array retval 3 (all_zero_list (3)) )
   **  (store_predata data_pre clist pcnt ccnt )
@@ -8675,7 +8858,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  ((( &( "clause4" ) )) # Ptr  |->_)
   **  (store_int_array retval 3 (all_zero_list (3)) )
   **  ((( &( "clause3" ) )) # Ptr  |-> retval)
@@ -8711,7 +8895,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  (store_int_array retval_3 3 (all_zero_list (3)) )
   **  (store_int_array retval_2 3 (all_zero_list (3)) )
   **  (store_int_array retval 3 (all_zero_list (3)) )
@@ -8733,7 +8918,8 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (((prop_cnt_inf (clist)) + 1 ) <= pcnt) |] 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
-  &&  [| (max_size <= 40000) |]
+  &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |]
   &&  (store_int_array retval_3 3 (all_zero_list (3)) )
   **  (store_int_array retval_2 3 (all_zero_list (3)) )
   **  (store_int_array retval 3 (all_zero_list (3)) )
@@ -8761,6 +8947,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  (store_int_array retval_3 3 (all_zero_list (3)) )
@@ -8785,6 +8972,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (((retval + (0 * sizeof(INT) ) )) # Int  |->_)
   **  (store_int_array_missing_i_rec retval 0 0 3 (all_zero_list (3)) )
@@ -8813,6 +9001,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval 3 (replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
@@ -8837,6 +9026,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (((retval + (1 * sizeof(INT) ) )) # Int  |->_)
   **  (store_int_array_missing_i_rec retval 1 0 3 (replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))) )
@@ -8865,6 +9055,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
   **  (store_int_array retval_4 3 (all_zero_list (3)) )
@@ -8889,6 +9080,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (((retval_2 + (0 * sizeof(INT) ) )) # Int  |->_)
   **  (store_int_array_missing_i_rec retval_2 0 0 3 (all_zero_list (3)) )
@@ -8917,6 +9109,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval_2 3 (replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))) )
   **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
@@ -8941,6 +9134,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (((retval_2 + (1 * sizeof(INT) ) )) # Int  |->_)
   **  (store_int_array_missing_i_rec retval_2 1 0 3 (replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))) )
@@ -8970,6 +9164,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
   **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
@@ -8995,6 +9190,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (((retval_3 + (0 * sizeof(INT) ) )) # Int  |->_)
   **  (store_int_array_missing_i_rec retval_3 0 0 3 (all_zero_list (3)) )
@@ -9024,6 +9220,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval_3 3 (replace_Znth (0) (p1_pre) ((all_zero_list (3)))) )
   **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
@@ -9049,6 +9246,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (((retval_3 + (1 * sizeof(INT) ) )) # Int  |->_)
   **  (store_int_array_missing_i_rec retval_3 1 0 3 (replace_Znth (0) (p1_pre) ((all_zero_list (3)))) )
@@ -9078,6 +9276,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval_3 3 (replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
@@ -9103,6 +9302,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (((retval_3 + (2 * sizeof(INT) ) )) # Int  |->_)
   **  (store_int_array_missing_i_rec retval_3 2 0 3 (replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
@@ -9132,6 +9332,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
   **  (store_int_array retval 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
@@ -9157,6 +9358,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (((retval_3 + (0 * sizeof(INT) ) )) # Int  |->_)
   **  (store_int_array_missing_i_rec retval_3 0 0 3 (all_zero_list (3)) )
@@ -9186,6 +9388,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval_3 3 (replace_Znth (0) (p1_pre) ((all_zero_list (3)))) )
   **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
@@ -9211,6 +9414,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (((retval_3 + (1 * sizeof(INT) ) )) # Int  |->_)
   **  (store_int_array_missing_i_rec retval_3 1 0 3 (replace_Znth (0) (p1_pre) ((all_zero_list (3)))) )
@@ -9239,6 +9443,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval_4 3 (all_zero_list (3)) )
@@ -9264,6 +9469,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (((retval + (0 * sizeof(INT) ) )) # Int  |->_)
@@ -9293,6 +9499,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval 3 (replace_Znth (0) (p1_pre) ((all_zero_list (3)))) )
@@ -9318,6 +9525,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (((retval + (1 * sizeof(INT) ) )) # Int  |->_)
@@ -9347,6 +9555,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
@@ -9372,6 +9581,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (((retval_2 + (0 * sizeof(INT) ) )) # Int  |->_)
@@ -9401,6 +9611,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval_2 3 (replace_Znth (0) (p2_pre) ((all_zero_list (3)))) )
@@ -9426,6 +9637,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (((retval_2 + (1 * sizeof(INT) ) )) # Int  |->_)
@@ -9456,6 +9668,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
@@ -9482,6 +9695,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (((retval_3 + (0 * sizeof(INT) ) )) # Int  |->_)
@@ -9512,6 +9726,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval_3 3 (replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))) )
@@ -9538,6 +9753,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (((retval_3 + (1 * sizeof(INT) ) )) # Int  |->_)
@@ -9568,6 +9784,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval_3 3 (replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
@@ -9594,6 +9811,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (((retval_3 + (2 * sizeof(INT) ) )) # Int  |->_)
@@ -9624,6 +9842,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval_2 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p2_pre) ((all_zero_list (3)))))) )
@@ -9650,6 +9869,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (((retval_3 + (0 * sizeof(INT) ) )) # Int  |->_)
@@ -9680,6 +9900,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval_3 3 (replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))) )
@@ -9706,6 +9927,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (((retval_3 + (1 * sizeof(INT) ) )) # Int  |->_)
@@ -9736,6 +9958,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -9763,6 +9986,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -9794,6 +10018,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -9821,6 +10046,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -9852,6 +10078,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -9879,6 +10106,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -9910,6 +10138,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -9937,6 +10166,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -9968,6 +10198,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -9995,6 +10226,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -10026,6 +10258,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -10053,6 +10286,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -10084,6 +10318,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -10111,6 +10346,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -10142,6 +10378,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -10169,6 +10406,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -10200,6 +10438,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -10228,6 +10467,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -10260,6 +10500,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -10288,6 +10529,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -10320,6 +10562,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -10348,6 +10591,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -10380,6 +10624,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -10408,6 +10653,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -10440,6 +10686,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -10468,6 +10715,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -10500,6 +10748,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -10528,6 +10777,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -10560,6 +10810,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -10588,6 +10839,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -10620,6 +10872,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -10648,6 +10901,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -10680,6 +10934,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -10708,6 +10963,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -10740,6 +10996,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -10768,6 +11025,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -10800,6 +11058,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -10828,6 +11087,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -10860,6 +11120,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -10888,6 +11149,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -10920,6 +11182,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -10948,6 +11211,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -10980,6 +11244,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
@@ -11005,6 +11270,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval_3 3 (replace_Znth (1) ((-p3_pre)) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))) )
   **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
@@ -11033,6 +11299,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
   **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
@@ -11058,6 +11325,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval_3 3 (replace_Znth (2) ((-p3_pre)) ((replace_Znth (1) (p2_pre) ((replace_Znth (0) (p1_pre) ((all_zero_list (3)))))))) )
   **  (store_int_array retval_2 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p2_pre)) ((all_zero_list (3)))))) )
@@ -11086,6 +11354,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
@@ -11112,6 +11381,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval_3 3 (replace_Znth (1) (p3_pre) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))) )
@@ -11141,6 +11411,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
@@ -11167,6 +11438,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval_3 3 (replace_Znth (2) (p3_pre) ((replace_Znth (1) ((-p2_pre)) ((replace_Znth (0) ((-p1_pre)) ((all_zero_list (3)))))))) )
@@ -11196,6 +11468,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -11223,6 +11496,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -11253,6 +11527,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -11280,6 +11555,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -11310,6 +11586,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -11338,6 +11615,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -11369,6 +11647,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -11397,6 +11676,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -11429,6 +11709,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -11461,6 +11742,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -11496,6 +11778,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -11528,6 +11811,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -11563,6 +11847,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -11594,6 +11879,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -11628,6 +11914,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -11659,6 +11946,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -11693,6 +11981,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
@@ -11723,6 +12012,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
@@ -11756,6 +12046,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
@@ -11786,6 +12077,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
@@ -11819,6 +12111,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
@@ -11848,6 +12141,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
@@ -11880,6 +12174,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
@@ -11909,6 +12204,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((retval_5)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_5)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
@@ -11942,6 +12238,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
@@ -11975,6 +12272,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
@@ -12011,6 +12309,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
@@ -12044,6 +12343,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_6)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
@@ -12080,6 +12380,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
@@ -12114,6 +12415,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
@@ -12151,6 +12453,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
@@ -12185,6 +12488,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((retval_6)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
@@ -12222,6 +12526,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -12257,6 +12562,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -12295,6 +12601,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -12330,6 +12637,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -12368,6 +12676,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -12404,6 +12713,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -12443,6 +12753,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -12479,6 +12790,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -12519,6 +12831,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -12559,6 +12872,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -12602,6 +12916,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -12642,6 +12957,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -12685,6 +13001,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -12724,6 +13041,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -12766,6 +13084,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -12805,6 +13124,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -12847,6 +13167,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
@@ -12885,6 +13206,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
@@ -12926,6 +13248,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
@@ -12964,6 +13287,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
@@ -13005,6 +13329,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
@@ -13042,6 +13367,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
@@ -13082,6 +13408,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
@@ -13119,6 +13446,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((retval_7)  # "cnf_list" ->ₛ "size")) # Int  |-> 0)
   **  ((&((retval_7)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> 0)
@@ -13160,6 +13488,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -13204,6 +13533,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -13251,6 +13581,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -13295,6 +13626,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -13342,6 +13674,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -13385,6 +13718,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -13431,6 +13765,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -13474,6 +13809,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -13520,6 +13856,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
@@ -13562,6 +13899,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_predata data_pre clist pcnt ccnt )
@@ -13607,6 +13945,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
@@ -13649,6 +13988,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_predata data_pre clist pcnt ccnt )
@@ -13694,6 +14034,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -13735,6 +14076,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_predata data_pre clist pcnt ccnt )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
@@ -13779,6 +14121,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -13820,6 +14163,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_predata data_pre clist pcnt ccnt )
   **  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
@@ -13867,6 +14211,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -13938,6 +14283,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -13990,6 +14336,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -14045,6 +14392,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -14115,6 +14463,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -14166,6 +14515,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -14220,6 +14570,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -14289,6 +14640,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -14339,6 +14691,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -14392,6 +14745,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -14462,6 +14816,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -14513,6 +14868,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -14567,6 +14923,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -14636,6 +14993,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -14686,6 +15044,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -14739,6 +15098,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -14807,6 +15167,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -14856,6 +15217,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -14908,6 +15270,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -14974,6 +15337,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -15021,6 +15385,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -15072,6 +15437,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -15139,6 +15505,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -15187,6 +15554,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -15239,6 +15607,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -15303,6 +15672,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -15348,6 +15718,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -15397,6 +15768,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -15460,6 +15832,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -15504,6 +15877,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -15552,6 +15926,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -15612,6 +15987,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -15653,6 +16029,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -15698,6 +16075,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -15759,6 +16137,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -15801,6 +16180,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre <> 2) |] 
@@ -15849,6 +16229,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -15921,6 +16302,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -15974,6 +16356,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -16030,6 +16413,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
@@ -16101,6 +16485,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
@@ -16153,6 +16538,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval_4 3 (all_zero_list (3)) )
@@ -16208,6 +16594,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
@@ -16279,6 +16666,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
@@ -16331,6 +16719,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  (store_int_array retval_4 3 (all_zero_list (3)) )
@@ -16386,6 +16775,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
@@ -16456,6 +16846,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
@@ -16507,6 +16898,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
@@ -16561,6 +16953,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
@@ -16631,6 +17024,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
@@ -16682,6 +17076,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  (store_int_array retval_4 3 (all_zero_list (3)) )
   **  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
@@ -16736,6 +17131,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
@@ -16804,6 +17200,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
@@ -16853,6 +17250,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -16906,6 +17304,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
@@ -16974,6 +17373,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
   **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt)
@@ -17023,6 +17423,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre = 1) |]
   &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
   **  ((&((retval_8)  # "cnf_list" ->ₛ "clause")) # Ptr  |-> retval_4)
@@ -17076,6 +17477,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
@@ -17145,6 +17547,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
@@ -17195,6 +17598,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
@@ -17249,6 +17653,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_6)
@@ -17318,6 +17723,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> retval_5)
@@ -17368,6 +17774,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre = 0) |]
   &&  ((&((retval_8)  # "cnf_list" ->ₛ "size")) # Int  |-> 3)
@@ -17422,6 +17829,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -17492,6 +17900,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -17543,6 +17952,7 @@ forall (data_pre: Z) (op_pre: Z) (p3_pre: Z) (p2_pre: Z) (p1_pre: Z) (max_size: 
   &&  [| (op_pre = (SmtPBID (bop))) |] 
   &&  [| ((Zlength (clist)) <= max_size) |] 
   &&  [| (max_size <= 40000) |] 
+  &&  [| (pcnt <= 40000) |] 
   &&  [| (op_pre <> 1) |] 
   &&  [| (op_pre <> 0) |] 
   &&  [| (op_pre = 2) |]
@@ -17588,7 +17998,8 @@ Definition prop2cnf_safety_wit_1 :=
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) ,
   [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
-  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |]
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |]
   &&  ((( &( "res" ) )) # Int  |->_)
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
   **  ((( &( "p" ) )) # Ptr  |-> p_pre)
@@ -17604,7 +18015,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
-  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |]
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |]
   &&  ((( &( "p" ) )) # Ptr  |-> p_pre)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> t)
   **  (store_SmtProp' p_pre prop )
@@ -17618,7 +18030,9 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 
 Definition prop2cnf_safety_wit_3 := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (pcnt'_1: Z) (ccnt'_1: Z) (lt': smt_prop) (op': SmtPropBop) (t': Z) (p2: Z) (p1: Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) (y'': Z) ,
-  [| (data_pre <> 0) |] 
+  [| (pcnt'_2 <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt'_2 <= 39999) |] 
+  &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
   &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
   &&  [| (pcnt'_2 >= 0) |] 
@@ -17627,6 +18041,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p2 <= pcnt'_2) |] 
   &&  [| ((-p2) <= pcnt'_2) |] 
   &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist'_1)) + (4 * (SmtProp_size (rt')) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
   &&  [| (pcnt <= pcnt'_1) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt'_1) |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (p1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -17634,6 +18049,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt'_1) |] 
   &&  [| ((-p1) <= pcnt'_1) |] 
   &&  [| ((Zlength (clist'_1)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt')) ) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
   &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
@@ -17642,6 +18058,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' = 5) |] 
   &&  [| (v_3 = (SmtPBID (op'))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -17668,7 +18085,9 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 
 Definition prop2cnf_safety_wit_4 := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (pcnt'_1: Z) (ccnt'_1: Z) (lt': smt_prop) (op': SmtPropBop) (t': Z) (p2: Z) (p1: Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) (y'': Z) ,
-  [| (data_pre <> 0) |] 
+  [| (pcnt'_2 <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt'_2 <= 39999) |] 
+  &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
   &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
   &&  [| (pcnt'_2 >= 0) |] 
@@ -17677,6 +18096,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p2 <= pcnt'_2) |] 
   &&  [| ((-p2) <= pcnt'_2) |] 
   &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist'_1)) + (4 * (SmtProp_size (rt')) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
   &&  [| (pcnt <= pcnt'_1) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt'_1) |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (p1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -17684,6 +18104,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt'_1) |] 
   &&  [| ((-p1) <= pcnt'_1) |] 
   &&  [| ((Zlength (clist'_1)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt')) ) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
   &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
@@ -17692,6 +18113,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' = 5) |] 
   &&  [| (v_3 = (SmtPBID (op'))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -17722,6 +18144,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t <> 5) |]
   &&  ((( &( "p" ) )) # Ptr  |-> p_pre)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> t)
@@ -17736,7 +18159,9 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 
 Definition prop2cnf_safety_wit_6 := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) (t': Z) (p1: Z) (v: Z) (v_2: Z) (p_pre_type: Z) (res: Z) (y'': Z) ,
-  [| (data_pre <> 0) |] 
+  [| (pcnt' <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt' <= 39999) |] 
+  &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist')) = ccnt') |] 
   &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
   &&  [| (pcnt' >= 0) |] 
@@ -17745,6 +18170,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt') |] 
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (sub_prop')) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
   &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
@@ -17752,6 +18178,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' <> 5) |] 
   &&  [| (t' = 6) |] 
   &&  [| (v_2 = (SmtPUID (op'))) |] 
@@ -17776,7 +18203,9 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 
 Definition prop2cnf_safety_wit_7 := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) (t': Z) (p1: Z) (v: Z) (v_2: Z) (p_pre_type: Z) (res: Z) (y'': Z) ,
-  [| (data_pre <> 0) |] 
+  [| (pcnt' <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt' <= 39999) |] 
+  &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist')) = ccnt') |] 
   &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
   &&  [| (pcnt' >= 0) |] 
@@ -17785,6 +18214,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt') |] 
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (sub_prop')) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
   &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
@@ -17792,6 +18222,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' <> 5) |] 
   &&  [| (t' = 6) |] 
   &&  [| (v_2 = (SmtPUID (op'))) |] 
@@ -17820,6 +18251,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t <> 6) |]
   &&  ((( &( "p" ) )) # Ptr  |-> p_pre)
@@ -17839,6 +18271,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t <> 6) |] 
   &&  [| (t <> 7) |]
@@ -17860,6 +18293,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (res <= pcnt'_2) |] 
   &&  [| ((-res) <= pcnt'_2) |] 
   &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt)) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt + (SmtProp_size (lt)) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (lt)) )) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (lt)) ) )) |] 
   &&  [| ((SmtProp_size (lt)) <= 10000) |] 
   &&  [| ((SmtProp_size (rt)) <= 10000) |] 
@@ -17871,6 +18306,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t_2 = 5) |]
   &&  (store_SmtProp y lt )
   **  (store_predata data_pre clist'_2 pcnt'_2 ccnt'_2 )
@@ -17887,6 +18323,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((-retval) <= pcnt') |] 
   &&  [| ((SmtProp_size (lt)) <= 10000) |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt)) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (lt)) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (lt)) )) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (lt)) ) )) |] 
   &&  [| ((SmtProp_size (lt)) <= 10000) |] 
   &&  [| ((SmtProp_size (rt)) <= 10000) |] 
@@ -17898,6 +18336,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t = 5) |] 
   &&  [| (v_2 = (SmtPBID (op))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -17919,6 +18358,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (res_2 <= pcnt') |] 
   &&  [| ((-res_2) <= pcnt') |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist'_3)) + (4 * (SmtProp_size (rt)) ) )) |] 
+  &&  [| (pcnt' <= (pcnt'_3 + (SmtProp_size (rt)) )) |] 
+  &&  [| (pcnt'_3 <= (39999 - (SmtProp_size (rt)) )) |] 
   &&  [| (pcnt <= pcnt'_3) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt'_3) |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist'_3) (pcnt'_3) (ccnt'_3))) (p1)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -17930,6 +18371,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((-p1) <= pcnt'_3) |] 
   &&  [| ((SmtProp_size (lt)) <= 10000) |] 
   &&  [| ((Zlength (clist'_3)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt)) ) )) |] 
+  &&  [| (pcnt'_3 <= (pcnt + (SmtProp_size (lt)) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (lt)) )) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (lt)) ) )) |] 
   &&  [| ((SmtProp_size (lt)) <= 10000) |] 
   &&  [| ((SmtProp_size (rt)) <= 10000) |] 
@@ -17941,6 +18384,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t = 5) |] 
   &&  [| (v_5 = (SmtPBID (op))) |] 
   &&  [| (p_pre_type_2 = (SmtPTID (prop))) |] 
@@ -17959,6 +18403,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (retval <= pcnt'_2) |] 
   &&  [| ((-retval) <= pcnt'_2) |] 
   &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist'_1)) + (4 * (SmtProp_size (rt')) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
   &&  [| (pcnt <= pcnt'_1) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt'_1) |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (p1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -17966,6 +18411,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt'_1) |] 
   &&  [| ((-p1) <= pcnt'_1) |] 
   &&  [| ((Zlength (clist'_1)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt')) ) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
   &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
@@ -17974,6 +18420,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' = 5) |] 
   &&  [| (v = (SmtPBID (op'))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -17995,6 +18442,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (res <= pcnt'_2) |] 
   &&  [| ((-res) <= pcnt'_2) |] 
   &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist)) + (4 * (SmtProp_size (sub_prop)) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt + (SmtProp_size (sub_prop)) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (sub_prop)) )) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (sub_prop)) ) )) |] 
   &&  [| ((SmtProp_size (sub_prop)) <= 10000) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
@@ -18004,6 +18453,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t = 6) |]
   &&  (store_SmtProp y sub_prop )
@@ -18018,6 +18468,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (retval <= pcnt') |] 
   &&  [| ((-retval) <= pcnt') |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (sub_prop')) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
   &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
@@ -18025,6 +18476,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' <> 5) |] 
   &&  [| (t' = 6) |] 
   &&  [| (v = (SmtPUID (op'))) |] 
@@ -18046,6 +18498,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t <> 6) |] 
   &&  [| (t = 7) |]
@@ -18059,7 +18512,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (res <> 0) |] 
   &&  [| (res <= pcnt') |] 
   &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (prop)) ) )) |]
+  &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (prop)) )) |]
   &&  (store_SmtProp p_pre prop )
   **  (store_predata data_pre clist' pcnt' ccnt' )
 .
@@ -18072,6 +18526,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((Zlength (clist'_2)) <= (((Zlength (clist)) + (4 * (SmtProp_size (prop)) ) ) - 4 )) |] 
   &&  [| (((prop_cnt_inf (clist'_2)) + 1 ) <= (pcnt'_2 + 1 )) |] 
   &&  [| ((pcnt'_2 + 1 ) <> 0) |] 
+  &&  [| (pcnt'_2 <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt'_2 <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
   &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
@@ -18081,6 +18537,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt'_2) |] 
   &&  [| ((-p1) <= pcnt'_2) |] 
   &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist)) + (4 * (SmtProp_size (sub_prop')) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
   &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
@@ -18088,6 +18545,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' <> 5) |] 
   &&  [| (t' = 6) |] 
   &&  [| (v_2 = (SmtPUID (op'))) |] 
@@ -18105,7 +18563,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (res <> 0) |] 
   &&  [| (res <= pcnt') |] 
   &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (prop)) ) )) |]
+  &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (prop)) )) |]
   &&  (store_SmtProp p_pre prop )
   **  (store_predata data_pre clist' pcnt' ccnt' )
 .
@@ -18118,6 +18577,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((Zlength (clist'_2)) <= (((Zlength (clist)) + (4 * (SmtProp_size (prop)) ) ) - 4 )) |] 
   &&  [| (((prop_cnt_inf (clist'_2)) + 1 ) <= (pcnt'_2 + 1 )) |] 
   &&  [| ((pcnt'_2 + 1 ) <> 0) |] 
+  &&  [| (pcnt'_2 <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt'_2 <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
   &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
@@ -18127,6 +18588,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p2 <= pcnt'_2) |] 
   &&  [| ((-p2) <= pcnt'_2) |] 
   &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist'_1)) + (4 * (SmtProp_size (rt')) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
   &&  [| (pcnt <= pcnt'_1) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt'_1) |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (p1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -18134,6 +18596,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt'_1) |] 
   &&  [| ((-p1) <= pcnt'_1) |] 
   &&  [| ((Zlength (clist'_1)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt')) ) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
   &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
@@ -18142,6 +18605,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' = 5) |] 
   &&  [| (v_3 = (SmtPBID (op'))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -18160,7 +18624,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (res <> 0) |] 
   &&  [| (res <= pcnt') |] 
   &&  [| ((-res) <= pcnt') |] 
-  &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (prop)) ) )) |]
+  &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (prop)) )) |]
   &&  (store_SmtProp p_pre prop )
   **  (store_predata data_pre clist' pcnt' ccnt' )
 .
@@ -18169,13 +18634,15 @@ Definition prop2cnf_partial_solve_wit_1 :=
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) ,
   [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
-  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |]
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |]
   &&  (store_SmtProp p_pre prop )
   **  (store_predata data_pre clist pcnt ccnt )
 |--
   [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
-  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |]
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |]
   &&  (store_SmtProp p_pre prop )
   **  (store_predata data_pre clist pcnt ccnt )
 .
@@ -18186,6 +18653,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t = 5) |]
   &&  ((( &( "p" ) )) # Ptr  |-> p_pre)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> t)
@@ -18204,6 +18672,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t = 5) |]
   &&  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> t)
   **  (store_SmtProp' p_pre prop )
@@ -18215,6 +18684,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t = 5) |]
   &&  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
   **  (store_SmtProp' p_pre prop )
@@ -18231,6 +18701,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t = 5) |]
   &&  ((( &( "p" ) )) # Ptr  |-> p_pre)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
@@ -18255,6 +18726,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t = 5) |]
   &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
@@ -18272,6 +18744,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t = 5) |]
   &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
@@ -18294,6 +18767,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t = 5) |]
   &&  ((( &( "p" ) )) # Ptr  |-> p_pre)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
@@ -18320,6 +18794,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t = 5) |]
   &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
@@ -18339,6 +18814,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t = 5) |]
   &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
@@ -18363,6 +18839,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t = 5) |]
   &&  ((( &( "p" ) )) # Ptr  |-> p_pre)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
@@ -18391,6 +18868,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t = 5) |]
   &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
@@ -18412,6 +18890,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t = 5) |]
   &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
@@ -18437,9 +18916,9 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t = 5) |]
-  &&  ((( &( "p1" ) )) # Int  |->_)
-  **  ((( &( "p" ) )) # Ptr  |-> p_pre)
+  &&  ((( &( "p" ) )) # Ptr  |-> p_pre)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
@@ -18450,9 +18929,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((( &( "data" ) )) # Ptr  |-> data_pre)
   **  (store_predata data_pre clist pcnt ccnt )
 |--
-  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
-  &&  [| ((SmtProp_size (lt)) <= 10000) |] 
-  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (lt)) ) )) |]
+  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (prop = (SmtB (op) (lt) (rt))) |]
 .
 
 Definition prop2cnf_partial_solve_wit_6_aux := 
@@ -18468,6 +18946,91 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (t = 5) |]
+  &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
+  **  (store_SmtProp y lt )
+  **  (store_SmtProp z rt )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  **  (store_predata data_pre clist pcnt ccnt )
+|--
+  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (lt)) ) )) |] 
+  &&  [| ((SmtProp_size (lt)) <= 10000) |] 
+  &&  [| ((SmtProp_size (rt)) <= 10000) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
+  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
+  &&  [| ((SmtProp_size (prop)) <= 10000) |] 
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (t = 5) |]
+  &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
+  **  (store_SmtProp y lt )
+  **  (store_SmtProp z rt )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  **  (store_predata data_pre clist pcnt ccnt )
+.
+
+Definition prop2cnf_partial_solve_wit_6 := prop2cnf_partial_solve_wit_6_pure -> prop2cnf_partial_solve_wit_6_aux.
+
+Definition prop2cnf_partial_solve_wit_7_pure := 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) ,
+  [| (pcnt <= (40000 - (SmtProp_size (lt)) )) |] 
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (lt)) ) )) |] 
+  &&  [| ((SmtProp_size (lt)) <= 10000) |] 
+  &&  [| ((SmtProp_size (rt)) <= 10000) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
+  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
+  &&  [| ((SmtProp_size (prop)) <= 10000) |] 
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (t = 5) |]
+  &&  ((( &( "p1" ) )) # Int  |->_)
+  **  ((( &( "p" ) )) # Ptr  |-> p_pre)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> z)
+  **  (store_SmtProp y lt )
+  **  (store_SmtProp z rt )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  **  ((( &( "res" ) )) # Int  |-> 0)
+  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
+  **  (store_predata data_pre clist pcnt ccnt )
+|--
+  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
+  &&  [| ((SmtProp_size (lt)) <= 10000) |] 
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (lt)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (lt)) )) |]
+.
+
+Definition prop2cnf_partial_solve_wit_7_aux := 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (z: Z) (y: Z) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) ,
+  [| (pcnt <= (40000 - (SmtProp_size (lt)) )) |] 
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (lt)) ) )) |] 
+  &&  [| ((SmtProp_size (lt)) <= 10000) |] 
+  &&  [| ((SmtProp_size (rt)) <= 10000) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
+  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
+  &&  [| ((SmtProp_size (prop)) <= 10000) |] 
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t = 5) |]
   &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> (SmtPBID (op)))
   **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> y)
@@ -18480,6 +19043,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
   &&  [| ((SmtProp_size (lt)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (lt)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (lt)) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (lt)) )) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (lt)) ) )) |] 
   &&  [| ((SmtProp_size (lt)) <= 10000) |] 
   &&  [| ((SmtProp_size (rt)) <= 10000) |] 
@@ -18491,6 +19056,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t = 5) |]
   &&  (store_SmtProp y lt )
   **  (store_predata data_pre clist pcnt ccnt )
@@ -18501,9 +19067,9 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 .
 
-Definition prop2cnf_partial_solve_wit_6 := prop2cnf_partial_solve_wit_6_pure -> prop2cnf_partial_solve_wit_6_aux.
+Definition prop2cnf_partial_solve_wit_7 := prop2cnf_partial_solve_wit_7_pure -> prop2cnf_partial_solve_wit_7_aux.
 
-Definition prop2cnf_partial_solve_wit_7_pure := 
+Definition prop2cnf_partial_solve_wit_8_pure := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (t: Z) (p1: Z) (v_3: Z) (v_2: Z) (v: Z) (p_pre_type: Z) (res: Z) ,
   [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (p1)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
   &&  [| (p1 <> 0) |] 
@@ -18511,6 +19077,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((SmtProp_size (lt)) <= 10000) |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt)) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (lt)) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (lt)) )) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (lt)) ) )) |] 
   &&  [| ((SmtProp_size (lt)) <= 10000) |] 
   &&  [| ((SmtProp_size (rt)) <= 10000) |] 
@@ -18522,6 +19090,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t = 5) |] 
   &&  [| (v_2 = (SmtPBID (op))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -18543,7 +19112,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (prop = (SmtB (op) (lt) (rt))) |]
 .
 
-Definition prop2cnf_partial_solve_wit_7_aux := 
+Definition prop2cnf_partial_solve_wit_8_aux := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (t: Z) (p1: Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) ,
   [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (p1)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
   &&  [| (p1 <> 0) |] 
@@ -18551,6 +19120,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((SmtProp_size (lt)) <= 10000) |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt)) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (lt)) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (lt)) )) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (lt)) ) )) |] 
   &&  [| ((SmtProp_size (lt)) <= 10000) |] 
   &&  [| ((SmtProp_size (rt)) <= 10000) |] 
@@ -18562,6 +19133,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t = 5) |] 
   &&  [| (v_2 = (SmtPBID (op))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -18583,6 +19155,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((SmtProp_size (lt)) <= 10000) |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt)) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (lt)) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (lt)) )) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (lt)) ) )) |] 
   &&  [| ((SmtProp_size (lt)) <= 10000) |] 
   &&  [| ((SmtProp_size (rt)) <= 10000) |] 
@@ -18594,6 +19168,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t = 5) |] 
   &&  [| (v_2 = (SmtPBID (op))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -18607,9 +19182,9 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 .
 
-Definition prop2cnf_partial_solve_wit_7 := prop2cnf_partial_solve_wit_7_pure -> prop2cnf_partial_solve_wit_7_aux.
+Definition prop2cnf_partial_solve_wit_8 := prop2cnf_partial_solve_wit_8_pure -> prop2cnf_partial_solve_wit_8_aux.
 
-Definition prop2cnf_partial_solve_wit_8_pure := 
+Definition prop2cnf_partial_solve_wit_9_pure := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (t: Z) (p1: Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) ,
   [| ((Zlength (clist')) <= (40000 - (4 * (SmtProp_size (rt)) ) )) |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (p1)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -18618,6 +19193,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((SmtProp_size (lt)) <= 10000) |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt)) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (lt)) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (lt)) )) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (lt)) ) )) |] 
   &&  [| ((SmtProp_size (lt)) <= 10000) |] 
   &&  [| ((SmtProp_size (rt)) <= 10000) |] 
@@ -18629,6 +19206,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t = 5) |] 
   &&  [| (v_2 = (SmtPBID (op))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -18649,7 +19227,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |]
 .
 
-Definition prop2cnf_partial_solve_wit_8_aux := 
+Definition prop2cnf_partial_solve_wit_9_aux := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (t: Z) (p1: Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) ,
   [| ((Zlength (clist')) <= (40000 - (4 * (SmtProp_size (rt)) ) )) |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (p1)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -18658,6 +19236,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((SmtProp_size (lt)) <= 10000) |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt)) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (lt)) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (lt)) )) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (lt)) ) )) |] 
   &&  [| ((SmtProp_size (lt)) <= 10000) |] 
   &&  [| ((SmtProp_size (rt)) <= 10000) |] 
@@ -18669,6 +19249,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t = 5) |] 
   &&  [| (v_2 = (SmtPBID (op))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -18690,6 +19271,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((SmtProp_size (lt)) <= 10000) |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt)) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (lt)) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (lt)) )) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (lt)) ) )) |] 
   &&  [| ((SmtProp_size (lt)) <= 10000) |] 
   &&  [| ((SmtProp_size (rt)) <= 10000) |] 
@@ -18701,6 +19284,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t = 5) |] 
   &&  [| (v_2 = (SmtPBID (op))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -18714,9 +19298,9 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 .
 
-Definition prop2cnf_partial_solve_wit_8 := prop2cnf_partial_solve_wit_8_pure -> prop2cnf_partial_solve_wit_8_aux.
+Definition prop2cnf_partial_solve_wit_9 := prop2cnf_partial_solve_wit_9_pure -> prop2cnf_partial_solve_wit_9_aux.
 
-Definition prop2cnf_partial_solve_wit_9_pure := 
+Definition prop2cnf_partial_solve_wit_10_pure := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (t: Z) (p1: Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) ,
   [| (pcnt <= pcnt') |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt') |] 
@@ -18729,6 +19313,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((SmtProp_size (lt)) <= 10000) |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt)) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (lt)) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (lt)) )) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (lt)) ) )) |] 
   &&  [| ((SmtProp_size (lt)) <= 10000) |] 
   &&  [| ((SmtProp_size (rt)) <= 10000) |] 
@@ -18740,6 +19326,138 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (t = 5) |] 
+  &&  [| (v_2 = (SmtPBID (op))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
+  &&  ((( &( "p1" ) )) # Int  |-> p1)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> v)
+  **  (store_SmtProp v lt )
+  **  (store_predata data_pre clist' pcnt' ccnt' )
+  **  ((( &( "p" ) )) # Ptr  |-> p_pre)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> v_2)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> v_3)
+  **  (store_SmtProp v_3 rt )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
+  **  ((( &( "res" ) )) # Int  |-> res)
+  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
+|--
+  [| (pcnt' <= (pcnt + (SmtProp_size (lt)) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (prop = (SmtB (op) (lt) (rt))) |]
+.
+
+Definition prop2cnf_partial_solve_wit_10_aux := 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (t: Z) (p1: Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) ,
+  [| (pcnt <= pcnt') |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt') |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (p1)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
+  &&  [| ((Zlength (clist')) <= (40000 - (4 * (SmtProp_size (rt)) ) )) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (p1)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (p1 <> 0) |] 
+  &&  [| (p1 <= pcnt') |] 
+  &&  [| ((-p1) <= pcnt') |] 
+  &&  [| ((SmtProp_size (lt)) <= 10000) |] 
+  &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt)) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (lt)) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (lt)) )) |] 
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (lt)) ) )) |] 
+  &&  [| ((SmtProp_size (lt)) <= 10000) |] 
+  &&  [| ((SmtProp_size (rt)) <= 10000) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
+  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
+  &&  [| ((SmtProp_size (prop)) <= 10000) |] 
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (t = 5) |] 
+  &&  [| (v_2 = (SmtPBID (op))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
+  &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> v)
+  **  (store_SmtProp v lt )
+  **  (store_predata data_pre clist' pcnt' ccnt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> v_2)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> v_3)
+  **  (store_SmtProp v_3 rt )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
+|--
+  [| (pcnt' <= (pcnt + (SmtProp_size (lt)) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (pcnt <= pcnt') |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt') |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (p1)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
+  &&  [| ((Zlength (clist')) <= (40000 - (4 * (SmtProp_size (rt)) ) )) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (p1)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (p1 <> 0) |] 
+  &&  [| (p1 <= pcnt') |] 
+  &&  [| ((-p1) <= pcnt') |] 
+  &&  [| ((SmtProp_size (lt)) <= 10000) |] 
+  &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt)) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (lt)) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (lt)) )) |] 
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (lt)) ) )) |] 
+  &&  [| ((SmtProp_size (lt)) <= 10000) |] 
+  &&  [| ((SmtProp_size (rt)) <= 10000) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
+  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
+  &&  [| ((SmtProp_size (prop)) <= 10000) |] 
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (t = 5) |] 
+  &&  [| (v_2 = (SmtPBID (op))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
+  &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> v)
+  **  (store_SmtProp v lt )
+  **  (store_predata data_pre clist' pcnt' ccnt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> v_2)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> v_3)
+  **  (store_SmtProp v_3 rt )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
+.
+
+Definition prop2cnf_partial_solve_wit_10 := prop2cnf_partial_solve_wit_10_pure -> prop2cnf_partial_solve_wit_10_aux.
+
+Definition prop2cnf_partial_solve_wit_11_pure := 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (t: Z) (p1: Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) ,
+  [| (pcnt' <= (39999 - (SmtProp_size (rt)) )) |] 
+  &&  [| (pcnt <= pcnt') |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt') |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (p1)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
+  &&  [| ((Zlength (clist')) <= (40000 - (4 * (SmtProp_size (rt)) ) )) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (p1)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (p1 <> 0) |] 
+  &&  [| (p1 <= pcnt') |] 
+  &&  [| ((-p1) <= pcnt') |] 
+  &&  [| ((SmtProp_size (lt)) <= 10000) |] 
+  &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt)) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (lt)) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (lt)) )) |] 
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (lt)) ) )) |] 
+  &&  [| ((SmtProp_size (lt)) <= 10000) |] 
+  &&  [| ((SmtProp_size (rt)) <= 10000) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (lt)) <= pcnt) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op) (lt) (rt))) |] 
+  &&  [| (p_pre <> 0) |] 
+  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
+  &&  [| ((SmtProp_size (prop)) <= 10000) |] 
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t = 5) |] 
   &&  [| (v_2 = (SmtPBID (op))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -18759,12 +19477,14 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 |--
   [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt') |] 
   &&  [| ((SmtProp_size (rt)) <= 10000) |] 
-  &&  [| ((Zlength (clist')) <= (40000 - (4 * (SmtProp_size (rt)) ) )) |]
+  &&  [| ((Zlength (clist')) <= (40000 - (4 * (SmtProp_size (rt)) ) )) |] 
+  &&  [| (pcnt' <= (40000 - (SmtProp_size (rt)) )) |]
 .
 
-Definition prop2cnf_partial_solve_wit_9_aux := 
+Definition prop2cnf_partial_solve_wit_11_aux := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (t: Z) (p1: Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) ,
-  [| (pcnt <= pcnt') |] 
+  [| (pcnt' <= (39999 - (SmtProp_size (rt)) )) |] 
+  &&  [| (pcnt <= pcnt') |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt') |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (p1)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |] 
@@ -18775,6 +19495,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((SmtProp_size (lt)) <= 10000) |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt)) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (lt)) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (lt)) )) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (lt)) ) )) |] 
   &&  [| ((SmtProp_size (lt)) <= 10000) |] 
   &&  [| ((SmtProp_size (rt)) <= 10000) |] 
@@ -18786,6 +19508,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t = 5) |] 
   &&  [| (v_2 = (SmtPBID (op))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -18801,6 +19524,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt') |] 
   &&  [| ((SmtProp_size (rt)) <= 10000) |] 
   &&  [| ((Zlength (clist')) <= (40000 - (4 * (SmtProp_size (rt)) ) )) |] 
+  &&  [| (pcnt' <= (40000 - (SmtProp_size (rt)) )) |] 
+  &&  [| (pcnt' <= (39999 - (SmtProp_size (rt)) )) |] 
   &&  [| (pcnt <= pcnt') |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt') |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (p1)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -18812,6 +19537,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((SmtProp_size (lt)) <= 10000) |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt)) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (lt)) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (lt)) )) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (lt)) ) )) |] 
   &&  [| ((SmtProp_size (lt)) <= 10000) |] 
   &&  [| ((SmtProp_size (rt)) <= 10000) |] 
@@ -18823,6 +19550,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t = 5) |] 
   &&  [| (v_2 = (SmtPBID (op))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -18836,15 +19564,16 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 .
 
-Definition prop2cnf_partial_solve_wit_9 := prop2cnf_partial_solve_wit_9_pure -> prop2cnf_partial_solve_wit_9_aux.
+Definition prop2cnf_partial_solve_wit_11 := prop2cnf_partial_solve_wit_11_pure -> prop2cnf_partial_solve_wit_11_aux.
 
-Definition prop2cnf_partial_solve_wit_10 := 
+Definition prop2cnf_partial_solve_wit_12 := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (pcnt'_1: Z) (ccnt'_1: Z) (lt': smt_prop) (op': SmtPropBop) (t': Z) (p2: Z) (p1: Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) ,
   [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (p2)) = (prop2cnf_logic (rt') ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))))) |] 
   &&  [| (p2 <> 0) |] 
   &&  [| (p2 <= pcnt'_2) |] 
   &&  [| ((-p2) <= pcnt'_2) |] 
   &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist'_1)) + (4 * (SmtProp_size (rt')) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
   &&  [| (pcnt <= pcnt'_1) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt'_1) |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (p1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -18852,6 +19581,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt'_1) |] 
   &&  [| ((-p1) <= pcnt'_1) |] 
   &&  [| ((Zlength (clist'_1)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt')) ) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
   &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
@@ -18860,6 +19590,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' = 5) |] 
   &&  [| (v_3 = (SmtPBID (op'))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -18877,6 +19608,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p2 <= pcnt'_2) |] 
   &&  [| ((-p2) <= pcnt'_2) |] 
   &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist'_1)) + (4 * (SmtProp_size (rt')) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
   &&  [| (pcnt <= pcnt'_1) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt'_1) |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (p1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -18884,6 +19616,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt'_1) |] 
   &&  [| ((-p1) <= pcnt'_1) |] 
   &&  [| ((Zlength (clist'_1)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt')) ) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
   &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
@@ -18892,6 +19625,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' = 5) |] 
   &&  [| (v_3 = (SmtPBID (op'))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -18905,7 +19639,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 .
 
-Definition prop2cnf_partial_solve_wit_11_pure := 
+Definition prop2cnf_partial_solve_wit_13_pure := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (pcnt'_1: Z) (ccnt'_1: Z) (lt': smt_prop) (op': SmtPropBop) (t': Z) (p2: Z) (p1: Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) (y'': Z) ,
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
@@ -18916,6 +19650,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p2 <= pcnt'_2) |] 
   &&  [| ((-p2) <= pcnt'_2) |] 
   &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist'_1)) + (4 * (SmtProp_size (rt')) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
   &&  [| (pcnt <= pcnt'_1) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt'_1) |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (p1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -18923,6 +19658,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt'_1) |] 
   &&  [| ((-p1) <= pcnt'_1) |] 
   &&  [| ((Zlength (clist'_1)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt')) ) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
   &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
@@ -18931,6 +19667,157 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (t' = 5) |] 
+  &&  [| (v_3 = (SmtPBID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt'_2)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'_2)
+  **  (sll_cnf_list y'' clist'_2 )
+  **  ((( &( "p2" ) )) # Int  |-> p2)
+  **  ((( &( "p1" ) )) # Int  |-> p1)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> v)
+  **  (store_SmtProp v rt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> v_2)
+  **  (store_SmtProp v_2 lt' )
+  **  ((( &( "p" ) )) # Ptr  |-> p_pre)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> v_3)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
+  **  ((( &( "res" ) )) # Int  |-> res)
+  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
+|--
+  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (prop = (SmtB (op') (lt') (rt'))) |]
+.
+
+Definition prop2cnf_partial_solve_wit_13_aux := 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (pcnt'_1: Z) (ccnt'_1: Z) (lt': smt_prop) (op': SmtPropBop) (t': Z) (p2: Z) (p1: Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) (y'': Z) ,
+  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
+  &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
+  &&  [| (pcnt'_2 >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (p2)) = (prop2cnf_logic (rt') ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))))) |] 
+  &&  [| (p2 <> 0) |] 
+  &&  [| (p2 <= pcnt'_2) |] 
+  &&  [| ((-p2) <= pcnt'_2) |] 
+  &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist'_1)) + (4 * (SmtProp_size (rt')) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
+  &&  [| (pcnt <= pcnt'_1) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt'_1) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (p1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (p1 <> 0) |] 
+  &&  [| (p1 <= pcnt'_1) |] 
+  &&  [| ((-p1) <= pcnt'_1) |] 
+  &&  [| ((Zlength (clist'_1)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt')) ) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
+  &&  [| (p_pre <> 0) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
+  &&  [| ((SmtProp_size (prop)) <= 10000) |] 
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (t' = 5) |] 
+  &&  [| (v_3 = (SmtPBID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt'_2)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'_2)
+  **  (sll_cnf_list y'' clist'_2 )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> v)
+  **  (store_SmtProp v rt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> v_2)
+  **  (store_SmtProp v_2 lt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> v_3)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
+|--
+  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
+  &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
+  &&  [| (pcnt'_2 >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (p2)) = (prop2cnf_logic (rt') ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))))) |] 
+  &&  [| (p2 <> 0) |] 
+  &&  [| (p2 <= pcnt'_2) |] 
+  &&  [| ((-p2) <= pcnt'_2) |] 
+  &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist'_1)) + (4 * (SmtProp_size (rt')) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
+  &&  [| (pcnt <= pcnt'_1) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt'_1) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (p1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (p1 <> 0) |] 
+  &&  [| (p1 <= pcnt'_1) |] 
+  &&  [| ((-p1) <= pcnt'_1) |] 
+  &&  [| ((Zlength (clist'_1)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt')) ) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
+  &&  [| (p_pre <> 0) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
+  &&  [| ((SmtProp_size (prop)) <= 10000) |] 
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (t' = 5) |] 
+  &&  [| (v_3 = (SmtPBID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt'_2)
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt'_2)
+  **  (sll_cnf_list y'' clist'_2 )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop2")) # Ptr  |-> v)
+  **  (store_SmtProp v rt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "prop1")) # Ptr  |-> v_2)
+  **  (store_SmtProp v_2 lt' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Binary_prop" .ₛ "op")) # Int  |-> v_3)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
+.
+
+Definition prop2cnf_partial_solve_wit_13 := prop2cnf_partial_solve_wit_13_pure -> prop2cnf_partial_solve_wit_13_aux.
+
+Definition prop2cnf_partial_solve_wit_14_pure := 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (pcnt'_1: Z) (ccnt'_1: Z) (lt': smt_prop) (op': SmtPropBop) (t': Z) (p2: Z) (p1: Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) (y'': Z) ,
+  [| (pcnt'_2 <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt'_2 <= 39999) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
+  &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
+  &&  [| (pcnt'_2 >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_2) (pcnt'_2) (ccnt'_2))) (p2)) = (prop2cnf_logic (rt') ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))))) |] 
+  &&  [| (p2 <> 0) |] 
+  &&  [| (p2 <= pcnt'_2) |] 
+  &&  [| ((-p2) <= pcnt'_2) |] 
+  &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist'_1)) + (4 * (SmtProp_size (rt')) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
+  &&  [| (pcnt <= pcnt'_1) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt'_1) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (p1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (p1 <> 0) |] 
+  &&  [| (p1 <= pcnt'_1) |] 
+  &&  [| ((-p1) <= pcnt'_1) |] 
+  &&  [| ((Zlength (clist'_1)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt')) ) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
+  &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
+  &&  [| (p_pre <> 0) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
+  &&  [| ((SmtProp_size (prop)) <= 10000) |] 
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' = 5) |] 
   &&  [| (v_3 = (SmtPBID (op'))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -18955,9 +19842,11 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((pcnt'_2 + 1 ) = (pcnt'_2 + 1 )) |]
 .
 
-Definition prop2cnf_partial_solve_wit_11_aux := 
+Definition prop2cnf_partial_solve_wit_14_aux := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (pcnt'_1: Z) (ccnt'_1: Z) (lt': smt_prop) (op': SmtPropBop) (t': Z) (p2: Z) (p1: Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) (y'': Z) ,
-  [| (data_pre <> 0) |] 
+  [| (pcnt'_2 <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt'_2 <= 39999) |] 
+  &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
   &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
   &&  [| (pcnt'_2 >= 0) |] 
@@ -18966,6 +19855,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p2 <= pcnt'_2) |] 
   &&  [| ((-p2) <= pcnt'_2) |] 
   &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist'_1)) + (4 * (SmtProp_size (rt')) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
   &&  [| (pcnt <= pcnt'_1) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt'_1) |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (p1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -18973,6 +19863,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt'_1) |] 
   &&  [| ((-p1) <= pcnt'_1) |] 
   &&  [| ((Zlength (clist'_1)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt')) ) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
   &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
@@ -18981,6 +19872,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' = 5) |] 
   &&  [| (v_3 = (SmtPBID (op'))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -18998,6 +19890,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 |--
   [| (pcnt'_2 >= 0) |] 
   &&  [| ((pcnt'_2 + 1 ) = (pcnt'_2 + 1 )) |] 
+  &&  [| (pcnt'_2 <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt'_2 <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
   &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
@@ -19007,6 +19901,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p2 <= pcnt'_2) |] 
   &&  [| ((-p2) <= pcnt'_2) |] 
   &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist'_1)) + (4 * (SmtProp_size (rt')) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
   &&  [| (pcnt <= pcnt'_1) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt'_1) |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (p1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -19014,6 +19909,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt'_1) |] 
   &&  [| ((-p1) <= pcnt'_1) |] 
   &&  [| ((Zlength (clist'_1)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt')) ) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
   &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
@@ -19022,6 +19918,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' = 5) |] 
   &&  [| (v_3 = (SmtPBID (op'))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -19038,11 +19935,13 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 .
 
-Definition prop2cnf_partial_solve_wit_11 := prop2cnf_partial_solve_wit_11_pure -> prop2cnf_partial_solve_wit_11_aux.
+Definition prop2cnf_partial_solve_wit_14 := prop2cnf_partial_solve_wit_14_pure -> prop2cnf_partial_solve_wit_14_aux.
 
-Definition prop2cnf_partial_solve_wit_12_pure := 
+Definition prop2cnf_partial_solve_wit_15_pure := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (pcnt'_1: Z) (ccnt'_1: Z) (lt': smt_prop) (op': SmtPropBop) (t': Z) (p2: Z) (p1: Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) (y'': Z) ,
   [| ((pcnt'_2 + 1 ) <> 0) |] 
+  &&  [| (pcnt'_2 <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt'_2 <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
   &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
@@ -19052,6 +19951,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p2 <= pcnt'_2) |] 
   &&  [| ((-p2) <= pcnt'_2) |] 
   &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist'_1)) + (4 * (SmtProp_size (rt')) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
   &&  [| (pcnt <= pcnt'_1) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt'_1) |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (p1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -19059,6 +19959,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt'_1) |] 
   &&  [| ((-p1) <= pcnt'_1) |] 
   &&  [| ((Zlength (clist'_1)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt')) ) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
   &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
@@ -19067,6 +19968,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' = 5) |] 
   &&  [| (v_3 = (SmtPBID (op'))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -19092,9 +19994,11 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |]
 .
 
-Definition prop2cnf_partial_solve_wit_12_aux := 
+Definition prop2cnf_partial_solve_wit_15_aux := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (pcnt'_1: Z) (ccnt'_1: Z) (lt': smt_prop) (op': SmtPropBop) (t': Z) (p2: Z) (p1: Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) (y'': Z) ,
   [| ((pcnt'_2 + 1 ) <> 0) |] 
+  &&  [| (pcnt'_2 <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt'_2 <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
   &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
@@ -19104,6 +20008,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p2 <= pcnt'_2) |] 
   &&  [| ((-p2) <= pcnt'_2) |] 
   &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist'_1)) + (4 * (SmtProp_size (rt')) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
   &&  [| (pcnt <= pcnt'_1) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt'_1) |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (p1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -19111,6 +20016,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt'_1) |] 
   &&  [| ((-p1) <= pcnt'_1) |] 
   &&  [| ((Zlength (clist'_1)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt')) ) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
   &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
@@ -19119,6 +20025,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' = 5) |] 
   &&  [| (v_3 = (SmtPBID (op'))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -19138,6 +20045,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
   &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
   &&  [| ((pcnt'_2 + 1 ) <> 0) |] 
+  &&  [| (pcnt'_2 <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt'_2 <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
   &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
@@ -19147,6 +20056,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p2 <= pcnt'_2) |] 
   &&  [| ((-p2) <= pcnt'_2) |] 
   &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist'_1)) + (4 * (SmtProp_size (rt')) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
   &&  [| (pcnt <= pcnt'_1) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt'_1) |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (p1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -19154,6 +20064,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt'_1) |] 
   &&  [| ((-p1) <= pcnt'_1) |] 
   &&  [| ((Zlength (clist'_1)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt')) ) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
   &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
@@ -19162,6 +20073,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' = 5) |] 
   &&  [| (v_3 = (SmtPBID (op'))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -19178,11 +20090,13 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 .
 
-Definition prop2cnf_partial_solve_wit_12 := prop2cnf_partial_solve_wit_12_pure -> prop2cnf_partial_solve_wit_12_aux.
+Definition prop2cnf_partial_solve_wit_15 := prop2cnf_partial_solve_wit_15_pure -> prop2cnf_partial_solve_wit_15_aux.
 
-Definition prop2cnf_partial_solve_wit_13_pure := 
+Definition prop2cnf_partial_solve_wit_16_pure := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (pcnt'_1: Z) (ccnt'_1: Z) (lt': smt_prop) (op': SmtPropBop) (t': Z) (p2: Z) (p1: Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) ,
   [| ((pcnt'_2 + 1 ) <> 0) |] 
+  &&  [| (pcnt'_2 <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt'_2 <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
   &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
@@ -19192,6 +20106,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p2 <= pcnt'_2) |] 
   &&  [| ((-p2) <= pcnt'_2) |] 
   &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist'_1)) + (4 * (SmtProp_size (rt')) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
   &&  [| (pcnt <= pcnt'_1) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt'_1) |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (p1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -19199,6 +20114,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt'_1) |] 
   &&  [| ((-p1) <= pcnt'_1) |] 
   &&  [| ((Zlength (clist'_1)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt')) ) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
   &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
@@ -19207,6 +20123,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' = 5) |] 
   &&  [| (v_3 = (SmtPBID (op'))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -19227,9 +20144,11 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |]
 .
 
-Definition prop2cnf_partial_solve_wit_13_aux := 
+Definition prop2cnf_partial_solve_wit_16_aux := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (pcnt'_1: Z) (ccnt'_1: Z) (lt': smt_prop) (op': SmtPropBop) (t': Z) (p2: Z) (p1: Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) ,
   [| ((pcnt'_2 + 1 ) <> 0) |] 
+  &&  [| (pcnt'_2 <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt'_2 <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
   &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
@@ -19239,6 +20158,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p2 <= pcnt'_2) |] 
   &&  [| ((-p2) <= pcnt'_2) |] 
   &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist'_1)) + (4 * (SmtProp_size (rt')) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
   &&  [| (pcnt <= pcnt'_1) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt'_1) |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (p1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -19246,6 +20166,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt'_1) |] 
   &&  [| ((-p1) <= pcnt'_1) |] 
   &&  [| ((Zlength (clist'_1)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt')) ) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
   &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
@@ -19254,6 +20175,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' = 5) |] 
   &&  [| (v_3 = (SmtPBID (op'))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -19268,6 +20190,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 |--
   [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
   &&  [| ((pcnt'_2 + 1 ) <> 0) |] 
+  &&  [| (pcnt'_2 <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt'_2 <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
   &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
@@ -19277,6 +20201,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p2 <= pcnt'_2) |] 
   &&  [| ((-p2) <= pcnt'_2) |] 
   &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist'_1)) + (4 * (SmtProp_size (rt')) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
   &&  [| (pcnt <= pcnt'_1) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt'_1) |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (p1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -19284,6 +20209,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt'_1) |] 
   &&  [| ((-p1) <= pcnt'_1) |] 
   &&  [| ((Zlength (clist'_1)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt')) ) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
   &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
@@ -19292,6 +20218,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' = 5) |] 
   &&  [| (v_3 = (SmtPBID (op'))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -19305,12 +20232,14 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 .
 
-Definition prop2cnf_partial_solve_wit_13 := prop2cnf_partial_solve_wit_13_pure -> prop2cnf_partial_solve_wit_13_aux.
+Definition prop2cnf_partial_solve_wit_16 := prop2cnf_partial_solve_wit_16_pure -> prop2cnf_partial_solve_wit_16_aux.
 
-Definition prop2cnf_partial_solve_wit_14_pure := 
+Definition prop2cnf_partial_solve_wit_17_pure := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (pcnt'_1: Z) (ccnt'_1: Z) (lt': smt_prop) (op': SmtPropBop) (t': Z) (p2: Z) (p1: Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) ,
   [| (((prop_cnt_inf (clist'_2)) + 1 ) <= (pcnt'_2 + 1 )) |] 
   &&  [| ((pcnt'_2 + 1 ) <> 0) |] 
+  &&  [| (pcnt'_2 <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt'_2 <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
   &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
@@ -19320,6 +20249,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p2 <= pcnt'_2) |] 
   &&  [| ((-p2) <= pcnt'_2) |] 
   &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist'_1)) + (4 * (SmtProp_size (rt')) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
   &&  [| (pcnt <= pcnt'_1) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt'_1) |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (p1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -19327,6 +20257,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt'_1) |] 
   &&  [| ((-p1) <= pcnt'_1) |] 
   &&  [| ((Zlength (clist'_1)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt')) ) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
   &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
@@ -19335,6 +20266,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' = 5) |] 
   &&  [| (v_3 = (SmtPBID (op'))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -19357,10 +20289,12 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (prop = (SmtB (op') (lt') (rt'))) |]
 .
 
-Definition prop2cnf_partial_solve_wit_14_aux := 
+Definition prop2cnf_partial_solve_wit_17_aux := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (pcnt'_1: Z) (ccnt'_1: Z) (lt': smt_prop) (op': SmtPropBop) (t': Z) (p2: Z) (p1: Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) ,
   [| (((prop_cnt_inf (clist'_2)) + 1 ) <= (pcnt'_2 + 1 )) |] 
   &&  [| ((pcnt'_2 + 1 ) <> 0) |] 
+  &&  [| (pcnt'_2 <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt'_2 <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
   &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
@@ -19370,6 +20304,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p2 <= pcnt'_2) |] 
   &&  [| ((-p2) <= pcnt'_2) |] 
   &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist'_1)) + (4 * (SmtProp_size (rt')) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
   &&  [| (pcnt <= pcnt'_1) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt'_1) |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (p1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -19377,6 +20312,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt'_1) |] 
   &&  [| ((-p1) <= pcnt'_1) |] 
   &&  [| ((Zlength (clist'_1)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt')) ) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
   &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
@@ -19385,6 +20321,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' = 5) |] 
   &&  [| (v_3 = (SmtPBID (op'))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -19402,6 +20339,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
   &&  [| (((prop_cnt_inf (clist'_2)) + 1 ) <= (pcnt'_2 + 1 )) |] 
   &&  [| ((pcnt'_2 + 1 ) <> 0) |] 
+  &&  [| (pcnt'_2 <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt'_2 <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
   &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
@@ -19411,6 +20350,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p2 <= pcnt'_2) |] 
   &&  [| ((-p2) <= pcnt'_2) |] 
   &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist'_1)) + (4 * (SmtProp_size (rt')) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
   &&  [| (pcnt <= pcnt'_1) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt'_1) |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (p1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -19418,6 +20358,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt'_1) |] 
   &&  [| ((-p1) <= pcnt'_1) |] 
   &&  [| ((Zlength (clist'_1)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt')) ) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
   &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
@@ -19426,6 +20367,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' = 5) |] 
   &&  [| (v_3 = (SmtPBID (op'))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -19439,13 +20381,15 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 .
 
-Definition prop2cnf_partial_solve_wit_14 := prop2cnf_partial_solve_wit_14_pure -> prop2cnf_partial_solve_wit_14_aux.
+Definition prop2cnf_partial_solve_wit_17 := prop2cnf_partial_solve_wit_17_pure -> prop2cnf_partial_solve_wit_17_aux.
 
-Definition prop2cnf_partial_solve_wit_15_pure := 
+Definition prop2cnf_partial_solve_wit_18_pure := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (pcnt'_1: Z) (ccnt'_1: Z) (lt': smt_prop) (op': SmtPropBop) (t': Z) (p2: Z) (p1: Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) ,
   [| ((Zlength (clist'_2)) <= (((Zlength (clist)) + (4 * (SmtProp_size (prop)) ) ) - 4 )) |] 
   &&  [| (((prop_cnt_inf (clist'_2)) + 1 ) <= (pcnt'_2 + 1 )) |] 
   &&  [| ((pcnt'_2 + 1 ) <> 0) |] 
+  &&  [| (pcnt'_2 <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt'_2 <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
   &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
@@ -19455,6 +20399,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p2 <= pcnt'_2) |] 
   &&  [| ((-p2) <= pcnt'_2) |] 
   &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist'_1)) + (4 * (SmtProp_size (rt')) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
   &&  [| (pcnt <= pcnt'_1) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt'_1) |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (p1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -19462,6 +20407,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt'_1) |] 
   &&  [| ((-p1) <= pcnt'_1) |] 
   &&  [| ((Zlength (clist'_1)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt')) ) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
   &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
@@ -19470,6 +20416,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' = 5) |] 
   &&  [| (v_3 = (SmtPBID (op'))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -19490,11 +20437,13 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   [| ((SmtProp_size (prop)) <= 10000) |]
 .
 
-Definition prop2cnf_partial_solve_wit_15_aux := 
+Definition prop2cnf_partial_solve_wit_18_aux := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (pcnt'_1: Z) (ccnt'_1: Z) (lt': smt_prop) (op': SmtPropBop) (t': Z) (p2: Z) (p1: Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) ,
   [| ((Zlength (clist'_2)) <= (((Zlength (clist)) + (4 * (SmtProp_size (prop)) ) ) - 4 )) |] 
   &&  [| (((prop_cnt_inf (clist'_2)) + 1 ) <= (pcnt'_2 + 1 )) |] 
   &&  [| ((pcnt'_2 + 1 ) <> 0) |] 
+  &&  [| (pcnt'_2 <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt'_2 <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
   &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
@@ -19504,6 +20453,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p2 <= pcnt'_2) |] 
   &&  [| ((-p2) <= pcnt'_2) |] 
   &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist'_1)) + (4 * (SmtProp_size (rt')) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
   &&  [| (pcnt <= pcnt'_1) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt'_1) |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (p1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -19511,6 +20461,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt'_1) |] 
   &&  [| ((-p1) <= pcnt'_1) |] 
   &&  [| ((Zlength (clist'_1)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt')) ) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
   &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
@@ -19519,6 +20470,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' = 5) |] 
   &&  [| (v_3 = (SmtPBID (op'))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -19535,6 +20487,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((Zlength (clist'_2)) <= (((Zlength (clist)) + (4 * (SmtProp_size (prop)) ) ) - 4 )) |] 
   &&  [| (((prop_cnt_inf (clist'_2)) + 1 ) <= (pcnt'_2 + 1 )) |] 
   &&  [| ((pcnt'_2 + 1 ) <> 0) |] 
+  &&  [| (pcnt'_2 <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt'_2 <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
   &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
@@ -19544,6 +20498,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p2 <= pcnt'_2) |] 
   &&  [| ((-p2) <= pcnt'_2) |] 
   &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist'_1)) + (4 * (SmtProp_size (rt')) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
   &&  [| (pcnt <= pcnt'_1) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt'_1) |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (p1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -19551,6 +20506,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt'_1) |] 
   &&  [| ((-p1) <= pcnt'_1) |] 
   &&  [| ((Zlength (clist'_1)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt')) ) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
   &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
@@ -19559,6 +20515,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' = 5) |] 
   &&  [| (v_3 = (SmtPBID (op'))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -19572,14 +20529,16 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 .
 
-Definition prop2cnf_partial_solve_wit_15 := prop2cnf_partial_solve_wit_15_pure -> prop2cnf_partial_solve_wit_15_aux.
+Definition prop2cnf_partial_solve_wit_18 := prop2cnf_partial_solve_wit_18_pure -> prop2cnf_partial_solve_wit_18_aux.
 
-Definition prop2cnf_partial_solve_wit_16_pure := 
+Definition prop2cnf_partial_solve_wit_19_pure := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (pcnt'_1: Z) (ccnt'_1: Z) (lt': smt_prop) (op': SmtPropBop) (t': Z) (p2: Z) (p1: Z) (v_2: Z) (v_3: Z) (v: Z) (p_pre_type: Z) (res: Z) ,
   [| (((4 * (SmtProp_size (prop)) ) - 4 ) <= 39996) |] 
   &&  [| ((Zlength (clist'_2)) <= (((Zlength (clist)) + (4 * (SmtProp_size (prop)) ) ) - 4 )) |] 
   &&  [| (((prop_cnt_inf (clist'_2)) + 1 ) <= (pcnt'_2 + 1 )) |] 
   &&  [| ((pcnt'_2 + 1 ) <> 0) |] 
+  &&  [| (pcnt'_2 <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt'_2 <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
   &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
@@ -19589,6 +20548,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p2 <= pcnt'_2) |] 
   &&  [| ((-p2) <= pcnt'_2) |] 
   &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist'_1)) + (4 * (SmtProp_size (rt')) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
   &&  [| (pcnt <= pcnt'_1) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt'_1) |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (p1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -19596,6 +20556,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt'_1) |] 
   &&  [| ((-p1) <= pcnt'_1) |] 
   &&  [| ((Zlength (clist'_1)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt')) ) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
   &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
@@ -19604,6 +20565,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' = 5) |] 
   &&  [| (v = (SmtPBID (op'))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -19632,16 +20594,19 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (v = (SmtPBID (op'))) |] 
   &&  [| ((Zlength (clist'_2)) <= (((Zlength (clist)) + (4 * (SmtProp_size (prop)) ) ) - 4 )) |] 
   &&  [| ((((Zlength (clist)) + (4 * (SmtProp_size (prop)) ) ) - 4 ) <= 40000) |] 
+  &&  [| ((pcnt'_2 + 1 ) <= 40000) |] 
   &&  [| ((-p1) <= (pcnt'_2 + 1 )) |] 
   &&  [| (p1 <= (pcnt'_2 + 1 )) |]
 .
 
-Definition prop2cnf_partial_solve_wit_16_aux := 
+Definition prop2cnf_partial_solve_wit_19_aux := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (pcnt'_1: Z) (ccnt'_1: Z) (lt': smt_prop) (op': SmtPropBop) (t': Z) (p2: Z) (p1: Z) (v: Z) (v_2: Z) (v_3: Z) (p_pre_type: Z) (res: Z) ,
   [| (((4 * (SmtProp_size (prop)) ) - 4 ) <= 39996) |] 
   &&  [| ((Zlength (clist'_2)) <= (((Zlength (clist)) + (4 * (SmtProp_size (prop)) ) ) - 4 )) |] 
   &&  [| (((prop_cnt_inf (clist'_2)) + 1 ) <= (pcnt'_2 + 1 )) |] 
   &&  [| ((pcnt'_2 + 1 ) <> 0) |] 
+  &&  [| (pcnt'_2 <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt'_2 <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
   &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
@@ -19651,6 +20616,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p2 <= pcnt'_2) |] 
   &&  [| ((-p2) <= pcnt'_2) |] 
   &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist'_1)) + (4 * (SmtProp_size (rt')) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
   &&  [| (pcnt <= pcnt'_1) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt'_1) |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (p1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -19658,6 +20624,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt'_1) |] 
   &&  [| ((-p1) <= pcnt'_1) |] 
   &&  [| ((Zlength (clist'_1)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt')) ) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
   &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
@@ -19666,6 +20633,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' = 5) |] 
   &&  [| (v_3 = (SmtPBID (op'))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -19689,12 +20657,15 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (v_3 = (SmtPBID (op'))) |] 
   &&  [| ((Zlength (clist'_2)) <= (((Zlength (clist)) + (4 * (SmtProp_size (prop)) ) ) - 4 )) |] 
   &&  [| ((((Zlength (clist)) + (4 * (SmtProp_size (prop)) ) ) - 4 ) <= 40000) |] 
+  &&  [| ((pcnt'_2 + 1 ) <= 40000) |] 
   &&  [| ((-p1) <= (pcnt'_2 + 1 )) |] 
   &&  [| (p1 <= (pcnt'_2 + 1 )) |] 
   &&  [| (((4 * (SmtProp_size (prop)) ) - 4 ) <= 39996) |] 
   &&  [| ((Zlength (clist'_2)) <= (((Zlength (clist)) + (4 * (SmtProp_size (prop)) ) ) - 4 )) |] 
   &&  [| (((prop_cnt_inf (clist'_2)) + 1 ) <= (pcnt'_2 + 1 )) |] 
   &&  [| ((pcnt'_2 + 1 ) <> 0) |] 
+  &&  [| (pcnt'_2 <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt'_2 <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
   &&  [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |] 
@@ -19704,6 +20675,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p2 <= pcnt'_2) |] 
   &&  [| ((-p2) <= pcnt'_2) |] 
   &&  [| ((Zlength (clist'_2)) <= ((Zlength (clist'_1)) + (4 * (SmtProp_size (rt')) ) )) |] 
+  &&  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
   &&  [| (pcnt <= pcnt'_1) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt'_1) |] 
   &&  [| ((make_prop2cnf_ret ((make_predata (clist'_1) (pcnt'_1) (ccnt'_1))) (p1)) = (prop2cnf_logic (lt') ((make_predata (clist) (pcnt) (ccnt))))) |] 
@@ -19711,6 +20683,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt'_1) |] 
   &&  [| ((-p1) <= pcnt'_1) |] 
   &&  [| ((Zlength (clist'_1)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt')) ) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (lt')) <= pcnt) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt')) <= pcnt) |] 
   &&  [| (prop = (SmtB (op') (lt') (rt'))) |] 
@@ -19719,6 +20692,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' = 5) |] 
   &&  [| (v_3 = (SmtPBID (op'))) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |] 
@@ -19732,14 +20706,15 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 .
 
-Definition prop2cnf_partial_solve_wit_16 := prop2cnf_partial_solve_wit_16_pure -> prop2cnf_partial_solve_wit_16_aux.
+Definition prop2cnf_partial_solve_wit_19 := prop2cnf_partial_solve_wit_19_pure -> prop2cnf_partial_solve_wit_19_aux.
 
-Definition prop2cnf_partial_solve_wit_17_pure := 
+Definition prop2cnf_partial_solve_wit_20_pure := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) ,
   [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t = 6) |]
   &&  ((( &( "p" ) )) # Ptr  |-> p_pre)
@@ -19753,12 +20728,13 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((SmtPTID (prop)) = 6) |]
 .
 
-Definition prop2cnf_partial_solve_wit_17_aux := 
+Definition prop2cnf_partial_solve_wit_20_aux := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) ,
   [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t = 6) |]
   &&  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> t)
@@ -19771,6 +20747,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t = 6) |]
   &&  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
@@ -19778,9 +20755,9 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  (store_predata data_pre clist pcnt ccnt )
 .
 
-Definition prop2cnf_partial_solve_wit_17 := prop2cnf_partial_solve_wit_17_pure -> prop2cnf_partial_solve_wit_17_aux.
+Definition prop2cnf_partial_solve_wit_20 := prop2cnf_partial_solve_wit_20_pure -> prop2cnf_partial_solve_wit_20_aux.
 
-Definition prop2cnf_partial_solve_wit_18_pure := 
+Definition prop2cnf_partial_solve_wit_21_pure := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) ,
   [| (prop = (SmtU (op) (sub_prop))) |] 
   &&  [| (p_pre <> 0) |] 
@@ -19788,6 +20765,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t = 6) |]
   &&  ((( &( "p" ) )) # Ptr  |-> p_pre)
@@ -19803,7 +20781,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (prop = (SmtU (op) (sub_prop))) |]
 .
 
-Definition prop2cnf_partial_solve_wit_18_aux := 
+Definition prop2cnf_partial_solve_wit_21_aux := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) ,
   [| (prop = (SmtU (op) (sub_prop))) |] 
   &&  [| (p_pre <> 0) |] 
@@ -19811,6 +20789,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t = 6) |]
   &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
@@ -19827,6 +20806,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t = 6) |]
   &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
@@ -19836,9 +20816,9 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  (store_predata data_pre clist pcnt ccnt )
 .
 
-Definition prop2cnf_partial_solve_wit_18 := prop2cnf_partial_solve_wit_18_pure -> prop2cnf_partial_solve_wit_18_aux.
+Definition prop2cnf_partial_solve_wit_21 := prop2cnf_partial_solve_wit_21_pure -> prop2cnf_partial_solve_wit_21_aux.
 
-Definition prop2cnf_partial_solve_wit_19_pure := 
+Definition prop2cnf_partial_solve_wit_22_pure := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) ,
   [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |] 
@@ -19847,6 +20827,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t = 6) |]
   &&  ((( &( "p" ) )) # Ptr  |-> p_pre)
@@ -19862,7 +20843,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (prop = (SmtU (op) (sub_prop))) |]
 .
 
-Definition prop2cnf_partial_solve_wit_19_aux := 
+Definition prop2cnf_partial_solve_wit_22_aux := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) ,
   [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |] 
@@ -19871,6 +20852,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t = 6) |]
   &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
@@ -19888,6 +20870,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t = 6) |]
   &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
@@ -19897,9 +20880,9 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  (store_predata data_pre clist pcnt ccnt )
 .
 
-Definition prop2cnf_partial_solve_wit_19 := prop2cnf_partial_solve_wit_19_pure -> prop2cnf_partial_solve_wit_19_aux.
+Definition prop2cnf_partial_solve_wit_22 := prop2cnf_partial_solve_wit_22_pure -> prop2cnf_partial_solve_wit_22_aux.
 
-Definition prop2cnf_partial_solve_wit_20_pure := 
+Definition prop2cnf_partial_solve_wit_23_pure := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) ,
   [| ((SmtProp_size (sub_prop)) <= 10000) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
@@ -19909,6 +20892,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t = 6) |]
   &&  ((( &( "p" ) )) # Ptr  |-> p_pre)
@@ -19924,7 +20908,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (prop = (SmtU (op) (sub_prop))) |]
 .
 
-Definition prop2cnf_partial_solve_wit_20_aux := 
+Definition prop2cnf_partial_solve_wit_23_aux := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) ,
   [| ((SmtProp_size (sub_prop)) <= 10000) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
@@ -19934,6 +20918,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t = 6) |]
   &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
@@ -19952,6 +20937,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t = 6) |]
   &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
@@ -19961,9 +20947,9 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  (store_predata data_pre clist pcnt ccnt )
 .
 
-Definition prop2cnf_partial_solve_wit_20 := prop2cnf_partial_solve_wit_20_pure -> prop2cnf_partial_solve_wit_20_aux.
+Definition prop2cnf_partial_solve_wit_23 := prop2cnf_partial_solve_wit_23_pure -> prop2cnf_partial_solve_wit_23_aux.
 
-Definition prop2cnf_partial_solve_wit_21_pure := 
+Definition prop2cnf_partial_solve_wit_24_pure := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) ,
   [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (sub_prop)) ) )) |] 
   &&  [| ((SmtProp_size (sub_prop)) <= 10000) |] 
@@ -19974,6 +20960,78 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (t <> 5) |] 
+  &&  [| (t = 6) |]
+  &&  ((( &( "p" ) )) # Ptr  |-> p_pre)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
+  **  (store_SmtProp y sub_prop )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  **  ((( &( "res" ) )) # Int  |-> 0)
+  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
+  **  (store_predata data_pre clist pcnt ccnt )
+|--
+  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (prop = (SmtU (op) (sub_prop))) |]
+.
+
+Definition prop2cnf_partial_solve_wit_24_aux := 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) ,
+  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (sub_prop)) ) )) |] 
+  &&  [| ((SmtProp_size (sub_prop)) <= 10000) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
+  &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| (p_pre <> 0) |] 
+  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
+  &&  [| ((SmtProp_size (prop)) <= 10000) |] 
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (t <> 5) |] 
+  &&  [| (t = 6) |]
+  &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
+  **  (store_SmtProp y sub_prop )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  **  (store_predata data_pre clist pcnt ccnt )
+|--
+  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (sub_prop)) ) )) |] 
+  &&  [| ((SmtProp_size (sub_prop)) <= 10000) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
+  &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| (p_pre <> 0) |] 
+  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
+  &&  [| ((SmtProp_size (prop)) <= 10000) |] 
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (t <> 5) |] 
+  &&  [| (t = 6) |]
+  &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> y)
+  **  (store_SmtProp y sub_prop )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
+  **  (store_predata data_pre clist pcnt ccnt )
+.
+
+Definition prop2cnf_partial_solve_wit_24 := prop2cnf_partial_solve_wit_24_pure -> prop2cnf_partial_solve_wit_24_aux.
+
+Definition prop2cnf_partial_solve_wit_25_pure := 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) ,
+  [| (pcnt <= (40000 - (SmtProp_size (sub_prop)) )) |] 
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (sub_prop)) ) )) |] 
+  &&  [| ((SmtProp_size (sub_prop)) <= 10000) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
+  &&  [| (prop = (SmtU (op) (sub_prop))) |] 
+  &&  [| (p_pre <> 0) |] 
+  &&  [| (t = (SmtPTID (prop))) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
+  &&  [| ((SmtProp_size (prop)) <= 10000) |] 
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t = 6) |]
   &&  ((( &( "p1" ) )) # Int  |->_)
@@ -19988,12 +21046,14 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 |--
   [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (sub_prop)) <= 10000) |] 
-  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (sub_prop)) ) )) |]
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (sub_prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (sub_prop)) )) |]
 .
 
-Definition prop2cnf_partial_solve_wit_21_aux := 
+Definition prop2cnf_partial_solve_wit_25_aux := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) (y: Z) (op: SmtPropUop) (sub_prop: smt_prop) ,
-  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (sub_prop)) ) )) |] 
+  [| (pcnt <= (40000 - (SmtProp_size (sub_prop)) )) |] 
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (sub_prop)) ) )) |] 
   &&  [| ((SmtProp_size (sub_prop)) <= 10000) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |] 
@@ -20002,6 +21062,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t = 6) |]
   &&  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> (SmtPUID (op)))
@@ -20013,6 +21074,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (sub_prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (sub_prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (sub_prop)) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (sub_prop)) )) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (sub_prop)) ) )) |] 
   &&  [| ((SmtProp_size (sub_prop)) <= 10000) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop)) <= pcnt) |] 
@@ -20022,6 +21085,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t = 6) |]
   &&  (store_SmtProp y sub_prop )
@@ -20031,15 +21095,16 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 .
 
-Definition prop2cnf_partial_solve_wit_21 := prop2cnf_partial_solve_wit_21_pure -> prop2cnf_partial_solve_wit_21_aux.
+Definition prop2cnf_partial_solve_wit_25 := prop2cnf_partial_solve_wit_25_pure -> prop2cnf_partial_solve_wit_25_aux.
 
-Definition prop2cnf_partial_solve_wit_22 := 
+Definition prop2cnf_partial_solve_wit_26 := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) (t': Z) (p1: Z) (v: Z) (v_2: Z) (p_pre_type: Z) (res: Z) ,
   [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (p1)) = (prop2cnf_logic (sub_prop') ((make_predata (clist) (pcnt) (ccnt))))) |] 
   &&  [| (p1 <> 0) |] 
   &&  [| (p1 <= pcnt') |] 
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (sub_prop')) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
   &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
@@ -20047,6 +21112,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' <> 5) |] 
   &&  [| (t' = 6) |] 
   &&  [| (v_2 = (SmtPUID (op'))) |] 
@@ -20063,6 +21129,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt') |] 
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (sub_prop')) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
   &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
@@ -20070,6 +21137,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' <> 5) |] 
   &&  [| (t' = 6) |] 
   &&  [| (v_2 = (SmtPUID (op'))) |] 
@@ -20082,7 +21150,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 .
 
-Definition prop2cnf_partial_solve_wit_23_pure := 
+Definition prop2cnf_partial_solve_wit_27_pure := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) (t': Z) (p1: Z) (v: Z) (v_2: Z) (p_pre_type: Z) (res: Z) (y'': Z) ,
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist')) = ccnt') |] 
@@ -20093,6 +21161,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt') |] 
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (sub_prop')) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
   &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
@@ -20100,6 +21169,124 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (t' <> 5) |] 
+  &&  [| (t' = 6) |] 
+  &&  [| (v_2 = (SmtPUID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt')
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt')
+  **  (sll_cnf_list y'' clist' )
+  **  ((( &( "p1" ) )) # Int  |-> p1)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> v)
+  **  (store_SmtProp v sub_prop' )
+  **  ((( &( "p" ) )) # Ptr  |-> p_pre)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> v_2)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
+  **  ((( &( "res" ) )) # Int  |-> res)
+  **  ((( &( "data" ) )) # Ptr  |-> data_pre)
+|--
+  [| (pcnt' <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (prop = (SmtU (op') (sub_prop'))) |]
+.
+
+Definition prop2cnf_partial_solve_wit_27_aux := 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) (t': Z) (p1: Z) (v: Z) (v_2: Z) (p_pre_type: Z) (res: Z) (y'': Z) ,
+  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist')) = ccnt') |] 
+  &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
+  &&  [| (pcnt' >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (p1)) = (prop2cnf_logic (sub_prop') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (p1 <> 0) |] 
+  &&  [| (p1 <= pcnt') |] 
+  &&  [| ((-p1) <= pcnt') |] 
+  &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (sub_prop')) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
+  &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
+  &&  [| (p_pre <> 0) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
+  &&  [| ((SmtProp_size (prop)) <= 10000) |] 
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (t' <> 5) |] 
+  &&  [| (t' = 6) |] 
+  &&  [| (v_2 = (SmtPUID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt')
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt')
+  **  (sll_cnf_list y'' clist' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> v)
+  **  (store_SmtProp v sub_prop' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> v_2)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
+|--
+  [| (pcnt' <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist')) = ccnt') |] 
+  &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
+  &&  [| (pcnt' >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (p1)) = (prop2cnf_logic (sub_prop') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (p1 <> 0) |] 
+  &&  [| (p1 <= pcnt') |] 
+  &&  [| ((-p1) <= pcnt') |] 
+  &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (sub_prop')) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
+  &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
+  &&  [| (p_pre <> 0) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
+  &&  [| ((SmtProp_size (prop)) <= 10000) |] 
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (t' <> 5) |] 
+  &&  [| (t' = 6) |] 
+  &&  [| (v_2 = (SmtPUID (op'))) |] 
+  &&  [| (p_pre_type = (SmtPTID (prop))) |] 
+  &&  [| (res = 0) |]
+  &&  ((&((data_pre)  # "PreData" ->ₛ "cnf_res")) # Ptr  |-> y'')
+  **  ((&((data_pre)  # "PreData" ->ₛ "prop_cnt")) # Int  |-> pcnt')
+  **  ((&((data_pre)  # "PreData" ->ₛ "clause_cnt")) # Int  |-> ccnt')
+  **  (sll_cnf_list y'' clist' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "prop1")) # Ptr  |-> v)
+  **  (store_SmtProp v sub_prop' )
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "prop" .ₛ "Unary_prop" .ₛ "op")) # Int  |-> v_2)
+  **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
+.
+
+Definition prop2cnf_partial_solve_wit_27 := prop2cnf_partial_solve_wit_27_pure -> prop2cnf_partial_solve_wit_27_aux.
+
+Definition prop2cnf_partial_solve_wit_28_pure := 
+forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) (t': Z) (p1: Z) (v: Z) (v_2: Z) (p_pre_type: Z) (res: Z) (y'': Z) ,
+  [| (pcnt' <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt' <= 39999) |] 
+  &&  [| (data_pre <> 0) |] 
+  &&  [| ((Zlength (clist')) = ccnt') |] 
+  &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
+  &&  [| (pcnt' >= 0) |] 
+  &&  [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (p1)) = (prop2cnf_logic (sub_prop') ((make_predata (clist) (pcnt) (ccnt))))) |] 
+  &&  [| (p1 <> 0) |] 
+  &&  [| (p1 <= pcnt') |] 
+  &&  [| ((-p1) <= pcnt') |] 
+  &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (sub_prop')) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
+  &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
+  &&  [| (p_pre <> 0) |] 
+  &&  [| (t' = (SmtPTID (prop))) |] 
+  &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
+  &&  [| ((SmtProp_size (prop)) <= 10000) |] 
+  &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' <> 5) |] 
   &&  [| (t' = 6) |] 
   &&  [| (v_2 = (SmtPUID (op'))) |] 
@@ -20122,9 +21309,11 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((pcnt' + 1 ) = (pcnt' + 1 )) |]
 .
 
-Definition prop2cnf_partial_solve_wit_23_aux := 
+Definition prop2cnf_partial_solve_wit_28_aux := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) (t': Z) (p1: Z) (v: Z) (v_2: Z) (p_pre_type: Z) (res: Z) (y'': Z) ,
-  [| (data_pre <> 0) |] 
+  [| (pcnt' <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt' <= 39999) |] 
+  &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist')) = ccnt') |] 
   &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
   &&  [| (pcnt' >= 0) |] 
@@ -20133,6 +21322,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt') |] 
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (sub_prop')) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
   &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
@@ -20140,6 +21330,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' <> 5) |] 
   &&  [| (t' = 6) |] 
   &&  [| (v_2 = (SmtPUID (op'))) |] 
@@ -20156,6 +21347,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 |--
   [| (pcnt' >= 0) |] 
   &&  [| ((pcnt' + 1 ) = (pcnt' + 1 )) |] 
+  &&  [| (pcnt' <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt' <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist')) = ccnt') |] 
   &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
@@ -20165,6 +21358,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt') |] 
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (sub_prop')) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
   &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
@@ -20172,6 +21366,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' <> 5) |] 
   &&  [| (t' = 6) |] 
   &&  [| (v_2 = (SmtPUID (op'))) |] 
@@ -20187,11 +21382,13 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 .
 
-Definition prop2cnf_partial_solve_wit_23 := prop2cnf_partial_solve_wit_23_pure -> prop2cnf_partial_solve_wit_23_aux.
+Definition prop2cnf_partial_solve_wit_28 := prop2cnf_partial_solve_wit_28_pure -> prop2cnf_partial_solve_wit_28_aux.
 
-Definition prop2cnf_partial_solve_wit_24_pure := 
+Definition prop2cnf_partial_solve_wit_29_pure := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) (t': Z) (p1: Z) (v: Z) (v_2: Z) (p_pre_type: Z) (res: Z) (y'': Z) ,
   [| ((pcnt' + 1 ) <> 0) |] 
+  &&  [| (pcnt' <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt' <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist')) = ccnt') |] 
   &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
@@ -20201,6 +21398,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt') |] 
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (sub_prop')) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
   &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
@@ -20208,6 +21406,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' <> 5) |] 
   &&  [| (t' = 6) |] 
   &&  [| (v_2 = (SmtPUID (op'))) |] 
@@ -20231,9 +21430,11 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf (clist')) <= pcnt') |]
 .
 
-Definition prop2cnf_partial_solve_wit_24_aux := 
+Definition prop2cnf_partial_solve_wit_29_aux := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) (t': Z) (p1: Z) (v: Z) (v_2: Z) (p_pre_type: Z) (res: Z) (y'': Z) ,
   [| ((pcnt' + 1 ) <> 0) |] 
+  &&  [| (pcnt' <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt' <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist')) = ccnt') |] 
   &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
@@ -20243,6 +21444,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt') |] 
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (sub_prop')) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
   &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
@@ -20250,6 +21452,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' <> 5) |] 
   &&  [| (t' = 6) |] 
   &&  [| (v_2 = (SmtPUID (op'))) |] 
@@ -20268,6 +21471,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((Zlength (clist')) = ccnt') |] 
   &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
   &&  [| ((pcnt' + 1 ) <> 0) |] 
+  &&  [| (pcnt' <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt' <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist')) = ccnt') |] 
   &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
@@ -20277,6 +21482,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt') |] 
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (sub_prop')) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
   &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
@@ -20284,6 +21490,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' <> 5) |] 
   &&  [| (t' = 6) |] 
   &&  [| (v_2 = (SmtPUID (op'))) |] 
@@ -20299,11 +21506,13 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 .
 
-Definition prop2cnf_partial_solve_wit_24 := prop2cnf_partial_solve_wit_24_pure -> prop2cnf_partial_solve_wit_24_aux.
+Definition prop2cnf_partial_solve_wit_29 := prop2cnf_partial_solve_wit_29_pure -> prop2cnf_partial_solve_wit_29_aux.
 
-Definition prop2cnf_partial_solve_wit_25_pure := 
+Definition prop2cnf_partial_solve_wit_30_pure := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) (t': Z) (p1: Z) (v: Z) (v_2: Z) (p_pre_type: Z) (res: Z) ,
   [| ((pcnt' + 1 ) <> 0) |] 
+  &&  [| (pcnt' <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt' <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist')) = ccnt') |] 
   &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
@@ -20313,6 +21522,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt') |] 
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (sub_prop')) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
   &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
@@ -20320,6 +21530,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' <> 5) |] 
   &&  [| (t' = 6) |] 
   &&  [| (v_2 = (SmtPUID (op'))) |] 
@@ -20338,9 +21549,11 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   [| ((prop_cnt_inf (clist')) <= pcnt') |]
 .
 
-Definition prop2cnf_partial_solve_wit_25_aux := 
+Definition prop2cnf_partial_solve_wit_30_aux := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) (t': Z) (p1: Z) (v: Z) (v_2: Z) (p_pre_type: Z) (res: Z) ,
   [| ((pcnt' + 1 ) <> 0) |] 
+  &&  [| (pcnt' <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt' <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist')) = ccnt') |] 
   &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
@@ -20350,6 +21563,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt') |] 
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (sub_prop')) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
   &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
@@ -20357,6 +21571,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' <> 5) |] 
   &&  [| (t' = 6) |] 
   &&  [| (v_2 = (SmtPUID (op'))) |] 
@@ -20370,6 +21585,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
 |--
   [| ((prop_cnt_inf (clist')) <= pcnt') |] 
   &&  [| ((pcnt' + 1 ) <> 0) |] 
+  &&  [| (pcnt' <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt' <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist')) = ccnt') |] 
   &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
@@ -20379,6 +21596,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt') |] 
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (sub_prop')) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
   &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
@@ -20386,6 +21604,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' <> 5) |] 
   &&  [| (t' = 6) |] 
   &&  [| (v_2 = (SmtPUID (op'))) |] 
@@ -20398,12 +21617,14 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 .
 
-Definition prop2cnf_partial_solve_wit_25 := prop2cnf_partial_solve_wit_25_pure -> prop2cnf_partial_solve_wit_25_aux.
+Definition prop2cnf_partial_solve_wit_30 := prop2cnf_partial_solve_wit_30_pure -> prop2cnf_partial_solve_wit_30_aux.
 
-Definition prop2cnf_partial_solve_wit_26_pure := 
+Definition prop2cnf_partial_solve_wit_31_pure := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) (t': Z) (p1: Z) (v: Z) (v_2: Z) (p_pre_type: Z) (res: Z) ,
   [| (((prop_cnt_inf (clist')) + 1 ) <= (pcnt' + 1 )) |] 
   &&  [| ((pcnt' + 1 ) <> 0) |] 
+  &&  [| (pcnt' <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt' <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist')) = ccnt') |] 
   &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
@@ -20413,6 +21634,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt') |] 
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (sub_prop')) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
   &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
@@ -20420,6 +21642,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' <> 5) |] 
   &&  [| (t' = 6) |] 
   &&  [| (v_2 = (SmtPUID (op'))) |] 
@@ -20439,10 +21662,12 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (prop = (SmtU (op') (sub_prop'))) |]
 .
 
-Definition prop2cnf_partial_solve_wit_26_aux := 
+Definition prop2cnf_partial_solve_wit_31_aux := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) (t': Z) (p1: Z) (v: Z) (v_2: Z) (p_pre_type: Z) (res: Z) ,
   [| (((prop_cnt_inf (clist')) + 1 ) <= (pcnt' + 1 )) |] 
   &&  [| ((pcnt' + 1 ) <> 0) |] 
+  &&  [| (pcnt' <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt' <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist')) = ccnt') |] 
   &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
@@ -20452,6 +21677,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt') |] 
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (sub_prop')) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
   &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
@@ -20459,6 +21685,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' <> 5) |] 
   &&  [| (t' = 6) |] 
   &&  [| (v_2 = (SmtPUID (op'))) |] 
@@ -20474,6 +21701,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (((prop_cnt_inf (clist')) + 1 ) <= (pcnt' + 1 )) |] 
   &&  [| ((pcnt' + 1 ) <> 0) |] 
+  &&  [| (pcnt' <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt' <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist')) = ccnt') |] 
   &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
@@ -20483,6 +21712,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt') |] 
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (sub_prop')) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
   &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
@@ -20490,6 +21720,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' <> 5) |] 
   &&  [| (t' = 6) |] 
   &&  [| (v_2 = (SmtPUID (op'))) |] 
@@ -20502,13 +21733,15 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 .
 
-Definition prop2cnf_partial_solve_wit_26 := prop2cnf_partial_solve_wit_26_pure -> prop2cnf_partial_solve_wit_26_aux.
+Definition prop2cnf_partial_solve_wit_31 := prop2cnf_partial_solve_wit_31_pure -> prop2cnf_partial_solve_wit_31_aux.
 
-Definition prop2cnf_partial_solve_wit_27_pure := 
+Definition prop2cnf_partial_solve_wit_32_pure := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) (t': Z) (p1: Z) (v: Z) (v_2: Z) (p_pre_type: Z) (res: Z) ,
   [| ((Zlength (clist')) <= (((Zlength (clist)) + (4 * (SmtProp_size (prop)) ) ) - 4 )) |] 
   &&  [| (((prop_cnt_inf (clist')) + 1 ) <= (pcnt' + 1 )) |] 
   &&  [| ((pcnt' + 1 ) <> 0) |] 
+  &&  [| (pcnt' <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt' <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist')) = ccnt') |] 
   &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
@@ -20518,6 +21751,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt') |] 
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (sub_prop')) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
   &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
@@ -20525,6 +21759,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' <> 5) |] 
   &&  [| (t' = 6) |] 
   &&  [| (v_2 = (SmtPUID (op'))) |] 
@@ -20543,11 +21778,13 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   [| ((SmtProp_size (prop)) <= 10000) |]
 .
 
-Definition prop2cnf_partial_solve_wit_27_aux := 
+Definition prop2cnf_partial_solve_wit_32_aux := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) (t': Z) (p1: Z) (v: Z) (v_2: Z) (p_pre_type: Z) (res: Z) ,
   [| ((Zlength (clist')) <= (((Zlength (clist)) + (4 * (SmtProp_size (prop)) ) ) - 4 )) |] 
   &&  [| (((prop_cnt_inf (clist')) + 1 ) <= (pcnt' + 1 )) |] 
   &&  [| ((pcnt' + 1 ) <> 0) |] 
+  &&  [| (pcnt' <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt' <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist')) = ccnt') |] 
   &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
@@ -20557,6 +21794,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt') |] 
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (sub_prop')) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
   &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
@@ -20564,6 +21802,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' <> 5) |] 
   &&  [| (t' = 6) |] 
   &&  [| (v_2 = (SmtPUID (op'))) |] 
@@ -20579,6 +21818,8 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((Zlength (clist')) <= (((Zlength (clist)) + (4 * (SmtProp_size (prop)) ) ) - 4 )) |] 
   &&  [| (((prop_cnt_inf (clist')) + 1 ) <= (pcnt' + 1 )) |] 
   &&  [| ((pcnt' + 1 ) <> 0) |] 
+  &&  [| (pcnt' <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt' <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist')) = ccnt') |] 
   &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
@@ -20588,6 +21829,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt') |] 
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (sub_prop')) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
   &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
@@ -20595,6 +21837,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' <> 5) |] 
   &&  [| (t' = 6) |] 
   &&  [| (v_2 = (SmtPUID (op'))) |] 
@@ -20607,14 +21850,16 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 .
 
-Definition prop2cnf_partial_solve_wit_27 := prop2cnf_partial_solve_wit_27_pure -> prop2cnf_partial_solve_wit_27_aux.
+Definition prop2cnf_partial_solve_wit_32 := prop2cnf_partial_solve_wit_32_pure -> prop2cnf_partial_solve_wit_32_aux.
 
-Definition prop2cnf_partial_solve_wit_28_pure := 
+Definition prop2cnf_partial_solve_wit_33_pure := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) (t': Z) (p1: Z) (v: Z) (v_2: Z) (p_pre_type: Z) (res: Z) ,
   [| (((4 * (SmtProp_size (prop)) ) - 4 ) <= 39996) |] 
   &&  [| ((Zlength (clist')) <= (((Zlength (clist)) + (4 * (SmtProp_size (prop)) ) ) - 4 )) |] 
   &&  [| (((prop_cnt_inf (clist')) + 1 ) <= (pcnt' + 1 )) |] 
   &&  [| ((pcnt' + 1 ) <> 0) |] 
+  &&  [| (pcnt' <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt' <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist')) = ccnt') |] 
   &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
@@ -20624,6 +21869,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt') |] 
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (sub_prop')) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
   &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
@@ -20631,6 +21877,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' <> 5) |] 
   &&  [| (t' = 6) |] 
   &&  [| (v_2 = (SmtPUID (op'))) |] 
@@ -20654,15 +21901,18 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((-p1) <= (pcnt' + 1 )) |] 
   &&  [| ((-(pcnt' + 1 )) <= (pcnt' + 1 )) |] 
   &&  [| ((Zlength (clist')) <= (((Zlength (clist)) + (4 * (SmtProp_size (prop)) ) ) - 4 )) |] 
-  &&  [| ((((Zlength (clist)) + (4 * (SmtProp_size (prop)) ) ) - 4 ) <= 40000) |]
+  &&  [| ((((Zlength (clist)) + (4 * (SmtProp_size (prop)) ) ) - 4 ) <= 40000) |] 
+  &&  [| ((pcnt' + 1 ) <= 40000) |]
 .
 
-Definition prop2cnf_partial_solve_wit_28_aux := 
+Definition prop2cnf_partial_solve_wit_33_aux := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) (t': Z) (p1: Z) (v: Z) (v_2: Z) (p_pre_type: Z) (res: Z) ,
   [| (((4 * (SmtProp_size (prop)) ) - 4 ) <= 39996) |] 
   &&  [| ((Zlength (clist')) <= (((Zlength (clist)) + (4 * (SmtProp_size (prop)) ) ) - 4 )) |] 
   &&  [| (((prop_cnt_inf (clist')) + 1 ) <= (pcnt' + 1 )) |] 
   &&  [| ((pcnt' + 1 ) <> 0) |] 
+  &&  [| (pcnt' <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt' <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist')) = ccnt') |] 
   &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
@@ -20672,6 +21922,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt') |] 
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (sub_prop')) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
   &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
@@ -20679,6 +21930,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' <> 5) |] 
   &&  [| (t' = 6) |] 
   &&  [| (v_2 = (SmtPUID (op'))) |] 
@@ -20699,10 +21951,13 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((-(pcnt' + 1 )) <= (pcnt' + 1 )) |] 
   &&  [| ((Zlength (clist')) <= (((Zlength (clist)) + (4 * (SmtProp_size (prop)) ) ) - 4 )) |] 
   &&  [| ((((Zlength (clist)) + (4 * (SmtProp_size (prop)) ) ) - 4 ) <= 40000) |] 
+  &&  [| ((pcnt' + 1 ) <= 40000) |] 
   &&  [| (((4 * (SmtProp_size (prop)) ) - 4 ) <= 39996) |] 
   &&  [| ((Zlength (clist')) <= (((Zlength (clist)) + (4 * (SmtProp_size (prop)) ) ) - 4 )) |] 
   &&  [| (((prop_cnt_inf (clist')) + 1 ) <= (pcnt' + 1 )) |] 
   &&  [| ((pcnt' + 1 ) <> 0) |] 
+  &&  [| (pcnt' <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt' <= 39999) |] 
   &&  [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist')) = ccnt') |] 
   &&  [| ((prop_cnt_inf (clist')) <= pcnt') |] 
@@ -20712,6 +21967,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (p1 <= pcnt') |] 
   &&  [| ((-p1) <= pcnt') |] 
   &&  [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (sub_prop')) ) )) |] 
+  &&  [| (pcnt' <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
   &&  [| ((prop_cnt_inf_SmtProp (sub_prop')) <= pcnt) |] 
   &&  [| (prop = (SmtU (op') (sub_prop'))) |] 
   &&  [| (p_pre <> 0) |] 
@@ -20719,6 +21975,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t' <> 5) |] 
   &&  [| (t' = 6) |] 
   &&  [| (v_2 = (SmtPUID (op'))) |] 
@@ -20731,14 +21988,15 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> p_pre_type)
 .
 
-Definition prop2cnf_partial_solve_wit_28 := prop2cnf_partial_solve_wit_28_pure -> prop2cnf_partial_solve_wit_28_aux.
+Definition prop2cnf_partial_solve_wit_33 := prop2cnf_partial_solve_wit_33_pure -> prop2cnf_partial_solve_wit_33_aux.
 
-Definition prop2cnf_partial_solve_wit_29_pure := 
+Definition prop2cnf_partial_solve_wit_34_pure := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) ,
   [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t <> 6) |] 
   &&  [| (t = 7) |]
@@ -20753,12 +22011,13 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| (7 = (SmtPTID (prop))) |]
 .
 
-Definition prop2cnf_partial_solve_wit_29_aux := 
+Definition prop2cnf_partial_solve_wit_34_aux := 
 forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (prop: smt_prop) (t: Z) ,
   [| (t = (SmtPTID (prop))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t <> 6) |] 
   &&  [| (t = 7) |]
@@ -20772,6 +22031,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   &&  [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
   &&  [| (t <> 5) |] 
   &&  [| (t <> 6) |] 
   &&  [| (t = 7) |]
@@ -20780,7 +22040,7 @@ forall (data_pre: Z) (p_pre: Z) (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (
   **  (store_predata data_pre clist pcnt ccnt )
 .
 
-Definition prop2cnf_partial_solve_wit_29 := prop2cnf_partial_solve_wit_29_pure -> prop2cnf_partial_solve_wit_29_aux.
+Definition prop2cnf_partial_solve_wit_34 := prop2cnf_partial_solve_wit_34_pure -> prop2cnf_partial_solve_wit_34_aux.
 
 Definition prop2cnf_which_implies_wit_1 := 
 forall (prop: smt_prop) (p: Z) ,
@@ -20843,6 +22103,16 @@ forall (clist: (@list (@list Z))) (prop: smt_prop) (op: SmtPropBop) (lt: smt_pro
 .
 
 Definition prop2cnf_which_implies_wit_6 := 
+forall (pcnt: Z) (prop: smt_prop) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) ,
+  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (prop = (SmtB (op) (lt) (rt))) |]
+  &&  emp
+|--
+  [| (pcnt <= (40000 - (SmtProp_size (lt)) )) |]
+  &&  emp
+.
+
+Definition prop2cnf_which_implies_wit_7 := 
 forall (clist: (@list (@list Z))) (prop: smt_prop) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (clist': (@list (@list Z))) ,
   [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt)) ) )) |] 
   &&  [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
@@ -20853,7 +22123,7 @@ forall (clist: (@list (@list Z))) (prop: smt_prop) (op: SmtPropBop) (lt: smt_pro
   &&  emp
 .
 
-Definition prop2cnf_which_implies_wit_7 := 
+Definition prop2cnf_which_implies_wit_8 := 
 forall (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (lt: smt_prop) (rt: smt_prop) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (p1: Z) ,
   [| ((make_prop2cnf_ret ((make_predata (clist') (pcnt') (ccnt'))) (p1)) = (prop2cnf_logic (lt) ((make_predata (clist) (pcnt) (ccnt))))) |] 
   &&  [| ((prop_cnt_inf_SmtProp (rt)) <= pcnt) |]
@@ -20866,7 +22136,18 @@ forall (ccnt: Z) (pcnt: Z) (clist: (@list (@list Z))) (lt: smt_prop) (rt: smt_pr
   &&  emp
 .
 
-Definition prop2cnf_which_implies_wit_8 := 
+Definition prop2cnf_which_implies_wit_9 := 
+forall (pcnt: Z) (prop: smt_prop) (op: SmtPropBop) (lt: smt_prop) (rt: smt_prop) (pcnt': Z) ,
+  [| (pcnt' <= (pcnt + (SmtProp_size (lt)) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (prop = (SmtB (op) (lt) (rt))) |]
+  &&  emp
+|--
+  [| (pcnt' <= (39999 - (SmtProp_size (rt)) )) |]
+  &&  emp
+.
+
+Definition prop2cnf_which_implies_wit_10 := 
 forall (data_pre: Z) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) ,
   (store_predata data_pre clist'_2 pcnt'_2 ccnt'_2 )
 |--
@@ -20881,7 +22162,20 @@ forall (data_pre: Z) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) ,
   **  (sll_cnf_list y'' clist'_2 )
 .
 
-Definition prop2cnf_which_implies_wit_9 := 
+Definition prop2cnf_which_implies_wit_11 := 
+forall (pcnt: Z) (prop: smt_prop) (pcnt'_2: Z) (rt': smt_prop) (pcnt'_1: Z) (lt': smt_prop) (op': SmtPropBop) ,
+  [| (pcnt'_2 <= (pcnt'_1 + (SmtProp_size (rt')) )) |] 
+  &&  [| (pcnt'_1 <= (pcnt + (SmtProp_size (lt')) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (prop = (SmtB (op') (lt') (rt'))) |]
+  &&  emp
+|--
+  [| (pcnt'_2 <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt'_2 <= 39999) |]
+  &&  emp
+.
+
+Definition prop2cnf_which_implies_wit_12 := 
 forall (pcnt'_2: Z) (res: Z) ,
   [| (pcnt'_2 >= 0) |] 
   &&  [| (res = (pcnt'_2 + 1 )) |]
@@ -20891,7 +22185,7 @@ forall (pcnt'_2: Z) (res: Z) ,
   &&  emp
 .
 
-Definition prop2cnf_which_implies_wit_10 := 
+Definition prop2cnf_which_implies_wit_13 := 
 forall (data_pre: Z) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (y'': Z) ,
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist'_2)) = ccnt'_2) |] 
@@ -20904,7 +22198,7 @@ forall (data_pre: Z) (ccnt'_2: Z) (pcnt'_2: Z) (clist'_2: (@list (@list Z))) (y'
   (store_predata data_pre clist'_2 (pcnt'_2 + 1 ) ccnt'_2 )
 .
 
-Definition prop2cnf_which_implies_wit_11 := 
+Definition prop2cnf_which_implies_wit_14 := 
 forall (pcnt'_2: Z) (clist'_2: (@list (@list Z))) ,
   [| ((prop_cnt_inf (clist'_2)) <= pcnt'_2) |]
   &&  emp
@@ -20913,7 +22207,7 @@ forall (pcnt'_2: Z) (clist'_2: (@list (@list Z))) ,
   &&  emp
 .
 
-Definition prop2cnf_which_implies_wit_12 := 
+Definition prop2cnf_which_implies_wit_15 := 
 forall (clist: (@list (@list Z))) (prop: smt_prop) (clist'_2: (@list (@list Z))) (rt': smt_prop) (clist'_1: (@list (@list Z))) (lt': smt_prop) (op': SmtPropBop) ,
   [| ((Zlength (clist'_2)) <= ((Zlength (clist'_1)) + (4 * (SmtProp_size (rt')) ) )) |] 
   &&  [| ((Zlength (clist'_1)) <= ((Zlength (clist)) + (4 * (SmtProp_size (lt')) ) )) |] 
@@ -20924,7 +22218,7 @@ forall (clist: (@list (@list Z))) (prop: smt_prop) (clist'_2: (@list (@list Z)))
   &&  emp
 .
 
-Definition prop2cnf_which_implies_wit_13 := 
+Definition prop2cnf_which_implies_wit_16 := 
 forall (prop: smt_prop) ,
   [| ((SmtProp_size (prop)) <= 10000) |]
   &&  emp
@@ -20933,7 +22227,7 @@ forall (prop: smt_prop) ,
   &&  emp
 .
 
-Definition prop2cnf_which_implies_wit_14 := 
+Definition prop2cnf_which_implies_wit_17 := 
 forall (p_pre: Z) (prop: smt_prop) (p_pre_type: Z) ,
   [| (p_pre_type = (SmtPTID (prop))) |] 
   &&  [| (p_pre_type = 6) |]
@@ -20949,7 +22243,7 @@ forall (p_pre: Z) (prop: smt_prop) (p_pre_type: Z) ,
   **  ((&((p_pre)  # "SmtProp" ->ₛ "type")) # Int  |-> (SmtPTID (prop)))
 .
 
-Definition prop2cnf_which_implies_wit_15 := 
+Definition prop2cnf_which_implies_wit_18 := 
 forall (pcnt: Z) (prop: smt_prop) (op: SmtPropUop) (sub_prop: smt_prop) ,
   [| ((prop_cnt_inf_SmtProp (prop)) <= pcnt) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |]
@@ -20959,7 +22253,7 @@ forall (pcnt: Z) (prop: smt_prop) (op: SmtPropUop) (sub_prop: smt_prop) ,
   &&  emp
 .
 
-Definition prop2cnf_which_implies_wit_16 := 
+Definition prop2cnf_which_implies_wit_19 := 
 forall (prop: smt_prop) (op: SmtPropUop) (sub_prop: smt_prop) ,
   [| ((SmtProp_size (prop)) <= 10000) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |]
@@ -20969,7 +22263,7 @@ forall (prop: smt_prop) (op: SmtPropUop) (sub_prop: smt_prop) ,
   &&  emp
 .
 
-Definition prop2cnf_which_implies_wit_17 := 
+Definition prop2cnf_which_implies_wit_20 := 
 forall (clist: (@list (@list Z))) (prop: smt_prop) (op: SmtPropUop) (sub_prop: smt_prop) ,
   [| ((Zlength (clist)) <= (40000 - (4 * (SmtProp_size (prop)) ) )) |] 
   &&  [| (prop = (SmtU (op) (sub_prop))) |]
@@ -20979,7 +22273,17 @@ forall (clist: (@list (@list Z))) (prop: smt_prop) (op: SmtPropUop) (sub_prop: s
   &&  emp
 .
 
-Definition prop2cnf_which_implies_wit_18 := 
+Definition prop2cnf_which_implies_wit_21 := 
+forall (pcnt: Z) (prop: smt_prop) (op: SmtPropUop) (sub_prop: smt_prop) ,
+  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (prop = (SmtU (op) (sub_prop))) |]
+  &&  emp
+|--
+  [| (pcnt <= (40000 - (SmtProp_size (sub_prop)) )) |]
+  &&  emp
+.
+
+Definition prop2cnf_which_implies_wit_22 := 
 forall (data_pre: Z) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) ,
   (store_predata data_pre clist' pcnt' ccnt' )
 |--
@@ -20994,7 +22298,19 @@ forall (data_pre: Z) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) ,
   **  (sll_cnf_list y'' clist' )
 .
 
-Definition prop2cnf_which_implies_wit_19 := 
+Definition prop2cnf_which_implies_wit_23 := 
+forall (pcnt: Z) (prop: smt_prop) (pcnt': Z) (sub_prop': smt_prop) (op': SmtPropUop) ,
+  [| (pcnt' <= (pcnt + (SmtProp_size (sub_prop')) )) |] 
+  &&  [| (pcnt <= (40000 - (SmtProp_size (prop)) )) |] 
+  &&  [| (prop = (SmtU (op') (sub_prop'))) |]
+  &&  emp
+|--
+  [| (pcnt' <= ((pcnt + (SmtProp_size (prop)) ) - 1 )) |] 
+  &&  [| (pcnt' <= 39999) |]
+  &&  emp
+.
+
+Definition prop2cnf_which_implies_wit_24 := 
 forall (pcnt': Z) (res: Z) ,
   [| (pcnt' >= 0) |] 
   &&  [| (res = (pcnt' + 1 )) |]
@@ -21004,7 +22320,7 @@ forall (pcnt': Z) (res: Z) ,
   &&  emp
 .
 
-Definition prop2cnf_which_implies_wit_20 := 
+Definition prop2cnf_which_implies_wit_25 := 
 forall (data_pre: Z) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (y'': Z) ,
   [| (data_pre <> 0) |] 
   &&  [| ((Zlength (clist')) = ccnt') |] 
@@ -21017,7 +22333,7 @@ forall (data_pre: Z) (ccnt': Z) (pcnt': Z) (clist': (@list (@list Z))) (y'': Z) 
   (store_predata data_pre clist' (pcnt' + 1 ) ccnt' )
 .
 
-Definition prop2cnf_which_implies_wit_21 := 
+Definition prop2cnf_which_implies_wit_26 := 
 forall (pcnt': Z) (clist': (@list (@list Z))) ,
   [| ((prop_cnt_inf (clist')) <= pcnt') |]
   &&  emp
@@ -21026,7 +22342,7 @@ forall (pcnt': Z) (clist': (@list (@list Z))) ,
   &&  emp
 .
 
-Definition prop2cnf_which_implies_wit_22 := 
+Definition prop2cnf_which_implies_wit_27 := 
 forall (clist: (@list (@list Z))) (prop: smt_prop) (clist': (@list (@list Z))) (sub_prop': smt_prop) (op': SmtPropUop) ,
   [| ((Zlength (clist')) <= ((Zlength (clist)) + (4 * (SmtProp_size (sub_prop')) ) )) |] 
   &&  [| (prop = (SmtU (op') (sub_prop'))) |]
@@ -21036,7 +22352,7 @@ forall (clist: (@list (@list Z))) (prop: smt_prop) (clist': (@list (@list Z))) (
   &&  emp
 .
 
-Definition prop2cnf_which_implies_wit_23 := 
+Definition prop2cnf_which_implies_wit_28 := 
 forall (prop: smt_prop) ,
   [| ((SmtProp_size (prop)) <= 10000) |]
   &&  emp
@@ -21045,7 +22361,7 @@ forall (prop: smt_prop) ,
   &&  emp
 .
 
-Definition prop2cnf_which_implies_wit_24 := 
+Definition prop2cnf_which_implies_wit_29 := 
 forall (p_pre: Z) (prop: smt_prop) (p_pre_type: Z) ,
   [| (p_pre_type = 7) |] 
   &&  [| (p_pre_type = (SmtPTID (prop))) |]
@@ -21392,10 +22708,10 @@ Axiom proof_of_prop2cnf_partial_solve_wit_8_pure : prop2cnf_partial_solve_wit_8_
 Axiom proof_of_prop2cnf_partial_solve_wit_8 : prop2cnf_partial_solve_wit_8.
 Axiom proof_of_prop2cnf_partial_solve_wit_9_pure : prop2cnf_partial_solve_wit_9_pure.
 Axiom proof_of_prop2cnf_partial_solve_wit_9 : prop2cnf_partial_solve_wit_9.
+Axiom proof_of_prop2cnf_partial_solve_wit_10_pure : prop2cnf_partial_solve_wit_10_pure.
 Axiom proof_of_prop2cnf_partial_solve_wit_10 : prop2cnf_partial_solve_wit_10.
 Axiom proof_of_prop2cnf_partial_solve_wit_11_pure : prop2cnf_partial_solve_wit_11_pure.
 Axiom proof_of_prop2cnf_partial_solve_wit_11 : prop2cnf_partial_solve_wit_11.
-Axiom proof_of_prop2cnf_partial_solve_wit_12_pure : prop2cnf_partial_solve_wit_12_pure.
 Axiom proof_of_prop2cnf_partial_solve_wit_12 : prop2cnf_partial_solve_wit_12.
 Axiom proof_of_prop2cnf_partial_solve_wit_13_pure : prop2cnf_partial_solve_wit_13_pure.
 Axiom proof_of_prop2cnf_partial_solve_wit_13 : prop2cnf_partial_solve_wit_13.
@@ -21415,6 +22731,7 @@ Axiom proof_of_prop2cnf_partial_solve_wit_20_pure : prop2cnf_partial_solve_wit_2
 Axiom proof_of_prop2cnf_partial_solve_wit_20 : prop2cnf_partial_solve_wit_20.
 Axiom proof_of_prop2cnf_partial_solve_wit_21_pure : prop2cnf_partial_solve_wit_21_pure.
 Axiom proof_of_prop2cnf_partial_solve_wit_21 : prop2cnf_partial_solve_wit_21.
+Axiom proof_of_prop2cnf_partial_solve_wit_22_pure : prop2cnf_partial_solve_wit_22_pure.
 Axiom proof_of_prop2cnf_partial_solve_wit_22 : prop2cnf_partial_solve_wit_22.
 Axiom proof_of_prop2cnf_partial_solve_wit_23_pure : prop2cnf_partial_solve_wit_23_pure.
 Axiom proof_of_prop2cnf_partial_solve_wit_23 : prop2cnf_partial_solve_wit_23.
@@ -21422,7 +22739,6 @@ Axiom proof_of_prop2cnf_partial_solve_wit_24_pure : prop2cnf_partial_solve_wit_2
 Axiom proof_of_prop2cnf_partial_solve_wit_24 : prop2cnf_partial_solve_wit_24.
 Axiom proof_of_prop2cnf_partial_solve_wit_25_pure : prop2cnf_partial_solve_wit_25_pure.
 Axiom proof_of_prop2cnf_partial_solve_wit_25 : prop2cnf_partial_solve_wit_25.
-Axiom proof_of_prop2cnf_partial_solve_wit_26_pure : prop2cnf_partial_solve_wit_26_pure.
 Axiom proof_of_prop2cnf_partial_solve_wit_26 : prop2cnf_partial_solve_wit_26.
 Axiom proof_of_prop2cnf_partial_solve_wit_27_pure : prop2cnf_partial_solve_wit_27_pure.
 Axiom proof_of_prop2cnf_partial_solve_wit_27 : prop2cnf_partial_solve_wit_27.
@@ -21430,6 +22746,16 @@ Axiom proof_of_prop2cnf_partial_solve_wit_28_pure : prop2cnf_partial_solve_wit_2
 Axiom proof_of_prop2cnf_partial_solve_wit_28 : prop2cnf_partial_solve_wit_28.
 Axiom proof_of_prop2cnf_partial_solve_wit_29_pure : prop2cnf_partial_solve_wit_29_pure.
 Axiom proof_of_prop2cnf_partial_solve_wit_29 : prop2cnf_partial_solve_wit_29.
+Axiom proof_of_prop2cnf_partial_solve_wit_30_pure : prop2cnf_partial_solve_wit_30_pure.
+Axiom proof_of_prop2cnf_partial_solve_wit_30 : prop2cnf_partial_solve_wit_30.
+Axiom proof_of_prop2cnf_partial_solve_wit_31_pure : prop2cnf_partial_solve_wit_31_pure.
+Axiom proof_of_prop2cnf_partial_solve_wit_31 : prop2cnf_partial_solve_wit_31.
+Axiom proof_of_prop2cnf_partial_solve_wit_32_pure : prop2cnf_partial_solve_wit_32_pure.
+Axiom proof_of_prop2cnf_partial_solve_wit_32 : prop2cnf_partial_solve_wit_32.
+Axiom proof_of_prop2cnf_partial_solve_wit_33_pure : prop2cnf_partial_solve_wit_33_pure.
+Axiom proof_of_prop2cnf_partial_solve_wit_33 : prop2cnf_partial_solve_wit_33.
+Axiom proof_of_prop2cnf_partial_solve_wit_34_pure : prop2cnf_partial_solve_wit_34_pure.
+Axiom proof_of_prop2cnf_partial_solve_wit_34 : prop2cnf_partial_solve_wit_34.
 Axiom proof_of_prop2cnf_which_implies_wit_1 : prop2cnf_which_implies_wit_1.
 Axiom proof_of_prop2cnf_which_implies_wit_2 : prop2cnf_which_implies_wit_2.
 Axiom proof_of_prop2cnf_which_implies_wit_3 : prop2cnf_which_implies_wit_3.
@@ -21454,5 +22780,10 @@ Axiom proof_of_prop2cnf_which_implies_wit_21 : prop2cnf_which_implies_wit_21.
 Axiom proof_of_prop2cnf_which_implies_wit_22 : prop2cnf_which_implies_wit_22.
 Axiom proof_of_prop2cnf_which_implies_wit_23 : prop2cnf_which_implies_wit_23.
 Axiom proof_of_prop2cnf_which_implies_wit_24 : prop2cnf_which_implies_wit_24.
+Axiom proof_of_prop2cnf_which_implies_wit_25 : prop2cnf_which_implies_wit_25.
+Axiom proof_of_prop2cnf_which_implies_wit_26 : prop2cnf_which_implies_wit_26.
+Axiom proof_of_prop2cnf_which_implies_wit_27 : prop2cnf_which_implies_wit_27.
+Axiom proof_of_prop2cnf_which_implies_wit_28 : prop2cnf_which_implies_wit_28.
+Axiom proof_of_prop2cnf_which_implies_wit_29 : prop2cnf_which_implies_wit_29.
 
 End VC_Correct.
