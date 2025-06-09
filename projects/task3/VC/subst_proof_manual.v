@@ -24,7 +24,9 @@ Local Open Scope sac.
 Lemma proof_of_subst_var_safety_wit_5 : subst_var_safety_wit_5.
 Proof. 
     pre_process.
-    Admitted. 
+    unfold termtypeID in H3, H4, H5, H6.
+    destruct trm; lia.
+Qed.
 
 Lemma proof_of_subst_var_return_wit_1_1 : subst_var_return_wit_1_1.
 Proof.    
@@ -184,7 +186,11 @@ Proof.
 Qed. 
 
 Lemma proof_of_subst_term_safety_wit_5 : subst_term_safety_wit_5.
-Proof. Admitted. 
+Proof.
+    pre_process.
+    unfold termtypeID in H3, H4, H5, H6.
+    destruct trm; lia.
+Qed.
 
 Lemma proof_of_subst_term_return_wit_1_1 : subst_term_return_wit_1_1.
 Proof. 
