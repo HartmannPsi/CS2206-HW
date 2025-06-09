@@ -6,6 +6,10 @@
 /*@ Extern Coq (var_sub :: *) */
 /*@ Extern Coq (solve_res :: *) */
 /*@ Extern Coq (ImplyProp :: *) */
+/*@ Extern Coq (var_name :: *)*/
+/*@ Extern Coq (const_type :: *)*/
+/*@ Extern Coq (quant_type :: *)*/
+/*@ Extern Coq (term_type :: *)*/
 /*@ Extern Coq (store_string : Z -> list Z -> Assertion)
                (store_term : Z -> term -> Assertion)
                (store_term' : Z -> term -> Assertion)
@@ -25,11 +29,18 @@
                (term_eqn : term -> term -> Z)
                (term_subst_v : list Z -> list Z -> term -> term)
                (term_subst_t : term -> list Z -> term -> term)
+               (ctID : const_type -> Z)
+               (qtID : quant_type -> Z)
+               (ttID : term_type -> Z)
                (termtypeID : term -> Z)
-               */
+               (TermVar: list Z -> term)
+               (TermConst: const_type -> Z -> term)
+               (TermApply: term -> term -> term)
+               (TermQuant: quant_type -> list Z -> term -> term)
+*/
 
-enum bool { false, true };
-typedef enum bool bool;
+
+typedef enum { false, true } bool;
 
 enum const_type {
   Num = 0,
@@ -89,23 +100,19 @@ typedef struct var_sub_list {
   struct var_sub_list *next;
 } var_sub_list;
 
-enum res_type { bool_res, termlist };
-typedef enum res_type res_type;
-
-struct solve_res {
+typedef enum { bool_res, termlist } res_type;
+typedef struct {
   res_type type;
   union {
     bool ans;
     term_list *list;
   } d;
-};
-typedef struct solve_res solve_res;
+} solve_res;
 
-struct ImplyProp {
+typedef struct {
   term *assum;
   term *concl;
-};
-typedef struct ImplyProp ImplyProp;
+} ImplyProp;
 
 /* BEGIN Given Functions */
 
@@ -113,17 +120,17 @@ typedef struct ImplyProp ImplyProp;
 term_list *malloc_term_list()
     /*@ Require emp
         Ensure __return != 0 &&
-               data_at(&(__return -> element), 0) *
-               data_at(&(__return -> next), 0)
-     */
+              data_at(&(__return -> element), 0) *
+              data_at(&(__return -> next), 0)
+    */
     ;
 
 solve_res *malloc_solve_res()
     /*@ Require emp
         Ensure __return != 0 &&
-               data_at(&(__return -> type), 0) *
-               data_at(&(__return -> d), 0)
-     */
+              data_at(&(__return -> type), 0) *
+              data_at(&(__return -> d), 0)
+    */
     ;
 
 // 构造函数
@@ -132,7 +139,7 @@ ImplyProp *createImplyProp(term *t1, term *t2)
           Require store_term(t1, term1) *
                   store_term(t2, term2)
           Ensure t1 == t1@pre && t2 == t2@pre &&
-                 store_ImplyProp(__return, t1, t2, term1, term2)
+                store_ImplyProp(__return, t1, t2, term1, term2)
     */
     ;
 
@@ -141,8 +148,8 @@ term *copy_term(term *t)
     /*@ With _term
           Require store_term(t, _term)
           Ensure __return != 0 &&
-                 store_term(t, _term) *
-                 store_term(__return, _term)
+                store_term(t, _term) *
+                store_term(__return, _term)
     */
     ;
 
@@ -157,17 +164,17 @@ term_list *copy_term_list(term_list *list)
 
 // free 函数
 void free_str(char *s)
-    /*@ Require s != 0 && exists n, n > 0 && store_undef_char_array(s, n)
+    /*@ Require s != 0 && exists n, store_string(s, n)
         Ensure emp
-     */
+    */
     ;
 
 void free_imply_prop(ImplyProp *p)
     /*@ With term1 term2 t1 t2
           Require store_ImplyProp(p, t1, t2, term1, term2)
           Ensure store_term(t1, term1) *
-                 store_term(t2, term2) *
-                 emp
+                store_term(t2, term2) *
+                emp
     */
     ;
 
@@ -185,21 +192,21 @@ void free_term_list(term_list *list)
 
 // string 相关函数
 char *strdup(const char *s)
-    /*@ With n str
-          Require store_char_array(s, n, str)
+    /*@ With str
+          Require store_string(s, str)
           Ensure __return != 0 &&
-                 store_char_array(s, n, str) *
-                 store_char_array(__return, n, str)
+                store_string(s, str) *
+                store_string(__return, str)
     */
     ;
 
 int strcmp(const char *s1, const char *s2)
-    /*@ With str1 str2 n1 n2
-          Require store_char_array(s1, n1, str1) *
-                  store_char_array(s2, n2, str2)
+    /*@ With str1 str2
+          Require store_string(s1, str1) *
+                  store_string(s2, str2)
           Ensure __return == list_Z_cmp(str1, str2) &&
-                 store_char_array(s1, n1, str1) *
-                 store_char_array(s2, n2, str2)
+                store_string(s1, str1) *
+                store_string(s2, str2)
     */
     ;
 

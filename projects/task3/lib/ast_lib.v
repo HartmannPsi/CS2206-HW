@@ -22,10 +22,9 @@ From SimpleC.EE Require Import malloc.
 Import naive_C_Rules.
 Local Open Scope sac.
 
-Notation "'var_name'" := (list Z) (at level 0, only parsing).
+Definition var_name : Type := list Z.
 
 (* all about ast basic structure *)
-(* Module ast_def. *)
 
 Inductive const_type : Type :=
   | CNum: const_type
@@ -79,11 +78,7 @@ Inductive term : Type :=
   | TermApply (lt: term) (rt: term): term
   | TermQuant (qtype: quant_type) (qvar: var_name) (body: term): term.
 
-Notation "'term_list'" := (list term) (at level 0, only parsing).
-
-(* End ast_def. *)
-
-(* Import ast_def. *)
+Definition term_list : Type := list term.
 
 Definition termtypeID (t: term) : Z :=
   match t with
@@ -98,6 +93,7 @@ Definition termtypeID (t: term) : Z :=
 
 Definition store_string (x: addr) (str: var_name): Assertion :=
   EX n: Z,
+  [| x <> NULL |] &&
   [| n >= 0 |] &&
   store_char_array x (Zlength (str ++ (all_zero_list n))) (str ++ (all_zero_list n)).
 
@@ -114,6 +110,7 @@ Fixpoint store_term (x: addr) (t: term): Assertion :=
                         &(x # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right") # Ptr |-> z **
                         store_term y lt ** store_term z rt
     | TermQuant qtype qvar body => EX y z: addr,
+                                  &(x # "term" ->ₛ "content" .ₛ "Quant" .ₛ "type") # Int |-> qtID qtype **
                                   &(x # "term" ->ₛ "content" .ₛ "Quant" .ₛ "var") # Ptr |-> y **
                                   &(x # "term" ->ₛ "content" .ₛ "Quant" .ₛ "body") # Ptr |-> z **
                                   store_string y qvar ** store_term z body
@@ -121,20 +118,17 @@ Fixpoint store_term (x: addr) (t: term): Assertion :=
 
 Definition store_term' (x: addr) (t: term): Assertion :=
   match t with
-    | TermVar var => [| x <> NULL |] &&
-                     EX y: addr,
+    | TermVar var => EX y: addr,
                       &(x # "term" ->ₛ "content" .ₛ "Var") # Ptr |-> y **
                       store_string y var
-    | TermConst ctype content => [| x <> NULL |] &&
-                                 &(x # "term" ->ₛ "content" .ₛ "Const" .ₛ "type") # Int |-> ctID ctype **
+    | TermConst ctype content => &(x # "term" ->ₛ "content" .ₛ "Const" .ₛ "type") # Int |-> ctID ctype **
                                  &(x # "term" ->ₛ "content" .ₛ "Const" .ₛ "content") # Int |-> content
-    | TermApply lt rt => [| x <> NULL |] && 
-                         EX y z: addr,
+    | TermApply lt rt => EX y z: addr,
                           &(x # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left") # Ptr |-> y **
                           &(x # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right") # Ptr |-> z **
                           store_term y lt ** store_term z rt
-    | TermQuant qtype qvar body => [| x <> NULL |] && 
-                                   EX y z: addr,
+    | TermQuant qtype qvar body => EX y z: addr,
+                                    &(x # "term" ->ₛ "content" .ₛ "Quant" .ₛ "type") # Int |-> qtID qtype **
                                     &(x # "term" ->ₛ "content" .ₛ "Quant" .ₛ "var") # Ptr |-> y **
                                     &(x # "term" ->ₛ "content" .ₛ "Quant" .ₛ "body") # Ptr |-> z **
                                     store_string y qvar ** store_term z body
@@ -142,6 +136,7 @@ Definition store_term' (x: addr) (t: term): Assertion :=
 
 Lemma store_term_unfold: forall x t,
   store_term x t |--
+  [| x <> NULL |] &&
   &(x # "term" ->ₛ "type") # Int |-> termtypeID t **
   store_term' x t.
 Proof.
@@ -151,6 +146,7 @@ Proof.
 Qed.
 
 Lemma store_term_fold: forall x t,
+  [| x <> NULL |] &&
   &(x # "term" ->ₛ "type") # Int |-> termtypeID t **
   store_term' x t |--
   store_term x t.
@@ -162,6 +158,7 @@ Qed.
 
 Lemma store_term'_Var: forall x t,
   termtypeID t = 0%Z ->
+  x <> NULL ->
   store_term' x t |--
   EX var, [| t = TermVar var |] && [| x <> NULL |] &&
   EX y: addr,
@@ -178,6 +175,7 @@ Qed.
 
 Lemma store_term'_Const: forall x t,
   termtypeID t = 1%Z ->
+  x <> NULL ->
   store_term' x t |--
   EX ctype content, [| t = TermConst ctype content |] && [| x <> NULL |] &&
   &(x # "term" ->ₛ "content" .ₛ "Const" .ₛ "type") # Int |-> ctID ctype **
@@ -193,11 +191,12 @@ Qed.
 
 Lemma store_term'_Apply: forall x t,
   termtypeID t = 2%Z ->
+  x <> NULL ->
   store_term' x t |--
   EX lt rt, [| t = TermApply lt rt |] && [| x <> NULL |] &&
   EX y z: addr,
     &(x # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left") # Ptr |-> y **
-    &(x # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right") # Ptr |-> z **
+    &(x # "term" ->ₛ "content" .ₛ "Apply" .ₛ  "right") # Ptr |-> z **
     store_term y lt ** store_term z rt.
 Proof.
   intros.
@@ -210,9 +209,11 @@ Qed.
 
 Lemma store_term'_Quant: forall x t,
   termtypeID t = 3%Z ->
+  x <> NULL ->
   store_term' x t |--
   EX qtype qvar body, [| t = TermQuant qtype qvar body |] && [| x <> NULL |] &&
   EX y z: addr,
+    &(x # "term" ->ₛ "content" .ₛ "Quant" .ₛ "type") # Int |-> qtID qtype **
     &(x # "term" ->ₛ "content" .ₛ "Quant" .ₛ "var") # Ptr |-> y **
     &(x # "term" ->ₛ "content" .ₛ "Quant" .ₛ "body") # Ptr |-> z **
     store_string y qvar ** store_term z body.
@@ -243,16 +244,11 @@ Definition sllbseg_term_list (x: addr) (y: addr) (l: term_list): Assertion :=
 
 (* all about ast var_sub *)
 
-(* Module ast_var_sub. *)
-
 Inductive var_sub : Type :=
   | VarSub (name: var_name) (t: term): var_sub.
 
-Notation "'var_sub_list'" := (list var_sub) (at level 0, only parsing).
+Definition var_sub_list : Type := list var_sub.
 
-(* End ast_var_sub. *)
-
-(* Import ast_var_sub. *)
 
 (* Definition var_sub_list : Type := list var_sub. *)
 (* v is stored on addr x *)
@@ -284,8 +280,6 @@ Definition sllbseg_var_sub_list (x: addr) (y: addr) (l: var_sub_list): Assertion
 
 (* all about ast solve result *)
 
-(* Module ast_solve_res. *)
-
 Inductive res_type : Type :=
   | BoolRes: res_type
   | TermList: res_type.
@@ -294,9 +288,6 @@ Inductive solve_res : Type :=
   | SRBool (ans: Z): solve_res
   | SRTList (l: term_list): solve_res.
 
-(* End ast_solve_res. *)
-
-(* Import ast_solve_res. *)
 
 Definition restypeID (sr : solve_res) : Z :=
   match sr with
@@ -373,8 +364,6 @@ Qed.
 
 (* all about ImplyProp *)
 
-(* Module ast_imply_prop. *)
-
 Inductive ImplyProp : Type :=
   | ImplP (assum: term) (concl: term): ImplyProp.
 
@@ -384,9 +373,6 @@ Definition store_ImplyProp (x y z: addr) (assum concl: term): Assertion :=
   &(x # "ImplyProp" ->ₛ "concl") # Ptr |-> z **
   store_term y assum ** store_term z concl.
 
-(* End ast_imply_prop. *)
-
-(* Import ast_imply_prop. *)
 
 Fixpoint list_Z_eqb (l1 l2 : list Z) : bool :=
   match l1, l2 with
