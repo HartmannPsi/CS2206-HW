@@ -40,7 +40,7 @@
 */
 
 
-typedef enum { false, true } bool;
+typedef int bool;
 
 enum const_type {
   Num = 0,

@@ -53,10 +53,10 @@ solve_res* thm_apply(term* thm, var_sub_list* list, term* goal) {
   solve_res* res = malloc_solve_res();
   if (thm_ins == (void*)0) {
     res->type = bool_res;
-    res->d.ans = false;
+    res->d.ans = 0;
   } else if (alpha_equiv(thm_ins, goal)) {
     res->type = bool_res;
-    res->d.ans = true;
+    res->d.ans = 1;
   } else {
     res->type = termlist;
     res->d.list = check_list_gen(thm_ins, goal);

@@ -388,7 +388,7 @@ Fixpoint term_eqb (t1 t2: term): bool :=
   match t1, t2 with
     | TermVar v1, TermVar v2 => list_Z_eqb v1 v2
     | TermConst ctype1 content1, TermConst ctype2 content2 =>
-      (Z.eqb (ctID ctype1) (ctID ctype2)) && (Z.eqb content1 content2)
+      (Z.eqb (ctID ctype1) (ctID ctype2)) && (negb (Z.eqb (ctID ctype1) 0) || Z.eqb content1 content2)
     | TermApply lt1 rt1, TermApply lt2 rt2 =>
       term_eqb lt1 lt2 && term_eqb rt1 rt2
     | TermQuant qtype1 qvar1 body1, TermQuant qtype2 qvar2 body2 =>
