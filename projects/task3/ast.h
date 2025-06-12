@@ -26,7 +26,7 @@
                (store_solve_res' : Z -> solve_res -> Assertion)
                (store_ImplyProp : Z -> Z -> Z -> term -> term -> Assertion)
                (list_Z_cmp : list Z -> list Z -> Z)
-               (term_eqn : term -> term -> Z)
+               (term_alpha_eq : term -> term -> Prop)
                (term_subst_v : list Z -> list Z -> term -> term)
                (term_subst_t : term -> list Z -> term -> term)
                (ctID : const_type -> Z)
@@ -37,8 +37,8 @@
                (TermConst: const_type -> Z -> term)
                (TermApply: term -> term -> term)
                (TermQuant: quant_type -> list Z -> term -> term)
+               (term_not_contain_var: term -> list Z -> Prop)
 */
-
 
 typedef int bool;
 
@@ -210,8 +210,54 @@ int strcmp(const char *s1, const char *s2)
     */
     ;
 
+// 返回一个在t1和t2中都没出现过的变量名
+char *fresh(term *t1, term *t2)
+  /*@ With term1 term2
+        Require store_term(t1, term1) *
+                store_term(t2, term2)
+        Ensure exists str, 
+               term_not_contain_var(term1, str) && 
+               term_not_contain_var(term2, str) &&
+               store_term(t1, term1) *
+               store_term(t2, term2) *
+               store_string(__return, str)
+  */
+  ;
+
 /* END Given Functions */
 
-term *subst_var(char *den, char *src, term *t);
-term *subst_term(term *den, char *src, term *t);
-bool alpha_equiv(term *t1, term *t2);
+term *subst_var(char *den, char *src, term *t)
+    /*@ With trm src_str den_str
+          Require den != 0 && src != 0 && t != 0 &&
+                  store_term(t, trm) *
+                  store_string(src, src_str) *
+                  store_string(den, den_str)
+          Ensure __return == t && t == t@pre && den == den@pre && src == src@pre &&
+                store_term(t, term_subst_v(den_str, src_str, trm)) *
+                store_string(den, den_str) *
+                store_string(src, src_str)
+    */
+    ;
+
+term *subst_term(term *den, char *src, term *t)
+    /*@ With trm src_str den_term
+          Require den != 0 && src != 0 && t != 0 &&
+                  store_term(t, trm) *
+                  store_string(src, src_str) *
+                  store_term(den, den_term)
+          Ensure den == den@pre && src == src@pre &&
+                 store_term(__return, term_subst_t(den_term, src_str, trm)) *
+                 store_term(den, den_term) *
+                 store_string(src, src_str)
+    */
+   ;
+
+bool alpha_equiv(term *t1, term *t2)
+    /*@ With term1 term2
+      Require store_term(t1, term1) *
+              store_term(t2, term2)
+      Ensure (__return == 1 && term_alpha_eq(term1, term2) || __return == 0 && term_alpha_eq(term1, term2))
+       && t1 == t1@pre && t2 == t2@pre
+       && store_term(t1, term1) * store_term(t2, term2)
+    */
+    ;

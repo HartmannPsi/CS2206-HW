@@ -15,6 +15,7 @@ Local Open Scope sets.
 Import ListNotations.
 Local Open Scope list.
 Require Import String.
+Require Import Coq.Program.Wf.
 Local Open Scope string.
 From SimpleC.EE Require Import super_poly_sll2.
 From SimpleC.EE Require Import malloc.
@@ -384,23 +385,6 @@ Fixpoint list_Z_eqb (l1 l2 : list Z) : bool :=
 Definition list_Z_cmp (l1 l2 : list Z) : Z :=
   if list_Z_eqb l1 l2 then 0 else 1.
 
-Fixpoint term_eqb (t1 t2: term): bool :=
-  match t1, t2 with
-    | TermVar v1, TermVar v2 => list_Z_eqb v1 v2
-    | TermConst ctype1 content1, TermConst ctype2 content2 =>
-      (Z.eqb (ctID ctype1) (ctID ctype2)) && (negb (Z.eqb (ctID ctype1) 0) || Z.eqb content1 content2)
-    | TermApply lt1 rt1, TermApply lt2 rt2 =>
-      term_eqb lt1 lt2 && term_eqb rt1 rt2
-    | TermQuant qtype1 qvar1 body1, TermQuant qtype2 qvar2 body2 =>
-      (Z.eqb (qtID qtype1) (qtID qtype2)) &&
-      list_Z_eqb qvar1 qvar2 &&
-      term_eqb body1 body2
-    | _, _ => false
-  end.
-
-Definition term_eqn (t1 t2: term): Z :=
-  if term_eqb t1 t2 then 1 else 0.
-
 Fixpoint term_subst_v (den src: var_name) (t: term): term :=
   match t with
     | TermVar v => if list_Z_eqb v src then TermVar den else TermVar v
@@ -424,3 +408,368 @@ Fixpoint term_subst_t (den: term) (src: var_name) (t: term): term :=
       else
         TermQuant qtype qvar (term_subst_t den src body)
   end.
+
+Lemma list_Z_eqb_eq : forall l1 l2 : list Z,
+  list_Z_eqb l1 l2 = true <-> l1 = l2.
+Proof. 
+  induction l1.
+  + intros.
+    destruct l2; [ split; try reflexivity | split; try discriminate ].
+  + intros.
+    destruct l2; [ split; try discriminate | split ].
+    - unfold list_Z_eqb.
+      fold list_Z_eqb.
+      rewrite andb_true_iff.
+      intros.
+      destruct H as [Ha Hl].
+      rewrite Z.eqb_eq in Ha.
+      pose proof IHl1 l2.
+      destruct H.
+      pose proof H Hl.
+      rewrite Ha, H1.
+      reflexivity.
+    - intros.
+      injection H.
+      intros.
+      unfold list_Z_eqb.
+      fold list_Z_eqb.
+      rewrite andb_true_iff.
+      pose proof IHl1 l2.
+      destruct H2.
+      pose proof H3 H0.
+      split; [ | auto].
+      rewrite Z.eqb_eq.
+      auto.
+Qed.
+
+Lemma list_Z_eqb2eq : forall l1 l2 : list Z,
+  list_Z_eqb l1 l2 = true -> l1 = l2.
+Proof.
+  apply list_Z_eqb_eq.
+Qed. 
+
+Lemma list_Z_eq2eqb : forall l1 l2 : list Z,
+  l1 = l2 -> list_Z_eqb l1 l2 = true.
+Proof.
+  apply list_Z_eqb_eq.
+Qed. 
+
+Lemma list_Z_eqb_refl : forall (l : list Z),
+  list_Z_eqb l l = true.
+Proof.
+  intros.
+  apply list_Z_eqb_eq.
+  reflexivity.
+Qed.
+
+Lemma list_Z_eqb_symm : forall (l1 l2 : list Z),
+  list_Z_eqb l1 l2 = true ->
+  list_Z_eqb l2 l1 = true.
+Proof.
+  intros.
+  apply list_Z_eqb_eq.
+  pose proof list_Z_eqb2eq l1 l2 H.
+  auto.
+Qed.
+
+Lemma list_Z_eqb_trans : forall (l1 l2 l3 : list Z),
+  list_Z_eqb l1 l2 = true ->
+  list_Z_eqb l2 l3 = true ->
+  list_Z_eqb l1 l3 = true.
+Proof.
+  intros.
+  apply list_Z_eqb_eq.
+  pose proof list_Z_eqb2eq l1 l2 H.
+  pose proof list_Z_eqb2eq l2 l3 H0.
+  rewrite H1, H2.
+  reflexivity.
+Qed.
+
+(* alpha_equiv begin *)
+
+Fixpoint term_not_contain_var (t : term) (var : var_name) : Prop :=
+  match t with
+  | TermVar v => v <> var
+  | TermConst _ _ => True
+  | TermApply lt rt => term_not_contain_var lt var /\ term_not_contain_var rt var
+  | TermQuant _ qvar body => qvar <> var /\ term_not_contain_var body var
+  end.
+
+Fixpoint sub_thm (thm: term) (l: var_sub_list): term :=
+  match l with 
+    | nil => thm
+    | (VarSub v t) :: l0 => 
+      match thm with
+        | TermQuant qtype qvar body =>
+            sub_thm (term_subst_t t v body) l0
+        | _ => thm
+      end
+  end.
+
+(* Inductive term_alpha_eq : term -> term -> Prop :=
+  | AlphaVar : forall v1 v2,
+      v1 = v2 ->
+      term_alpha_eq (TermVar v1) (TermVar v2)
+  | AlphaConst : forall ctype1 content1 ctype2 content2,
+      ctID ctype1 = ctID ctype2 ->
+      (ctID ctype1 <> 0 \/ content1 = content2) ->
+      term_alpha_eq (TermConst ctype1 content1) (TermConst ctype2 content2)
+  | AlphaApply : forall lt1 rt1 lt2 rt2,
+      term_alpha_eq lt1 lt2 -> term_alpha_eq rt1 rt2 ->
+      term_alpha_eq (TermApply lt1 rt1) (TermApply lt2 rt2)
+  | AlphaQuant : forall qtype1 qvar1 body1 qtype2 qvar2 body2,
+      qtID qtype1 = qtID qtype2 ->
+      (list_Z_eqb qvar1 qvar2 = true) /\ (term_alpha_eq body1 body2) \/
+      (term_alpha_eq body1 (term_subst_v qvar1 qvar2 body2)) /\
+      (term_alpha_eq (term_subst_v qvar2 qvar1 body1) body2) ->
+      term_alpha_eq (TermQuant qtype1 qvar1 body1) (TermQuant qtype2 qvar2 body2). *)
+
+Inductive term_alpha_eq : term -> term -> Prop :=
+  | AlphaVar : forall v1 v2,
+      v1 = v2 ->
+      term_alpha_eq (TermVar v1) (TermVar v2)
+  | AlphaConst : forall ctype1 content1 ctype2 content2,
+      ctID ctype1 = ctID ctype2 ->
+      (ctID ctype1 <> 0 \/ content1 = content2) ->
+      term_alpha_eq (TermConst ctype1 content1) (TermConst ctype2 content2)
+  | AlphaApply : forall lt1 rt1 lt2 rt2,
+      term_alpha_eq lt1 lt2 -> term_alpha_eq rt1 rt2 ->
+      term_alpha_eq (TermApply lt1 rt1) (TermApply lt2 rt2)
+  | AlphaQuant : forall qtype1 qvar1 body1 qtype2 qvar2 body2,
+      qtID qtype1 = qtID qtype2 ->
+      (list_Z_eqb qvar1 qvar2 = true) /\ (term_alpha_eq body1 body2) \/
+      (exists fresh,
+        term_not_contain_var (TermQuant qtype1 qvar1 body1) fresh /\
+        term_not_contain_var (TermQuant qtype2 qvar2 body2) fresh /\
+        term_alpha_eq 
+          (term_subst_v fresh qvar1 body1) 
+          (term_subst_v fresh qvar2 body2)) ->
+      term_alpha_eq (TermQuant qtype1 qvar1 body1) (TermQuant qtype2 qvar2 body2).
+
+Lemma term_alpha_eq_refl : forall (t : term),
+  term_alpha_eq t t.
+Proof.
+  induction t.
+  + apply AlphaVar; reflexivity.
+  + apply AlphaConst; [reflexivity | ].
+    right; reflexivity.
+  + apply AlphaApply; try auto.
+  + apply AlphaQuant; [reflexivity | ].
+    left; split; [ | apply IHt].
+    apply list_Z_eq2eqb; reflexivity.
+Qed.
+
+Lemma term_alpha_eq_symm : forall (t1 t2 : term),
+  term_alpha_eq t1 t2 ->
+  term_alpha_eq t2 t1.
+Proof.
+  induction t1, t2; try intros; try inversion H.
+  + apply AlphaVar. auto.
+  + apply AlphaConst.
+    auto.
+    destruct H5.
+    - left; rewrite <- H3; auto.
+    - right; auto.
+  + apply AlphaApply.  
+    pose proof IHt1_1 t2_1 H3.
+    pose proof IHt1_2 t2_2 H5.
+    auto. auto.
+  + apply AlphaQuant; [ auto | ].
+    destruct H7.
+    - destruct H7.
+      pose proof list_Z_eqb2eq qvar qvar0 H7.
+      rewrite H9.
+      pose proof IHt1 t2.
+      left.
+      split.
+      * apply list_Z_eq2eqb; reflexivity.
+      * apply H10, H8.
+    - right.
+      destruct H7 as [x [Ha [Hb Hc]]].
+      exists x.
+      split; [exact Hb | split; [exact Ha | ]].
+      induction (term_subst_v x qvar t1), (term_subst_v x qvar0 t2); try inversion Hc.
+      * apply AlphaVar; auto.
+      * apply AlphaConst; try auto.
+        rewrite <- H10.
+        destruct H12; [left; auto | right; auto].
+      * apply AlphaApply. admit. admit.
+      * apply AlphaQuant; [auto | ].
+        destruct H14.
+          
+      fold term_subst_v.
+Admitted.
+
+Lemma term_alpha_eq_trans : forall (t1 t2 t3 : term),
+  term_alpha_eq t1 t2 ->
+  term_alpha_eq t2 t3 ->
+  term_alpha_eq t1 t3.
+Proof.
+Admitted.
+
+Lemma term_subst_v_same_name : forall (den src : var_name) (t : term),
+  list_Z_eqb den src = true ->
+  term_alpha_eq (term_subst_v den src t) t.
+Proof.
+  induction t.
+  + intros.
+    unfold term_subst_v; fold term_subst_v.
+    apply list_Z_eqb2eq in H.
+    rewrite <- H.
+    destruct list_Z_eqb eqn:Heq; [ | apply term_alpha_eq_refl].
+    apply list_Z_eqb2eq in Heq.
+    rewrite Heq.
+    apply term_alpha_eq_refl.
+  + intros.
+    unfold term_subst_v; fold term_subst_v.
+    apply term_alpha_eq_refl.
+  + intros.
+    unfold term_subst_v; fold term_subst_v.
+    apply AlphaApply.
+    auto. auto.
+  + intros.
+    unfold term_subst_v; fold term_subst_v.
+    destruct (list_Z_eqb qvar src) eqn:Heq.
+    - apply term_alpha_eq_refl.
+    - apply AlphaQuant; [reflexivity | ].
+      left. split.
+      * apply list_Z_eq2eqb; reflexivity.
+      * apply IHt, H.
+Qed.
+
+Lemma alpha_equiv_same_rename: forall (t1 t2 : term) (str1 str2 : list Z),
+  term_alpha_eq t1 t2 -> term_alpha_eq (term_subst_v str1 str2 t1) (term_subst_v str1 str2 t2).
+Proof.
+  induction t2,t1; try intros.
+Admitted. 
+
+(* mal-defined term_eq *)
+
+Fixpoint term_eq (t1 t2: term) : bool :=
+  match t1, t2 with
+  | TermVar v1, TermVar v2 => 
+      list_Z_eqb v1 v2
+  | TermConst ctype1 content1, TermConst ctype2 content2 =>
+      (Z.eqb (ctID ctype1) (ctID ctype2)) && 
+      ((negb (Z.eqb (ctID ctype1) 0)) || (Z.eqb content1 content2)) 
+  | TermApply lt1 rt1, TermApply lt2 rt2 =>
+      term_eq lt1 lt2 && term_eq rt1 rt2
+  | TermQuant qtype1 qvar1 body1, TermQuant qtype2 qvar2 body2 =>
+      (Z.eqb (qtID qtype1) (qtID qtype2)) && (list_Z_eqb qvar1 qvar2) &&
+      term_eq body1 body2
+  | _, _ => false
+  end.
+
+Lemma term_eq_refl: forall t,
+  term_eq t t = true.
+Proof.
+  induction t.
+  + unfold term_eq; apply list_Z_eq2eqb; reflexivity.
+  + unfold term_eq; rewrite andb_true_iff.
+    split.
+    - rewrite Z.eqb_eq; reflexivity.
+    - rewrite orb_true_iff.
+      right.
+      rewrite Z.eqb_eq; reflexivity.
+  + unfold term_eq; fold term_eq.
+    rewrite andb_true_iff.
+    auto.
+  + unfold term_eq; fold term_eq.
+    rewrite andb_true_iff.
+    rewrite andb_true_iff.
+    split. split.
+    - rewrite Z.eqb_eq; reflexivity.
+    - apply list_Z_eq2eqb; reflexivity.
+    - auto.
+Qed.  
+
+Lemma term_eq_symm: forall t1 t2,
+  term_eq t1 t2 = true -> term_eq t2 t1 = true.
+Proof.
+  induction t1,t2; try discriminate.
+  + unfold term_eq.
+    apply list_Z_eqb_symm.
+  + unfold term_eq.
+    rewrite andb_true_iff.
+    rewrite orb_true_iff.
+    intros.
+    rewrite andb_true_iff.
+    rewrite orb_true_iff.
+    destruct H as [Ha [Hb|Hc]].
+    - split.
+      * rewrite Z.eqb_eq in *; auto.
+      * rewrite negb_true_iff in *.
+        rewrite Z.eqb_eq in Ha.
+        rewrite <- Ha.
+        left; auto.
+    - split.
+      * rewrite Z.eqb_eq in *; auto.
+      * rewrite Z.eqb_eq in *.
+        right; auto.
+  + unfold term_eq in * ; fold term_eq in *.
+    rewrite andb_true_iff.
+    rewrite andb_true_iff.
+    intros.
+    destruct H as [Ha Hb].
+    pose proof IHt1_1 t2_1 Ha.
+    pose proof IHt1_2 t2_2 Hb.
+    auto.
+  + unfold term_eq in * ; fold term_eq in *.
+    repeat rewrite andb_true_iff in *.
+    intros.
+    destruct H as [[Ha Hb] Hc].
+    rewrite Z.eqb_eq in *.
+    split. split.
+    - auto.
+    - apply list_Z_eqb_symm; auto.
+    - apply (IHt1 t2 Hc).
+Qed.
+
+Lemma term_eq_trans: forall t1 t2 t3,
+  term_eq t1 t2 = true ->
+  term_eq t2 t3 = true ->
+  term_eq t1 t3 = true.
+Proof.
+  intros t1 t2.
+  revert t1.
+  induction t2.
+  + destruct t1, t3; try discriminate.
+    unfold term_eq.
+    apply list_Z_eqb_trans.
+  + destruct t1, t3; try discriminate.
+    unfold term_eq.
+    repeat rewrite andb_true_iff, orb_true_iff.
+    rewrite Z.eqb_eq.
+    intros.
+    destruct H as [Ha [Hb|Hc]].
+    rewrite Ha in *.
+    destruct H0 as [H1a [H1b|H1c]].
+    - split; auto.
+    - split; auto.
+    - destruct H0 as [H1a [H1b|H1c]].
+      * repeat rewrite negb_true_iff, Z.eqb_eq, Z.eqb_neq in *.
+        split. rewrite Ha, H1a; reflexivity.
+        left; rewrite Ha; auto.
+      * repeat rewrite negb_true_iff, Z.eqb_eq, Z.eqb_neq in *.
+        split. rewrite Ha, H1a; reflexivity.
+        right. rewrite Z.eqb_eq, Hc, H1c; reflexivity.
+  + destruct t1, t3; try discriminate.
+    unfold term_eq; fold term_eq.
+    intros.
+    repeat rewrite andb_true_iff in *.
+    destruct H, H0.
+    split.
+    apply (IHt2_1 t1_1 t3_1 H H0).
+    apply (IHt2_2 t1_2 t3_2 H1 H2).
+  + destruct t1, t3; try discriminate.
+    unfold term_eq; fold term_eq.
+    intros.
+    repeat rewrite andb_true_iff in *.
+    destruct H, H0.
+    destruct H, H0.
+    split. split.
+    - rewrite Z.eqb_eq in *.
+      rewrite H, H0; reflexivity.
+    - apply (list_Z_eqb_trans qvar0 qvar qvar1); try auto.
+    - apply (IHt2 t1 t3 H1 H2). 
+Qed.

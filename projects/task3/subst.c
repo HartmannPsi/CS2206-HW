@@ -144,7 +144,6 @@ term *subst_term(term *den, char *src, term *t)
         */
         free_term(t);
         t = copy_term(den);
-        // this causes t != t@pre
       }
       break;
     }

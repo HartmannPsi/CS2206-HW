@@ -1,13 +1,14 @@
 #include "ast.h"
 
-term* sub_thm(term* thm, var_sub_list* list) {
-  if (list == (void*)0) return thm;
-  if (thm->type == Quant) {
-    term* den = list->cur->sub_term;
-    return sub_thm(subst_term(den, list->cur->var, thm->content.Quant.body),
-                   list->next);
-  } else
-    return (void*)0;
+term* sub_thm(term* thm, var_sub_list* list){
+  if(list == (void*) 0) return thm;
+  if(thm->type == Quant && thm->content.Quant.type == Forall){
+      term* den = list->cur->sub_term;
+      if (strcmp(thm->content.Quant.var, list->cur->var))
+          return (void*) 0; //变量名不匹配
+      return sub_thm(subst_term(den, list->cur->var, thm->content.Quant.body), list->next);
+  }
+  else return (void*) 0;
 }
 
 // apply (apply (impl) h1) (h2)
@@ -29,7 +30,7 @@ term_list* check_list_gen(term* thm, term* target) {
   }
   term_list* check_list = (void*)0;
   term_list** tail_ptr = &check_list;
-  while (thm != (void*)0 && !alpha_equiv(thm, target)) {
+  while (thm != (void*)0 && alpha_equiv(thm, target) == 1) {
     ImplyProp* p = separate_imply(thm);
     if (p == (void*)0) {
       free_term_list(check_list);
@@ -54,7 +55,7 @@ solve_res* thm_apply(term* thm, var_sub_list* list, term* goal) {
   if (thm_ins == (void*)0) {
     res->type = bool_res;
     res->d.ans = 0;
-  } else if (alpha_equiv(thm_ins, goal)) {
+  } else if (alpha_equiv(thm_ins, goal) == 0) {
     res->type = bool_res;
     res->d.ans = 1;
   } else {
