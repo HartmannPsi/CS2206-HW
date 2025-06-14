@@ -188,11 +188,15 @@ Proof.
   Exists y1 z1 y2 z2.
   entailer!.
   contradict H0.
+  rewrite H1 in H2.
+  unfold list_Z_cmp in H2.
+  destruct list_Z_eqb eqn:Heqn; [ | congruence].
+  pose proof list_Z_eqb2eq qv1 qv2 Heqn as Heq.
   inversion H0.
   destruct H24 as [[Ha Hb] | Hc].
   + auto.
-  + destruct Hc as [x Hx].
-  Admitted. 
+  + destruct Hc; rewrite Heq in H24; congruence.
+Qed. 
 
 Lemma proof_of_alpha_equiv_return_wit_8_1 : alpha_equiv_return_wit_8_1.
 Proof. 
@@ -206,9 +210,15 @@ Proof.
     + rewrite H7 in H16; injection H16; intros.
       rewrite H8 in H17; injection H17; intros.
       rewrite H29, H32; exact H13.
-    + right; exists str.
-      rewrite <- H7, <- H8.
-      auto.
+    + right.
+      split.
+      - unfold list_Z_cmp in H12.
+        destruct (list_Z_eqb qv1 qv2) eqn:Heqq; [congruence | ].
+        rewrite H7 in H16; rewrite H8 in H17.
+        inversion H16; inversion H17; auto.
+      - exists str.
+        rewrite <- H7, <- H8.
+        auto.
 Qed.
 
 Lemma proof_of_alpha_equiv_return_wit_8_2 : alpha_equiv_return_wit_8_2.
@@ -223,10 +233,19 @@ Proof.
   inversion H0.
   destruct H34 as [Ha|Hb].
   + destruct Ha as [Hc Hd].
-    admit.
-  + destruct Hb as [x Hx]. 
-  
-  Admitted. 
+    rewrite H7 in H16; rewrite H8 in H17.
+    inversion H16; inversion H17.
+    unfold list_Z_cmp in H12.
+    destruct (list_Z_eqb qv1 qv2) eqn:Heqq; [congruence | ].
+    rewrite H36, H39 in *; congruence.
+  + destruct Hb as [Ha [x [Hx1 [Hx2 Hx3]]]].
+    apply (alpha_equiv_quant_allvar qterm1_2 qterm2_2 qt1_2 qt2_2 qv1_2 qv2_2 str).
+    split; [auto | ].
+    rewrite H7 in H9.
+    rewrite H8 in H10.
+    split; [auto | ].
+    split; [auto | auto].
+Qed.
 
 Lemma proof_of_alpha_equiv_return_wit_9_1 : alpha_equiv_return_wit_9_1.
 Proof. 
