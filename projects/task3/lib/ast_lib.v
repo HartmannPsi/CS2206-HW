@@ -921,27 +921,36 @@ Proof.
       * apply AlphaQuant; [reflexivity | left; split; [pose proof list_Z_eqb_refl qvar; auto | ]].
         apply (IHt v1 v2 v3 Hb H0b).
 Qed.
-
+(* must not_contain *)
+(* t1 = ∃ y P(x, y, z) *)
+(* t2 = ∃ u P(x, u, z) *)
+(* str1 = y, str2 = x *)
 Lemma alpha_equiv_same_rename: forall (t1 t2 : term) (str1 str2 : list Z),
-  (* term_not_contain_var t1 str1 /\
-  term_not_contain_var t2 str1 /\ *)
+  term_not_contain_var t1 str1 ->
+  term_not_contain_var t2 str1 ->
   term_alpha_eq t1 t2 -> term_alpha_eq (term_subst_v str1 str2 t1) (term_subst_v str1 str2 t2).
 Proof.
   intros t1. 
   remember (term_level t1) as n.
   generalize dependent t1.
   induction n using lt_wf_ind.
-  intros t1 Heqn t2 v1 v2 Halpha.
-  destruct t1; destruct t2; inversion Halpha; try subst; try unfold term_subst_v.
+  intros t1 Heqn t2 v1 v2 Hn1 Hn2 Halpha.
+  destruct t1; destruct t2; inversion Halpha; try subst; try unfold term_subst_v; 
+  try unfold term_not_contain_var in Hn1, Hn2;
+  try fold term_not_contain_var in Hn1, Hn2.
   + destruct list_Z_eqb; try apply AlphaVar; try reflexivity.
   + apply AlphaConst; [auto | auto].
   + fold term_subst_v; apply AlphaApply.
     - pose proof apply_level_l_lt t1_1 t1_2. 
       assert (term_level t1_1 = term_level t1_1). {reflexivity. }
-      pose proof H (term_level t1_1) H0 t1_1 H1 t2_1 v1 v2 H3; auto.
+      destruct Hn1 as [Hn1a Hn1b].
+      destruct Hn2 as [Hn2a Hn2b].
+      pose proof H (term_level t1_1) H0 t1_1 H1 t2_1 v1 v2 Hn1a Hn2a H3; auto.
     - pose proof apply_level_r_lt t1_1 t1_2.
       assert (term_level t1_2 = term_level t1_2). {reflexivity. }
-      pose proof H (term_level t1_2) H0 t1_2 H1 t2_2 v1 v2 H5; auto.
+      destruct Hn1 as [Hn1a Hn1b].
+      destruct Hn2 as [Hn2a Hn2b].
+      pose proof H (term_level t1_2) H0 t1_2 H1 t2_2 v1 v2 Hn1b Hn2b H5; auto.
   + fold term_subst_v.
     destruct H7 as [[Haa Hab]|[Hba Hbb]].
     - pose proof list_Z_eqb2eq qvar qvar0 Haa; rewrite H0.
@@ -950,7 +959,9 @@ Proof.
       * apply AlphaQuant; [auto | left; split; [apply list_Z_eqb_refl | ]].
       pose proof quant_level_lt qtype qvar t1. 
       assert (term_level t1 = term_level t1). {reflexivity. }
-      pose proof H (term_level t1) H1 t1 H3 t2 v1 v2 Hab; auto.
+      destruct Hn1 as [Hn1a Hn1b].
+      destruct Hn2 as [Hn2a Hn2b].
+      pose proof H (term_level t1) H1 t1 H3 t2 v1 v2 Hn1b Hn2b Hab; auto.
     - destruct (list_Z_eqb qvar v2) eqn:Hva.
       * destruct (list_Z_eqb qvar0 v2) eqn:Hvb.
         ++  pose proof list_Z_eqb2eq qvar v2 Hva. 
@@ -995,6 +1006,8 @@ Proof.
     rewrite H.
     rewrite H0.
     apply (alpha_equiv_same_rename (term_subst_v y qv1 t1) (term_subst_v y qv2 t2) x y).
-    exact Hyc.
+    - admit.
+    - admit.
+    - exact Hyc.
 Qed.
 (* 这个证明用到了 Admitted 的 transitivity, alpha_equiv_same_rename. 此 Lemma 被用在 return_wit_8_2 中 *)
