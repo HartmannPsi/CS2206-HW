@@ -252,22 +252,32 @@ Proof.
   pre_process.
   rewrite H.
   rewrite <- derivable1_orp_intros1.
-  pose proof store_term_unfold 0 term2.
-  Admitted. 
+  apply store_null_right.
+Qed.
 
 Lemma proof_of_alpha_equiv_return_wit_9_2 : alpha_equiv_return_wit_9_2.
 Proof.
   pre_process.
   rewrite H.
   rewrite <- derivable1_orp_intros1.
-  pose proof store_term_unfold 0 term1.
-  Admitted. 
+  apply store_null_left.
+Qed.
 
 Lemma proof_of_alpha_equiv_return_wit_10 : alpha_equiv_return_wit_10.
 Proof.
   pre_process.
   rewrite <- derivable1_orp_intros1.
-  Admitted. 
+  entailer!.
+  2: {
+    destruct term1; destruct term2; simpl in H; try lia.
+    all: unfold not; intros; inversion H4.
+  }
+  pose proof (store_term_fold_out t2_pre term2) H1.
+  sep_apply H4.
+  pose proof (store_term_fold_out t1_pre term1) H0.
+  sep_apply H5.
+  entailer!.
+Qed.
 
 Lemma proof_of_alpha_equiv_partial_solve_wit_16_pure : alpha_equiv_partial_solve_wit_16_pure.
 Proof. 

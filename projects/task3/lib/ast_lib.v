@@ -146,6 +146,36 @@ Proof.
   destruct t; fold store_term; entailer!.
 Qed.
 
+Lemma store_null: forall t q,
+  store_term 0 t |-- q.
+Proof.
+  intros.
+  pose proof (store_term_unfold 0 t).
+  unfold NULL.
+  sep_apply H.
+  entailer!.
+Qed.
+
+Lemma store_null_left: forall t p q,
+  store_term 0 t ** p |-- q.
+Proof.
+  intros.
+  pose proof (store_term_unfold 0 t).
+  unfold NULL.
+  sep_apply H.
+  entailer!.
+Qed.
+
+Lemma store_null_right: forall t p q,
+  p ** store_term 0 t |-- q.
+Proof.
+  intros.
+  pose proof (store_term_unfold 0 t).
+  unfold NULL.
+  sep_apply H.
+  entailer!.
+Qed.
+
 Lemma store_term_fold: forall x t,
   [| x <> NULL |] &&
   &(x # "term" ->ₛ "type") # Int |-> termtypeID t **
@@ -155,6 +185,28 @@ Proof.
   intros.
   unfold store_term, store_term'.
   destruct t; fold store_term; entailer!.
+Qed.
+
+Lemma store_term_fold_out: forall x t,
+  x <> 0 ->
+  &(x # "term" ->ₛ "type") # Int |-> termtypeID t **
+  store_term' x t |--
+  store_term x t.
+Proof.
+  intros.
+  unfold store_term, store_term', NULL.
+  destruct t; fold store_term.
+  Intros y.
+  Exists y.
+  entailer!.
+  entailer!.
+  entailer!.
+  Intros y z.
+  Exists y z.
+  entailer!.
+  Intros y z.
+  Exists y z.
+  entailer!.
 Qed.
 
 Lemma store_term'_Var: forall x t,
@@ -634,7 +686,9 @@ Proof.
       destruct Hx as [Hxa [Hxb Hxc]].
       split; [auto | ].
       split; [auto | ].
-Admitted.
+      apply term_alpha_eq_subst_symm.
+      tauto.
+Qed.
 
 Lemma term_alpha_eq_trans : forall (t1 t2 t3 : term),
   term_alpha_eq t1 t2 ->
@@ -649,9 +703,7 @@ Proof.
     destruct t1, t3; try inversion H0; try inversion H; try subst.
     apply AlphaConst.
     rewrite H10, <- H4; auto.
-    destruct H12.
-    - left; auto.
-    - right. destruct H6.  
+    destruct H12; destruct H6; lia.
 Admitted.
 
 #[export] Instance term_alpha_eq_refl': Reflexive term_alpha_eq.
