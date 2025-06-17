@@ -26,7 +26,7 @@
                (store_solve_res' : Z -> solve_res -> Assertion)
                (store_ImplyProp : Z -> Z -> Z -> term -> term -> Assertion)
                (list_Z_cmp : list Z -> list Z -> Z)
-               (term_alpha_eq : term -> term -> Prop)
+               (term_alpha_eqn : term -> term -> Z)
                (term_subst_v : list Z -> list Z -> term -> term)
                (term_subst_t : term -> list Z -> term -> term)
                (ctID : const_type -> Z)
@@ -37,7 +37,7 @@
                (TermConst: const_type -> Z -> term)
                (TermApply: term -> term -> term)
                (TermQuant: quant_type -> list Z -> term -> term)
-               (term_not_contain_var: term -> list Z -> Prop)
+               (thm_subst: term -> list var_sub -> term)
 */
 
 typedef int bool;
@@ -210,20 +210,6 @@ int strcmp(const char *s1, const char *s2)
     */
     ;
 
-// 返回一个在t1和t2中都没出现过的变量名
-char *fresh(term *t1, term *t2)
-  /*@ With term1 term2
-        Require store_term(t1, term1) *
-                store_term(t2, term2)
-        Ensure exists str, 
-               term_not_contain_var(term1, str) && 
-               term_not_contain_var(term2, str) &&
-               store_term(t1, term1) *
-               store_term(t2, term2) *
-               store_string(__return, str)
-  */
-  ;
-
 /* END Given Functions */
 
 term *subst_var(char *den, char *src, term *t)
@@ -256,8 +242,14 @@ bool alpha_equiv(term *t1, term *t2)
     /*@ With term1 term2
       Require store_term(t1, term1) *
               store_term(t2, term2)
-      Ensure (__return == 1 && term_alpha_eq(term1, term2) || __return == 0 && term_alpha_eq(term1, term2))
-       && t1 == t1@pre && t2 == t2@pre
-       && store_term(t1, term1) * store_term(t2, term2)
+      Ensure __return == term_alpha_eqn(term1, term2) && t1 == t1@pre && t2 == t2@pre
+      && store_term(t1, term1) * store_term(t2, term2)
+    */
+    ;
+
+  term* sub_thm(term* thm, var_sub_list* list)
+    /*@ With t l
+          Require store_term(thm, t) * sll_var_sub_list(list, l)
+          Ensure store_term(__return, thm_subst(t, l))
     */
     ;

@@ -1,7 +1,16 @@
 #include "ast.h"
 
-term* sub_thm(term* thm, var_sub_list* list){
+term* sub_thm(term* thm, var_sub_list* list)
+  /*@ With t l
+        Require store_term(thm, t) * sll_var_sub_list(list, l)
+        Ensure thm == thm@pre && list == list@pre && (__return == 0 || store_term(__return, thm_subst(t, l)))
+  */
+{
   if(list == (void*) 0) return thm;
+  /*@ store_term(thm, t)
+      which implies
+        
+  */
   if(thm->type == Quant && thm->content.Quant.type == Forall){
       term* den = list->cur->sub_term;
       if (strcmp(thm->content.Quant.var, list->cur->var))
@@ -30,7 +39,7 @@ term_list* check_list_gen(term* thm, term* target) {
   }
   term_list* check_list = (void*)0;
   term_list** tail_ptr = &check_list;
-  while (thm != (void*)0 && alpha_equiv(thm, target) == 1) {
+  while (thm != (void*)0 && !alpha_equiv(thm, target)) {
     ImplyProp* p = separate_imply(thm);
     if (p == (void*)0) {
       free_term_list(check_list);
@@ -55,7 +64,7 @@ solve_res* thm_apply(term* thm, var_sub_list* list, term* goal) {
   if (thm_ins == (void*)0) {
     res->type = bool_res;
     res->d.ans = 0;
-  } else if (alpha_equiv(thm_ins, goal) == 0) {
+  } else if (alpha_equiv(thm_ins, goal)) {
     res->type = bool_res;
     res->d.ans = 1;
   } else {
