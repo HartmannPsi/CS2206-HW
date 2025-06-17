@@ -10,21 +10,25 @@
 /*@ Extern Coq (const_type :: *)*/
 /*@ Extern Coq (quant_type :: *)*/
 /*@ Extern Coq (term_type :: *)*/
+/*@ Extern Coq (term_res :: *)*/
+/*@ Extern Coq (imply_res :: *)*/
 /*@ Extern Coq (store_string : Z -> list Z -> Assertion)
                (store_term : Z -> term -> Assertion)
                (store_term' : Z -> term -> Assertion)
+               (store_term_res : Z -> term_res -> Assertion)
                (store_term_cell : Z -> term -> Assertion)
                (sll_term_list : Z -> list term -> Assertion)
                (sllseg_term_list : Z -> list term -> Assertion)
-               (sllbseg_term_list : Z -> list term -> Assertion)
+               (sllbseg_term_list : Z -> Z -> list term -> Assertion)
                (store_var_sub : Z -> var_sub -> Assertion)
                (store_var_sub_cell : Z -> var_sub -> Assertion)
                (sll_var_sub_list : Z -> list var_sub -> Assertion)
                (sllseg_var_sub_list : Z -> list var_sub -> Assertion)
-               (sllbseg_var_sub_list : Z -> list var_sub -> Assertion)
+               (sllbseg_var_sub_list : Z -> Z -> list var_sub -> Assertion)
                (store_solve_res : Z -> solve_res -> Assertion)
                (store_solve_res' : Z -> solve_res -> Assertion)
                (store_ImplyProp : Z -> Z -> Z -> term -> term -> Assertion)
+               (store_imply_res : Z -> imply_res -> Assertion)
                (list_Z_cmp : list Z -> list Z -> Z)
                (term_alpha_eqn : term -> term -> Z)
                (term_subst_v : list Z -> list Z -> term -> term)
@@ -37,7 +41,10 @@
                (TermConst: const_type -> Z -> term)
                (TermApply: term -> term -> term)
                (TermQuant: quant_type -> list Z -> term -> term)
-               (thm_subst: term -> list var_sub -> term)
+               (thm_subst: term -> list var_sub -> term_res)
+               (sep_impl: term -> imply_res)
+               (gen_pre: term -> term -> list term)
+               (thm_app: term -> list var_sub -> term -> solve_res)
 */
 
 typedef int bool;
@@ -213,17 +220,17 @@ int strcmp(const char *s1, const char *s2)
 /* END Given Functions */
 
 term *subst_var(char *den, char *src, term *t)
-    /*@ With trm src_str den_str
-          Require den != 0 && src != 0 && t != 0 &&
-                  store_term(t, trm) *
-                  store_string(src, src_str) *
-                  store_string(den, den_str)
-          Ensure __return == t && t == t@pre && den == den@pre && src == src@pre &&
-                store_term(t, term_subst_v(den_str, src_str, trm)) *
-                store_string(den, den_str) *
-                store_string(src, src_str)
-    */
-    ;
+  /*@ With trm src_str den_str
+        Require den != 0 && src != 0 && t != 0 &&
+                store_term(t, trm) *
+                store_string(src, src_str) *
+                store_string(den, den_str)
+        Ensure __return == t && t == t@pre && den == den@pre && src == src@pre &&
+              store_term(t, term_subst_v(den_str, src_str, trm)) *
+              store_string(den, den_str) *
+              store_string(src, src_str)
+  */
+  ;
 
 term *subst_term(term *den, char *src, term *t)
     /*@ With trm src_str den_term
@@ -247,9 +254,40 @@ bool alpha_equiv(term *t1, term *t2)
     */
     ;
 
-  term* sub_thm(term* thm, var_sub_list* list)
-    /*@ With t l
-          Require store_term(thm, t) * sll_var_sub_list(list, l)
-          Ensure store_term(__return, thm_subst(t, l))
-    */
-    ;
+term* sub_thm(term* thm, var_sub_list* list)
+  /*@ With t l
+        Require store_term(thm, t) * sll_var_sub_list(list, l)
+        Ensure thm == thm@pre && list == list@pre &&
+                sll_var_sub_list(list, l) *
+                store_term_res(__return, thm_subst(t, l))
+  */
+  ;
+
+ImplyProp* separate_imply(term* t) 
+  /*@ With trm
+      Require store_term(t, trm)
+      Ensure t == t@pre && store_imply_res(__return, sep_impl(trm))
+  */
+  ;
+
+term_list* check_list_gen(term* thm, term* target)
+  /*@ With theo targ
+      Require store_term(thm, theo) * store_term(target, targ)
+      Ensure target == target@pre &&
+              store_term(thm@pre, theo) * store_term(target, targ) *
+              sll_term_list(__return, gen_pre(theo, targ))
+  */
+  ;
+
+solve_res* thm_apply(term* thm, var_sub_list* list, term* goal)
+  /*@ With t l g
+      Require store_term(thm, t) * 
+              sll_var_sub_list(list, l) * 
+              store_term(goal, g)
+      Ensure thm == thm@pre && 
+             sll_var_sub_list(list, l) * 
+             store_term(goal, g) *
+             store_solve_res(__return, thm_app(t, l, g))
+  */
+  ;
+  

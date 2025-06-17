@@ -28,6 +28,42 @@ Local Open Scope sac.
 
 Definition var_name : Type := list Z.
 
+(* Option *)
+
+Inductive Option (A : Type) : Type :=
+| Some : A -> Option A
+| None : Option A.
+
+Arguments Some {A} _.
+Arguments None {A}.
+
+Definition Option_map {A B : Type} (f : A -> B) (opt : Option A) : Option B :=
+  match opt with
+  | Some x => Some (f x)
+  | None => None
+  end.
+
+Definition Option_bind {A B} (opt : Option A) (f : A -> Option B) : Option B :=
+  match opt with
+  | Some x => f x
+  | None => None
+  end.
+
+Definition Option_make {A} (x : A) : Option A := Some x.
+
+Definition Option_unwrap {A : Type} (default : A) (opt : Option A) : A :=
+  match opt with
+  | Some x => x
+  | None => default
+  end.
+
+Definition is_some {A : Type} (opt : Option A): bool :=
+  match opt with
+  | Some x => true
+  | None => false
+  end.
+  
+
 (* all about ast basic structure *)
 
 Inductive const_type : Type :=
@@ -429,6 +465,7 @@ Definition store_ImplyProp (x y z: addr) (assum concl: term): Assertion :=
   &(x # "ImplyProp" ->ₛ "concl") # Ptr |-> z **
   store_term y assum ** store_term z concl.
 
+(* about list Z *)
 
 Fixpoint list_Z_eqb (l1 l2 : list Z) : bool :=
   match l1, l2 with
@@ -439,30 +476,6 @@ Fixpoint list_Z_eqb (l1 l2 : list Z) : bool :=
 
 Definition list_Z_cmp (l1 l2 : list Z) : Z :=
   if list_Z_eqb l1 l2 then 0 else 1.
-
-Fixpoint term_subst_v (den src: var_name) (t: term): term :=
-  match t with
-    | TermVar v => if list_Z_eqb v src then TermVar den else TermVar v
-    | TermConst ctype content => TermConst ctype content
-    | TermApply lt rt => TermApply (term_subst_v den src lt) (term_subst_v den src rt)
-    | TermQuant qtype qvar body =>
-      if list_Z_eqb qvar src then
-        TermQuant qtype qvar body
-      else
-        TermQuant qtype qvar (term_subst_v den src body)
-  end.
-
-Fixpoint term_subst_t (den: term) (src: var_name) (t: term): term :=
-  match t with
-    | TermVar v => if list_Z_eqb v src then den else TermVar v
-    | TermConst ctype content => TermConst ctype content
-    | TermApply lt rt => TermApply (term_subst_t den src lt) (term_subst_t den src rt)
-    | TermQuant qtype qvar body =>
-      if list_Z_eqb qvar src then
-        TermQuant qtype qvar body
-      else
-        TermQuant qtype qvar (term_subst_t den src body)
-  end.
 
 Lemma list_Z_eqb_eq : forall l1 l2 : list Z,
   list_Z_eqb l1 l2 = true <-> l1 = l2.
@@ -567,7 +580,33 @@ Proof.
   reflexivity.
 Qed.
 
-(* alpha_equiv begin *)
+(* subst *)
+
+Fixpoint term_subst_v (den src: var_name) (t: term): term :=
+  match t with
+    | TermVar v => if list_Z_eqb v src then TermVar den else TermVar v
+    | TermConst ctype content => TermConst ctype content
+    | TermApply lt rt => TermApply (term_subst_v den src lt) (term_subst_v den src rt)
+    | TermQuant qtype qvar body =>
+      if list_Z_eqb qvar src then
+        TermQuant qtype qvar body
+      else
+        TermQuant qtype qvar (term_subst_v den src body)
+  end.
+
+Fixpoint term_subst_t (den: term) (src: var_name) (t: term): term :=
+  match t with
+    | TermVar v => if list_Z_eqb v src then den else TermVar v
+    | TermConst ctype content => TermConst ctype content
+    | TermApply lt rt => TermApply (term_subst_t den src lt) (term_subst_t den src rt)
+    | TermQuant qtype qvar body =>
+      if list_Z_eqb qvar src then
+        TermQuant qtype qvar body
+      else
+        TermQuant qtype qvar (term_subst_t den src body)
+  end.
+
+(* alpha_equiv *)
 
 Fixpoint term_alpha_eq (t1 t2 : term) : bool :=
   match t1, t2 with
@@ -594,7 +633,25 @@ Fixpoint term_alpha_eq (t1 t2 : term) : bool :=
 Definition term_alpha_eqn (t1 t2 : term) : Z :=
   if term_alpha_eq t1 t2 then 1 else 0.
 
-Fixpoint thm_subst (thm: term) (l: var_sub_list): option term :=
+(* thm_apply *)
+
+Definition term_res: Type := Option term.
+Definition imply_res: Type := Option ImplyProp.
+
+Definition store_term_res (x: addr) (t: term_res): Assertion :=
+  match t with
+  | Some ti => store_term x ti
+  | None => [| x = NULL |]
+  end.
+
+Definition store_imply_res (x: addr) (impl: imply_res): Assertion :=
+  match impl with
+  | Some (ImplP assum concl) => EX y z:addr,
+              store_ImplyProp x y z assum concl
+  | None => [| x = NULL |]
+  end.
+
+Fixpoint thm_subst (thm: term) (l: var_sub_list): term_res :=
   match l with 
     | nil => Some thm
     | (VarSub v t) :: l0 => 
@@ -608,30 +665,32 @@ Fixpoint thm_subst (thm: term) (l: var_sub_list): option term :=
       end
   end.
 
-Definition separate_imply (t : term): option ImplyProp :=
+Definition sep_impl (t : term): imply_res :=
   match t with
     | TermApply (TermApply (TermConst CImpl c) r) tr => 
       Some (ImplP r tr)
     | _ => None
   end.
 
-Fixpoint check_list_gen (thm target : term): term_list :=
+Fixpoint gen_pre (thm target : term): term_list :=
   if term_alpha_eq thm target then
     nil
   else
     match thm with 
     | TermApply (TermApply (TermConst CImpl c) r) tr =>
-      r :: check_list_gen tr target
+      r :: gen_pre tr target
     | _ => nil
-    end.
+  end.
 
-Definition thm_apply (thm : term) (l : var_sub_list) (goal : term): solve_res :=
+Definition thm_app (thm : term) (l : var_sub_list) (goal : term): solve_res :=
   match thm_subst thm l with
   | None => SRBool 0
   | Some thm_ins =>
       if term_alpha_eq thm_ins goal then SRBool 1
-      else SRTList (check_list_gen thm_ins goal)
+      else SRTList (gen_pre thm_ins goal)
   end.
+
+(* Lemmas *)
 
 Lemma term_subst_v_same_name : forall (den src : var_name) (t : term),
   den = src ->
