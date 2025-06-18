@@ -1,5 +1,5 @@
 #include "ast.h"
-
+// cons not find?
 term* sub_thm(term* thm, var_sub_list* list)
 /*@ With t l
       Require store_term(thm, t) * sll_var_sub_list(list, l)
@@ -9,15 +9,41 @@ term* sub_thm(term* thm, var_sub_list* list)
 */
 {
   if(list == (void*) 0) return thm;
-  /*@ store_term(thm, t)
+  /*@ list != 0 &&
+      store_term(thm, t) *
+      sll_var_sub_list(list, l)
       which implies
-        thm != 0
+      exists vs l0,
+        thm != 0 && 
+        data_at(&(thm -> type), termtypeID(t)) *
+        store_term'(thm, t) *
+        store_var_sub(list -> cur, vs) *
+        sll_var_sub_list(list -> next, l0)
   */
-  if(thm->type == Quant && thm->content.Quant.type == Forall){
-      term* den = list->cur->sub_term;
-      if (strcmp(thm->content.Quant.var, list->cur->var))
-          return (void*) 0; //变量名不匹配
-      return sub_thm(subst_term(den, list->cur->var, thm->content.Quant.body), list->next);
+  if(thm->type == Quant){
+    /*@ exists vs,
+        termtypeID(t) == 3 &&
+        thm != 0 && 
+        data_at(&(thm -> type), termtypeID(t)) *
+        store_term'(thm, t) *
+        store_var_sub(list->cur, vs)
+        which implies
+        exists sv st sy sz y z qt qvar qterm,
+          thm != 0 && 
+          t == TermQuant(qt, qvar, qterm) &&
+          vs == VarSub(sv, st) && 
+          data_at(&(thm -> type), termtypeID(t)) *
+          data_at(&(thm -> content.Quant.type), qtID(qt)) *
+          data_at(&(thm -> content.Quant.var), y) *
+          data_at(&(thm -> content.Quant.body), z) *
+          store_string(y, qvar) * store_term(z, qterm) *
+          data_at(&(list->cur->var), sy) *
+          data_at(&(list->cur->sub_term), sz) *
+          store_string(sy, sv) *
+          store_term(sz, st) 
+    */
+    term* den = list->cur->sub_term;
+    return sub_thm(subst_term(den, list->cur->var, thm->content.Quant.body), list->next);
   }
   else return (void*) 0;
 }

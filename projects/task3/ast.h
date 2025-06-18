@@ -41,6 +41,7 @@
                (TermConst: const_type -> Z -> term)
                (TermApply: term -> term -> term)
                (TermQuant: quant_type -> list Z -> term -> term)
+               (VarSub: list Z -> term -> var_sub)
                (thm_subst: term -> list var_sub -> term_res)
                (sep_impl: term -> imply_res)
                (gen_pre: term -> term -> list term)
