@@ -390,17 +390,17 @@ Definition restypeID (sr : solve_res) : Z :=
 Definition store_solve_res (x: addr) (sr: solve_res): Assertion :=
   [| x <> NULL |] && &(x # "solve_res" ->ₛ "type") # Int |-> restypeID sr **
   match sr with
-    | SRBool ans => &(x # "solve_res" ->ₛ "content" .ₛ "Bool") # Int |-> ans
+    | SRBool ans => &(x # "solve_res" ->ₛ "d" .ₛ "ans") # Int |-> ans
     | SRTList l => EX y: addr,
-                   &(x # "solve_res" ->ₛ "content" .ₛ "TermList") # Ptr |-> y **
+                   &(x # "solve_res" ->ₛ "d" .ₛ "list") # Ptr |-> y **
                    sll_term_list y l
   end.
 
 Definition store_solve_res' (x: addr) (sr: solve_res): Assertion :=
   match sr with
-    | SRBool ans => [| x <> NULL |] && &(x # "solve_res" ->ₛ "content" .ₛ "Bool") # Int |-> ans
+    | SRBool ans => [| x <> NULL |] && &(x # "solve_res" ->ₛ "d" .ₛ "ans") # Int |-> ans
     | SRTList l => [| x <> NULL |] && EX y: addr,
-                   &(x # "solve_res" ->ₛ "content" .ₛ "TermList") # Ptr |-> y **
+                   &(x # "solve_res" ->ₛ "d" .ₛ "list") # Ptr |-> y **
                    sll_term_list y l
   end.
 
@@ -428,7 +428,7 @@ Lemma store_solve_res'_Bool: forall x sr,
   restypeID sr = 0%Z ->
   store_solve_res' x sr |--
   EX ans, [| sr = SRBool ans |] && [| x <> NULL |] &&
-  &(x # "solve_res" ->ₛ "content" .ₛ "Bool") # Int |-> ans.
+  &(x # "solve_res" ->ₛ "d" .ₛ "ans") # Int |-> ans.
 Proof.
   intros.
   unfold store_solve_res'.
@@ -443,7 +443,7 @@ Lemma store_solve_res'_List: forall x sr,
   store_solve_res' x sr |--
   EX l, [| sr = SRTList l |] && [| x <> NULL |] &&
   EX y: addr,
-    &(x # "solve_res" ->ₛ "content" .ₛ "TermList") # Ptr |-> y **
+    &(x # "solve_res" ->ₛ "d" .ₛ "list") # Ptr |-> y **
     sll_term_list y l.
 Proof.
   intros.
