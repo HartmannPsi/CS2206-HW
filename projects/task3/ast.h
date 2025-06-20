@@ -157,8 +157,11 @@ ImplyProp *createImplyProp(term *t1, term *t2)
     /*@ With term1 term2
           Require store_term(t1, term1) *
                   store_term(t2, term2)
-          Ensure t1 == t1@pre && t2 == t2@pre &&
-                store_ImplyProp(__return, t1, t2, term1, term2)
+          Ensure exists t1' t2',
+                t1 == t1@pre && t2 == t2@pre &&
+                  store_term(t1, term1) *
+                  store_term(t2, term2) *
+                store_ImplyProp(__return, t1', t2', term1, term2)
     */
     ;
 

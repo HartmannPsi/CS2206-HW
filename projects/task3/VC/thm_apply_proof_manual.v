@@ -55,7 +55,19 @@ Qed.
 Lemma proof_of_sub_thm_return_wit_2 : sub_thm_return_wit_2.
 Proof.
   pre_process.
-  rewrite H2.
+  rewrite H4.
+  rewrite H1.
+  rewrite H0.
+  unfold sll_var_sub_list.
+  unfold sll.
+  fold (sll store_var_sub_cell "var_sub_list" "next").
+  Exists lis_next.
+  unfold thm_subst.
+  fold thm_subst.
+  entailer!.
+  destruct qt.
+  - admit.
+  - unfold store_term_res at 2. admit.
 Admitted.
 
 Lemma proof_of_sub_thm_return_wit_3 : sub_thm_return_wit_3.
@@ -78,6 +90,24 @@ Proof.
 Qed.
 
 Lemma proof_of_sub_thm_which_implies_wit_1 : sub_thm_which_implies_wit_1.
+Proof.
+  pre_process.
+  destruct l.
+  - unfold sll_var_sub_list.
+    unfold sll.
+    Intros.
+    unfold NULL in H0.
+    lia.
+  - simpl.
+    Intros x.
+    unfold store_var_sub_cell.
+    Intros y.
+    Exists x y v l.
+    sep_apply store_term_unfold.
+    entailer!.
+Qed.
+
+Lemma proof_of_sub_thm_which_implies_wit_2 : sub_thm_which_implies_wit_2.
 Proof.
   pre_process.
 Admitted.

@@ -1,5 +1,6 @@
 #include "ast.h"
 term* sub_thm(term* thm, var_sub_list* lis)
+// todo!!!
 /*@ With t l
       Require store_term(thm, t) * sll_var_sub_list(lis, l)
       Ensure thm == thm@pre && lis == lis@pre &&
@@ -14,6 +15,7 @@ term* sub_thm(term* thm, var_sub_list* lis)
       which implies
       exists vs l0,
         thm != 0 && 
+        l == cons(vs, l0) && 
         data_at(&(thm -> type), termtypeID(t)) *
         store_term'(thm, t) *
         store_var_sub(lis -> cur, vs) *

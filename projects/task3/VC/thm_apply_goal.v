@@ -34,8 +34,9 @@ forall (lis_pre: Z) (thm_pre: Z) (l: (@list var_sub)) (t: term) ,
 .
 
 Definition sub_thm_safety_wit_2 := 
-forall (lis_pre: Z) (thm_pre: Z) (t: term) (lis_next: Z) (l0: (@list var_sub)) (lis_cur: Z) (vs: var_sub) ,
+forall (lis_pre: Z) (thm_pre: Z) (l: (@list var_sub)) (t: term) (lis_next: Z) (lis_cur: Z) (vs: var_sub) (l0: (@list var_sub)) ,
   [| (thm_pre <> 0) |] 
+  &&  [| (l = (cons (vs) (l0))) |] 
   &&  [| (lis_pre <> 0) |]
   &&  ((( &( "thm" ) )) # Ptr  |-> thm_pre)
   **  ((&((thm_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (t)))
@@ -51,9 +52,10 @@ forall (lis_pre: Z) (thm_pre: Z) (t: term) (lis_next: Z) (l0: (@list var_sub)) (
 .
 
 Definition sub_thm_safety_wit_3 := 
-forall (lis_pre: Z) (thm_pre: Z) (t: term) (lis_next: Z) (l0: (@list var_sub)) (lis_cur: Z) (vs: var_sub) ,
+forall (lis_pre: Z) (thm_pre: Z) (l: (@list var_sub)) (t: term) (lis_next: Z) (lis_cur: Z) (vs: var_sub) (l0: (@list var_sub)) ,
   [| ((termtypeID (t)) <> 3) |] 
   &&  [| (thm_pre <> 0) |] 
+  &&  [| (l = (cons (vs) (l0))) |] 
   &&  [| (lis_pre <> 0) |]
   &&  ((( &( "thm" ) )) # Ptr  |-> thm_pre)
   **  ((&((thm_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (t)))
@@ -79,12 +81,13 @@ forall (lis_pre: Z) (thm_pre: Z) (l: (@list var_sub)) (t: term) ,
 .
 
 Definition sub_thm_return_wit_2 := 
-forall (lis_pre: Z) (thm_pre: Z) (l: (@list var_sub)) (t: term) (lis_next: Z) (l0: (@list var_sub)) (lis_cur: Z) (vs: var_sub) (sz: Z) (sy: Z) (z: Z) (y: Z) (sv: (@list Z)) (st: term) (qt: quant_type) (qvar: (@list Z)) (qterm: term) (retval: Z) ,
+forall (lis_pre: Z) (thm_pre: Z) (l: (@list var_sub)) (t: term) (lis_next: Z) (lis_cur: Z) (vs: var_sub) (l0: (@list var_sub)) (sz: Z) (sy: Z) (z: Z) (y: Z) (sv: (@list Z)) (st: term) (qt: quant_type) (qvar: (@list Z)) (qterm: term) (retval: Z) ,
   [| (thm_pre <> 0) |] 
   &&  [| (t = (TermQuant (qt) (qvar) (qterm))) |] 
   &&  [| (vs = (VarSub (sv) (st))) |] 
   &&  [| ((termtypeID (t)) = 3) |] 
   &&  [| (thm_pre <> 0) |] 
+  &&  [| (l = (cons (vs) (l0))) |] 
   &&  [| (lis_pre <> 0) |]
   &&  (sll_var_sub_list lis_next l0 )
   **  (store_term_res retval (thm_subst ((term_subst_t (st) (sv) (qterm))) (l0)) )
@@ -105,9 +108,10 @@ forall (lis_pre: Z) (thm_pre: Z) (l: (@list var_sub)) (t: term) (lis_next: Z) (l
 .
 
 Definition sub_thm_return_wit_3 := 
-forall (lis_pre: Z) (thm_pre: Z) (l: (@list var_sub)) (t: term) (lis_next: Z) (l0: (@list var_sub)) (lis_cur: Z) (vs: var_sub) ,
+forall (lis_pre: Z) (thm_pre: Z) (l: (@list var_sub)) (t: term) (lis_next: Z) (lis_cur: Z) (vs: var_sub) (l0: (@list var_sub)) ,
   [| ((termtypeID (t)) <> 3) |] 
   &&  [| (thm_pre <> 0) |] 
+  &&  [| (l = (cons (vs) (l0))) |] 
   &&  [| (lis_pre <> 0) |]
   &&  ((&((thm_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (t)))
   **  (store_term' thm_pre t )
@@ -146,9 +150,10 @@ forall (lis_pre: Z) (thm_pre: Z) (l: (@list var_sub)) (t: term) ,
 Definition sub_thm_partial_solve_wit_1 := sub_thm_partial_solve_wit_1_pure -> sub_thm_partial_solve_wit_1_aux.
 
 Definition sub_thm_partial_solve_wit_2_pure := 
-forall (lis_pre: Z) (thm_pre: Z) (t: term) (lis_next: Z) (l0: (@list var_sub)) (lis_cur: Z) (vs: var_sub) ,
+forall (lis_pre: Z) (thm_pre: Z) (l: (@list var_sub)) (t: term) (lis_next: Z) (lis_cur: Z) (vs: var_sub) (l0: (@list var_sub)) ,
   [| ((termtypeID (t)) = 3) |] 
   &&  [| (thm_pre <> 0) |] 
+  &&  [| (l = (cons (vs) (l0))) |] 
   &&  [| (lis_pre <> 0) |]
   &&  ((( &( "thm" ) )) # Ptr  |-> thm_pre)
   **  ((&((thm_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (t)))
@@ -164,9 +169,10 @@ forall (lis_pre: Z) (thm_pre: Z) (t: term) (lis_next: Z) (l0: (@list var_sub)) (
 .
 
 Definition sub_thm_partial_solve_wit_2_aux := 
-forall (lis_pre: Z) (thm_pre: Z) (t: term) (lis_next: Z) (l0: (@list var_sub)) (lis_cur: Z) (vs: var_sub) ,
+forall (lis_pre: Z) (thm_pre: Z) (l: (@list var_sub)) (t: term) (lis_next: Z) (lis_cur: Z) (vs: var_sub) (l0: (@list var_sub)) ,
   [| ((termtypeID (t)) = 3) |] 
   &&  [| (thm_pre <> 0) |] 
+  &&  [| (l = (cons (vs) (l0))) |] 
   &&  [| (lis_pre <> 0) |]
   &&  ((&((thm_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (t)))
   **  (store_term' thm_pre t )
@@ -179,6 +185,7 @@ forall (lis_pre: Z) (thm_pre: Z) (t: term) (lis_next: Z) (l0: (@list var_sub)) (
   &&  [| (thm_pre <> 0) |] 
   &&  [| ((termtypeID (t)) = 3) |] 
   &&  [| (thm_pre <> 0) |] 
+  &&  [| (l = (cons (vs) (l0))) |] 
   &&  [| (lis_pre <> 0) |]
   &&  ((&((thm_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (t)))
   **  (store_term' thm_pre t )
@@ -191,12 +198,13 @@ forall (lis_pre: Z) (thm_pre: Z) (t: term) (lis_next: Z) (l0: (@list var_sub)) (
 Definition sub_thm_partial_solve_wit_2 := sub_thm_partial_solve_wit_2_pure -> sub_thm_partial_solve_wit_2_aux.
 
 Definition sub_thm_partial_solve_wit_3_pure := 
-forall (lis_pre: Z) (thm_pre: Z) (t: term) (lis_next: Z) (l0: (@list var_sub)) (lis_cur: Z) (vs: var_sub) (sz: Z) (sy: Z) (z: Z) (y: Z) (sv: (@list Z)) (st: term) (qt: quant_type) (qvar: (@list Z)) (qterm: term) ,
+forall (lis_pre: Z) (thm_pre: Z) (l: (@list var_sub)) (t: term) (lis_next: Z) (lis_cur: Z) (vs: var_sub) (l0: (@list var_sub)) (sz: Z) (sy: Z) (z: Z) (y: Z) (sv: (@list Z)) (st: term) (qt: quant_type) (qvar: (@list Z)) (qterm: term) ,
   [| (thm_pre <> 0) |] 
   &&  [| (t = (TermQuant (qt) (qvar) (qterm))) |] 
   &&  [| (vs = (VarSub (sv) (st))) |] 
   &&  [| ((termtypeID (t)) = 3) |] 
   &&  [| (thm_pre <> 0) |] 
+  &&  [| (l = (cons (vs) (l0))) |] 
   &&  [| (lis_pre <> 0) |]
   &&  ((( &( "den" ) )) # Ptr  |-> sz)
   **  ((( &( "thm" ) )) # Ptr  |-> thm_pre)
@@ -221,12 +229,13 @@ forall (lis_pre: Z) (thm_pre: Z) (t: term) (lis_next: Z) (l0: (@list var_sub)) (
 .
 
 Definition sub_thm_partial_solve_wit_3_aux := 
-forall (lis_pre: Z) (thm_pre: Z) (t: term) (lis_next: Z) (l0: (@list var_sub)) (lis_cur: Z) (vs: var_sub) (sz: Z) (sy: Z) (z: Z) (y: Z) (sv: (@list Z)) (st: term) (qt: quant_type) (qvar: (@list Z)) (qterm: term) ,
+forall (lis_pre: Z) (thm_pre: Z) (l: (@list var_sub)) (t: term) (lis_next: Z) (lis_cur: Z) (vs: var_sub) (l0: (@list var_sub)) (sz: Z) (sy: Z) (z: Z) (y: Z) (sv: (@list Z)) (st: term) (qt: quant_type) (qvar: (@list Z)) (qterm: term) ,
   [| (thm_pre <> 0) |] 
   &&  [| (t = (TermQuant (qt) (qvar) (qterm))) |] 
   &&  [| (vs = (VarSub (sv) (st))) |] 
   &&  [| ((termtypeID (t)) = 3) |] 
   &&  [| (thm_pre <> 0) |] 
+  &&  [| (l = (cons (vs) (l0))) |] 
   &&  [| (lis_pre <> 0) |]
   &&  ((&((thm_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (t)))
   **  ((&((thm_pre)  # "term" ->ₛ "content" .ₛ "Quant" .ₛ "type")) # Int  |-> (qtID (qt)))
@@ -250,6 +259,7 @@ forall (lis_pre: Z) (thm_pre: Z) (t: term) (lis_next: Z) (l0: (@list var_sub)) (
   &&  [| (vs = (VarSub (sv) (st))) |] 
   &&  [| ((termtypeID (t)) = 3) |] 
   &&  [| (thm_pre <> 0) |] 
+  &&  [| (l = (cons (vs) (l0))) |] 
   &&  [| (lis_pre <> 0) |]
   &&  (store_term z qterm )
   **  (store_string sy sv )
@@ -269,12 +279,13 @@ forall (lis_pre: Z) (thm_pre: Z) (t: term) (lis_next: Z) (l0: (@list var_sub)) (
 Definition sub_thm_partial_solve_wit_3 := sub_thm_partial_solve_wit_3_pure -> sub_thm_partial_solve_wit_3_aux.
 
 Definition sub_thm_partial_solve_wit_4 := 
-forall (lis_pre: Z) (thm_pre: Z) (t: term) (lis_next: Z) (l0: (@list var_sub)) (lis_cur: Z) (vs: var_sub) (sz: Z) (sy: Z) (z: Z) (y: Z) (sv: (@list Z)) (st: term) (qt: quant_type) (qvar: (@list Z)) (qterm: term) (retval: Z) ,
+forall (lis_pre: Z) (thm_pre: Z) (l: (@list var_sub)) (t: term) (lis_next: Z) (lis_cur: Z) (vs: var_sub) (l0: (@list var_sub)) (sz: Z) (sy: Z) (z: Z) (y: Z) (sv: (@list Z)) (st: term) (qt: quant_type) (qvar: (@list Z)) (qterm: term) (retval: Z) ,
   [| (thm_pre <> 0) |] 
   &&  [| (t = (TermQuant (qt) (qvar) (qterm))) |] 
   &&  [| (vs = (VarSub (sv) (st))) |] 
   &&  [| ((termtypeID (t)) = 3) |] 
   &&  [| (thm_pre <> 0) |] 
+  &&  [| (l = (cons (vs) (l0))) |] 
   &&  [| (lis_pre <> 0) |]
   &&  (store_term retval (term_subst_t (st) (sv) (qterm)) )
   **  (store_term sz st )
@@ -295,6 +306,7 @@ forall (lis_pre: Z) (thm_pre: Z) (t: term) (lis_next: Z) (l0: (@list var_sub)) (
   &&  [| (vs = (VarSub (sv) (st))) |] 
   &&  [| ((termtypeID (t)) = 3) |] 
   &&  [| (thm_pre <> 0) |] 
+  &&  [| (l = (cons (vs) (l0))) |] 
   &&  [| (lis_pre <> 0) |]
   &&  (store_term retval (term_subst_t (st) (sv) (qterm)) )
   **  (sll_var_sub_list lis_next l0 )
@@ -317,8 +329,9 @@ forall (l: (@list var_sub)) (t: term) (lis: Z) (thm: Z) ,
   &&  (store_term thm t )
   **  (sll_var_sub_list lis l )
 |--
-  EX (lis_next: Z)  (l0: (@list var_sub))  (lis_cur: Z)  (vs: var_sub) ,
-  [| (thm <> 0) |]
+  EX (lis_next: Z)  (lis_cur: Z)  (vs: var_sub)  (l0: (@list var_sub)) ,
+  [| (thm <> 0) |] 
+  &&  [| (l = (cons (vs) (l0))) |]
   &&  ((&((thm)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (t)))
   **  (store_term' thm t )
   **  ((&((lis)  # "var_sub_list" ->ₛ "cur")) # Ptr  |-> lis_cur)
@@ -602,7 +615,7 @@ forall (t_pre: Z) (trm: term) (v: Z) (v_2: Z) (lt: term) (rt: term) (v_3: Z) (v_
 .
 
 Definition separate_imply_return_wit_5 := 
-forall (t_pre: Z) (trm: term) (v: Z) (v_2: Z) (lt: term) (rt: term) (v_3: Z) (v_4: Z) (ll: term) (lr: term) (llctype: const_type) (llcctnt: Z) (retval: Z) ,
+forall (t_pre: Z) (trm: term) (v: Z) (v_2: Z) (lt: term) (rt: term) (v_3: Z) (v_4: Z) (ll: term) (lr: term) (llctype: const_type) (llcctnt: Z) (t1': Z) (t2': Z) (retval: Z) ,
   [| ((ctID (llctype)) = 7) |] 
   &&  [| (ll = (TermConst (llctype) (llcctnt))) |] 
   &&  [| ((termtypeID (ll)) = 1) |] 
@@ -613,7 +626,9 @@ forall (t_pre: Z) (trm: term) (v: Z) (v_2: Z) (lt: term) (rt: term) (v_3: Z) (v_
   &&  [| (trm = (TermApply (lt) (rt))) |] 
   &&  [| ((termtypeID (trm)) = 2) |] 
   &&  [| (t_pre <> 0) |]
-  &&  (store_ImplyProp retval v_3 v lr rt )
+  &&  (store_term v_3 lr )
+  **  (store_term v rt )
+  **  (store_ImplyProp retval t1' t2' lr rt )
   **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_2)
   **  ((&((v_2)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_4)
   **  ((&((v_4)  # "term" ->ₛ "content" .ₛ "Const" .ₛ "type")) # Int  |-> (ctID (llctype)))
