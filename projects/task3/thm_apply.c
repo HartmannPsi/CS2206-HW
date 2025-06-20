@@ -62,26 +62,30 @@ ImplyProp* separate_imply(term* t)
       store_term'(t, trm)
   */
   if (t->type != Apply) return (void*)0;
-  /*@ termtypeID(trm) == 2 &&
+  /*@ t != 0 && 
+      termtypeID(trm) == 2 &&
       store_term'(t, trm)
       which implies
-      exists left right,
-      store_term(t->content.Apply.left, left) *
-      store_term(t->content.Apply.right, right)
+      exists lt rt,
+      trm == TermApply(lt, rt) &&
+      store_term(t->content.Apply.left, lt) *
+      store_term(t->content.Apply.right, rt)
   */
-  /*@ exists left,
-      store_term(t->content.Apply.left, left)
+  /*@ exists lt,
+      store_term(t->content.Apply.left, lt)
       which implies
       t->content.Apply.left != 0 && 
-      data_at(&(t->content.Apply.left -> type), termtypeID(left)) *
-      store_term'(t->content.Apply.left, left)
+      data_at(&(t->content.Apply.left -> type), termtypeID(lt)) *
+      store_term'(t->content.Apply.left, lt)
   */
   if (t->content.Apply.left->type != Apply) return (void*)0;
-  /*@ exists left,
-      termtypeID(left) == 2 &&
-      store_term'(t->content.Apply.left, left)
+  /*@ exists lt,
+      t->content.Apply.left != 0 &&
+      termtypeID(lt) == 2 &&
+      store_term'(t->content.Apply.left, lt)
       which implies
       exists ll lr,
+      lt == TermApply(ll, lr) &&
       store_term(t->content.Apply.left->content.Apply.left, ll) *
       store_term(t->content.Apply.left->content.Apply.right, lr)
   */
@@ -94,11 +98,13 @@ ImplyProp* separate_imply(term* t)
   */
   if (t->content.Apply.left->content.Apply.left->type != Const) return (void*)0;
   /*@ exists ll,
+      t->content.Apply.left->content.Apply.left != 0 &&
       termtypeID(ll) == 1 &&
       store_term'(t->content.Apply.left->content.Apply.left, ll)
       which implies
       exists llctype llcctnt,
-      data_at(&(t->content.Apply.left->content.Apply.left->content.Const.type), llctype) *
+      ll == TermConst(llctype, llcctnt) &&
+      data_at(&(t->content.Apply.left->content.Apply.left->content.Const.type), ctID(llctype)) *
       data_at(&(t->content.Apply.left->content.Apply.left->content.Const.content), llcctnt)
   */
   if (t->content.Apply.left->content.Apply.left->content.Const.type != Impl) return (void*)0;

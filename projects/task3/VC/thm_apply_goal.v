@@ -379,16 +379,17 @@ forall (t_pre: Z) (trm: term) ,
 .
 
 Definition separate_imply_safety_wit_3 := 
-forall (t_pre: Z) (trm: term) (v: Z) (right: term) (v_2: Z) (left: term) ,
+forall (t_pre: Z) (trm: term) (v: Z) (v_2: Z) (lt: term) (rt: term) ,
   [| (v_2 <> 0) |] 
+  &&  [| (trm = (TermApply (lt) (rt))) |] 
   &&  [| ((termtypeID (trm)) = 2) |] 
   &&  [| (t_pre <> 0) |]
   &&  ((( &( "t" ) )) # Ptr  |-> t_pre)
   **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_2)
-  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (left)))
-  **  (store_term' v_2 left )
+  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (lt)))
+  **  (store_term' v_2 lt )
   **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v)
-  **  (store_term v right )
+  **  (store_term v rt )
   **  ((&((t_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (trm)))
 |--
   [| (2 <= INT_MAX) |] 
@@ -396,17 +397,18 @@ forall (t_pre: Z) (trm: term) (v: Z) (right: term) (v_2: Z) (left: term) ,
 .
 
 Definition separate_imply_safety_wit_4 := 
-forall (t_pre: Z) (trm: term) (v: Z) (right: term) (v_2: Z) (left: term) ,
-  [| ((termtypeID (left)) <> 2) |] 
+forall (t_pre: Z) (trm: term) (v: Z) (v_2: Z) (lt: term) (rt: term) ,
+  [| ((termtypeID (lt)) <> 2) |] 
   &&  [| (v_2 <> 0) |] 
+  &&  [| (trm = (TermApply (lt) (rt))) |] 
   &&  [| ((termtypeID (trm)) = 2) |] 
   &&  [| (t_pre <> 0) |]
   &&  ((( &( "t" ) )) # Ptr  |-> t_pre)
   **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_2)
-  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (left)))
-  **  (store_term' v_2 left )
+  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (lt)))
+  **  (store_term' v_2 lt )
   **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v)
-  **  (store_term v right )
+  **  (store_term v rt )
   **  ((&((t_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (trm)))
 |--
   [| (0 <= INT_MAX) |] 
@@ -414,10 +416,12 @@ forall (t_pre: Z) (trm: term) (v: Z) (right: term) (v_2: Z) (left: term) ,
 .
 
 Definition separate_imply_safety_wit_5 := 
-forall (t_pre: Z) (trm: term) (v: Z) (right: term) (v_2: Z) (left: term) (v_3: Z) (lr: term) (v_4: Z) (ll: term) ,
+forall (t_pre: Z) (trm: term) (v: Z) (v_2: Z) (lt: term) (rt: term) (v_3: Z) (v_4: Z) (ll: term) (lr: term) ,
   [| (v_4 <> 0) |] 
-  &&  [| ((termtypeID (left)) = 2) |] 
+  &&  [| (lt = (TermApply (ll) (lr))) |] 
+  &&  [| ((termtypeID (lt)) = 2) |] 
   &&  [| (v_2 <> 0) |] 
+  &&  [| (trm = (TermApply (lt) (rt))) |] 
   &&  [| ((termtypeID (trm)) = 2) |] 
   &&  [| (t_pre <> 0) |]
   &&  ((( &( "t" ) )) # Ptr  |-> t_pre)
@@ -427,9 +431,9 @@ forall (t_pre: Z) (trm: term) (v: Z) (right: term) (v_2: Z) (left: term) (v_3: Z
   **  (store_term' v_4 ll )
   **  ((&((v_2)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v_3)
   **  (store_term v_3 lr )
-  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (left)))
+  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (lt)))
   **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v)
-  **  (store_term v right )
+  **  (store_term v rt )
   **  ((&((t_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (trm)))
 |--
   [| (1 <= INT_MAX) |] 
@@ -437,11 +441,13 @@ forall (t_pre: Z) (trm: term) (v: Z) (right: term) (v_2: Z) (left: term) (v_3: Z
 .
 
 Definition separate_imply_safety_wit_6 := 
-forall (t_pre: Z) (trm: term) (v: Z) (right: term) (v_2: Z) (left: term) (v_3: Z) (lr: term) (v_4: Z) (ll: term) ,
+forall (t_pre: Z) (trm: term) (v: Z) (v_2: Z) (lt: term) (rt: term) (v_3: Z) (v_4: Z) (ll: term) (lr: term) ,
   [| ((termtypeID (ll)) <> 1) |] 
   &&  [| (v_4 <> 0) |] 
-  &&  [| ((termtypeID (left)) = 2) |] 
+  &&  [| (lt = (TermApply (ll) (lr))) |] 
+  &&  [| ((termtypeID (lt)) = 2) |] 
   &&  [| (v_2 <> 0) |] 
+  &&  [| (trm = (TermApply (lt) (rt))) |] 
   &&  [| ((termtypeID (trm)) = 2) |] 
   &&  [| (t_pre <> 0) |]
   &&  ((( &( "t" ) )) # Ptr  |-> t_pre)
@@ -451,9 +457,9 @@ forall (t_pre: Z) (trm: term) (v: Z) (right: term) (v_2: Z) (left: term) (v_3: Z
   **  (store_term' v_4 ll )
   **  ((&((v_2)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v_3)
   **  (store_term v_3 lr )
-  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (left)))
+  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (lt)))
   **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v)
-  **  (store_term v right )
+  **  (store_term v rt )
   **  ((&((t_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (trm)))
 |--
   [| (0 <= INT_MAX) |] 
@@ -461,24 +467,27 @@ forall (t_pre: Z) (trm: term) (v: Z) (right: term) (v_2: Z) (left: term) (v_3: Z
 .
 
 Definition separate_imply_safety_wit_7 := 
-forall (t_pre: Z) (trm: term) (v: Z) (right: term) (v_2: Z) (left: term) (v_3: Z) (lr: term) (v_4: Z) (ll: term) (llcctnt: Z) (llctype: Z) ,
-  [| ((termtypeID (ll)) = 1) |] 
+forall (t_pre: Z) (trm: term) (v: Z) (v_2: Z) (lt: term) (rt: term) (v_3: Z) (v_4: Z) (ll: term) (lr: term) (llctype: const_type) (llcctnt: Z) ,
+  [| (ll = (TermConst (llctype) (llcctnt))) |] 
+  &&  [| ((termtypeID (ll)) = 1) |] 
   &&  [| (v_4 <> 0) |] 
-  &&  [| ((termtypeID (left)) = 2) |] 
+  &&  [| (lt = (TermApply (ll) (lr))) |] 
+  &&  [| ((termtypeID (lt)) = 2) |] 
   &&  [| (v_2 <> 0) |] 
+  &&  [| (trm = (TermApply (lt) (rt))) |] 
   &&  [| ((termtypeID (trm)) = 2) |] 
   &&  [| (t_pre <> 0) |]
   &&  ((( &( "t" ) )) # Ptr  |-> t_pre)
   **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_2)
   **  ((&((v_2)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_4)
-  **  ((&((v_4)  # "term" ->ₛ "content" .ₛ "Const" .ₛ "type")) # Int  |-> llctype)
+  **  ((&((v_4)  # "term" ->ₛ "content" .ₛ "Const" .ₛ "type")) # Int  |-> (ctID (llctype)))
   **  ((&((v_4)  # "term" ->ₛ "content" .ₛ "Const" .ₛ "content")) # Int  |-> llcctnt)
   **  ((&((v_4)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (ll)))
   **  ((&((v_2)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v_3)
   **  (store_term v_3 lr )
-  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (left)))
+  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (lt)))
   **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v)
-  **  (store_term v right )
+  **  (store_term v rt )
   **  ((&((t_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (trm)))
 |--
   [| (7 <= INT_MAX) |] 
@@ -486,25 +495,28 @@ forall (t_pre: Z) (trm: term) (v: Z) (right: term) (v_2: Z) (left: term) (v_3: Z
 .
 
 Definition separate_imply_safety_wit_8 := 
-forall (t_pre: Z) (trm: term) (v: Z) (right: term) (v_2: Z) (left: term) (v_3: Z) (lr: term) (v_4: Z) (ll: term) (llcctnt: Z) (llctype: Z) ,
-  [| (llctype <> 7) |] 
+forall (t_pre: Z) (trm: term) (v: Z) (v_2: Z) (lt: term) (rt: term) (v_3: Z) (v_4: Z) (ll: term) (lr: term) (llctype: const_type) (llcctnt: Z) ,
+  [| ((ctID (llctype)) <> 7) |] 
+  &&  [| (ll = (TermConst (llctype) (llcctnt))) |] 
   &&  [| ((termtypeID (ll)) = 1) |] 
   &&  [| (v_4 <> 0) |] 
-  &&  [| ((termtypeID (left)) = 2) |] 
+  &&  [| (lt = (TermApply (ll) (lr))) |] 
+  &&  [| ((termtypeID (lt)) = 2) |] 
   &&  [| (v_2 <> 0) |] 
+  &&  [| (trm = (TermApply (lt) (rt))) |] 
   &&  [| ((termtypeID (trm)) = 2) |] 
   &&  [| (t_pre <> 0) |]
   &&  ((( &( "t" ) )) # Ptr  |-> t_pre)
   **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_2)
   **  ((&((v_2)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_4)
-  **  ((&((v_4)  # "term" ->ₛ "content" .ₛ "Const" .ₛ "type")) # Int  |-> llctype)
+  **  ((&((v_4)  # "term" ->ₛ "content" .ₛ "Const" .ₛ "type")) # Int  |-> (ctID (llctype)))
   **  ((&((v_4)  # "term" ->ₛ "content" .ₛ "Const" .ₛ "content")) # Int  |-> llcctnt)
   **  ((&((v_4)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (ll)))
   **  ((&((v_2)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v_3)
   **  (store_term v_3 lr )
-  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (left)))
+  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (lt)))
   **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v)
-  **  (store_term v right )
+  **  (store_term v rt )
   **  ((&((t_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (trm)))
 |--
   [| (0 <= INT_MAX) |] 
@@ -522,27 +534,30 @@ forall (t_pre: Z) (trm: term) ,
 .
 
 Definition separate_imply_return_wit_2 := 
-forall (t_pre: Z) (trm: term) (v: Z) (right: term) (v_2: Z) (left: term) ,
-  [| ((termtypeID (left)) <> 2) |] 
+forall (t_pre: Z) (trm: term) (v: Z) (v_2: Z) (lt: term) (rt: term) ,
+  [| ((termtypeID (lt)) <> 2) |] 
   &&  [| (v_2 <> 0) |] 
+  &&  [| (trm = (TermApply (lt) (rt))) |] 
   &&  [| ((termtypeID (trm)) = 2) |] 
   &&  [| (t_pre <> 0) |]
   &&  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_2)
-  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (left)))
-  **  (store_term' v_2 left )
+  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (lt)))
+  **  (store_term' v_2 lt )
   **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v)
-  **  (store_term v right )
+  **  (store_term v rt )
   **  ((&((t_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (trm)))
 |--
   (store_imply_res 0 (sep_impl (trm)) )
 .
 
 Definition separate_imply_return_wit_3 := 
-forall (t_pre: Z) (trm: term) (v: Z) (right: term) (v_2: Z) (left: term) (v_3: Z) (lr: term) (v_4: Z) (ll: term) ,
+forall (t_pre: Z) (trm: term) (v: Z) (v_2: Z) (lt: term) (rt: term) (v_3: Z) (v_4: Z) (ll: term) (lr: term) ,
   [| ((termtypeID (ll)) <> 1) |] 
   &&  [| (v_4 <> 0) |] 
-  &&  [| ((termtypeID (left)) = 2) |] 
+  &&  [| (lt = (TermApply (ll) (lr))) |] 
+  &&  [| ((termtypeID (lt)) = 2) |] 
   &&  [| (v_2 <> 0) |] 
+  &&  [| (trm = (TermApply (lt) (rt))) |] 
   &&  [| ((termtypeID (trm)) = 2) |] 
   &&  [| (t_pre <> 0) |]
   &&  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_2)
@@ -551,55 +566,61 @@ forall (t_pre: Z) (trm: term) (v: Z) (right: term) (v_2: Z) (left: term) (v_3: Z
   **  (store_term' v_4 ll )
   **  ((&((v_2)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v_3)
   **  (store_term v_3 lr )
-  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (left)))
+  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (lt)))
   **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v)
-  **  (store_term v right )
+  **  (store_term v rt )
   **  ((&((t_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (trm)))
 |--
   (store_imply_res 0 (sep_impl (trm)) )
 .
 
 Definition separate_imply_return_wit_4 := 
-forall (t_pre: Z) (trm: term) (v: Z) (right: term) (v_2: Z) (left: term) (v_3: Z) (lr: term) (v_4: Z) (ll: term) (llcctnt: Z) (llctype: Z) ,
-  [| (llctype <> 7) |] 
+forall (t_pre: Z) (trm: term) (v: Z) (v_2: Z) (lt: term) (rt: term) (v_3: Z) (v_4: Z) (ll: term) (lr: term) (llctype: const_type) (llcctnt: Z) ,
+  [| ((ctID (llctype)) <> 7) |] 
+  &&  [| (ll = (TermConst (llctype) (llcctnt))) |] 
   &&  [| ((termtypeID (ll)) = 1) |] 
   &&  [| (v_4 <> 0) |] 
-  &&  [| ((termtypeID (left)) = 2) |] 
+  &&  [| (lt = (TermApply (ll) (lr))) |] 
+  &&  [| ((termtypeID (lt)) = 2) |] 
   &&  [| (v_2 <> 0) |] 
+  &&  [| (trm = (TermApply (lt) (rt))) |] 
   &&  [| ((termtypeID (trm)) = 2) |] 
   &&  [| (t_pre <> 0) |]
   &&  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_2)
   **  ((&((v_2)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_4)
-  **  ((&((v_4)  # "term" ->ₛ "content" .ₛ "Const" .ₛ "type")) # Int  |-> llctype)
+  **  ((&((v_4)  # "term" ->ₛ "content" .ₛ "Const" .ₛ "type")) # Int  |-> (ctID (llctype)))
   **  ((&((v_4)  # "term" ->ₛ "content" .ₛ "Const" .ₛ "content")) # Int  |-> llcctnt)
   **  ((&((v_4)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (ll)))
   **  ((&((v_2)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v_3)
   **  (store_term v_3 lr )
-  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (left)))
+  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (lt)))
   **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v)
-  **  (store_term v right )
+  **  (store_term v rt )
   **  ((&((t_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (trm)))
 |--
   (store_imply_res 0 (sep_impl (trm)) )
 .
 
 Definition separate_imply_return_wit_5 := 
-forall (t_pre: Z) (trm: term) (v: Z) (right: term) (v_2: Z) (left: term) (v_3: Z) (lr: term) (v_4: Z) (ll: term) (llcctnt: Z) (llctype: Z) (retval: Z) ,
-  [| (llctype = 7) |] 
+forall (t_pre: Z) (trm: term) (v: Z) (v_2: Z) (lt: term) (rt: term) (v_3: Z) (v_4: Z) (ll: term) (lr: term) (llctype: const_type) (llcctnt: Z) (retval: Z) ,
+  [| ((ctID (llctype)) = 7) |] 
+  &&  [| (ll = (TermConst (llctype) (llcctnt))) |] 
   &&  [| ((termtypeID (ll)) = 1) |] 
   &&  [| (v_4 <> 0) |] 
-  &&  [| ((termtypeID (left)) = 2) |] 
+  &&  [| (lt = (TermApply (ll) (lr))) |] 
+  &&  [| ((termtypeID (lt)) = 2) |] 
   &&  [| (v_2 <> 0) |] 
+  &&  [| (trm = (TermApply (lt) (rt))) |] 
   &&  [| ((termtypeID (trm)) = 2) |] 
   &&  [| (t_pre <> 0) |]
-  &&  (store_ImplyProp retval v_3 v lr right )
+  &&  (store_ImplyProp retval v_3 v lr rt )
   **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_2)
   **  ((&((v_2)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_4)
-  **  ((&((v_4)  # "term" ->ₛ "content" .ₛ "Const" .ₛ "type")) # Int  |-> llctype)
+  **  ((&((v_4)  # "term" ->ₛ "content" .ₛ "Const" .ₛ "type")) # Int  |-> (ctID (llctype)))
   **  ((&((v_4)  # "term" ->ₛ "content" .ₛ "Const" .ₛ "content")) # Int  |-> llcctnt)
   **  ((&((v_4)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (ll)))
   **  ((&((v_2)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v_3)
-  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (left)))
+  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (lt)))
   **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v)
   **  ((&((t_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (trm)))
 |--
@@ -621,7 +642,8 @@ forall (t_pre: Z) (trm: term) ,
   **  ((&((t_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (trm)))
   **  (store_term' t_pre trm )
 |--
-  [| ((termtypeID (trm)) = 2) |]
+  [| (t_pre <> 0) |] 
+  &&  [| ((termtypeID (trm)) = 2) |]
 .
 
 Definition separate_imply_partial_solve_wit_2_aux := 
@@ -631,7 +653,8 @@ forall (t_pre: Z) (trm: term) ,
   &&  ((&((t_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (trm)))
   **  (store_term' t_pre trm )
 |--
-  [| ((termtypeID (trm)) = 2) |] 
+  [| (t_pre <> 0) |] 
+  &&  [| ((termtypeID (trm)) = 2) |] 
   &&  [| ((termtypeID (trm)) = 2) |] 
   &&  [| (t_pre <> 0) |]
   &&  (store_term' t_pre trm )
@@ -641,73 +664,82 @@ forall (t_pre: Z) (trm: term) ,
 Definition separate_imply_partial_solve_wit_2 := separate_imply_partial_solve_wit_2_pure -> separate_imply_partial_solve_wit_2_aux.
 
 Definition separate_imply_partial_solve_wit_3 := 
-forall (t_pre: Z) (trm: term) (v: Z) (right: term) (v_2: Z) (left: term) ,
-  [| ((termtypeID (trm)) = 2) |] 
+forall (t_pre: Z) (trm: term) (v: Z) (v_2: Z) (lt: term) (rt: term) ,
+  [| (trm = (TermApply (lt) (rt))) |] 
+  &&  [| ((termtypeID (trm)) = 2) |] 
   &&  [| (t_pre <> 0) |]
   &&  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_2)
-  **  (store_term v_2 left )
+  **  (store_term v_2 lt )
   **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v)
-  **  (store_term v right )
+  **  (store_term v rt )
   **  ((&((t_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (trm)))
 |--
-  [| ((termtypeID (trm)) = 2) |] 
+  [| (trm = (TermApply (lt) (rt))) |] 
+  &&  [| ((termtypeID (trm)) = 2) |] 
   &&  [| (t_pre <> 0) |]
   &&  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_2)
-  **  (store_term v_2 left )
+  **  (store_term v_2 lt )
   **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v)
-  **  (store_term v right )
+  **  (store_term v rt )
   **  ((&((t_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (trm)))
 .
 
 Definition separate_imply_partial_solve_wit_4_pure := 
-forall (t_pre: Z) (trm: term) (v: Z) (right: term) (v_2: Z) (left: term) ,
-  [| ((termtypeID (left)) = 2) |] 
-  &&  [| (v_2 <> 0) |] 
+forall (t_pre: Z) (trm: term) (v_2: Z) (v: Z) (lt: term) (rt: term) ,
+  [| ((termtypeID (lt)) = 2) |] 
+  &&  [| (v <> 0) |] 
+  &&  [| (trm = (TermApply (lt) (rt))) |] 
   &&  [| ((termtypeID (trm)) = 2) |] 
   &&  [| (t_pre <> 0) |]
   &&  ((( &( "t" ) )) # Ptr  |-> t_pre)
-  **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_2)
-  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (left)))
-  **  (store_term' v_2 left )
-  **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v)
-  **  (store_term v right )
+  **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v)
+  **  ((&((v)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (lt)))
+  **  (store_term' v lt )
+  **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v_2)
+  **  (store_term v_2 rt )
   **  ((&((t_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (trm)))
 |--
-  [| ((termtypeID (left)) = 2) |]
+  [| (v <> 0) |] 
+  &&  [| ((termtypeID (lt)) = 2) |]
 .
 
 Definition separate_imply_partial_solve_wit_4_aux := 
-forall (t_pre: Z) (trm: term) (v: Z) (right: term) (v_2: Z) (left: term) ,
-  [| ((termtypeID (left)) = 2) |] 
+forall (t_pre: Z) (trm: term) (v: Z) (v_2: Z) (lt: term) (rt: term) ,
+  [| ((termtypeID (lt)) = 2) |] 
   &&  [| (v_2 <> 0) |] 
+  &&  [| (trm = (TermApply (lt) (rt))) |] 
   &&  [| ((termtypeID (trm)) = 2) |] 
   &&  [| (t_pre <> 0) |]
   &&  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_2)
-  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (left)))
-  **  (store_term' v_2 left )
+  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (lt)))
+  **  (store_term' v_2 lt )
   **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v)
-  **  (store_term v right )
+  **  (store_term v rt )
   **  ((&((t_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (trm)))
 |--
-  [| ((termtypeID (left)) = 2) |] 
-  &&  [| ((termtypeID (left)) = 2) |] 
+  [| (v_2 <> 0) |] 
+  &&  [| ((termtypeID (lt)) = 2) |] 
+  &&  [| ((termtypeID (lt)) = 2) |] 
   &&  [| (v_2 <> 0) |] 
+  &&  [| (trm = (TermApply (lt) (rt))) |] 
   &&  [| ((termtypeID (trm)) = 2) |] 
   &&  [| (t_pre <> 0) |]
   &&  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_2)
-  **  (store_term' v_2 left )
-  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (left)))
+  **  (store_term' v_2 lt )
+  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (lt)))
   **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v)
-  **  (store_term v right )
+  **  (store_term v rt )
   **  ((&((t_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (trm)))
 .
 
 Definition separate_imply_partial_solve_wit_4 := separate_imply_partial_solve_wit_4_pure -> separate_imply_partial_solve_wit_4_aux.
 
 Definition separate_imply_partial_solve_wit_5 := 
-forall (t_pre: Z) (trm: term) (v: Z) (right: term) (v_2: Z) (left: term) (v_3: Z) (lr: term) (v_4: Z) (ll: term) ,
-  [| ((termtypeID (left)) = 2) |] 
+forall (t_pre: Z) (trm: term) (v: Z) (v_2: Z) (lt: term) (rt: term) (v_3: Z) (v_4: Z) (ll: term) (lr: term) ,
+  [| (lt = (TermApply (ll) (lr))) |] 
+  &&  [| ((termtypeID (lt)) = 2) |] 
   &&  [| (v_2 <> 0) |] 
+  &&  [| (trm = (TermApply (lt) (rt))) |] 
   &&  [| ((termtypeID (trm)) = 2) |] 
   &&  [| (t_pre <> 0) |]
   &&  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_2)
@@ -715,13 +747,15 @@ forall (t_pre: Z) (trm: term) (v: Z) (right: term) (v_2: Z) (left: term) (v_3: Z
   **  (store_term v_4 ll )
   **  ((&((v_2)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v_3)
   **  (store_term v_3 lr )
-  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (left)))
+  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (lt)))
   **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v)
-  **  (store_term v right )
+  **  (store_term v rt )
   **  ((&((t_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (trm)))
 |--
-  [| ((termtypeID (left)) = 2) |] 
+  [| (lt = (TermApply (ll) (lr))) |] 
+  &&  [| ((termtypeID (lt)) = 2) |] 
   &&  [| (v_2 <> 0) |] 
+  &&  [| (trm = (TermApply (lt) (rt))) |] 
   &&  [| ((termtypeID (trm)) = 2) |] 
   &&  [| (t_pre <> 0) |]
   &&  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_2)
@@ -729,41 +763,46 @@ forall (t_pre: Z) (trm: term) (v: Z) (right: term) (v_2: Z) (left: term) (v_3: Z
   **  (store_term v_4 ll )
   **  ((&((v_2)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v_3)
   **  (store_term v_3 lr )
-  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (left)))
+  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (lt)))
   **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v)
-  **  (store_term v right )
+  **  (store_term v rt )
   **  ((&((t_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (trm)))
 .
 
 Definition separate_imply_partial_solve_wit_6_pure := 
-forall (t_pre: Z) (trm: term) (v: Z) (right: term) (v_2: Z) (left: term) (v_3: Z) (lr: term) (v_4: Z) (ll: term) ,
+forall (t_pre: Z) (trm: term) (v_2: Z) (v_3: Z) (lt: term) (rt: term) (v_4: Z) (v: Z) (ll: term) (lr: term) ,
   [| ((termtypeID (ll)) = 1) |] 
-  &&  [| (v_4 <> 0) |] 
-  &&  [| ((termtypeID (left)) = 2) |] 
-  &&  [| (v_2 <> 0) |] 
+  &&  [| (v <> 0) |] 
+  &&  [| (lt = (TermApply (ll) (lr))) |] 
+  &&  [| ((termtypeID (lt)) = 2) |] 
+  &&  [| (v_3 <> 0) |] 
+  &&  [| (trm = (TermApply (lt) (rt))) |] 
   &&  [| ((termtypeID (trm)) = 2) |] 
   &&  [| (t_pre <> 0) |]
   &&  ((( &( "t" ) )) # Ptr  |-> t_pre)
-  **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_2)
-  **  ((&((v_2)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_4)
-  **  ((&((v_4)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (ll)))
-  **  (store_term' v_4 ll )
-  **  ((&((v_2)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v_3)
-  **  (store_term v_3 lr )
-  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (left)))
-  **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v)
-  **  (store_term v right )
+  **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_3)
+  **  ((&((v_3)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v)
+  **  ((&((v)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (ll)))
+  **  (store_term' v ll )
+  **  ((&((v_3)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v_4)
+  **  (store_term v_4 lr )
+  **  ((&((v_3)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (lt)))
+  **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v_2)
+  **  (store_term v_2 rt )
   **  ((&((t_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (trm)))
 |--
-  [| ((termtypeID (ll)) = 1) |]
+  [| (v <> 0) |] 
+  &&  [| ((termtypeID (ll)) = 1) |]
 .
 
 Definition separate_imply_partial_solve_wit_6_aux := 
-forall (t_pre: Z) (trm: term) (v: Z) (right: term) (v_2: Z) (left: term) (v_3: Z) (lr: term) (v_4: Z) (ll: term) ,
+forall (t_pre: Z) (trm: term) (v: Z) (v_2: Z) (lt: term) (rt: term) (v_3: Z) (v_4: Z) (ll: term) (lr: term) ,
   [| ((termtypeID (ll)) = 1) |] 
   &&  [| (v_4 <> 0) |] 
-  &&  [| ((termtypeID (left)) = 2) |] 
+  &&  [| (lt = (TermApply (ll) (lr))) |] 
+  &&  [| ((termtypeID (lt)) = 2) |] 
   &&  [| (v_2 <> 0) |] 
+  &&  [| (trm = (TermApply (lt) (rt))) |] 
   &&  [| ((termtypeID (trm)) = 2) |] 
   &&  [| (t_pre <> 0) |]
   &&  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_2)
@@ -772,16 +811,19 @@ forall (t_pre: Z) (trm: term) (v: Z) (right: term) (v_2: Z) (left: term) (v_3: Z
   **  (store_term' v_4 ll )
   **  ((&((v_2)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v_3)
   **  (store_term v_3 lr )
-  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (left)))
+  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (lt)))
   **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v)
-  **  (store_term v right )
+  **  (store_term v rt )
   **  ((&((t_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (trm)))
 |--
-  [| ((termtypeID (ll)) = 1) |] 
+  [| (v_4 <> 0) |] 
+  &&  [| ((termtypeID (ll)) = 1) |] 
   &&  [| ((termtypeID (ll)) = 1) |] 
   &&  [| (v_4 <> 0) |] 
-  &&  [| ((termtypeID (left)) = 2) |] 
+  &&  [| (lt = (TermApply (ll) (lr))) |] 
+  &&  [| ((termtypeID (lt)) = 2) |] 
   &&  [| (v_2 <> 0) |] 
+  &&  [| (trm = (TermApply (lt) (rt))) |] 
   &&  [| ((termtypeID (trm)) = 2) |] 
   &&  [| (t_pre <> 0) |]
   &&  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_2)
@@ -790,51 +832,57 @@ forall (t_pre: Z) (trm: term) (v: Z) (right: term) (v_2: Z) (left: term) (v_3: Z
   **  ((&((v_4)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (ll)))
   **  ((&((v_2)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v_3)
   **  (store_term v_3 lr )
-  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (left)))
+  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (lt)))
   **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v)
-  **  (store_term v right )
+  **  (store_term v rt )
   **  ((&((t_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (trm)))
 .
 
 Definition separate_imply_partial_solve_wit_6 := separate_imply_partial_solve_wit_6_pure -> separate_imply_partial_solve_wit_6_aux.
 
 Definition separate_imply_partial_solve_wit_7 := 
-forall (t_pre: Z) (trm: term) (v: Z) (right: term) (v_2: Z) (left: term) (v_3: Z) (lr: term) (v_4: Z) (ll: term) (llcctnt: Z) (llctype: Z) ,
-  [| (llctype = 7) |] 
+forall (t_pre: Z) (trm: term) (v: Z) (v_2: Z) (lt: term) (rt: term) (v_3: Z) (v_4: Z) (ll: term) (lr: term) (llctype: const_type) (llcctnt: Z) ,
+  [| ((ctID (llctype)) = 7) |] 
+  &&  [| (ll = (TermConst (llctype) (llcctnt))) |] 
   &&  [| ((termtypeID (ll)) = 1) |] 
   &&  [| (v_4 <> 0) |] 
-  &&  [| ((termtypeID (left)) = 2) |] 
+  &&  [| (lt = (TermApply (ll) (lr))) |] 
+  &&  [| ((termtypeID (lt)) = 2) |] 
   &&  [| (v_2 <> 0) |] 
+  &&  [| (trm = (TermApply (lt) (rt))) |] 
   &&  [| ((termtypeID (trm)) = 2) |] 
   &&  [| (t_pre <> 0) |]
   &&  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_2)
   **  ((&((v_2)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_4)
-  **  ((&((v_4)  # "term" ->ₛ "content" .ₛ "Const" .ₛ "type")) # Int  |-> llctype)
+  **  ((&((v_4)  # "term" ->ₛ "content" .ₛ "Const" .ₛ "type")) # Int  |-> (ctID (llctype)))
   **  ((&((v_4)  # "term" ->ₛ "content" .ₛ "Const" .ₛ "content")) # Int  |-> llcctnt)
   **  ((&((v_4)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (ll)))
   **  ((&((v_2)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v_3)
   **  (store_term v_3 lr )
-  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (left)))
+  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (lt)))
   **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v)
-  **  (store_term v right )
+  **  (store_term v rt )
   **  ((&((t_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (trm)))
 |--
-  [| (llctype = 7) |] 
+  [| ((ctID (llctype)) = 7) |] 
+  &&  [| (ll = (TermConst (llctype) (llcctnt))) |] 
   &&  [| ((termtypeID (ll)) = 1) |] 
   &&  [| (v_4 <> 0) |] 
-  &&  [| ((termtypeID (left)) = 2) |] 
+  &&  [| (lt = (TermApply (ll) (lr))) |] 
+  &&  [| ((termtypeID (lt)) = 2) |] 
   &&  [| (v_2 <> 0) |] 
+  &&  [| (trm = (TermApply (lt) (rt))) |] 
   &&  [| ((termtypeID (trm)) = 2) |] 
   &&  [| (t_pre <> 0) |]
   &&  (store_term v_3 lr )
-  **  (store_term v right )
+  **  (store_term v rt )
   **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_2)
   **  ((&((v_2)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_4)
-  **  ((&((v_4)  # "term" ->ₛ "content" .ₛ "Const" .ₛ "type")) # Int  |-> llctype)
+  **  ((&((v_4)  # "term" ->ₛ "content" .ₛ "Const" .ₛ "type")) # Int  |-> (ctID (llctype)))
   **  ((&((v_4)  # "term" ->ₛ "content" .ₛ "Const" .ₛ "content")) # Int  |-> llcctnt)
   **  ((&((v_4)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (ll)))
   **  ((&((v_2)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v_3)
-  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (left)))
+  **  ((&((v_2)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (lt)))
   **  ((&((t_pre)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v)
   **  ((&((t_pre)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (trm)))
 .
@@ -850,35 +898,39 @@ forall (trm: term) (t: Z) ,
 
 Definition separate_imply_which_implies_wit_2 := 
 forall (trm: term) (t: Z) ,
-  [| ((termtypeID (trm)) = 2) |]
+  [| (t <> 0) |] 
+  &&  [| ((termtypeID (trm)) = 2) |]
   &&  (store_term' t trm )
 |--
-  EX (v: Z)  (right: term)  (v_2: Z)  (left: term) ,
-  ((&((t)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_2)
-  **  (store_term v_2 left )
+  EX (v: Z)  (v_2: Z)  (lt: term)  (rt: term) ,
+  [| (trm = (TermApply (lt) (rt))) |]
+  &&  ((&((t)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_2)
+  **  (store_term v_2 lt )
   **  ((&((t)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v)
-  **  (store_term v right )
+  **  (store_term v rt )
 .
 
 Definition separate_imply_which_implies_wit_3 := 
-forall (left: term) (t: Z) (v: Z) ,
+forall (lt: term) (t: Z) (v: Z) ,
   ((&((t)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v)
-  **  (store_term v left )
+  **  (store_term v lt )
 |--
   [| (v <> 0) |]
   &&  ((&((t)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v)
-  **  ((&((v)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (left)))
-  **  (store_term' v left )
+  **  ((&((v)  # "term" ->ₛ "type")) # Int  |-> (termtypeID (lt)))
+  **  (store_term' v lt )
 .
 
 Definition separate_imply_which_implies_wit_4 := 
-forall (left: term) (t: Z) (v_3: Z) ,
-  [| ((termtypeID (left)) = 2) |]
+forall (lt: term) (t: Z) (v_3: Z) ,
+  [| (v_3 <> 0) |] 
+  &&  [| ((termtypeID (lt)) = 2) |]
   &&  ((&((t)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_3)
-  **  (store_term' v_3 left )
+  **  (store_term' v_3 lt )
 |--
-  EX (v: Z)  (lr: term)  (v_2: Z)  (ll: term) ,
-  ((&((t)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_3)
+  EX (v: Z)  (v_2: Z)  (ll: term)  (lr: term) ,
+  [| (lt = (TermApply (ll) (lr))) |]
+  &&  ((&((t)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_3)
   **  ((&((v_3)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_2)
   **  (store_term v_2 ll )
   **  ((&((v_3)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right")) # Ptr  |-> v)
@@ -900,15 +952,17 @@ forall (ll: term) (t: Z) (v: Z) (v_2: Z) ,
 
 Definition separate_imply_which_implies_wit_6 := 
 forall (ll: term) (t: Z) (v: Z) (v_2: Z) ,
-  [| ((termtypeID (ll)) = 1) |]
+  [| (v_2 <> 0) |] 
+  &&  [| ((termtypeID (ll)) = 1) |]
   &&  ((&((t)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v)
   **  ((&((v)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_2)
   **  (store_term' v_2 ll )
 |--
-  EX (llcctnt: Z)  (llctype: Z) ,
-  ((&((t)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v)
+  EX (llctype: const_type)  (llcctnt: Z) ,
+  [| (ll = (TermConst (llctype) (llcctnt))) |]
+  &&  ((&((t)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v)
   **  ((&((v)  # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left")) # Ptr  |-> v_2)
-  **  ((&((v_2)  # "term" ->ₛ "content" .ₛ "Const" .ₛ "type")) # Int  |-> llctype)
+  **  ((&((v_2)  # "term" ->ₛ "content" .ₛ "Const" .ₛ "type")) # Int  |-> (ctID (llctype)))
   **  ((&((v_2)  # "term" ->ₛ "content" .ₛ "Const" .ₛ "content")) # Int  |-> llcctnt)
 .
 
