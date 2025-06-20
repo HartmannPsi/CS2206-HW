@@ -1,24 +1,23 @@
 #include "ast.h"
-// cons not find?
-term* sub_thm(term* thm, var_sub_list* list)
+term* sub_thm(term* thm, var_sub_list* lis)
 /*@ With t l
-      Require store_term(thm, t) * sll_var_sub_list(list, l)
-      Ensure thm == thm@pre && list == list@pre &&
-              sll_var_sub_list(list, l) *
+      Require store_term(thm, t) * sll_var_sub_list(lis, l)
+      Ensure thm == thm@pre && lis == lis@pre &&
+              sll_var_sub_list(lis, l) *
               store_term_res(__return, thm_subst(t, l))
 */
 {
-  if(list == (void*) 0) return thm;
-  /*@ list != 0 &&
+  if(lis == (void*) 0) return thm;
+  /*@ lis != 0 &&
       store_term(thm, t) *
-      sll_var_sub_list(list, l)
+      sll_var_sub_list(lis, l)
       which implies
       exists vs l0,
         thm != 0 && 
         data_at(&(thm -> type), termtypeID(t)) *
         store_term'(thm, t) *
-        store_var_sub(list -> cur, vs) *
-        sll_var_sub_list(list -> next, l0)
+        store_var_sub(lis -> cur, vs) *
+        sll_var_sub_list(lis -> next, l0)
   */
   if(thm->type == Quant){
     /*@ exists vs,
@@ -26,7 +25,7 @@ term* sub_thm(term* thm, var_sub_list* list)
         thm != 0 && 
         data_at(&(thm -> type), termtypeID(t)) *
         store_term'(thm, t) *
-        store_var_sub(list->cur, vs)
+        store_var_sub(lis->cur, vs)
         which implies
         exists sv st sy sz y z qt qvar qterm,
           thm != 0 && 
@@ -37,33 +36,75 @@ term* sub_thm(term* thm, var_sub_list* list)
           data_at(&(thm -> content.Quant.var), y) *
           data_at(&(thm -> content.Quant.body), z) *
           store_string(y, qvar) * store_term(z, qterm) *
-          data_at(&(list->cur->var), sy) *
-          data_at(&(list->cur->sub_term), sz) *
+          data_at(&(lis->cur->var), sy) *
+          data_at(&(lis->cur->sub_term), sz) *
           store_string(sy, sv) *
           store_term(sz, st) 
     */
-    term* den = list->cur->sub_term;
-    return sub_thm(subst_term(den, list->cur->var, thm->content.Quant.body), list->next);
+    term* den = lis->cur->sub_term;
+    return sub_thm(subst_term(den, lis->cur->var, thm->content.Quant.body), lis->next);
   }
   else return (void*) 0;
 }
 
 // apply (apply (impl) h1) (h2)
 // 不是imply形式时返回(void*) 0
-// ImplyProp* separate_imply(term* t) 
-// /*@ With trm
-//    Require store_term(t, trm)
-//     Ensure t == t@pre && store_imply_res(__return, sep_impl(trm))
-// */
-// {
-//   if (t->type != Apply || t->content.Apply.left->type != Apply ||
-//       t->content.Apply.left->content.Apply.left->type != Const ||
-//       t->content.Apply.left->content.Apply.left->content.Const.type != Impl)
-//     return (void*)0;
-//   else
-//     return createImplyProp(t->content.Apply.left->content.Apply.right,
-//                            t->content.Apply.right);
-// }
+ImplyProp* separate_imply(term* t) 
+/*@ With trm
+    Require store_term(t, trm)
+    Ensure t == t@pre && store_imply_res(__return, sep_impl(trm))
+*/
+{
+  /*@ store_term(t, trm)
+      which implies
+      t != 0 && 
+      data_at(&(t -> type), termtypeID(trm)) *
+      store_term'(t, trm)
+  */
+  if (t->type != Apply) return (void*)0;
+  /*@ termtypeID(trm) == 2 &&
+      store_term'(t, trm)
+      which implies
+      exists left right,
+      store_term(t->content.Apply.left, left) *
+      store_term(t->content.Apply.right, right)
+  */
+  /*@ exists left,
+      store_term(t->content.Apply.left, left)
+      which implies
+      t->content.Apply.left != 0 && 
+      data_at(&(t->content.Apply.left -> type), termtypeID(left)) *
+      store_term'(t->content.Apply.left, left)
+  */
+  if (t->content.Apply.left->type != Apply) return (void*)0;
+  /*@ exists left,
+      termtypeID(left) == 2 &&
+      store_term'(t->content.Apply.left, left)
+      which implies
+      exists ll lr,
+      store_term(t->content.Apply.left->content.Apply.left, ll) *
+      store_term(t->content.Apply.left->content.Apply.right, lr)
+  */
+  /*@ exists ll,
+      store_term(t->content.Apply.left->content.Apply.left, ll)
+      which implies
+      t->content.Apply.left->content.Apply.left != 0 && 
+      data_at(&(t->content.Apply.left->content.Apply.left->type), termtypeID(ll)) *
+      store_term'(t->content.Apply.left->content.Apply.left, ll)
+  */
+  if (t->content.Apply.left->content.Apply.left->type != Const) return (void*)0;
+  /*@ exists ll,
+      termtypeID(ll) == 1 &&
+      store_term'(t->content.Apply.left->content.Apply.left, ll)
+      which implies
+      exists llctype llcctnt,
+      data_at(&(t->content.Apply.left->content.Apply.left->content.Const.type), llctype) *
+      data_at(&(t->content.Apply.left->content.Apply.left->content.Const.content), llcctnt)
+  */
+  if (t->content.Apply.left->content.Apply.left->content.Const.type != Impl) return (void*)0;
+  else return createImplyProp(t->content.Apply.left->content.Apply.right,
+                              t->content.Apply.right);
+}
 
 // 根据定理形式，匹配结论，得出要检验的前提
 term_list* check_list_gen(term* thm, term* target)
@@ -121,28 +162,46 @@ term_list* check_list_gen(term* thm, term* target)
   return check_list;
 }
 
-solve_res* thm_apply(term* thm, var_sub_list* list, term* goal) 
+solve_res* thm_apply(term* thm, var_sub_list* lis, term* goal) 
 /*@ With t l g
     Require store_term(thm, t) * 
-            sll_var_sub_list(list, l) * 
+            sll_var_sub_list(lis, l) * 
             store_term(goal, g)
-    Ensure thm == thm@pre && 
-            sll_var_sub_list(list, l) * 
+    Ensure thm == thm@pre &&  
+            sll_var_sub_list(lis, l) * 
             store_term(goal, g) *
             store_solve_res(__return, thm_app(t, l, g))
 */
 {
-  term* thm_ins = sub_thm(thm, list);
+  term* thm_ins = sub_thm(thm, lis);
   solve_res* res = malloc_solve_res();
+  /*@ store_solve_res(res, SRBool(0))
+      which implies
+      res->type == 0 &&
+      res->d.ans == 0
+  */
   if (thm_ins == (void*)0) {
     res->type = bool_res;
     res->d.ans = 0;
-  } else if (alpha_equiv(thm_ins, goal)) {
-    res->type = bool_res;
-    res->d.ans = 1;
   } else {
-    res->type = termlist;
-    res->d.list = check_list_gen(thm_ins, goal);
+    // Added {} here without changing the semantics!
+    /*@ thm_ins != 0 &&
+        store_term_res(thm_ins, thm_subst(t, l))
+        which implies
+        exists tst,
+        store_term(thm_ins, tst)
+    */
+    if (alpha_equiv(thm_ins, goal)) {
+      res->type = bool_res;
+      res->d.ans = 1;
+    } else {
+      res->type = termlist;
+      /*@ res->d.ans == 0
+          which implies
+          res->d.list == 0
+      */
+      res->d.list = check_list_gen(thm_ins, goal);
+    }
   }
   return res;
 }
