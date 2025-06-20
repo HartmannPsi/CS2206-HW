@@ -50,20 +50,20 @@ term* sub_thm(term* thm, var_sub_list* list)
 
 // apply (apply (impl) h1) (h2)
 // 不是imply形式时返回(void*) 0
-ImplyProp* separate_imply(term* t) 
-/*@ With trm
-    Require store_term(t, trm)
-    Ensure t == t@pre && store_imply_res(__return, sep_impl(trm))
-*/
-{
-  if (t->type != Apply || t->content.Apply.left->type != Apply ||
-      t->content.Apply.left->content.Apply.left->type != Const ||
-      t->content.Apply.left->content.Apply.left->content.Const.type != Impl)
-    return (void*)0;
-  else
-    return createImplyProp(t->content.Apply.left->content.Apply.right,
-                           t->content.Apply.right);
-}
+// ImplyProp* separate_imply(term* t) 
+// /*@ With trm
+//    Require store_term(t, trm)
+//     Ensure t == t@pre && store_imply_res(__return, sep_impl(trm))
+// */
+// {
+//   if (t->type != Apply || t->content.Apply.left->type != Apply ||
+//       t->content.Apply.left->content.Apply.left->type != Const ||
+//       t->content.Apply.left->content.Apply.left->content.Const.type != Impl)
+//     return (void*)0;
+//   else
+//     return createImplyProp(t->content.Apply.left->content.Apply.right,
+//                            t->content.Apply.right);
+// }
 
 // 根据定理形式，匹配结论，得出要检验的前提
 term_list* check_list_gen(term* thm, term* target)
@@ -79,6 +79,15 @@ term_list* check_list_gen(term* thm, term* target)
   }
   term_list* check_list = (void*)0;
   term_list** tail_ptr = &check_list;
+  // todo!!!
+  /*@ check_list == 0
+      which implies
+      sll_term_list(check_list, nil)
+  */
+  /*@ Inv exists l, target == target@pre &&
+          store_term(thm@pre, theo) * store_term(target, targ) *
+          sll_term_list(check_list, l)
+  */
   while (thm != (void*)0 && !alpha_equiv(thm, target)) {
     ImplyProp* p = separate_imply(thm);
     if (p == (void*)0) {
@@ -87,12 +96,26 @@ term_list* check_list_gen(term* thm, term* target)
     }
     // 添加新节点到链表
     term_list* new_node = malloc_term_list();
+    /*@ p != 0 && store_imply_res(p, sep_impl(theo))
+        which implies
+        exists p_assum p_concl,
+        sep_impl(theo) == imply_res_Cont(p_assum, p_concl) &&
+        store_term(p->assum, p_assum) * store_term(p->concl, p_concl)
+    */
     new_node->element = p->assum;  // 转移所有权
     new_node->next = (void*)0;
 
     *tail_ptr = new_node;
     tail_ptr = &(new_node->next);
     thm = p->concl;
+    /*@ exists p_assum p_concl,
+        p != 0 && 
+        sep_impl(theo) == imply_res_Cont(p_assum, p_concl) &&
+        store_term(p->assum, p_assum) * store_term(p->concl, p_concl)
+        which implies
+        exists y z,
+        store_ImplyProp(p, y, z, p_assum, p_concl)
+    */
     free_imply_prop(p);  // 释放ImplyProp结构体（不释放其成员）
   }
   return check_list;

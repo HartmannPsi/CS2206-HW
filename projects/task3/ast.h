@@ -46,7 +46,18 @@
                (sep_impl: term -> imply_res)
                (gen_pre: term -> term -> list term)
                (thm_app: term -> list var_sub -> term -> solve_res)
+               (imply_res_Cont: term -> term -> imply_res)
 */
+/*@ Extern Coq (nil : {A} -> list A)
+               (cons : {A} -> A -> list A -> list A)
+               (app : {A} -> list A -> list A -> list A)
+               (rev : {A} -> list A -> list A)
+               (Zlength: {A} -> list A -> Z)
+*/
+
+/*@ Extern Coq (option :: * => *) */
+/*@ Extern Coq (Some: {A} -> A -> option A)
+               (None: {A} -> option A) */
 
 typedef int bool;
 

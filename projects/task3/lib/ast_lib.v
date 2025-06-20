@@ -638,6 +638,9 @@ Definition term_alpha_eqn (t1 t2 : term) : Z :=
 Definition term_res: Type := Option term.
 Definition imply_res: Type := Option ImplyProp.
 
+Definition imply_res_Cont (assum concl: term) : imply_res :=
+  Some (ImplP assum concl).
+
 Definition store_term_res (x: addr) (t: term_res): Assertion :=
   match t with
   | Some ti => store_term x ti
