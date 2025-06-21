@@ -57,7 +57,7 @@ term* sub_thm(term* thm, var_sub_list* lis)
 ImplyProp* separate_imply(term* t) 
 /*@ With trm
     Require store_term(t, trm)
-    Ensure t == t@pre && store_imply_res(__return, sep_impl(trm))
+    Ensure t == t@pre && store_imply_res(__return, sep_impl(trm)) * store_term(t, trm)
 */
 {
   /*@ store_term(t, trm)

@@ -28,6 +28,7 @@ Local Open Scope sac.
 
 Definition var_name : Type := list Z.
 
+<<<<<<< HEAD
 (* Option *)
 (* 
 Inductive Option (A : Type) : Type :=
@@ -64,6 +65,8 @@ Definition is_some {A : Type} (opt : Option A): bool :=
   end.
 *)
 
+=======
+>>>>>>> 712800f12df37138aa21886047f3c479742fcb8b
 (* all about ast basic structure *)
 
 Inductive const_type : Type :=
@@ -641,6 +644,20 @@ Definition imply_res: Type := option ImplyProp.
 Definition imply_res_Cont (assum concl: term) : imply_res :=
   Some (ImplP assum concl).
 
+Inductive partial_quant: Type :=
+  | NQuant : partial_quant
+  | PQuant (qt: quant_type) (x: var_name) (pq: partial_quant) : partial_quant.
+
+Fixpoint store_partial_quant (rt fin: addr) (pq: partial_quant) : Assertion :=
+  match pq with
+  | NQuant => [| rt = fin |] && emp
+  | PQuant qt x t => EX y z: addr,
+                &(rt # "term" ->ₛ "content" .ₛ "Quant" .ₛ "type") # Int |-> qtID qt **
+                &(rt # "term" ->ₛ "content" .ₛ "Quant" .ₛ "var") # Ptr |-> y **
+                &(rt # "term" ->ₛ "content" .ₛ "Quant" .ₛ "body") # Ptr |-> z **
+                store_string y x ** store_partial_quant z fin t
+  end.
+
 Definition store_term_res (x: addr) (t: term_res): Assertion :=
   match t with
   | Some ti => store_term x ti
@@ -654,18 +671,35 @@ Definition store_imply_res (x: addr) (impl: imply_res): Assertion :=
   | None => [| x = NULL |]
   end.
 
-Fixpoint thm_subst (thm: term) (l: var_sub_list): term_res :=
+Fixpoint thm_subst_rem (thm: term) (l: var_sub_list): bool * partial_quant :=
   match l with 
-    | nil => Some thm
+    | nil => (true, NQuant)
     | (VarSub v t) :: l0 => 
       match thm with
-        | TermQuant QForall v' body =>
-          if list_Z_eqb v v' then
-            thm_subst (term_subst_t t v body) l0
-          else
-            None
-        | _ => None
+        | TermQuant qt v' body =>
+            let (s, p) := thm_subst_rem body l0 in
+            (s, PQuant qt v' p)
+        | _ => (false, NQuant)
       end
+  end.
+
+Fixpoint thm_subst (thm: term) (l: var_sub_list): bool * term :=
+  match l with 
+    | nil => (true, thm)
+    | (VarSub v t) :: l0 => 
+      match thm with
+        | TermQuant qt v' body =>
+            thm_subst (term_subst_t t v' body) l0
+        | _ => (false, thm)
+      end
+  end.
+
+Definition store_sub_thm_res (rt fin: addr) (thm: term) (l: var_sub_list): Assertion :=
+  let (s1, pq) := thm_subst_rem thm l in let (s2, t) := thm_subst thm l in
+  match (s1, s2) with
+    | (true, true) => store_partial_quant rt fin pq ** store_term fin t
+    | (false, false) => store_partial_quant rt fin pq ** store_term fin t (* fin may be 0 *)
+    | _ => [| False |] && emp
   end.
 
 Definition sep_impl (t : term): imply_res :=
@@ -687,8 +721,8 @@ Fixpoint gen_pre (thm target : term): term_list :=
 
 Definition thm_app (thm : term) (l : var_sub_list) (goal : term): solve_res :=
   match thm_subst thm l with
-  | None => SRBool 0
-  | Some thm_ins =>
+  | (false, _) => SRBool 0
+  | (true, thm_ins) =>
       if term_alpha_eq thm_ins goal then SRBool 1
       else SRTList (gen_pre thm_ins goal)
   end.
@@ -720,6 +754,7 @@ Proof.
     - reflexivity.
     - pose proof IHt H; rewrite H0; reflexivity.
 Qed.
+<<<<<<< HEAD
 
 Inductive partial_quant: Type :=
   | NQuant : partial_quant
@@ -771,3 +806,5 @@ Definition sub_thm_mem (thm: term) (l: var_sub_list) (ret: term) :=
     | (false, false) => [||] EEX y store_partial_quant rt fin pq ** store_term fin t
     | _ => [| False |] && emp
   end. *)
+=======
+>>>>>>> 712800f12df37138aa21886047f3c479742fcb8b
