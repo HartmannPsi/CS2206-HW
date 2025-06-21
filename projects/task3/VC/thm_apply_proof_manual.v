@@ -49,15 +49,15 @@ Proof.
   unfold thm_subst.
   entailer!.
   apply sll_zero_right.
-  discriminate.
-Qed.
+  try discriminate.
+Admitted.
 
 Lemma proof_of_sub_thm_return_wit_2 : sub_thm_return_wit_2.
 Proof.
   pre_process.
-  rewrite H4.
-  rewrite H1.
-  rewrite H0.
+  rewrite H5.
+  (* rewrite H2.
+  rewrite H.
   unfold sll_var_sub_list.
   unfold sll.
   fold (sll store_var_sub_cell "var_sub_list" "next").
@@ -67,7 +67,7 @@ Proof.
   entailer!.
   destruct qt.
   - admit.
-  - unfold store_term_res at 2. admit.
+  - unfold store_term_res at 2. admit. *)
 Admitted.
 
 Lemma proof_of_sub_thm_return_wit_3 : sub_thm_return_wit_3.
@@ -110,6 +110,8 @@ Qed.
 Lemma proof_of_sub_thm_which_implies_wit_2 : sub_thm_which_implies_wit_2.
 Proof.
   pre_process.
+  unfold store_var_sub.
+
 Admitted.
 
 Lemma proof_of_separate_imply_return_wit_1 : separate_imply_return_wit_1.
@@ -117,36 +119,63 @@ Proof.
   pre_process.
   unfold store_imply_res.
   unfold sep_impl.
-  destruct trm; unfold termtypeID, NULL in *.
-  - entailer!.
-  - entailer!.
+  destruct trm; unfold NULL in *.
+  - sep_apply (store_term_fold_out t_pre (TermVar var)).
+    entailer!.
+    entailer!.
+    lia.
+  - sep_apply store_term_fold_out.
+    entailer!.
+    entailer!.
+    lia.
   - contradiction.
-  - entailer!.
+  - sep_apply store_term_fold_out.
+    entailer!.
+    entailer!.
+    lia.
 Qed.
 
 Lemma proof_of_separate_imply_return_wit_2 : separate_imply_return_wit_2.
 Proof.
   pre_process.
+  rewrite H1.
+  unfold store_term at 2.
+  fold store_term.
+  Exists v_2 v.
+  entailer!.
+  sep_apply store_term_fold_out.
+  entailer!.
+
   unfold store_imply_res.
   unfold sep_impl.
-  rewrite H1.
-  destruct lt; try lia.
+  destruct lt.
+
   - entailer!.
   - entailer!.
   - contradiction.
   - entailer!.
+  - lia.
 Qed.
 
 Lemma proof_of_separate_imply_return_wit_3 : separate_imply_return_wit_3.
 Proof.
   pre_process.
+  rewrite H4.
+  unfold store_term at 3.
+  fold store_term.
+  rewrite H1.
+  unfold store_term at 3.
+  fold store_term.
+  Exists v_2 v v_4 v_3.
+
+  sep_apply ((store_term_fold_out v_4 ll) H0).
+  entailer!.
+
   unfold store_imply_res.
   unfold sep_impl.
-  rewrite H4.
-  rewrite H1.
   destruct ll.
   - entailer!.
-  - entailer!.
+  - contradiction.
   - entailer!.
   - entailer!.
 Qed.
@@ -154,11 +183,24 @@ Qed.
 Lemma proof_of_separate_imply_return_wit_4 : separate_imply_return_wit_4.
 Proof.
   pre_process.
+  rewrite H6.
+  unfold store_term at 3.
+  fold store_term.
+  Exists v_2 v.
+  entailer!.
+
+  rewrite H3.
+  unfold store_term at 2.
+  fold store_term.
+  Exists v_4 v_3.
+  entailer!.
+
+  rewrite H0.
+  unfold store_term.
+  entailer!.
+
   unfold store_imply_res.
   unfold sep_impl.
-  rewrite H6.
-  rewrite H3.
-  rewrite H0.
   destruct llctype.
   - entailer!.
   - entailer!.
@@ -186,9 +228,13 @@ Proof.
   - unfold ctID in H; lia.
   - unfold ctID in H; lia.
   - unfold ctID in H; lia.
-  - Exists v_3 v.
-    admit.
-Admitted.
+  - Exists t1' t2'.
+    unfold store_term.
+    fold store_term.
+    Exists v_2 v.
+    Exists v_4 v_3.
+    entailer!.
+Qed.
 
 Lemma proof_of_separate_imply_which_implies_wit_1 : separate_imply_which_implies_wit_1.
 Proof.
@@ -280,12 +326,15 @@ Proof.
   unfold store_solve_res.
   assert ((thm_app t l g) = SRTList (gen_pre tst g)) .
   2:{
-    rewrite H6.
-    unfold restypeID.
-    Exists retval_2.
+    Exists retval_3 pq_2.
     entailer!.
-    admit.
+    rewrite H2.
+    rewrite H8.
+    Exists retval_2.
+    unfold restypeID.
+    entailer!.
   }
+  admit.
 Admitted.
 
 Lemma proof_of_thm_apply_return_wit_1_2 : thm_apply_return_wit_1_2.
@@ -296,6 +345,8 @@ Admitted.
 Lemma proof_of_thm_apply_return_wit_1_3 : thm_apply_return_wit_1_3.
 Proof.
   pre_process.
+  entailer!.
+  Exists retval_2 pq_2.
   entailer!.
 Admitted.
 

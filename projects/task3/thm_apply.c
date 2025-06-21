@@ -204,6 +204,7 @@ solve_res* thm_apply(term* thm, var_sub_list* lis, term* goal)
         store_term_res(thm_ins, thm_subst(t, l))
         which implies
         exists tst,
+        thm_subst(t, l) == Some(tst) &&
         store_term(thm_ins, tst)
     */
     if (alpha_equiv(thm_ins, goal)) {
