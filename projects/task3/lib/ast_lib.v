@@ -29,7 +29,7 @@ Local Open Scope sac.
 Definition var_name : Type := list Z.
 
 (* Option *)
-
+(* 
 Inductive Option (A : Type) : Type :=
 | Some : A -> Option A
 | None : Option A.
@@ -62,7 +62,7 @@ Definition is_some {A : Type} (opt : Option A): bool :=
   | Some x => true
   | None => false
   end.
-  
+*)
 
 (* all about ast basic structure *)
 
@@ -635,8 +635,8 @@ Definition term_alpha_eqn (t1 t2 : term) : Z :=
 
 (* thm_apply *)
 
-Definition term_res: Type := Option term.
-Definition imply_res: Type := Option ImplyProp.
+Definition term_res: Type := option term.
+Definition imply_res: Type := option ImplyProp.
 
 Definition imply_res_Cont (assum concl: term) : imply_res :=
   Some (ImplP assum concl).
@@ -720,3 +720,54 @@ Proof.
     - reflexivity.
     - pose proof IHt H; rewrite H0; reflexivity.
 Qed.
+
+Inductive partial_quant: Type :=
+  | NQuant : partial_quant
+  | PQuant (qt: quant_type) (x: var_name) (pq: partial_quant) : partial_quant.
+
+Fixpoint store_partial_quant (rt fin: addr) (pq: partial_quant) : Assertion :=
+  match pq with
+  | NQuant => [| rt = fin |] && emp
+  | PQuant qt x t => EX y z: addr,
+                &(rt # "term" ->ₛ "content" .ₛ "Quant" .ₛ "type") # Int |-> qtID qt **
+                &(rt # "term" ->ₛ "content" .ₛ "Quant" .ₛ "var") # Ptr |-> y **
+                &(rt # "term" ->ₛ "content" .ₛ "Quant" .ₛ "body") # Ptr |-> z **
+                store_string y x ** store_partial_quant z fin t
+  end.
+
+Fixpoint thm_subst_rem (thm: term) (l: var_sub_list): option partial_quant :=
+  match l with 
+    | nil => Some NQuant
+    | (VarSub v t) :: l0 => 
+      match thm with
+        | TermQuant qt v' body =>
+            match thm_subst_rem body l0 with
+            | Some p => Some (PQuant qt v' p)
+            | None => None
+            end
+        | _ => None
+      end
+  end.
+
+(* 
+Definition sub_thm_mem (thm: term) (l: var_sub_list) (ret: term) :=
+*)
+
+(* Fixpoint thm_subst (thm: term) (l: var_sub_list): bool * term :=
+  match l with 
+    | nil => (true, thm)
+    | (VarSub v t) :: l0 => 
+      match thm with
+        | TermQuant qt v' body =>
+            thm_subst (term_subst_t t v' body) l0
+        | _ => (false, thm)
+      end
+  end. *)
+
+(* Definition store_sub_thm_res (rt fin: addr) (thm: term) (l: var_sub_list): Assertion :=
+  let (s1, pq) := thm_subst_rem thm l in let (s2, t) := thm_subst thm l in
+  match (s1, s2) with
+    | (true, true) => store_partial_quant rt fin pq ** store_term fin t
+    | (false, false) => [||] EEX y store_partial_quant rt fin pq ** store_term fin t
+    | _ => [| False |] && emp
+  end. *)

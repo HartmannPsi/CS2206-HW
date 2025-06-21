@@ -1,11 +1,13 @@
 #include "ast.h"
 term* sub_thm(term* thm, var_sub_list* lis)
-// todo!!!
 /*@ With t l
       Require store_term(thm, t) * sll_var_sub_list(lis, l)
-      Ensure thm == thm@pre && lis == lis@pre &&
+      Ensure  exists pq,
+              thm == thm@pre && lis == lis@pre &&
+              thm_subst_rem(t, l) == Some(pq) &&
               sll_var_sub_list(lis, l) *
-              store_term_res(__return, thm_subst(t, l))
+              store_term_res(__return, thm_subst(t, l)) *
+              store_partial_quant(thm, __return, pq)
 */
 {
   if(lis == (void*) 0) return thm;
@@ -44,7 +46,8 @@ term* sub_thm(term* thm, var_sub_list* lis)
           store_term(sz, st) 
     */
     term* den = lis->cur->sub_term;
-    return sub_thm(subst_term(den, lis->cur->var, thm->content.Quant.body), lis->next);
+    thm->content.Quant.body = subst_term(den, lis->cur->var, thm->content.Quant.body);
+    return sub_thm(thm->content.Quant.body, lis->next);
   }
   else return (void*) 0;
 }
@@ -175,10 +178,14 @@ solve_res* thm_apply(term* thm, var_sub_list* lis, term* goal)
     Require store_term(thm, t) * 
             sll_var_sub_list(lis, l) * 
             store_term(goal, g)
-    Ensure thm == thm@pre &&  
+    Ensure exists pq ti,
+            thm == thm@pre &&
+            thm_subst_rem(t, l) == Some(pq) &&
             sll_var_sub_list(lis, l) * 
             store_term(goal, g) *
-            store_solve_res(__return, thm_app(t, l, g))
+            store_solve_res(__return, thm_app(t, l, g)) *
+            store_term_res(ti, thm_subst(t, l)) *
+            store_partial_quant(thm, ti, pq)
 */
 {
   term* thm_ins = sub_thm(thm, lis);
