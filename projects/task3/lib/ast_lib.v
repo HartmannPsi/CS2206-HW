@@ -477,8 +477,8 @@ Inductive ImplyProp : Type :=
 
 Definition store_ImplyProp (x y z: addr) (assum concl: term): Assertion :=
   [| x <> NULL |] &&
-  &(x # "ImplyProp" ->ₛ "assum") # Ptr |-> y **
-  &(x # "ImplyProp" ->ₛ "concl") # Ptr |-> z **
+  &(x # "imply_prop" ->ₛ "assum") # Ptr |-> y **
+  &(x # "imply_prop" ->ₛ "concl") # Ptr |-> z **
   store_term y assum ** store_term z concl.
 
 (* about list Z *)

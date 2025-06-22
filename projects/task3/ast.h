@@ -137,7 +137,7 @@ typedef struct solve_res {
 typedef struct imply_prop {
   term *assum;
   term *concl;
-} ImplyProp;
+} imply_prop;
 
 /* BEGIN Given Functions */
 
@@ -158,7 +158,7 @@ solve_res *malloc_solve_res()
     ;
 
 // 构造函数
-ImplyProp *createImplyProp(term *t1, term *t2)
+imply_prop *createImplyProp(term *t1, term *t2)
     /*@ With term1 term2
           Require store_term(t1, term1) *
                   store_term(t2, term2)
@@ -196,7 +196,7 @@ void free_str(char *s)
     */
     ;
 
-void free_imply_prop(ImplyProp *p)
+void free_imply_prop(imply_prop *p)
     /*@ With term1 term2 t1 t2
           Require store_ImplyProp(p, t1, t2, term1, term2)
           Ensure store_term(t1, term1) *
@@ -283,7 +283,7 @@ term* sub_thm(term* thm, var_sub_list* lis)
   */
   ;
 
-ImplyProp* separate_imply(term* t) 
+imply_prop* separate_imply(term* t) 
   /*@ With trm
       Require store_term(t, trm)
       Ensure t == t@pre &&

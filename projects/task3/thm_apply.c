@@ -51,7 +51,7 @@ term* sub_thm(term* thm, var_sub_list* lis)
 
 // apply (apply (impl) h1) (h2)
 // 不是imply形式时返回(void*) 0
-ImplyProp* separate_imply(term* t) 
+imply_prop* separate_imply(term* t) 
 /*@ With trm
     Require store_term(t, trm)
     Ensure t == t@pre && store_imply_res(__return, sep_impl(trm)) * store_term(t, trm)
@@ -129,26 +129,31 @@ term_list* check_list_gen(term* thm, term* target)
   term_list* check_list = (void*)0;
   term_list** tail_ptr = &check_list;
   // todo!!!
-  /*@ check_list == 0
+  /*@ tail_ptr == &check_list &&
+      check_list == 0
       which implies
-      sllbseg_term_list(&check_list, tail_ptr, nil) *
-      data_at(tail_ptr, 0)
+      data_at(&tail_ptr, &check_list) *
+      data_at(tail_ptr, 0) *
+      sllbseg_term_list(&check_list, tail_ptr, nil)
   */
   /*@ Inv exists l, target == target@pre &&
+          tail_ptr == tail_ptr &&
           store_term(thm@pre, theo) * store_term(target, targ) *
           sllbseg_term_list(&check_list, tail_ptr, l) *
           data_at(tail_ptr, 0)
   */
   while (thm != (void*)0 && !alpha_equiv(thm, target)) {
-    ImplyProp* p = separate_imply(thm);
+    imply_prop* p = separate_imply(thm);
     free_term(thm);
     if (p == (void*)0) {
       /*@ exists l,
           sllbseg_term_list(&check_list, tail_ptr, l) *
           data_at(tail_ptr, 0)
           which implies
-          exists l,
-          sll_term_list(check_list, l)
+          exists l y,
+          sll_term_list(y, l) *
+          data_at(&check_list, y) *
+          data_at(&tail_ptr, tail_ptr)
       */
       free_term_list(check_list);
       return (void*)0;
@@ -171,16 +176,19 @@ term_list* check_list_gen(term* thm, term* target)
         p != 0 && 
         store_term(p->assum, p_assum) * store_term(p->concl, p_concl)
         which implies
-        store_ImplyProp(p, p->assum, p->concl, p_assum, p_concl)
+        exists p_ass p_con u v,
+        store_ImplyProp(p, u, v, p_ass, p_con)
     */
-    free_imply_prop(p);  // 释放ImplyProp结构体（不释放其成员）
+    free_imply_prop(p);  // 释放imply_prop结构体（不释放其成员）
   }
   /*@ exists l,
       sllbseg_term_list(&check_list, tail_ptr, l) *
       data_at(tail_ptr, 0)
       which implies
-      exists l,
-      sll_term_list(check_list, l)
+      exists l y,
+      sll_term_list(y, l) *
+      data_at(&(check_list), y) *
+      data_at(&tail_ptr, tail_ptr)
   */
   return check_list;
 }

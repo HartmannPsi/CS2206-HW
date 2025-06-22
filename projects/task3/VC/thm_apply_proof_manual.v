@@ -304,13 +304,17 @@ Proof.
 Qed. 
 
 Lemma proof_of_check_list_gen_entail_wit_2 : check_list_gen_entail_wit_2.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  Exists l_2.
+  entailer!.
+Admitted.
 
 Lemma proof_of_check_list_gen_return_wit_1 : check_list_gen_return_wit_1.
 Proof.
   pre_process.
   rewrite H.
-  unfold store_sep_imp_res.
+  unfold store_imply_res.
 Admitted.
 
 Lemma proof_of_check_list_gen_return_wit_2_1 : check_list_gen_return_wit_2_1.
@@ -328,22 +332,68 @@ Proof.
 Qed.
 
 Lemma proof_of_check_list_gen_return_wit_3 : check_list_gen_return_wit_3.
-Proof. Admitted. 
+Proof.
+  pre_process.
+Admitted.
 
 Lemma proof_of_check_list_gen_which_implies_wit_1 : check_list_gen_which_implies_wit_1.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  rewrite H.
+  unfold sllbseg_term_list.
+  unfold sllbseg.
+  entailer!.
+Qed.
 
 Lemma proof_of_check_list_gen_which_implies_wit_2 : check_list_gen_which_implies_wit_2.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  unfold sllbseg_term_list.
+  unfold sll_term_list.
+  pose proof (sllbseg_2_sllseg store_term_cell "term_list" "next"
+              &( "check_list") tail_ptr 0 l_2).
+  sep_apply H.
+  Intros y.
+  Exists y l_2.
+  rewrite sllseg_0_sll.
+  entailer!.
+Qed.
 
 Lemma proof_of_check_list_gen_which_implies_wit_3 : check_list_gen_which_implies_wit_3.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  unfold store_imply_res.
+  destruct (sep_impl theo) eqn:E.
+  - destruct i.
+    Intros y z.
+    Exists z y assum concl.
+    unfold imply_res_Cont.
+    unfold store_ImplyProp.
+    entailer!.
+  - entailer!.
+Qed.
 
 Lemma proof_of_check_list_gen_which_implies_wit_4 : check_list_gen_which_implies_wit_4.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  unfold store_ImplyProp.
+  Exists p_assum p_concl p_assum_2 p_concl_2. 
+  entailer!.
+Qed.
 
 Lemma proof_of_check_list_gen_which_implies_wit_5 : check_list_gen_which_implies_wit_5.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  unfold sllbseg_term_list.
+  unfold sll_term_list.
+  pose proof (sllbseg_2_sllseg store_term_cell "term_list" "next"
+              &( "check_list") tail_ptr 0 l_2).
+  sep_apply H.
+  Intros y.
+  Exists y l_2.
+  rewrite sllseg_0_sll.
+  entailer!.
+Qed.
 
 Lemma proof_of_thm_apply_return_wit_1_1 : thm_apply_return_wit_1_1.
 Proof.
