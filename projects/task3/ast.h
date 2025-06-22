@@ -162,8 +162,11 @@ ImplyProp *createImplyProp(term *t1, term *t2)
     /*@ With term1 term2
           Require store_term(t1, term1) *
                   store_term(t2, term2)
-          Ensure  t1 == t1@pre && t2 == t2@pre &&
-                  store_ImplyProp(__return, t1, t2, term1, term2)
+          Ensure exists t1' t2',
+                  t1 == t1@pre && t2 == t2@pre &&
+                  store_term(t1, term1) *
+                  store_term(t2, term2) *
+                  store_ImplyProp(__return, t1', t2', term1, term2)
     */
     ;
 
@@ -282,8 +285,10 @@ term* sub_thm(term* thm, var_sub_list* lis)
 
 ImplyProp* separate_imply(term* t) 
   /*@ With trm
-    Require store_term(t, trm)
-    Ensure t == t@pre && store_imply_res(__return, sep_impl(trm)) * store_term(t, trm)
+      Require store_term(t, trm)
+      Ensure t == t@pre &&
+              store_imply_res(__return, sep_impl(trm)) *
+              store_term(t, trm)
   */
   ;
 

@@ -125,123 +125,123 @@ Qed.
 Lemma proof_of_separate_imply_return_wit_1 : separate_imply_return_wit_1.
 Proof.
   pre_process.
-  unfold store_sep_imp_res.
-  destruct trm; try (unfold termtypeID in *); try congruence.
-  + unfold store_term, store_term'.
-    Intros y; Exists y; entailer!.
-  + unfold store_term, store_term'.
+  unfold store_imply_res.
+  unfold sep_impl.
+  destruct trm; unfold NULL in *.
+  - sep_apply (store_term_fold_out t_pre (TermVar var)).
     entailer!.
-  + unfold store_term, store_term'.
-    fold store_term; Intros y z; Exists y z.
     entailer!.
-Qed. 
+    lia.
+  - sep_apply store_term_fold_out.
+    entailer!.
+    entailer!.
+    lia.
+  - contradiction.
+  - sep_apply store_term_fold_out.
+    entailer!.
+    entailer!.
+    lia.
+Qed.
 
 Lemma proof_of_separate_imply_return_wit_2 : separate_imply_return_wit_2.
 Proof.
   pre_process.
-  unfold store_sep_imp_res.
   rewrite H1.
-  destruct lt; try (unfold termtypeID in *); try congruence.
-  + unfold store_term, store_term'.
-    fold store_term.
-    unfold termtypeID.
-    Intros y; Exists v_2 v y. entailer!.
-  + unfold store_term, store_term'.
-    fold store_term.
-    Exists v_2 v; entailer!.
-  + unfold store_term, store_term'.
-    unfold termtypeID.
-    fold store_term; Intros y z; Exists v_2 v y z.
-    entailer!.
+  unfold store_term at 2.
+  fold store_term.
+  Exists v_2 v.
+  entailer!.
+  sep_apply store_term_fold_out.
+  entailer!.
+
+  unfold store_imply_res.
+  unfold sep_impl.
+  destruct lt.
+
+  - entailer!.
+  - entailer!.
+  - contradiction.
+  - entailer!.
+  - lia.
 Qed.
 
 Lemma proof_of_separate_imply_return_wit_3 : separate_imply_return_wit_3.
 Proof.
   pre_process.
-  unfold store_sep_imp_res.
-  rewrite H4, H1.
-  destruct ll; try (unfold termtypeID in *); try congruence.
-  + unfold store_term, store_term'.
-    fold store_term.
-    Intros yyy.
-    Exists v_2 v.
-    Exists v_4 v_3.
-    Exists yyy.
-    unfold termtypeID.
-    entailer!.
-  + unfold store_term, store_term'.
-    fold store_term.
-    Intros yyy zzz.
-    Exists v_2 v.
-    Exists v_4 v_3.
-    Exists yyy zzz.
-    unfold termtypeID.
-    entailer!.
-  + unfold store_term, store_term'.
-    fold store_term.
-    Intros yyy zzz.
-    Exists v_2 v.
-    Exists v_4 v_3.
-    Exists yyy zzz.
-    unfold termtypeID.
-    entailer!.
+  rewrite H4.
+  unfold store_term at 3.
+  fold store_term.
+  rewrite H1.
+  unfold store_term at 3.
+  fold store_term.
+  Exists v_2 v v_4 v_3.
+
+  sep_apply ((store_term_fold_out v_4 ll) H0).
+  entailer!.
+
+  unfold store_imply_res.
+  unfold sep_impl.
+  destruct ll.
+  - entailer!.
+  - contradiction.
+  - entailer!.
+  - entailer!.
 Qed.
 
 Lemma proof_of_separate_imply_return_wit_4 : separate_imply_return_wit_4.
 Proof.
   pre_process.
-  unfold store_sep_imp_res.
-  rewrite H6, H3, H0.
-  unfold ctID in H.
-  destruct llctype; try congruence.
-  + unfold store_term, store_term'.
-    fold store_term.
-    Exists v_2 v.
-    Exists v_4 v_3.
-    entailer!.
-  + unfold store_term, store_term'.
-    fold store_term.
-    Exists v_2 v.
-    Exists v_4 v_3.
-    entailer!.
-  + unfold store_term, store_term'.
-    fold store_term.
-    Exists v_2 v.
-    Exists v_4 v_3.
-    entailer!.
-  + unfold store_term, store_term'.
-    fold store_term.
-    Exists v_2 v.
-    Exists v_4 v_3.
-    entailer!.
-  + unfold store_term, store_term'.
-    fold store_term.
-    Exists v_2 v.
-    Exists v_4 v_3.
-    entailer!.
-  + unfold store_term, store_term'.
-    fold store_term.
-    Exists v_2 v.
-    Exists v_4 v_3.
-    entailer!.
-  + unfold store_term, store_term'.
-    fold store_term.
-    Exists v_2 v.
-    Exists v_4 v_3.
-    entailer!.
-Qed.
-
-Lemma proof_of_separate_imply_return_wit_5 : separate_imply_return_wit_5.
-Proof. 
-  pre_process.
-  unfold store_sep_imp_res.
-  rewrite H6, H3, H0.
-  unfold ctID in H.
-  destruct llctype; try congruence.
-  unfold termtypeID.
+  rewrite H6.
+  unfold store_term at 3.
+  fold store_term.
   Exists v_2 v.
+  entailer!.
+
+  rewrite H3.
+  unfold store_term at 2.
+  fold store_term.
   Exists v_4 v_3.
   entailer!.
+
+  rewrite H0.
+  unfold store_term.
+  entailer!.
+
+  unfold store_imply_res.
+  unfold sep_impl.
+  destruct llctype.
+  - entailer!.
+  - entailer!.
+  - entailer!.
+  - entailer!.
+  - entailer!.
+  - entailer!.
+  - entailer!.
+  - contradiction.
+Qed. 
+
+Lemma proof_of_separate_imply_return_wit_5 : separate_imply_return_wit_5.
+Proof.
+  pre_process.
+  unfold store_imply_res.
+  unfold sep_impl.
+  rewrite H6.
+  rewrite H3.
+  rewrite H0.
+  destruct llctype.
+  - unfold ctID in H; lia.
+  - unfold ctID in H; lia.
+  - unfold ctID in H; lia.
+  - unfold ctID in H; lia.
+  - unfold ctID in H; lia.
+  - unfold ctID in H; lia.
+  - unfold ctID in H; lia.
+  - Exists t1' t2'.
+    unfold store_term.
+    fold store_term.
+    Exists v_2 v.
+    Exists v_4 v_3.
+    entailer!.
 Qed.
 
 Lemma proof_of_separate_imply_which_implies_wit_1 : separate_imply_which_implies_wit_1.
@@ -307,13 +307,25 @@ Lemma proof_of_check_list_gen_entail_wit_2 : check_list_gen_entail_wit_2.
 Proof. Admitted. 
 
 Lemma proof_of_check_list_gen_return_wit_1 : check_list_gen_return_wit_1.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  rewrite H.
+  unfold store_sep_imp_res.
+Admitted.
 
 Lemma proof_of_check_list_gen_return_wit_2_1 : check_list_gen_return_wit_2_1.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  rewrite H.
+  apply store_null_right.
+Qed.
 
 Lemma proof_of_check_list_gen_return_wit_2_2 : check_list_gen_return_wit_2_2.
-Proof. Admitted. 
+Proof.
+  pre_process.
+  rewrite H.
+  apply store_null_left.
+Qed.
 
 Lemma proof_of_check_list_gen_return_wit_3 : check_list_gen_return_wit_3.
 Proof. Admitted. 

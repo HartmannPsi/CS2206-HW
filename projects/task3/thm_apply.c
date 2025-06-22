@@ -54,7 +54,7 @@ term* sub_thm(term* thm, var_sub_list* lis)
 ImplyProp* separate_imply(term* t) 
 /*@ With trm
     Require store_term(t, trm)
-    Ensure t == t@pre && store_sep_imp_res(t, __return, trm)
+    Ensure t == t@pre && store_imply_res(__return, sep_impl(trm)) * store_term(t, trm)
 */
 {
   /*@ store_term(t, trm)
@@ -141,6 +141,7 @@ term_list* check_list_gen(term* thm, term* target)
   */
   while (thm != (void*)0 && !alpha_equiv(thm, target)) {
     ImplyProp* p = separate_imply(thm);
+    free_term(thm);
     if (p == (void*)0) {
       /*@ exists l,
           sllbseg_term_list(&check_list, tail_ptr, l) *
@@ -154,20 +155,11 @@ term_list* check_list_gen(term* thm, term* target)
     }
     // 添加新节点到链表
     term_list* new_node = malloc_term_list();
-    /*@ p != 0 && store_sep_imp_res(thm@pre, p, theo)
+    /*@ p != 0 && store_imply_res(p, sep_impl(theo))
         which implies
-        exists c r tr pa pc,
-        theo == TermApply(TermApply(TermConst(CImpl, c), r), tr) &&
-        data_at(&(thm@pre->type), 2) *
-        data_at(&(thm@pre->content.Apply.right), pc) *
-        data_at(&(thm@pre->content.Apply.left->type), 2) *
-        data_at(&(thm@pre->content.Apply.left->content.Apply.right), pa) *
-        data_at(&(thm@pre->content.Apply.left->content.Apply.left->type), 1) *
-        data_at(&(thm@pre->content.Apply.left->content.Apply.left->content.Const.type), ctID(CImpl)) *
-        data_at(&(thm@pre->content.Apply.left->content.Apply.left->content.Const.content), c) *
-        data_at(&(p->assum), pa) *
-        data_at(&(p->concl), pc) *
-        store_term(pa, r) * store_term(pc, tr)
+        exists p_assum p_concl,
+        sep_impl(theo) == imply_res_Cont(p_assum, p_concl) &&
+        store_term(p->assum, p_assum) * store_term(p->concl, p_concl)
     */
     new_node->element = p->assum;  // 转移所有权
     new_node->next = (void*)0;
