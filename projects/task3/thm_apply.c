@@ -2,12 +2,9 @@
 term* sub_thm(term* thm, var_sub_list* lis)
 /*@ With t l
       Require store_term(thm, t) * sll_var_sub_list(lis, l)
-      Ensure  exists pq,
-              thm == thm@pre && lis == lis@pre &&
-              thm_subst_rem(t, l) == Some(pq) &&
+      Ensure  thm == thm@pre && lis == lis@pre &&
               sll_var_sub_list(lis, l) *
-              store_term_res(__return, thm_subst(t, l)) *
-              store_partial_quant(thm, __return, pq)
+              store_sub_thm_res(thm, __return, t, l)
 */
 {
   if(lis == (void*) 0) return thm;
@@ -32,7 +29,7 @@ term* sub_thm(term* thm, var_sub_list* lis)
         store_var_sub(lis->cur, vs)
         which implies
         exists sv st sy sz y z qt qvar qterm,
-          thm != 0 && 
+          thm != 0 && lis->cur != 0 &&
           t == TermQuant(qt, qvar, qterm) &&
           vs == VarSub(sv, st) && 
           data_at(&(thm -> type), termtypeID(t)) *
@@ -57,7 +54,7 @@ term* sub_thm(term* thm, var_sub_list* lis)
 ImplyProp* separate_imply(term* t) 
 /*@ With trm
     Require store_term(t, trm)
-    Ensure t == t@pre && store_imply_res(__return, sep_impl(trm)) * store_term(t, trm)
+    Ensure t == t@pre && store_sep_imp_res(t, __return, trm)
 */
 {
   /*@ store_term(t, trm)
@@ -134,25 +131,43 @@ term_list* check_list_gen(term* thm, term* target)
   // todo!!!
   /*@ check_list == 0
       which implies
-      sll_term_list(check_list, nil)
+      sllbseg_term_list(&check_list, tail_ptr, nil) *
+      data_at(tail_ptr, 0)
   */
   /*@ Inv exists l, target == target@pre &&
           store_term(thm@pre, theo) * store_term(target, targ) *
-          sll_term_list(check_list, l)
+          sllbseg_term_list(&check_list, tail_ptr, l) *
+          data_at(tail_ptr, 0)
   */
   while (thm != (void*)0 && !alpha_equiv(thm, target)) {
     ImplyProp* p = separate_imply(thm);
     if (p == (void*)0) {
+      /*@ exists l,
+          sllbseg_term_list(&check_list, tail_ptr, l) *
+          data_at(tail_ptr, 0)
+          which implies
+          exists l,
+          sll_term_list(check_list, l)
+      */
       free_term_list(check_list);
       return (void*)0;
     }
     // 添加新节点到链表
     term_list* new_node = malloc_term_list();
-    /*@ p != 0 && store_imply_res(p, sep_impl(theo))
+    /*@ p != 0 && store_sep_imp_res(thm@pre, p, theo)
         which implies
-        exists p_assum p_concl,
-        sep_impl(theo) == imply_res_Cont(p_assum, p_concl) &&
-        store_term(p->assum, p_assum) * store_term(p->concl, p_concl)
+        exists c r tr pa pc,
+        theo == TermApply(TermApply(TermConst(CImpl, c), r), tr) &&
+        data_at(&(thm@pre->type), 2) *
+        data_at(&(thm@pre->content.Apply.right), pc) *
+        data_at(&(thm@pre->content.Apply.left->type), 2) *
+        data_at(&(thm@pre->content.Apply.left->content.Apply.right), pa) *
+        data_at(&(thm@pre->content.Apply.left->content.Apply.left->type), 1) *
+        data_at(&(thm@pre->content.Apply.left->content.Apply.left->content.Const.type), ctID(CImpl)) *
+        data_at(&(thm@pre->content.Apply.left->content.Apply.left->content.Const.content), c) *
+        data_at(&(p->assum), pa) *
+        data_at(&(p->concl), pc) *
+        store_term(pa, r) * store_term(pc, tr)
     */
     new_node->element = p->assum;  // 转移所有权
     new_node->next = (void*)0;
@@ -162,14 +177,19 @@ term_list* check_list_gen(term* thm, term* target)
     thm = p->concl;
     /*@ exists p_assum p_concl,
         p != 0 && 
-        sep_impl(theo) == imply_res_Cont(p_assum, p_concl) &&
         store_term(p->assum, p_assum) * store_term(p->concl, p_concl)
         which implies
-        exists y z,
-        store_ImplyProp(p, y, z, p_assum, p_concl)
+        store_ImplyProp(p, p->assum, p->concl, p_assum, p_concl)
     */
     free_imply_prop(p);  // 释放ImplyProp结构体（不释放其成员）
   }
+  /*@ exists l,
+      sllbseg_term_list(&check_list, tail_ptr, l) *
+      data_at(tail_ptr, 0)
+      which implies
+      exists l,
+      sll_term_list(check_list, l)
+  */
   return check_list;
 }
 
@@ -178,14 +198,12 @@ solve_res* thm_apply(term* thm, var_sub_list* lis, term* goal)
     Require store_term(thm, t) * 
             sll_var_sub_list(lis, l) * 
             store_term(goal, g)
-    Ensure exists pq ti,
+    Ensure exists ti,
             thm == thm@pre &&
-            thm_subst_rem(t, l) == Some(pq) &&
             sll_var_sub_list(lis, l) * 
             store_term(goal, g) *
             store_solve_res(__return, thm_app(t, l, g)) *
-            store_term_res(ti, thm_subst(t, l)) *
-            store_partial_quant(thm, ti, pq)
+            store_sub_thm_res(thm, ti, t, l)
 */
 {
   term* thm_ins = sub_thm(thm, lis);
@@ -201,11 +219,12 @@ solve_res* thm_apply(term* thm, var_sub_list* lis, term* goal)
   } else {
     // Added {} here without changing the semantics!
     /*@ thm_ins != 0 &&
-        store_term_res(thm_ins, thm_subst(t, l))
+        store_sub_thm_res(thm, thm_ins, t, l)
         which implies
-        exists tst,
-        thm_subst(t, l) == Some(tst) &&
-        store_term(thm_ins, tst)
+        exists pq st,
+        thm_subst_allres_rel(t, l, pq, st) &&
+        store_partial_quant(thm, thm_ins, pq) *
+        store_term(thm_ins, st)
     */
     if (alpha_equiv(thm_ins, goal)) {
       res->type = bool_res;

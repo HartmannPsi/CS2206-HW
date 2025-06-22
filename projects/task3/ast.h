@@ -2,11 +2,13 @@
 /*@ Import Coq From SimpleC.EE Require Import malloc */
 /*@ Import Coq From SimpleC.EE Require Import super_poly_sll2 */
 
+
 /*@ Extern Coq (option :: * => *) */
 /*@ Extern Coq (Some: {A} -> A -> option A)
                (None: {A} -> option A) */
 
 /*@ Extern Coq (term :: *) */
+/*@ Extern Coq (partial_quant :: *) */
 /*@ Extern Coq (var_sub :: *) */
 /*@ Extern Coq (solve_res :: *) */
 /*@ Extern Coq (ImplyProp :: *) */
@@ -14,17 +16,16 @@
 /*@ Extern Coq (const_type :: *)*/
 /*@ Extern Coq (quant_type :: *)*/
 /*@ Extern Coq (term_type :: *)*/
-/*@ Extern Coq (imply_res :: *)*/
-/*@ Extern Coq (partial_quant :: *)*/
-
-/*@ Extern Coq (store_string : Z -> list Z -> Assertion)
+/*@ Extern Coq (CImpl : const_type) 
+               (store_string : Z -> list Z -> Assertion)
                (store_term : Z -> term -> Assertion)
                (store_term' : Z -> term -> Assertion)
                (store_term_res : Z -> option term -> Assertion)
                (store_term_cell : Z -> term -> Assertion)
                (sll_term_list : Z -> list term -> Assertion)
-               (sllseg_term_list : Z -> list term -> Assertion)
+               (sllseg_term_list : Z -> Z -> list term -> Assertion)
                (sllbseg_term_list : Z -> Z -> list term -> Assertion)
+               (store_partial_quant : Z -> Z -> partial_quant -> Assertion)
                (store_var_sub : Z -> var_sub -> Assertion)
                (store_var_sub_cell : Z -> var_sub -> Assertion)
                (sll_var_sub_list : Z -> list var_sub -> Assertion)
@@ -33,7 +34,8 @@
                (store_solve_res : Z -> solve_res -> Assertion)
                (store_solve_res' : Z -> solve_res -> Assertion)
                (store_ImplyProp : Z -> Z -> Z -> term -> term -> Assertion)
-               (store_imply_res : Z -> imply_res -> Assertion)
+               (store_imply_res : Z -> option ImplyProp -> Assertion)
+               (store_sep_imp_res : Z -> Z -> term -> Assertion)
                (list_Z_cmp : list Z -> list Z -> Z)
                (term_alpha_eqn : term -> term -> Z)
                (term_subst_v : list Z -> list Z -> term -> term)
@@ -47,16 +49,15 @@
                (TermApply: term -> term -> term)
                (TermQuant: quant_type -> list Z -> term -> term)
                (VarSub: list Z -> term -> var_sub)
-               (thm_subst: term -> list var_sub -> option term)
-               (sep_impl: term -> imply_res)
+               (thm_subst_allres: term -> list var_sub -> option (partial_quant * term))
+               (sep_impl: term -> option ImplyProp)
                (gen_pre: term -> term -> list term)
                (thm_app: term -> list var_sub -> term -> solve_res)
-               (imply_res_Cont: term -> term -> imply_res)
+               (imply_res_Cont: term -> term -> option ImplyProp)
                (SRBool: Z -> solve_res)
-               (thm_subst_rem: term -> list var_sub -> option partial_quant)
-               (store_partial_quant: Z -> Z -> partial_quant -> Assertion)
+               (store_sub_thm_res: Z -> Z -> term -> list var_sub -> Assertion)
+               (thm_subst_allres_rel: term -> list var_sub -> partial_quant -> term -> Prop)
 */
-
 /*@ Extern Coq (nil : {A} -> list A)
                (cons : {A} -> A -> list A -> list A)
                (app : {A} -> list A -> list A -> list A)
@@ -161,11 +162,8 @@ ImplyProp *createImplyProp(term *t1, term *t2)
     /*@ With term1 term2
           Require store_term(t1, term1) *
                   store_term(t2, term2)
-          Ensure exists t1' t2',
-                t1 == t1@pre && t2 == t2@pre &&
-                  store_term(t1, term1) *
-                  store_term(t2, term2) *
-                store_ImplyProp(__return, t1', t2', term1, term2)
+          Ensure  t1 == t1@pre && t2 == t2@pre &&
+                  store_ImplyProp(__return, t1, t2, term1, term2)
     */
     ;
 
@@ -257,12 +255,12 @@ term *subst_term(term *den, char *src, term *t)
                   store_term(t, trm) *
                   store_string(src, src_str) *
                   store_term(den, den_term)
-          Ensure den == den@pre && src == src@pre &&
-                 store_term(__return, term_subst_t(den_term, src_str, trm)) *
-                 store_term(den, den_term) *
-                 store_string(src, src_str)
+          Ensure den == den@pre && src == src@pre && __return == t &&
+                store_term(__return, term_subst_t(den_term, src_str, trm)) *
+                store_term(den, den_term) *
+                store_string(src, src_str)
     */
-   ;
+  ;
 
 bool alpha_equiv(term *t1, term *t2)
     /*@ With term1 term2
@@ -276,19 +274,16 @@ bool alpha_equiv(term *t1, term *t2)
 term* sub_thm(term* thm, var_sub_list* lis)
   /*@ With t l
         Require store_term(thm, t) * sll_var_sub_list(lis, l)
-        Ensure  exists pq,
-                thm == thm@pre && lis == lis@pre &&
-                thm_subst_rem(t, l) == Some(pq) &&
+        Ensure  thm == thm@pre && lis == lis@pre &&
                 sll_var_sub_list(lis, l) *
-                store_term_res(__return, thm_subst(t, l)) *
-                store_partial_quant(thm, __return, pq)
+                store_sub_thm_res(thm, __return, t, l)
   */
   ;
 
 ImplyProp* separate_imply(term* t) 
   /*@ With trm
-      Require store_term(t, trm)
-      Ensure t == t@pre && store_imply_res(__return, sep_impl(trm))
+    Require store_term(t, trm)
+    Ensure t == t@pre && store_imply_res(__return, sep_impl(trm)) * store_term(t, trm)
   */
   ;
 
@@ -306,14 +301,10 @@ solve_res* thm_apply(term* thm, var_sub_list* lis, term* goal)
       Require store_term(thm, t) * 
               sll_var_sub_list(lis, l) * 
               store_term(goal, g)
-      Ensure exists pq ti,
-              thm == thm@pre &&
-              thm_subst_rem(t, l) == Some(pq) &&
-              sll_var_sub_list(lis, l) * 
-              store_term(goal, g) *
-              store_solve_res(__return, thm_app(t, l, g)) *
-              store_term_res(ti, thm_subst(t, l)) *
-              store_partial_quant(thm, ti, pq)
+      Ensure thm == thm@pre && 
+            sll_var_sub_list(lis, l) * 
+            store_term(goal, g) *
+            store_solve_res(__return, thm_app(t, l, g))
   */
   ;
   

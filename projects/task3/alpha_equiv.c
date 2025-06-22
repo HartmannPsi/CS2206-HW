@@ -1,7 +1,6 @@
 #include "ast.h"
 
 bool alpha_equiv(term *t1, term *t2)
-// here, store_term contains that t1!=0 and t2!=0, so maybe the first return false is redundant.
 /*@ With term1 term2
       Require store_term(t1, term1) *
               store_term(t2, term2)
