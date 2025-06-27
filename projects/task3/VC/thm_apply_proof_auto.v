@@ -15,10 +15,12 @@ Local Open Scope Z_scope.
 Local Open Scope sets.
 Local Open Scope string.
 Local Open Scope list.
+From MonadLib.StateRelMonad Require Import StateRelMonad StateRelBasic StateRelHoare FixpointLib safeexec_lib.
 Import naive_C_Rules.
 From SimpleC.EE Require Import ast_lib.
 From SimpleC.EE Require Import malloc.
 From SimpleC.EE Require Import super_poly_sll2.
+Import naive_C_Rules.
 Local Open Scope sac.
 
 Lemma proof_of_sub_thm_safety_wit_1 : sub_thm_safety_wit_1.
@@ -114,30 +116,6 @@ Proof. Admitted.
 Lemma proof_of_check_list_gen_safety_wit_4 : check_list_gen_safety_wit_4.
 Proof. Admitted. 
 
-Lemma proof_of_check_list_gen_safety_wit_5 : check_list_gen_safety_wit_5.
-Proof. Admitted. 
-
-Lemma proof_of_check_list_gen_safety_wit_6 : check_list_gen_safety_wit_6.
-Proof. Admitted. 
-
-Lemma proof_of_check_list_gen_safety_wit_7 : check_list_gen_safety_wit_7.
-Proof. Admitted. 
-
-Lemma proof_of_check_list_gen_safety_wit_8 : check_list_gen_safety_wit_8.
-Proof. Admitted. 
-
-Lemma proof_of_check_list_gen_safety_wit_9 : check_list_gen_safety_wit_9.
-Proof. Admitted. 
-
-Lemma proof_of_check_list_gen_safety_wit_10 : check_list_gen_safety_wit_10.
-Proof. Admitted. 
-
-Lemma proof_of_check_list_gen_entail_wit_1 : check_list_gen_entail_wit_1.
-Proof. Admitted. 
-
-Lemma proof_of_check_list_gen_partial_solve_wit_1_pure : check_list_gen_partial_solve_wit_1_pure.
-Proof. Admitted. 
-
 Lemma proof_of_check_list_gen_partial_solve_wit_1 : check_list_gen_partial_solve_wit_1.
 Proof. Admitted. 
 
@@ -156,6 +134,9 @@ Proof. Admitted.
 Lemma proof_of_check_list_gen_partial_solve_wit_6 : check_list_gen_partial_solve_wit_6.
 Proof. Admitted. 
 
+Lemma proof_of_check_list_gen_partial_solve_wit_7_pure : check_list_gen_partial_solve_wit_7_pure.
+Proof. Admitted. 
+
 Lemma proof_of_check_list_gen_partial_solve_wit_7 : check_list_gen_partial_solve_wit_7.
 Proof. Admitted. 
 
@@ -163,9 +144,6 @@ Lemma proof_of_check_list_gen_partial_solve_wit_8_pure : check_list_gen_partial_
 Proof. Admitted. 
 
 Lemma proof_of_check_list_gen_partial_solve_wit_8 : check_list_gen_partial_solve_wit_8.
-Proof. Admitted. 
-
-Lemma proof_of_check_list_gen_partial_solve_wit_9_pure : check_list_gen_partial_solve_wit_9_pure.
 Proof. Admitted. 
 
 Lemma proof_of_check_list_gen_partial_solve_wit_9 : check_list_gen_partial_solve_wit_9.
@@ -220,5 +198,17 @@ Lemma proof_of_thm_apply_partial_solve_wit_6 : thm_apply_partial_solve_wit_6.
 Proof. Admitted. 
 
 Lemma proof_of_thm_apply_partial_solve_wit_7 : thm_apply_partial_solve_wit_7.
+Proof. Admitted. 
+
+Lemma proof_of_thm_apply_partial_solve_wit_8_pure : thm_apply_partial_solve_wit_8_pure.
+Proof. Admitted. 
+
+Lemma proof_of_thm_apply_partial_solve_wit_8 : thm_apply_partial_solve_wit_8.
+Proof. Admitted. 
+
+Lemma proof_of_thm_apply_partial_solve_wit_9_pure : thm_apply_partial_solve_wit_9_pure.
+Proof. Admitted. 
+
+Lemma proof_of_thm_apply_partial_solve_wit_9 : thm_apply_partial_solve_wit_9.
 Proof. Admitted. 
 

@@ -8,23 +8,24 @@ Require Import Permutation.
 Require Import String.
 From AUXLib Require Import int_auto Axioms Feq Idents List_lemma VMap.
 Require Import SetsClass.SetsClass. Import SetsNotation.
+From MonadLib.StateRelMonad Require Import StateRelMonad StateRelBasic StateRelHoare FixpointLib safeexec_lib.
 From SimpleC.SL Require Import Mem SeparationLogic.
 Require Import Logic.LogicGenerator.demo932.Interface.
+From compcert.lib Require Import Integers.
 Local Open Scope Z_scope.
 Local Open Scope sets.
 Import ListNotations.
 Local Open Scope list.
 Require Import String.
-Require Import Coq.Arith.Wf_nat.
-Require Import Coq.Relations.Relation_Definitions.
-Require Import Coq.Relations.Relation_Operators.
-Require Import Coq.Program.Wf.
 Local Open Scope string.
+
 From SimpleC.EE Require Import super_poly_sll2.
 From SimpleC.EE Require Import malloc.
 
 Import naive_C_Rules.
 Local Open Scope sac.
+Import MonadNotation.
+Local Open Scope monad.
 
 Definition var_name : Type := list Z.
 
@@ -833,52 +834,61 @@ Definition store_imply_res (x: addr) (impl: option ImplyProp): Assertion :=
   match impl with
   | Some (ImplP assum concl) => EX y z,
               store_ImplyProp x y z assum concl
-  | None => [| x = NULL |]
+  | None => [| x = NULL |] && emp
   end.
 
-Definition store_sep_imp_res (rt si: addr) (t: term): Assertion :=
-  match t with
-    | TermApply (TermApply (TermConst CImpl c) r) tr => 
-      EX y z y1 z1: addr,
-      &(rt # "term" ->ₛ "type") # Int |-> 2 **
-      &(rt # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left") # Ptr |-> y **
-      &(rt # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right") # Ptr |-> z **
-      &(y # "term" ->ₛ "type") # Int |-> 2 **
-      &(y # "term" ->ₛ "content" .ₛ "Apply" .ₛ "left") # Ptr |-> y1 **
-      &(y # "term" ->ₛ "content" .ₛ "Apply" .ₛ "right") # Ptr |-> z1 **
-      &(y1 # "term" ->ₛ "type") # Int |-> 1 **
-      &(y1 # "term" ->ₛ "content" .ₛ "Const" .ₛ "type") # Int |-> ctID CImpl **
-      &(y1 # "term" ->ₛ "content" .ₛ "Const" .ₛ "content") # Int |-> c **     
-      store_ImplyProp si z1 z r tr
-    | _ => [| si = 0 |] && store_term rt t
-  end.
+Local Close Scope string.
 
-Fixpoint gen_pre (thm target : term): term_list :=
-  if term_alpha_eq thm target then
-    nil
-  else
-    match thm with 
-    | TermApply (TermApply (TermConst CImpl c) r) tr =>
-      r :: gen_pre tr target
-    | _ => nil
-  end.
+Definition makepair (x : term) (p : list term): (term * (list term)) := (x, p).
 
-(* todo: new store
-Inductive partial_impl: Type :=
-  | NImpl : partial_impl
-  | PImpl (c: Z) (r tr: partial_impl): partial_impl.
+Definition check_list_gen_body:
+  term * term * list term ->
+  MONAD (CntOrBrk (term * term * list term) (term * list term)) :=
+  fun '(thm, tar, l) =>
+    if term_alpha_eq thm tar then
+      ret (by_break (thm, l))
+    else
+      match sep_impl thm with 
+      | Some (ImplP r tr) =>
+        ret (by_continue (tr, tar, l ++ (r :: nil)))
+      | None => ret (by_break (thm, nil))
+      end.
 
-Fixpoint store_partial_impl (rt thm: addr) () *)
+Definition check_rel theo tar :=
+  repeat_break check_list_gen_body (theo, tar, nil).
 
-Definition thm_app (thm : term) (l : var_sub_list) (goal : term): solve_res :=
-  match thm_subst_allres thm l with
-  | None => SRBool 0
+Definition check_from_mid_rel theo tar l :=
+  repeat_break check_list_gen_body (theo, tar, l).
+
+Definition list_gen:
+  term -> term -> MONAD (solve_res) :=
+  fun 't => fun 'g =>
+  bind (check_rel t g)
+            (fun '(_, lst) => ret (SRTList lst)).
+
+Definition thm_app: 
+  term * var_sub_list * term ->
+  MONAD (solve_res) :=
+  fun '(t, l, g) =>
+  match thm_subst_allres t l with
+  | None => ret (SRBool 0)
   | Some (_, thm_ins) =>
-      if term_alpha_eq thm_ins goal then SRBool 1
-      else SRTList (gen_pre thm_ins goal)
+      if (term_alpha_eq thm_ins g) then ret (SRBool 1)
+      else x <- (check_rel thm_ins g) ;; (match x with
+          | (_, lst) => ret (SRTList lst)
+        end)
   end.
+
+Definition X_rel (X: solve_res -> unit -> Prop): (term * list term -> unit -> Prop) :=
+  fun '(t, l) => fun u =>
+    X (SRTList l) u.
+
+Definition thm_app_rel (thm : term) (l : var_sub_list) (goal : term) :=
+  thm_app (thm, l, goal).
 
 (* Lemmas *)
+
+Local Open Scope string.
 
 Lemma term_subst_v_same_name : forall (den src : var_name) (t : term),
   den = src ->
@@ -926,3 +936,60 @@ Proof.
     Intros y.
     contradiction.
 Qed.
+
+Lemma store_term_cell_fold: forall x y t,
+  x <> NULL ->
+  &(x # "term_list" ->ₛ "element") # Ptr |-> y **
+  store_term y t |--
+  store_term_cell x t.
+Proof.
+  intros.
+  unfold store_term_cell.
+  Exists y.
+  entailer!.
+Qed.
+
+Lemma sllbseg_one: forall a y retval,
+  retval <> NULL ->
+  y # Ptr |-> retval **
+  store_term_cell retval a |--
+  sllbseg_term_list y &(retval # "term_list" ->ₛ "next") (a::nil).
+Proof.
+  unfold sllbseg_term_list, sllbseg.
+  intros.
+  Exists retval.
+  entailer!.
+Qed.
+
+Lemma store_imply_res_zero: forall t,
+  store_imply_res 0 (sep_impl t) |-- [| sep_impl t = None |] && [|0 = NULL|] && emp.
+Proof.
+  intros.
+  remember (sep_impl t) as r.
+  unfold sep_impl in Heqr.
+  destruct t; try simpl.
+  + unfold store_imply_res; subst; entailer!.
+  + unfold store_imply_res; subst; entailer!.
+  + unfold store_imply_res.
+    destruct r; [ | entailer!].
+    destruct i; Intros x y.
+    destruct t1; try congruence.
+    destruct t1_1; try congruence.
+    destruct ctype; try congruence.
+    unfold store_ImplyProp.
+    entailer!.
+  + unfold store_imply_res; subst; entailer!.
+Qed.
+
+Lemma sllbseg_2_sllseg_term: forall x y l,
+  sllbseg_term_list x y l ** y # Ptr |-> 0 |--
+  EX h, x # Ptr |-> h ** sll_term_list h l.
+Proof.
+  intros.
+  unfold sllbseg_term_list, sll_term_list.
+  sep_apply (sllbseg_2_sllseg store_term_cell).
+  Intros h; Exists h.
+  sep_apply (sllseg_0_sll store_term_cell).
+  entailer!.
+Qed.
+

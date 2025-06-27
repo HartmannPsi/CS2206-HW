@@ -1,11 +1,19 @@
+/*@ Import Coq From MonadLib.StateRelMonad Require Import StateRelMonad StateRelBasic StateRelHoare FixpointLib safeexec_lib */
+
+#include "verification_stdlib.h"
+#include "verification_list.h"
+
+/*@ Extern Coq (M :: * => * => *) */
+/*@ Extern Coq (unit :: *) */
+/*@ Extern Coq (safeExec : {Sigma} {A} -> (Sigma -> Prop) -> M Sigma A -> (A -> Sigma -> Prop) -> Prop)
+               (bind: {Sigma} {A} {B} -> M Sigma A -> (A -> M Sigma B) -> M Sigma B)
+               (ret : {Sigma} {A} -> A -> M Sigma A)
+               (ATrue: {Sigma} -> Sigma -> Prop)
+                */
+
 /*@ Import Coq From SimpleC.EE Require Import ast_lib */
 /*@ Import Coq From SimpleC.EE Require Import malloc */
 /*@ Import Coq From SimpleC.EE Require Import super_poly_sll2 */
-
-
-/*@ Extern Coq (option :: * => *) */
-/*@ Extern Coq (Some: {A} -> A -> option A)
-               (None: {A} -> option A) */
 
 /*@ Extern Coq (term :: *) */
 /*@ Extern Coq (partial_quant :: *) */
@@ -17,13 +25,14 @@
 /*@ Extern Coq (quant_type :: *)*/
 /*@ Extern Coq (term_type :: *)*/
 /*@ Extern Coq (CImpl : const_type) 
+               (makepair: term -> list term ->  (term * (list term)))
                (store_string : Z -> list Z -> Assertion)
                (store_term : Z -> term -> Assertion)
                (store_term' : Z -> term -> Assertion)
                (store_term_res : Z -> option term -> Assertion)
                (store_term_cell : Z -> term -> Assertion)
                (sll_term_list : Z -> list term -> Assertion)
-               (sllseg_term_list : Z -> Z -> list term -> Assertion)
+               (sllseg_term_list : Z -> list term -> Assertion)
                (sllbseg_term_list : Z -> Z -> list term -> Assertion)
                (store_partial_quant : Z -> Z -> partial_quant -> Assertion)
                (store_var_sub : Z -> var_sub -> Assertion)
@@ -35,7 +44,6 @@
                (store_solve_res' : Z -> solve_res -> Assertion)
                (store_ImplyProp : Z -> Z -> Z -> term -> term -> Assertion)
                (store_imply_res : Z -> option ImplyProp -> Assertion)
-               (store_sep_imp_res : Z -> Z -> term -> Assertion)
                (list_Z_cmp : list Z -> list Z -> Z)
                (term_alpha_eqn : term -> term -> Z)
                (term_subst_v : list Z -> list Z -> term -> term)
@@ -57,12 +65,13 @@
                (SRBool: Z -> solve_res)
                (store_sub_thm_res: Z -> Z -> term -> list var_sub -> Assertion)
                (thm_subst_allres_rel: term -> list var_sub -> partial_quant -> term -> Prop)
-*/
-/*@ Extern Coq (nil : {A} -> list A)
-               (cons : {A} -> A -> list A -> list A)
-               (app : {A} -> list A -> list A -> list A)
-               (rev : {A} -> list A -> list A)
-               (Zlength: {A} -> list A -> Z)
+               (cur_term_list: term -> term -> list term)
+               (cur_thm: term -> list term -> term)
+               (gen_res: term -> term -> list term -> Assertion)
+               (check_rel: term -> term -> M unit (term * list term))
+               (check_from_mid_rel: term -> term -> list term -> M unit (term * list term))
+               (thm_app_rel: term -> list var_sub -> term -> M unit (solve_res))
+               (X_rel: (solve_res -> unit -> Prop) -> (term * list term -> unit -> Prop))
 */
 
 typedef int bool;
@@ -163,10 +172,10 @@ imply_prop *createImplyProp(term *t1, term *t2)
           Require store_term(t1, term1) *
                   store_term(t2, term2)
           Ensure exists t1' t2',
-                  t1 == t1@pre && t2 == t2@pre &&
+                t1 == t1@pre && t2 == t2@pre &&
                   store_term(t1, term1) *
                   store_term(t2, term2) *
-                  store_ImplyProp(__return, t1', t2', term1, term2)
+                store_ImplyProp(__return, t1', t2', term1, term2)
     */
     ;
 
@@ -285,19 +294,19 @@ term* sub_thm(term* thm, var_sub_list* lis)
 
 imply_prop* separate_imply(term* t) 
   /*@ With trm
-      Require store_term(t, trm)
-      Ensure t == t@pre &&
-              store_imply_res(__return, sep_impl(trm)) *
-              store_term(t, trm)
+    Require store_term(t, trm)
+    Ensure t == t@pre && store_imply_res(__return, sep_impl(trm)) * store_term(t, trm)
   */
   ;
 
 term_list* check_list_gen(term* thm, term* target)
-  /*@ With theo targ
-      Require store_term(thm, theo) * store_term(target, targ)
-      Ensure target == target@pre &&
-              store_term(thm@pre, theo) * store_term(target, targ) *
-              sll_term_list(__return, gen_pre(theo, targ))
+  /*@ With theo targ X
+      Require safeExec(ATrue, check_rel(theo, targ), X) && store_term(thm, theo) * store_term(target, targ)
+      Ensure  exists t l, 
+              safeExec(ATrue, ret(makepair(t, l)), X) &&
+              target == target@pre &&
+              store_term(target, targ) *
+              sll_term_list(__return, l)
   */
   ;
 
