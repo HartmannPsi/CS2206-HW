@@ -3,12 +3,13 @@
 #include "verification_stdlib.h"
 #include "verification_list.h"
 
-/*@ Extern Coq (M :: * => * => *) */
+/*@ Extern Coq (program :: * => * => *) */
 /*@ Extern Coq (unit :: *) */
-/*@ Extern Coq (safeExec : {Sigma} {A} -> (Sigma -> Prop) -> M Sigma A -> (A -> Sigma -> Prop) -> Prop)
-               (bind: {Sigma} {A} {B} -> M Sigma A -> (A -> M Sigma B) -> M Sigma B)
-               (ret : {Sigma} {A} -> A -> M Sigma A)
+/*@ Extern Coq (safeExec : {Sigma} {A} -> (Sigma -> Prop) -> program Sigma A -> (A -> Sigma -> Prop) -> Prop)
+               (bind: {Sigma} {A} {B} -> program Sigma A -> (A -> program Sigma B) -> program Sigma B)
+               (ret : {Sigma} {A} -> A -> program Sigma A)
                (ATrue: {Sigma} -> Sigma -> Prop)
+               (applyf: {A} {B} -> (A -> B) -> A -> B)
                 */
 
 /*@ Import Coq From SimpleC.EE Require Import ast_lib */
@@ -68,10 +69,10 @@
                (cur_term_list: term -> term -> list term)
                (cur_thm: term -> list term -> term)
                (gen_res: term -> term -> list term -> Assertion)
-               (check_rel: term -> term -> M unit (term * list term))
-               (check_from_mid_rel: term -> term -> list term -> M unit (term * list term))
-               (thm_app_rel: term -> list var_sub -> term -> M unit (solve_res))
-               (X_rel: (solve_res -> unit -> Prop) -> (term * list term -> unit -> Prop))
+               (check_rel: term -> term -> program unit (term * list term))
+               (check_from_mid_rel: term -> term -> list term -> program unit (term * list term))
+               (thm_app_rel: term -> list var_sub -> term -> program unit (solve_res))
+               (get_list: (term * list term) -> program unit solve_res)
 */
 
 typedef int bool;

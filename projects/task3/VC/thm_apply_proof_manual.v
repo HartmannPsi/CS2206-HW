@@ -424,60 +424,60 @@ Proof.
 Qed.
 
 Lemma partial_quant_combine: forall t l pq st retval thm_pre,
-thm_pre <> 0 ->
-thm_subst_allres t l = Some (pq, st) ->
-  store_term retval st ** store_partial_quant thm_pre retval pq
-  |-- store_term thm_pre (thm_subst' t l).
+  thm_pre <> 0 ->
+  thm_subst_allres t l = Some (pq, st) ->
+      store_term retval st ** store_partial_quant thm_pre retval pq
+      |-- store_term thm_pre (thm_subst' t l).
 Proof.
   intros. revert H H0. revert t l pq st thm_pre.
   induction t.
   + intros.
     unfold thm_subst_allres in H0.
     destruct l.
-    - inversion H0; subst.
-      unfold store_partial_quant.
-      entailer!.
-      rewrite H1.
-      entailer!.
-    - destruct v; congruence.
+  - inversion H0; subst.
+    unfold store_partial_quant.
+    entailer!.
+    rewrite H1.
+    entailer!.
+  - destruct v; congruence.
   + intros. 
     unfold thm_subst_allres in H0.
     destruct l.
-    - inversion H0; subst.
-      unfold store_partial_quant.
-      entailer!.
-      rewrite H1.
-      entailer!.
-    - destruct v; congruence.
+  - inversion H0; subst.
+    unfold store_partial_quant.
+    entailer!.
+    rewrite H1.
+    entailer!.
+  - destruct v; congruence.
   + intros. 
     unfold thm_subst_allres in H0.
     destruct l.
-    - inversion H0; subst.
-      unfold store_partial_quant.
-      entailer!.
-      rewrite H1.
-      entailer!.
-    - destruct v; congruence.
+  - inversion H0; subst.
+    unfold store_partial_quant.
+    entailer!.
+    rewrite H1.
+    entailer!.
+  - destruct v; congruence.
   + intros.
     unfold thm_subst_allres in H0.
     destruct l.
-    - inversion H0; subst.
-      unfold store_partial_quant.
-      entailer!.
-      rewrite H1.
-      entailer!.
-    - destruct v.
-      unfold thm_subst'; fold thm_subst'.
-      fold thm_subst_allres in H0.
-      destruct (thm_subst_allres (term_subst_t t0 name t) l) eqn:Heq; [ | congruence].
-      destruct p.
-      inversion H0; subst.
-      unfold store_partial_quant; fold store_partial_quant.
-      unfold store_term at 2; fold store_term.
-      unfold termtypeID.
-      Intros y z; Exists y z.
-      entailer!.
-      unfold thm_subst_allres in Heq.
+  - inversion H0; subst.
+    unfold store_partial_quant.
+    entailer!.
+    rewrite H1.
+    entailer!.
+  - destruct v.
+    unfold thm_subst'; fold thm_subst'.
+    fold thm_subst_allres in H0.
+    destruct (thm_subst_allres (term_subst_t t0 name t) l) eqn:Heq; [ | congruence].
+    destruct p.
+    inversion H0; subst.
+    unfold store_partial_quant; fold store_partial_quant.
+    unfold store_term at 2; fold store_term.
+    unfold termtypeID.
+    Intros y z; Exists y z.
+    entailer!.
+    unfold thm_subst_allres in Heq.
 Admitted.
 
 Lemma proof_of_thm_apply_return_wit_1_1 : thm_apply_return_wit_1_1.
@@ -490,23 +490,7 @@ Proof.
   unfold restypeID.
   entailer!.
   + sep_apply (partial_quant_combine t_3 l pq st); [entailer! | auto | auto].
-  + unfold thm_app_rel, thm_app in H11.
-    rewrite H5 in H11.
-    rewrite H3 in H4.
-    unfold term_alpha_eqn in H4.
-    destruct term_alpha_eq eqn:Heq; [ congruence | ].
-    eapply (highstepbind_derive
-      (check_rel st g)
-      (fun x : term * list term => let (_, lst) := x in ret (SRTList lst))
-      ATrue
-      (t_2, l_2)
-      ATrue
-    ); [ | auto ].
-    unfold safeExec, safe in H, H0.
-    unfold hs_eval.
-    destruct H0 as [S [Hsa Hsb]].
-    exists S.
-  Admitted. 
+Qed.
 
 Lemma proof_of_thm_apply_return_wit_1_2 : thm_apply_return_wit_1_2.
 Proof.
@@ -517,10 +501,10 @@ Proof.
   entailer!.
   + sep_apply (partial_quant_combine t_2 l pq st); [entailer! | auto | auto].
   + unfold thm_app_rel, thm_app in H7.
-    rewrite H1 in H7.
-    unfold term_alpha_eqn in H0.
-    destruct term_alpha_eq eqn:Heq; [ | congruence].
-    auto.
+  rewrite H1 in H7.
+  unfold term_alpha_eqn in H0.
+  destruct term_alpha_eq eqn:Heq; [ | congruence].
+  auto.
 Qed.
 
 Lemma store_sub_thm_res_zero: forall thm_pre t_2 l,
@@ -530,10 +514,10 @@ Proof.
   unfold store_sub_thm_res.
   destruct thm_subst_allres eqn:Heq.
   + destruct p.
-    sep_apply (store_null_right t (store_partial_quant thm_pre 0 p)
+  sep_apply (store_null_right t (store_partial_quant thm_pre 0 p)
       ([|Some (p, t) = None|] && store_term thm_pre (thm_subst' t_2 l))
-    ).
-    entailer!.
+  ).
+  entailer!.
   + entailer!.
 Qed. 
 
@@ -584,9 +568,17 @@ Proof.
   rewrite H0 in H1.
   unfold term_alpha_eqn in H.
   destruct term_alpha_eq; [ congruence | ].
-  eapply (safeExec_bind 
-    (check_rel st g)
-    (fun x : term * list term => let (_, lst) := x in ret (SRTList lst))
-  ) in H1.
-  destruct H1 as [X' [Ha Hb]].
-Admitted. 
+  unfold get_list in *.
+  auto.
+Qed.
+
+Lemma proof_of_check_list_gen_derive_low_level_spec_aux_by_low_level_spec : check_list_gen_derive_low_level_spec_aux_by_low_level_spec.
+Proof.
+  pre_process.
+  eapply safeExec_bind in H as (X' & ? & ?).
+  Exists theo targ X'.
+  entailer!.
+  apply derivable1_wand_sepcon_adjoint.
+  Intros t2 l2 r2; Exists t2 l2 r2.
+  entailer!.
+Qed.

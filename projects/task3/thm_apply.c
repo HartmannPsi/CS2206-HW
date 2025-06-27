@@ -118,8 +118,11 @@ imply_prop* separate_imply(term* t)
 }
 // 根据定理形式，匹配结论，得出要检验的前提
 term_list* check_list_gen(term* thm, term* target)
-/*@ With theo targ X
-    Require safeExec(ATrue, check_rel(theo, targ), X) && store_term(thm, theo) * store_term(target, targ)
+/*@ low_level_spec
+    With theo targ X
+    Require safeExec(ATrue, check_rel(theo, targ), X) && 
+            store_term(thm, theo) * 
+            store_term(target, targ)
     Ensure  exists t l, 
             safeExec(ATrue, ret(makepair(t, l)), X) &&
             target == target@pre &&
@@ -189,6 +192,20 @@ term_list* check_list_gen(term* thm, term* target)
   return check_list;
 }
 
+term_list* check_list_gen(term* thm, term* target)
+  /*@ low_level_spec_aux <= low_level_spec
+      With {B} theo targ (c: (term * (list term)) -> program unit B) X
+      Require safeExec(ATrue, bind(check_rel(theo, targ), c), X) && 
+              store_term(thm, theo) * 
+              store_term(target, targ)
+      Ensure  exists t l, 
+              safeExec(ATrue, applyf(c, makepair(t, l)), X) &&
+              target == target@pre &&
+              store_term(target, targ) *
+              sll_term_list(__return, l)
+  */
+  ;
+
 solve_res* thm_apply(term* thm, var_sub_list* lis, term* goal) 
 /*@ With t l g X
     Require thm != 0 &&
@@ -240,9 +257,11 @@ solve_res* thm_apply(term* thm, var_sub_list* lis, term* goal)
           thm_subst_allres_rel(t, l, pq, st) &&
           safeExec(ATrue, thm_app_rel(t, l, g), X)
           which implies 
-          safeExec(ATrue, check_rel(st, g), X_rel(X))
+          safeExec(ATrue, bind(check_rel(st, g), get_list), X)
       */
-      res->d.list = check_list_gen(thm_ins_c, goal);
+      res->d.list = check_list_gen(thm_ins_c, goal)
+        /*@ where(low_level_spec_aux) c = get_list, X = X; B = solve_res */
+      ; 
     }
   }
   return res;

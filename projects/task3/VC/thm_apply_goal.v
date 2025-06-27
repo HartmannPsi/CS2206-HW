@@ -1636,8 +1636,8 @@ forall (goal_pre: Z) (lis_pre: Z) (thm_pre: Z) (X: (solve_res -> (unit -> Prop))
 
 Definition thm_apply_return_wit_1_1 := 
 forall (goal_pre: Z) (lis_pre: Z) (thm_pre: Z) (X: (solve_res -> (unit -> Prop))) (g: term) (l: (@list var_sub)) (t_3: term) (retval_3: Z) (retval: Z) (v: Z) (res_type: Z) (pq: partial_quant) (st: term) (retval_4: Z) (v_2: Z) (retval_5: Z) (t_2: term) (l_2: (@list term)) (retval_2: Z) ,
-  [| (safeExec ATrue (ret ((makepair (t_2) (l_2)))) (X_rel (X)) ) |] 
-  &&  [| (safeExec ATrue (check_rel (st) (g)) (X_rel (X)) ) |] 
+  [| (safeExec ATrue (applyf (get_list) ((makepair (t_2) (l_2)))) X ) |] 
+  &&  [| (safeExec ATrue (bind ((check_rel (st) (g))) (get_list)) X ) |] 
   &&  [| (retval_5 <> 0) |] 
   &&  [| (v_2 = 0) |] 
   &&  [| (retval_4 = 0) |] 
@@ -2026,7 +2026,7 @@ Definition thm_apply_partial_solve_wit_8 := thm_apply_partial_solve_wit_8_pure -
 
 Definition thm_apply_partial_solve_wit_9_pure := 
 forall (goal_pre: Z) (lis_pre: Z) (thm_pre: Z) (X: (solve_res -> (unit -> Prop))) (g: term) (l: (@list var_sub)) (t: term) (retval: Z) (retval_2: Z) (v: Z) (res_type: Z) (pq: partial_quant) (st: term) (retval_3: Z) (v_2: Z) (retval_4: Z) ,
-  [| (safeExec ATrue (check_rel (st) (g)) (X_rel (X)) ) |] 
+  [| (safeExec ATrue (bind ((check_rel (st) (g))) (get_list)) X ) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (v_2 = 0) |] 
   &&  [| (retval_3 = 0) |] 
@@ -2052,12 +2052,12 @@ forall (goal_pre: Z) (lis_pre: Z) (thm_pre: Z) (X: (solve_res -> (unit -> Prop))
   **  ((( &( "goal" ) )) # Ptr  |-> goal_pre)
   **  ((( &( "lis" ) )) # Ptr  |-> lis_pre)
 |--
-  [| (safeExec ATrue (check_rel (st) (g)) (X_rel (X)) ) |]
+  [| (safeExec ATrue (bind ((check_rel (st) (g))) (get_list)) X ) |]
 .
 
 Definition thm_apply_partial_solve_wit_9_aux := 
 forall (goal_pre: Z) (lis_pre: Z) (thm_pre: Z) (X: (solve_res -> (unit -> Prop))) (g: term) (l: (@list var_sub)) (t: term) (retval: Z) (retval_2: Z) (v: Z) (res_type: Z) (pq: partial_quant) (st: term) (retval_3: Z) (v_2: Z) (retval_4: Z) ,
-  [| (safeExec ATrue (check_rel (st) (g)) (X_rel (X)) ) |] 
+  [| (safeExec ATrue (bind ((check_rel (st) (g))) (get_list)) X ) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (v_2 = 0) |] 
   &&  [| (retval_3 = 0) |] 
@@ -2077,8 +2077,8 @@ forall (goal_pre: Z) (lis_pre: Z) (thm_pre: Z) (X: (solve_res -> (unit -> Prop))
   **  ((&((retval_2)  # "solve_res" ->ₛ "type")) # Int  |-> 1)
   **  (sll_var_sub_list lis_pre l )
 |--
-  [| (safeExec ATrue (check_rel (st) (g)) (X_rel (X)) ) |] 
-  &&  [| (safeExec ATrue (check_rel (st) (g)) (X_rel (X)) ) |] 
+  [| (safeExec ATrue (bind ((check_rel (st) (g))) (get_list)) X ) |] 
+  &&  [| (safeExec ATrue (bind ((check_rel (st) (g))) (get_list)) X ) |] 
   &&  [| (retval_4 <> 0) |] 
   &&  [| (v_2 = 0) |] 
   &&  [| (retval_3 = 0) |] 
@@ -2140,8 +2140,31 @@ forall (X: (solve_res -> (unit -> Prop))) (g: term) (l: (@list var_sub)) (t: ter
   &&  [| (safeExec ATrue (thm_app_rel (t) (l) (g)) X ) |]
   &&  emp
 |--
-  [| (safeExec ATrue (check_rel (st) (g)) (X_rel (X)) ) |]
+  [| (safeExec ATrue (bind ((check_rel (st) (g))) (get_list)) X ) |]
   &&  emp
+.
+
+Definition check_list_gen_derive_low_level_spec_aux_by_low_level_spec := 
+forall (B: Type) ,
+forall (target_pre: Z) (thm_pre: Z) (X: (B -> (unit -> Prop))) (c: ((term * (@list term)) -> (@program unit B))) (targ: term) (theo: term) ,
+  [| (safeExec ATrue (bind ((check_rel (theo) (targ))) (c)) X ) |]
+  &&  (store_term thm_pre theo )
+  **  (store_term target_pre targ )
+|--
+EX (theo_2: term) (targ_2: term) (X_2: ((term * (@list term)) -> (unit -> Prop))) ,
+  ([| (safeExec ATrue (check_rel (theo_2) (targ_2)) X_2 ) |]
+  &&  (store_term thm_pre theo_2 )
+  **  (store_term target_pre targ_2 ))
+  **
+  ((EX t_2 l_2 retval_2,
+  [| (safeExec ATrue (ret ((makepair (t_2) (l_2)))) X_2 ) |]
+  &&  (store_term target_pre targ_2 )
+  **  (sll_term_list retval_2 l_2 ))
+  -*
+  (EX t l retval,
+  [| (safeExec ATrue (applyf (c) ((makepair (t) (l)))) X ) |]
+  &&  (store_term target_pre targ )
+  **  (sll_term_list retval l )))
 .
 
 Module Type VC_Correct.
@@ -2241,5 +2264,6 @@ Axiom proof_of_thm_apply_which_implies_wit_1 : thm_apply_which_implies_wit_1.
 Axiom proof_of_thm_apply_which_implies_wit_2 : thm_apply_which_implies_wit_2.
 Axiom proof_of_thm_apply_which_implies_wit_3 : thm_apply_which_implies_wit_3.
 Axiom proof_of_thm_apply_which_implies_wit_4 : thm_apply_which_implies_wit_4.
+Axiom proof_of_check_list_gen_derive_low_level_spec_aux_by_low_level_spec : check_list_gen_derive_low_level_spec_aux_by_low_level_spec.
 
 End VC_Correct.

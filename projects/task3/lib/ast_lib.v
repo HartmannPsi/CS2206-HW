@@ -840,6 +840,7 @@ Definition store_imply_res (x: addr) (impl: option ImplyProp): Assertion :=
 Local Close Scope string.
 
 Definition makepair (x : term) (p : list term): (term * (list term)) := (x, p).
+Definition applyf {A B: Type} (f: A -> B) (a: A) := f a.
 
 Definition check_list_gen_body:
   term * term * list term ->
@@ -860,11 +861,10 @@ Definition check_rel theo tar :=
 Definition check_from_mid_rel theo tar l :=
   repeat_break check_list_gen_body (theo, tar, l).
 
-Definition list_gen:
-  term -> term -> MONAD (solve_res) :=
-  fun 't => fun 'g =>
-  bind (check_rel t g)
-            (fun '(_, lst) => ret (SRTList lst)).
+Definition get_list (x: term * list term): MONAD solve_res := 
+  match x with
+    | (_, lst) => ret (SRTList lst)
+  end.
 
 Definition thm_app: 
   term * var_sub_list * term ->
@@ -874,14 +874,8 @@ Definition thm_app:
   | None => ret (SRBool 0)
   | Some (_, thm_ins) =>
       if (term_alpha_eq thm_ins g) then ret (SRBool 1)
-      else x <- (check_rel thm_ins g) ;; (match x with
-          | (_, lst) => ret (SRTList lst)
-        end)
+      else x <- (check_rel thm_ins g) ;; get_list x
   end.
-
-Definition X_rel (X: solve_res -> unit -> Prop): (term * list term -> unit -> Prop) :=
-  fun '(t, l) => fun u =>
-    X (SRTList l) u.
 
 Definition thm_app_rel (thm : term) (l : var_sub_list) (goal : term) :=
   thm_app (thm, l, goal).
